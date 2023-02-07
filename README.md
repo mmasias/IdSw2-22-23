@@ -9,8 +9,7 @@ Primero, [#2Think](docs/2think.md)
 En la medida de lo posible, las clases en el aula 0.12
 
 * [Temario](docs/temario.md)
-* Proyectos que abordaremos:
-  * Proyectos aquí...
+* [Proyectos](docs/proyectos.md)
 * Sesiones 
   * Planteamiento
   * [Grupos](docs/grupos.md)
