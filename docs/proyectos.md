@@ -1,17 +1,35 @@
+# Proyectos IdSw2
+
 Durante la asignatura se desarrollará un proyecto por grupo, abordado ***inicialmente*** con los conocimientos que tengan los alumnos (en grupos de 3 o 4 personas). 
 
 A lo largo de la asignatura han de ir ***evolucionando***, mediante la aplicación de los conceptos de análisis y diseño que [vayamos viendo](temario.md) en la misma. 
 
 El resultado final será un conjunto de versiones de la misma aplicación, cada una evolucionada según un principio aprendido.
 
-### Forma de trabajo
+## Proyectos
+
+Proyecto|Breve descripción|
+-|-
+[pyBatalla](proyectos/pyBatalla.md)|Batalla entre un héroe y un grupo de enemigos
+[pyAspiradora](proyectos/pyAspiradora.md)|Máquina de limpieza de una superficie
+[pyColas](proyectos/pyColas.md)|Simulación de una cola y  cajas de atención en un centro comercial
+[pyAscensores](proyectos/pyAscensores.md)|Simulación de los ascensores de UNEATLANTICO
+[pyLaberinto](proyectos/pyLaberinto.md)|Un laberinto, con paredes y esas cosas
+[pyMaquinasExpendedoras](proyectos/pyMaquinasExpendedoras.md)|Simulación de máquinas expendedoras
+
+## Forma de trabajo
+
+Similar a la utilizada en la asignatura de Ingeniería de Software 1
+
+![](/images/estrategiaTrabajo.png)
+
 * Fork del repo principal (https://github.com/mmasias/idsw2). 
 * Ya en su repo, una carpeta dentro de la carpeta /proyectos conteniendo su trabajo.
   * La organización de su carpeta de trabajo se deja a libre elección, pero siempre dentro de un esquema lógico (si en un momento de la revisión se ve necesario, ya lo reorganizaremos). 
   * Una sugerencia podría ser una carpeta para la documentación, otra para el código de su solución.  
-* Cuando tengan avances, desde su fork realizan un pull request al repo de la asignatura, apuntando a la rama de su grupo.
+* Cuando tengan avances, desde su fork realizan un pull request al repo de la asignatura, apuntando a su rama personal o a la rama de su grupo, dependiendo del tipo de entrega.
 * Tiempo de trabajo: a aplicar luego de la clase de los principios indicados. Para cada entrega iremos indicando tiempos.
-* Exposición.
+* Exposición **obligatoria**, en grupo.
 
 ## Entregas
 
@@ -35,13 +53,7 @@ Las primeras iteraciones han de presentarse en la forma más ***[plain vanilla](
 Este punto está abierto a ajustes en función de la evolución de la asignatura y el proyecto.
 
 
-## Proyectos
 
-* [pyBatalla](../proyectos/pyBatalla.md)
-* [pyAspiradora](../proyectos/pyAspiradora.md)
-* [pyColas](../proyectos/pyColas.md)
-* [pyAscensores](../proyectos/pyAscensores.md)
-* [pyLaberinto](../proyectos/pyLaberinto.md)
-* [pyMaquinasExpendedoras](../proyectos/pyMaquinasExpendedoras.md)
+
 
 
