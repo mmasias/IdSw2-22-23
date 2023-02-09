@@ -1,14 +1,10 @@
 # Temas a debatir en clase
 
-## Parte I
-
-- :black_square_button: Software
-    - :black_square_button: Complejidad del Software
-- :black_square_button: Análisis y Diseño
-- :black_square_button: Estrategias de clasificación
-    - :black_square_button: Relaciones entre clases, colaboración
-    - :black_square_button: Relaciones entre clases, transmisión
-- :black_square_button: Cohesión & Acoplamiento
-- :black_square_button: Complejidad ciclomática
-- :black_square_button: Y todo esto, ¿pa'qué?
-- :black_square_button: Modularidad y jerarquización
+Tema|Contenidos|Nivel
+-|-|-
+**Diseño**|Modelo del Dominio, Gestión de Dependencias, DRY, YAGNI, nombrado, comentarios, …​|Línea
+**Diseño modular**|Cohesión, Acoplamiento, Granularidad, …​, Smell Code, …​, Modelo, Vista, Controlador, …​|Clase & método
+**Diseño orientado a objetos**|Principios Open/Close, Sustitución de Liskov, Patrón Método Plantilla, Inversión de Dependencias, Inversión de Control, Inyección de Dependencias, …​|Jerarquías de clasificación
+Patrones de diseño|Creacionales, estructurales, de comportamiento, Object Value, …​|Prácticas recurrentes
+Arquitectura de software|actores, documentación 4+1 vistas, principios de cohesión y acoplamiento de paquetes|Paquetes
+Arquitectura MV*|Modelo/Vista/Controlador (MVP, MVVM, …​), Data Access Object, Arquitecturas Ágiles: Hexagonal Architecture , Clean Architecture, Onion Architecture|Paquetes
