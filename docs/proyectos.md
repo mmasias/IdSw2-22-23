@@ -8,14 +8,14 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 
 ## Proyectos
 
-Proyecto|Breve descripción|Dificultad
--|-|-
-[pyBatalla](proyectos/pyBatalla.md)|Batalla entre un héroe y un grupo de enemigos|:star::star::star:
-[pyAspiradora](proyectos/pyAspiradora.md)|Máquina de limpieza de una superficie|:star::star::star::star:
-[pyColas](proyectos/pyColas.md)|Simulación de una cola y  cajas de atención en un centro comercial|:star::star:
-[pyAscensores](proyectos/pyAscensores.md)|Simulación de los ascensores de UNEATLANTICO|:star::star::star::star::star:
-[pyLaberinto](proyectos/pyLaberinto.md)|Un laberinto, con paredes y esas cosas|:star::star::star:
-[pyMaquinasExpendedoras](proyectos/pyMaquinasExpendedoras.md)|Simulación de máquinas expendedoras|:star::star::star::star:
+Proyecto|Breve descripción|Dificultad|Grupo
+-|-|-|-
+[pyBatalla](proyectos/pyBatalla.md)|Batalla entre un héroe y un grupo de enemigos|:star::star::star:|Grupo 1
+[pyAspiradora](proyectos/pyAspiradora.md)|Máquina de limpieza de una superficie|:star::star::star::star:|Grupo 
+[pyColas](proyectos/pyColas.md)|Simulación de una cola y  cajas de atención en un centro comercial|:star::star:|Grupo 
+[pyAscensores](proyectos/pyAscensores.md)|Simulación de los ascensores de UNEATLANTICO|:star::star::star::star::star:|Grupo 
+[pyLaberinto](proyectos/pyLaberinto.md)|Un laberinto, con paredes y esas cosas|:star::star::star:|Grupo 3
+[pyMaquinasExpendedoras](proyectos/pyMaquinasExpendedoras.md)|Simulación de máquinas expendedoras|:star::star::star::star:|Grupo 2
 
 ## Forma de trabajo
 
