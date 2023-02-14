@@ -1,7 +1,11 @@
 # Temas a debatir en clase
 
+
+
+
 Tema|Contenidos|Nivel
 -|-|-
+**Introducción**|Software y complejidad, Estrategias de clasificación, 
 **Diseño**|Modelo del Dominio, Gestión de Dependencias, DRY, YAGNI, nombrado, comentarios, …​|Línea
 **Diseño modular**|Cohesión, Acoplamiento, Granularidad, …​, Smell Code, …​, Modelo, Vista, Controlador, …​|Clase & método
 **Diseño orientado a objetos**|Principios Open/Close, Sustitución de Liskov, Patrón Método Plantilla, Inversión de Dependencias, Inversión de Control, Inyección de Dependencias, …​|Jerarquías de clasificación
