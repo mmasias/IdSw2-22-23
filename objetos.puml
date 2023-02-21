@@ -1,0 +1,37 @@
+@startuml Objetos
+object "batalla : Batalla" as Batalla
+
+object "mago : Heroe" as Heroe
+object "vampiresa : Vampiro" as Enemigo
+
+object "baston : Arma" as ArmaH1
+object "libro : Arma" as ArmaH2
+
+object "arma1 : Arma" as ArmaV1
+object "arma2 : Arma" as ArmaV2
+
+object "pocionDebil : Pocion" as Pocion1
+object "pocionFuerte : Pocion" as Pocion2
+
+object "recuadroHeroe : RecuadroPersonaje" as RecuadroHeroe
+object "recuadroEnemigo : RecuadroPersonaje" as RecuadroEnemigo
+object "menuAcciones : MenuAcciones" as MenuAcciones
+
+Batalla -l- RecuadroHeroe
+Batalla -l- RecuadroEnemigo
+Batalla -l- MenuAcciones
+
+Enemigo -u- Batalla : Participa en <
+Heroe -u- Batalla : Participa en <
+
+Heroe -d- ArmaH1 : Utiliza <
+Heroe -d- ArmaH2 : Utiliza <
+
+Enemigo -d- ArmaV1 : Utiliza <
+Enemigo -d- ArmaV2 : Utiliza <
+
+Heroe -l- Pocion1 : Tiene <
+Heroe -l- Pocion2 : Tiene <
+
+
+@enduml
