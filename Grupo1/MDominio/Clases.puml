@@ -1,0 +1,91 @@
+@startuml Clases
+
+class Batalla{
+    +Personaje Heroe
+    +Personaje[] Enemigo     
+    +int turno
+
+    void ImprimirInterfaz()
+}
+
+abstract Personaje{
+    +int vidaActual
+    +int vidaMaxima
+    +Arma[] armas
+    +int armasEquipada
+    +Desmayo desmayo
+    void RecibirDaño(int daño)
+    void Desmayar()
+}
+
+class Arma {
+    +String nombre
+    +int daño
+    +int durabilidad
+    +int desgaste
+    +float efectividad
+    +float probabilidadDesgaste
+    void Desgastar()
+}
+
+class Desmayo{
+    +float porcentajeDesmayo
+    +int recuperacionDesmayo
+    +bool puedeDesmayarse
+}
+
+class Vampiro{
+}   
+
+class Heroe{
+    +bool defendiendo  
+    +Pocion[] pocion
+    void UsarPocion()
+    void Defender()
+}
+
+class Pocion{
+    +int vidaRecuperada
+    void Desgastar()
+}
+
+class RecuadroPersonaje {
+    +String[] sprite
+    +int vida
+    +String Nombre
+    String[] GetFullSprite()
+}
+
+class MenuAcciones {
+    +Arma[] armas
+    +String[] acciones
+   
+    void ImprimirAcciones()
+    void ImprimirArmas()
+    
+}
+
+class Calculadora {
+    int calcularDaño(Arma arma)
+    bool puedeDefenderse(float probabilidad)
+}
+
+Batalla -l- RecuadroPersonaje : Muestra >
+Batalla -l- MenuAcciones : Muestra >
+Batalla -r- Calculadora : Consulta >
+
+Personaje -u-|> Heroe
+Personaje -u-|> Vampiro
+
+Batalla -d-> Heroe : Lucha <
+Batalla -d-> Vampiro : Lucha <
+
+
+Heroe -d- Pocion : Usa >
+
+Personaje -r- Arma : Usa >
+Personaje -l- Desmayo : Puede tener >
+
+
+
+@enduml
