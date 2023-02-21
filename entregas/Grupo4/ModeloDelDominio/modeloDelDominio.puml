@@ -1,0 +1,24 @@
+@startuml modeloDelDominio
+
+class Persona
+class Tiempo
+class Planta
+class Ascensor
+class Universidad
+class Puerta
+class Boton
+
+Planta -u-- Persona : "< Esta en"
+Ascensor -u-- Persona : "< Esta en"
+Planta -u-- Ascensor : "< Esta en"
+Ascensor --- Tiempo : "> Funciona en"
+
+Boton -u-- Ascensor : "> Pertenece"
+Boton -u-- Puerta : "> Pertenece"
+Puerta -u-- Ascensor : "> Pertenece"
+
+Planta -u-- Universidad : "> Pertenece"
+Ascensor -u-- Universidad : "> Pertenece"
+Persona -u-- Universidad : "> Esta en"
+
+@enduml
