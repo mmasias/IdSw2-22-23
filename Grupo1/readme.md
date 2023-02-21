@@ -10,7 +10,8 @@
   
 |Diagrama de clases
 |:-:
-|[Clases](MDominio/Clases.puml)
+|![](../out/Grupo1/MDominio/Clases/Clases.png)
+|[Link](MDominio/Clases.puml)
 
 </details>
 
@@ -19,7 +20,8 @@
   
 |Diagrama de objetos
 |:-:
-|[Objetos](MDominio/Objetos.puml)
+|![](../out/Grupo1/MDominio/Objetos/Objetos.png)
+|[Link](MDominio/Objetos.puml)
 
 </details>
 
@@ -28,6 +30,7 @@
   
 |Diagrama de estados
 |:-:
-|[Estados](MDominio/Estados.puml)
+|![](../out/Grupo1/MDominio/Estados/Estados.png)
+|[Link](MDominio/Estados.puml)
 
 </details>

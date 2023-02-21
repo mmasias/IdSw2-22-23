@@ -1,4 +1,4 @@
-@startuml Batalla
+@startuml Clases
 
 class Batalla{
     +Personaje Heroe
