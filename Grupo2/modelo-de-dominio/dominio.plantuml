@@ -1,0 +1,17 @@
+@startuml modelo-de-dominio
+class Maquina
+class Billete
+class Moneda
+class Producto
+class Cambio
+class Compra
+class Mantenimiento
+
+Maquina --r Compra
+Maquina --l Mantenimiento
+Maquina --- Cambio
+Maquina --- Producto
+
+Cambio --- Billete
+Cambio --- Moneda
+@enduml
