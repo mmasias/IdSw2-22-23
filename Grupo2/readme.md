@@ -2,8 +2,8 @@
 
 |                modelo de dominio                   |
 | :------------------------------------------------: |
-|      ![Imagen](images/modelo-de-dominio.jpg)       |
+|      ![Imagen](images/modelo-de-dominio.PNG)       |
 
 |                diagrama de objetos                 |
 | :------------------------------------------------: |
-|      ![Imagen](images/diagrama-de-objetos.jpg)     |
+|      ![Imagen](images/diagrama-de-objetos.PNG)     |

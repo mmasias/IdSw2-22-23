@@ -7,11 +7,11 @@ class Cambio
 class Compra
 class Mantenimiento
 
-Maquina --r Compra
-Maquina --l Mantenimiento
-Maquina --- Cambio
-Maquina --- Producto
+Maquina -u-* Compra
+Maquina *--l Mantenimiento
+Maquina o-- Cambio
+Maquina o---r Producto
 
-Cambio --- Billete
-Cambio --- Moneda
+Cambio *--- Billete
+Cambio *--- Moneda
 @enduml

@@ -46,17 +46,10 @@ precio = 1,4
 moneda = "Euro"
 }
 
-object "Producto: Pringles" as pro2{
-cantidad = 9
-precio = 2,6
-moneda = "Euro"
-}
-
-maq1 --r comp1
+maq1 --u comp1
 maq1 --l man1 
 
-maq1 --- pro1
-maq1 --- pro2
+maq1 --r pro1
 maq1 --- cambio
 
 cambio --- b10
