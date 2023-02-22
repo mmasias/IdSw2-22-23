@@ -1,0 +1,59 @@
+@startuml objetos
+object "Maquina: M1" as maq1{
+Ubicación = "planta -2"
+No. Serie = "XXXDKL7"
+}
+
+object "Compra: compra1" as comp1{
+fecha comp. = "12/05/2022"
+hora comp. = "17:50"
+descripción comp. 
+}
+
+object "Usuario: Mantenimiento" as man1{
+}
+
+object "Billete: €10" as b10{
+valor = 10
+moneda = "Euro"
+cantidad = 12
+}
+
+object "Billete: €5" as b5{
+valor = 5
+moneda = "Euro"
+cantidad = 5
+}
+
+object "Moneda: €2" as m2{
+valor = 2
+moneda = "Euro"
+cantidad = 8
+}
+
+object "Moneda: €0,5" as m05{
+valor = 0,5
+moneda = "Euro"
+cantidad = 4
+}
+
+object "Cambio: Cambio de M1" as cambio{
+}
+
+object "Producto: Doritos" as pro1{
+cantidad = 12
+precio = 1,4
+moneda = "Euro"
+}
+
+maq1 --u comp1
+maq1 --l man1 
+
+maq1 --r pro1
+maq1 --- cambio
+
+cambio --- b10
+cambio --- b5
+cambio --- m2
+cambio --- m05
+@enduml
