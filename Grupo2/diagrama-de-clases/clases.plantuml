@@ -1,0 +1,61 @@
+@startuml modelo-de-dominio
+class Compra {
+    - id
+    + nombre
+    + descripcion
+    + fechaDeCompra
+
+    + realizarCompra()
+}
+
+class Maquina {
+    - id
+    + nombre
+    + numeroDeSerie
+    + totalDeProductos
+    + cantidadDeDinero
+    + productos
+
+    + generarReposicion()
+}
+
+class Billete {
+    - id
+    + nombre
+    + valor
+    + moneda
+}
+
+class Moneda {
+    - id
+    + nombre
+    + valor
+    + moneda
+}
+
+class Producto {
+    - id
+    + nombre
+    + precio
+    + proveedor
+}
+
+class Cambio {
+    - id
+    + nombre
+}
+
+class Mantenimiento  {
+    - id
+    + nombre
+    + tipo
+}
+
+Maquina -u-* Compra
+Maquina *--l Mantenimiento
+Maquina o-- Cambio
+Maquina o---r Producto
+
+Cambio *--- Billete
+Cambio *--- Moneda
+@enduml

@@ -7,3 +7,7 @@
 |                diagrama de objetos                 |
 | :------------------------------------------------: |
 |      ![Imagen](images/diagrama-de-objetos.PNG)     |
+
+|                diagrama de clases                  |
+| :------------------------------------------------: |
+|      ![Imagen](images/diagrama-de-clases.PNG)      |
