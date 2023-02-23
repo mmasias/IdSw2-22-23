@@ -14,6 +14,7 @@ abstract Personaje{
     +Arma[] armas
     +int armasEquipada
     +Desmayo desmayo
+    +String[] sprite
     void RecibirDaño(int daño)
     void Desmayar()
 }
