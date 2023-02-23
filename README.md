@@ -13,3 +13,6 @@ En la medida de lo posible, las clases en el aula 0.12
 * Sesiones 
   * Planteamiento
   * [Grupos](docs/grupos.md)
+
+
+[Hoja de Seguimiento](https://docs.google.com/spreadsheets/d/1MEU5q718irAnvC7s1Q-IU2q4_XMjxRl__JX2Z43gh8E/edit?usp=sharing)
