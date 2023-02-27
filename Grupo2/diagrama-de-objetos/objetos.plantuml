@@ -37,9 +37,6 @@ moneda = "Euro"
 cantidad = 4
 }
 
-object "Cambio: Cambio de M1" as cambio{
-}
-
 object "Producto: Doritos" as pro1{
 cantidad = 12
 precio = 1,4
@@ -50,10 +47,9 @@ maq1 --u comp1
 maq1 --l man1 
 
 maq1 --r pro1
-maq1 --- cambio
 
-cambio --- b10
-cambio --- b5
-cambio --- m2
-cambio --- m05
+maq1 --- b10
+maq1 --- b5
+maq1 --- m2
+maq1 --- m05
 @enduml

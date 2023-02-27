@@ -5,18 +5,20 @@ class Compra {
     + descripcion
     + fechaDeCompra
 
+    + Compra()
     + realizarCompra()
 }
 
 class Maquina {
     - id
     + nombre
-    + numeroDeSerie
-    + totalDeProductos
-    + cantidadDeDinero
-    + productos
+    + Dinero[]
+    + Productos[]
 
-    + generarReposicion()
+    + Maquina()
+    + totalDinero()
+    + totalProductos()
+
 }
 
 class Billete {
@@ -24,6 +26,8 @@ class Billete {
     + nombre
     + valor
     + moneda
+
+    + Billete()
 }
 
 class Moneda {
@@ -31,6 +35,8 @@ class Moneda {
     + nombre
     + valor
     + moneda
+
+    + Moneda()
 }
 
 class Producto {
@@ -38,24 +44,33 @@ class Producto {
     + nombre
     + precio
     + proveedor
+
+    + Producto()
 }
 
-class Cambio {
+class Dinero {
     - id
     + nombre
+
+    + Dinero()
 }
 
 class Mantenimiento  {
     - id
     + nombre
     + tipo
+
+    + Mantenimiento()
+    + generarReposicion()
 }
 
-Maquina -u-* Compra
+Maquina -u-o Compra
 Maquina *--l Mantenimiento
-Maquina o-- Cambio
+Maquina o-- Dinero
 Maquina o---r Producto
 
-Cambio *--- Billete
-Cambio *--- Moneda
+Dinero *--- Billete
+Dinero *--- Moneda
+Mantenimiento ...r.o Dinero
+
 @enduml
