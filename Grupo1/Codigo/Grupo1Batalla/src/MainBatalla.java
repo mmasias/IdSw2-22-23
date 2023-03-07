@@ -1,2 +1,6 @@
-package PACKAGE_NAME;public class MainBatalla {
+public class MainBatalla {
+
+    public static void main (String[] args){
+        
+    }
 }
