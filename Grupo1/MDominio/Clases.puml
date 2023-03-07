@@ -14,6 +14,7 @@ abstract Personaje{
     +Arma[] armas
     +int armasEquipada
     +Desmayo desmayo
+    +String[] sprite
     void RecibirDaño(int daño)
     void Desmayar()
 }
@@ -70,21 +71,20 @@ class Calculadora {
     bool puedeDefenderse(float probabilidad)
 }
 
-Batalla -l- RecuadroPersonaje : Muestra >
-Batalla -l- MenuAcciones : Muestra >
-Batalla -r- Calculadora : Consulta >
+Batalla o-l-> RecuadroPersonaje : Muestra >
+Batalla o-l-> MenuAcciones : Muestra >
+Batalla o-r-> Calculadora : Consulta >
 
-Personaje -u-|> Heroe
-Personaje -u-|> Vampiro
+Personaje <|-u- Heroe
+Personaje <|-u- Vampiro
 
-Batalla -d-> Heroe : Lucha <
-Batalla -d-> Vampiro : Lucha <
+Batalla *-d-> Heroe : Lucha <
+Batalla *-d-> Vampiro : Lucha <
 
+Heroe -d-> Pocion : Usa >
 
-Heroe -d- Pocion : Usa >
-
-Personaje -r- Arma : Usa >
-Personaje -l- Desmayo : Puede tener >
+Personaje o-r-> Arma : Usa >
+Personaje -l-> Desmayo : Puede tener >
 
 
 
