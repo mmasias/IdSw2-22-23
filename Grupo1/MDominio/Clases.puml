@@ -2,21 +2,22 @@
 
 class Batalla{
     +Personaje Heroe
-    +Personaje[] Enemigo     
+    +Personaje Enemigo     
     +int turno
 
-    Batalla(heroe, enemigo)
+    Batalla(heroe, enemigos)
 
     void ImprimirInterfaz()
 }
 
 abstract Personaje{
+    +String nombre
     +int vidaActual
     +int vidaMaxima
     +Arma[] armas
     +int armasEquipada
     +Desmayo desmayo
-    +String[] sprite
+    +String[][] sprite
 
     Personaje(vidaMaxima, armas, sprite)
 
@@ -43,13 +44,15 @@ class Desmayo{
 }
 
 class Vampiro{
+    Vampiro(vidaMaxima, armas, sprite)
 }   
 
 class Heroe{
     +bool defendiendo  
     +Pocion[] pociones
+    +String[] acciones
 
-    Heroe(pociones)
+    Heroe(vidaMaxima, armas, sprite, pociones)
 
     void UsarPocion()
     void Defender()
@@ -62,13 +65,13 @@ class Pocion{
 }
 
 class RecuadroPersonaje {
-    +String[] sprite
+    +String[][] sprite
     +int vida
     +String Nombre
 
     RecuadroPersonaje(sprite, vida, nombre)
 
-    void ImprimirPersonaje()
+    void Imprimir()
 }
 
 class MenuAcciones {
