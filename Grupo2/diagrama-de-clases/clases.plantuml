@@ -1,7 +1,5 @@
 @startuml modelo-de-dominio
 class Compra {
-    - id
-    + nombre
     + descripcion
     + fechaDeCompra
 
@@ -10,7 +8,6 @@ class Compra {
 }
 
 class Maquina {
-    - id
     + nombre
     + Dinero[]
     + Productos[]
@@ -22,8 +19,6 @@ class Maquina {
 }
 
 class Billete {
-    - id
-    + nombre
     + valor
     + moneda
 
@@ -31,8 +26,6 @@ class Billete {
 }
 
 class Moneda {
-    - id
-    + nombre
     + valor
     + moneda
 
@@ -40,7 +33,6 @@ class Moneda {
 }
 
 class Producto {
-    - id
     + nombre
     + precio
     + proveedor
@@ -49,14 +41,13 @@ class Producto {
 }
 
 class Dinero {
-    - id
-    + nombre
+    + valor
+    + moneda
 
     + Dinero()
 }
 
-class Mantenimiento  {
-    - id
+class Mantenimiento {
     + nombre
     + tipo
 
