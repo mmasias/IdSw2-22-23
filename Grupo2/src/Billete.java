@@ -1,3 +1,5 @@
-public class Billete {
-    
+public class Billete extends Dinero {
+    Billete() {
+        super();
+    }
 }
