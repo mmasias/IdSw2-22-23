@@ -1,22 +1,22 @@
 public class Maquina {
     String nombre;
-    Dinero[] dinero;
+    Billete[] billetes;
+    Moneda[] monedas;
     Producto[] productos;
 
-    Maquina(String nombre, Dinero[] dinero, Producto[] productos) {
+    Maquina(String nombre, Billete[] billetes, Moneda[] monedas, Producto[] productos) {
         this.nombre = nombre;
-        this.dinero = dinero;
+        this.billetes = billetes;
+        this.monedas = monedas;
         this.productos = productos;
     }
 
-    Maquina() {
-        this.nombre = "";
-        this.dinero = null;
-        this.productos = null;
+    public int totalBilletes() {
+        return (this.billetes.length);
     }
 
-    public int totalDinero() {
-        return this.dinero.length;
+    public int totalMonedas() {
+        return this.monedas.length;
     }
 
     public int totalProductos() {
