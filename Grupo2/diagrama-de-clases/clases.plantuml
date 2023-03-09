@@ -9,27 +9,27 @@ class Compra {
 
 class Maquina {
     + nombre
-    + Dinero[]
+    + Billetes[]
+    + Monedas[]
     + Productos[]
 
     + Maquina()
-    + totalDinero()
+    + totalBilletes()
+    + totalMonedas()
     + totalProductos()
 
 }
 
 class Billete {
     + valor
-    + moneda
 
-    + Billete()
+    + Billete(int valor)
 }
 
 class Moneda {
     + valor
-    + moneda
 
-    + Moneda()
+    + Moneda(int valor)
 }
 
 class Producto {
@@ -42,9 +42,8 @@ class Producto {
 
 class Dinero {
     + valor
-    + moneda
 
-    + Dinero()
+    + Dinero(int valor)
 }
 
 class Mantenimiento {
@@ -57,11 +56,11 @@ class Mantenimiento {
 
 Maquina -u-o Compra
 Maquina *--l Mantenimiento
-Maquina o-- Dinero
 Maquina o---r Producto
+Maquina o--- Billete
+Maquina o--- Moneda
 
-Dinero *--- Billete
-Dinero *--- Moneda
-Mantenimiento ...r.o Dinero
+Dinero <|--- Billete
+Dinero <|--- Moneda
 
 @enduml
