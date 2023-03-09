@@ -2,6 +2,7 @@ import Personajes.*;
 import Renderizacion.MenuAcciones;
 import Renderizacion.RecuadroPersonaje;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Batalla {
@@ -26,60 +27,91 @@ public class Batalla {
     public void empezarBatalla(){
         recuadroHeroe = new RecuadroPersonaje(heroe.getSprite(), heroe.getVidaActual(), heroe.getNombre());
         recuadroEnemigo = new RecuadroPersonaje(enemigo.getSprite(), enemigo.getVidaActual(), enemigo.getNombre());
-
         menuAcciones = new MenuAcciones(heroe.getArmas(), heroe.getAcciones());
-
-        imprimirInterfazConAcciones();
         siguienteTurno();
     }
 
     private void siguienteTurno(){
-        // comprobar si los personajes siguen vivos en el bucle
-            //si ambos siguen vivos:
-                //heroe - comprobar si está desmayado
-                    // esta desmayado - saltar las acciones
-                    // no esta desmayado
-                        // comprobar que pueda hacer algo (CD esperar a curarse)
-                            // no puede hacer nada
-                            // puede hacer cosas
-                                // BUCLE - elegir accion
+        System.out.println("----");
+        if (heroe.getVidaActual() > 0){
+            if (heroePuedeActuar()){
+                elegirTurno();
 
-                                    //si elige atacar, mostrar armas
-                                            // elige arma
-                                                // calcular daño
-                                                // quitar vida al enemigo
-                                                // turnoEnemigo()
+                if (enemigo.getVidaActual() <= 0){
+                    anunciarGanador(heroe);
+                }
 
-                                            // no elige arma -- > volver al inicio del bucle
+            } else {
 
-                                    //si elige defenderse, defenderse
+                if (heroe.estaDesmayado() && heroe.esperandoAPocion()){
+                    heroe.curarse(2);
+                    heroe.avanzarTurnoDeCuracion();
 
-                                    //si elige curarse, curarse
+                    if (heroe.getVidaActual() >= 30){
+                        heroe.despertar();
+                    }
 
-                // turnoEnemigo()
-                    // enemigo - comprobar si está desmayado
-                        // esta desmayado
-                        // no esta desmayado
-                            // sacar arma aleatoria
-                            // calcular daño y hacerselo al heroe
+                } else if (heroe.estaDesmayado()){
+                    heroe.curarse(2);
 
-        // turno ++
+                    if (heroe.getVidaActual() >= 30){
+                        heroe.despertar();
+                    }
 
+                } else {
+                    heroe.avanzarTurnoDeCuracion();
+                }
 
-        while(personajesSiguenVivos()){
-            elegirTurno();
+            }
+
+            turnoEnemigo();
+            turno++;
+
+            System.out.println("-------------NEXT TURN-------------" + turno);
+            siguienteTurno();
+
+        } else {
+            anunciarGanador(enemigo);
+        }
+    }
+    private void turnoEnemigo(){
+        if (enemigo.getVidaActual() < 30) {
+            enemigo.desmayar();
         }
 
-        // cuando se sale del bucle es porque alguno ha ganado
+        if (enemigo.estaDesmayado()){
+            enemigo.curarse(2);
 
-        avisarDeGanador();
+            if (enemigo.getVidaActual() >= 30){
+                enemigo.despertar();
+            }
+        } else {
+            Random rand = new Random();
+            //int armaAEquipar = rand.nextInt(enemigo.getArmas().length) + 1;
+
+            enemigo.equiparArma(0);
+
+            int dañoARealizar = enemigo.hacerDano();
+
+            if (heroe.estaDefendiendo()){
+                heroe.recibirDaño(dañoARealizar - 5);
+            } else {
+                heroe.recibirDaño(dañoARealizar);
+                System.out.println("Vampiro ha atacado de" + dañoARealizar);
+
+                if (heroe.getVidaActual() < 30 )
+                    heroe.desmayar();
+            }
+
+        }
     }
-
-    private boolean personajesSiguenVivos(){
-        return heroe.getVidaActual() > 0 && enemigo.getVidaActual() > 0;
+    private void anunciarGanador(Personaje ganador){
+        System.out.println("Ha ganado " + ganador.getNombre() + " !!");
     }
-
     private void elegirTurno(){
+        System.out.println("----------------------------------------------------------");
+        imprimirInterfazConAcciones();
+
         switch (scanInteraccion()){
             case 1:
                 imprimirInterfazConArmas();
@@ -87,24 +119,40 @@ public class Batalla {
                 break;
 
             case 2:
-                //defenderse();
+                heroe.defenderse();
+                break;
+
+            case 3:
+                heroe.iniciarEstadoDeCuracion();
+                break;
+
+            default:
+                elegirTurno();
         }
 
     }
 
-    private void elegirArma(){
-
+    private boolean heroePuedeActuar(){
+        return (heroe.estaDesmayado() || heroe.esperandoAPocion()) ? false : true;
     }
 
-    private void avisarDeGanador(){
-        if (heroe.getVidaActual() < 0 && enemigo.getVidaActual() < 0)
-            System.out.println("EMPATE");
+    private void elegirArma(){
+        int armaAEquipar = scanInteraccion() - 1;
 
-        else if (heroe.getVidaActual() < 0)
-            System.out.println("Ha ganado el enemigo");
+        if (armaAEquipar < 0 || armaAEquipar > heroe.getArmas().length){
+            System.out.println("-------------------");
+            imprimirInterfazConArmas();
+            elegirArma();
+        }
+        else {
+            heroe.equiparArma(armaAEquipar);
+            int dañoARealizar = heroe.hacerDano();
 
-        else
-            System.out.println("Ha ganado el héroe");
+            enemigo.recibirDaño(dañoARealizar); // ?? igual sacarlo
+            System.out.println("Heroe ataca de "+ dañoARealizar);
+        }
+
+
     }
 
     private int scanInteraccion(){

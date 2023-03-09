@@ -2,7 +2,7 @@ package Renderizacion;
 
 public class RecuadroPersonaje {
     private String[][] sprite;
-    private int vida;
+    private int vida; // pasar personaje en lugar de vida y nombre
     private String nombre;
 
     public RecuadroPersonaje(String[][] sprite, int vida, String nombre){

@@ -6,12 +6,10 @@ public abstract class Personaje {
     protected String nombre;
     protected String[][] sprite;
     protected int vidaActual;
-
-
     protected int vidaMaxima;
     protected Arma[] armas;
     protected int armaEquipada;
-    protected Desmayo desmayo;
+    protected boolean desmayado;
 
 
     public Personaje(String nombre, int vidaMaxima, Arma[] armas, String[][] sprite) {
@@ -29,6 +27,29 @@ public abstract class Personaje {
 
     public void desmayar(){
 
+    }
+
+    public boolean estaDesmayado(){
+        return desmayado;
+    }
+
+    public int hacerDano(){
+        double probAcertar = Math.random();
+        double probDesgastar = Math.random();
+        Arma arma = armas[armaEquipada];
+
+        if (arma.getDurabilidad() > 0){
+            if (probAcertar < arma.getProbAcertar()){
+                arma.desgastar();
+                return arma.getDaño();
+            }
+        }
+
+        return 0;
+    }
+
+    public void equiparArma(int armaAEquipar){
+        armaEquipada = armaAEquipar;
     }
 
     public int getVidaActual(){
@@ -53,5 +74,17 @@ public abstract class Personaje {
 
     public String getNombre(){
         return nombre;
+    }
+
+    public void curarse(int vidaACurar){
+        if ((vidaActual + vidaACurar ) > vidaMaxima)
+            vidaActual = vidaMaxima;
+
+        else
+            vidaActual += vidaACurar;
+    }
+
+    public void despertar(){
+        desmayado = false;
     }
 }
