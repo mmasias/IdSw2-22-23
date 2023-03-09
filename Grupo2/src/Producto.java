@@ -1,26 +1,17 @@
 public class Producto {
     String nombre;
-    float precio;
+    double precio;
 
-    Producto(String nombre, float precio) {
+    Producto(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
     }
 
-    public void setPrecio(float newPrecio){
+    public void actualizarPrecio(double newPrecio){
         precio = newPrecio;
     }
 
-    public float getPrecio(){
-        return precio;
-    }
-
-    public void setNombre(String newNombre){
+    public void actualizarNombre(String newNombre){
         nombre = newNombre;
     }
-
-    public String getNombre(){
-        return nombre;
-    }
-
 }
