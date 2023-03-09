@@ -9,7 +9,6 @@ public class Batalla {
     private Enemigo enemigo;
     private int turno;
 
-
     private boolean continuar;
 
     private RecuadroPersonaje recuadroHeroe;
@@ -30,20 +29,60 @@ public class Batalla {
 
         menuAcciones = new MenuAcciones(heroe.getArmas(), heroe.getAcciones());
 
-        imprimirInterfazAcciones();
-        iterar();
+        imprimirInterfazConAcciones();
+        siguienteTurno();
     }
 
-    private void iterar(){
-        while(continuar){
+    private void siguienteTurno(){
+        // comprobar si los personajes siguen vivos en el bucle
+            //si ambos siguen vivos:
+                //heroe - comprobar si está desmayado
+                    // esta desmayado - saltar las acciones
+                    // no esta desmayado
+                        // comprobar que pueda hacer algo (CD esperar a curarse)
+                            // no puede hacer nada
+                            // puede hacer cosas
+                                // BUCLE - elegir accion
+
+                                    //si elige atacar, mostrar armas
+                                            // elige arma
+                                                // calcular daño
+                                                // quitar vida al enemigo
+                                                // turnoEnemigo()
+
+                                            // no elige arma -- > volver al inicio del bucle
+
+                                    //si elige defenderse, defenderse
+
+                                    //si elige curarse, curarse
+
+                // turnoEnemigo()
+                    // enemigo - comprobar si está desmayado
+                        // esta desmayado
+                        // no esta desmayado
+                            // sacar arma aleatoria
+                            // calcular daño y hacerselo al heroe
+
+        // turno ++
+
+
+        while(personajesSiguenVivos()){
             elegirTurno();
         }
+
+        // cuando se sale del bucle es porque alguno ha ganado
+
+        avisarDeGanador();
+    }
+
+    private boolean personajesSiguenVivos(){
+        return heroe.getVidaActual() > 0 && enemigo.getVidaActual() > 0;
     }
 
     private void elegirTurno(){
         switch (scanInteraccion()){
             case 1:
-                imprimirInterfazArmas();
+                imprimirInterfazConArmas();
                 elegirArma();
                 break;
 
@@ -57,6 +96,17 @@ public class Batalla {
 
     }
 
+    private void avisarDeGanador(){
+        if (heroe.getVidaActual() < 0 && enemigo.getVidaActual() < 0)
+            System.out.println("EMPATE");
+
+        else if (heroe.getVidaActual() < 0)
+            System.out.println("Ha ganado el enemigo");
+
+        else
+            System.out.println("Ha ganado el héroe");
+    }
+
     private int scanInteraccion(){
         Scanner entrada = new Scanner(System.in);
         return entrada.nextInt();
@@ -67,12 +117,12 @@ public class Batalla {
         recuadroEnemigo.imprimir();
     }
 
-    private void imprimirInterfazAcciones(){
+    private void imprimirInterfazConAcciones(){
         imprimirPersonajes();
         menuAcciones.imprimirAcciones();
     }
 
-    private void imprimirInterfazArmas(){
+    private void imprimirInterfazConArmas(){
         imprimirPersonajes();
         menuAcciones.imprimirArmas();
     }
