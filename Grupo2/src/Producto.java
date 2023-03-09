@@ -7,5 +7,20 @@ public class Producto {
         this.precio = precio;
     }
 
-    Producto() {}
+    public void setPrecio(float newPrecio){
+        precio = newPrecio;
+    }
+
+    public float getPrecio(){
+        return precio;
+    }
+
+    public void setNombre(String newNombre){
+        nombre = newNombre;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+
 }
