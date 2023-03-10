@@ -1,7 +1,7 @@
 package es.laberinto.entides;
 
 import es.laberinto.Mundo;
-import es.laberinto.Posicion;
+import es.laberinto.utils.Posicion;
 
 public final class NPC extends Entidad implements SeMueveSolo {
     @Override

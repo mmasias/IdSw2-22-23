@@ -16,7 +16,7 @@ public final class Pared extends Bloque {
     }
 
     @Override
-    public List<Class<? extends Entidad>> transitableCon() {
+    public List<Class<? extends Entidad>> soloTransitableCon() {
         return null;
     }
 }

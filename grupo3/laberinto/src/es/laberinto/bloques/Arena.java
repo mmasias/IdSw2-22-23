@@ -17,7 +17,7 @@ public final class Arena extends Bloque{
     }
 
     @Override
-    public List<Class<? extends Entidad>> transitableCon() {
+    public List<Class<? extends Entidad>> soloTransitableCon() {
         return List.of(Personaje.class);
     }
 }

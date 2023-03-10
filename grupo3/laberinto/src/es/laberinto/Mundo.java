@@ -3,30 +3,35 @@ package es.laberinto;
 import es.laberinto.bloques.Bloque;
 import es.laberinto.entides.Entidad;
 import es.laberinto.entides.Personaje;
+import es.laberinto.utils.Direccion;
+import es.laberinto.utils.Posicion;
 
 import java.util.List;
 
 public final class Mundo {
+    private static final Mundo instance = new Mundo();
+    public static Mundo getInstance() {
+        return instance;
+    }
+
     private int tiempoTranscurrido;
     private Bloque[][] bloques;
     private List<Entidad> entidades;
     private Personaje personaje;
 
     public void moverPersonaje(Direccion direccion) {
-        keyboardlistener(){
-            onevent(keydown:uparr){
-                ejecutasrturno()
-                personaje.mover(x,y)
-            }
-        }
-        personaje.mover(bloqueNuevaPosicion);
+        this.personaje.mover(this, direccion);
     }
 
-    private Bloque getBloque(Posicion posicion) {
+    public Bloque getBloque(Posicion posicion) {
         return null;
     }
 
-    public boolean esValido(Posicion posicion, Entidad entidad) {
+    public Entidad getEntidad(Posicion posicion) {
+        return null;
+    }
+
+    public boolean posicionFueraDeLosLimites(Posicion posicion) {
         return false;
     }
 

@@ -17,7 +17,7 @@ public final class CespedAlto extends Bloque {
     }
 
     @Override
-    public List<Class<? extends Entidad>> transitableCon() {
+    public List<Class<? extends Entidad>> soloTransitableCon() {
         return List.of(Caballo.class);
     }
 }
