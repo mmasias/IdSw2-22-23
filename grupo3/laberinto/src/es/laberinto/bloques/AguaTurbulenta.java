@@ -5,15 +5,15 @@ import es.laberinto.entides.Entidad;
 
 import java.util.List;
 
-public final class AguaTurbulent extends Bloque {
-    @Override
-    public String tipo() {
-        return "AguasTurbulentas";
-    }
-
+public final class AguaTurbulenta extends Bloque {
     @Override
     public double velocidad() {
         return 2;
+    }
+
+    @Override
+    public boolean todasLasEntidadesPuedenTransitar() {
+        return false;
     }
 
     @Override

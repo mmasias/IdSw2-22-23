@@ -3,7 +3,7 @@ package es.laberinto.entides;
 import es.laberinto.Mundo;
 import es.laberinto.utils.Posicion;
 
-public final class NPC extends Entidad implements SeMueveSolo {
+public final class NPC extends Entidad {
     @Override
     public boolean puedeMontarseEnOtraEntidad() {
         return false;
@@ -12,10 +12,5 @@ public final class NPC extends Entidad implements SeMueveSolo {
     @Override
     public boolean otraEntidadPuedeMontarse() {
         return false;
-    }
-
-    @Override
-    public Posicion mover(Mundo mundo) {
-        return null;
     }
 }

@@ -7,13 +7,13 @@ import java.util.List;
 
 public final class CespedAlto extends Bloque {
     @Override
-    public String tipo() {
-        return "CespedAlto";
+    public double velocidad() {
+        return 2;
     }
 
     @Override
-    public double velocidad() {
-        return 2;
+    public boolean todasLasEntidadesPuedenTransitar() {
+        return false;
     }
 
     @Override

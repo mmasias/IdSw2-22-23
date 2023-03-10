@@ -6,13 +6,13 @@ import java.util.List;
 
 public final class Pared extends Bloque {
     @Override
-    public String tipo() {
-        return "Pared";
+    public double velocidad() {
+        return 0;
     }
 
     @Override
-    public double velocidad() {
-        return 0;
+    public boolean todasLasEntidadesPuedenTransitar() {
+        return false;
     }
 
     @Override

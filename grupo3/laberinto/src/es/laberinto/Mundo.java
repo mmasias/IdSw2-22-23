@@ -5,15 +5,11 @@ import es.laberinto.entides.Entidad;
 import es.laberinto.entides.Personaje;
 import es.laberinto.utils.Direccion;
 import es.laberinto.utils.Posicion;
+import lombok.Getter;
 
 import java.util.List;
 
 public final class Mundo {
-    private static final Mundo instance = new Mundo();
-    public static Mundo getInstance() {
-        return instance;
-    }
-
     private int tiempoTranscurrido;
     private Bloque[][] bloques;
     private List<Entidad> entidades;
@@ -23,21 +19,37 @@ public final class Mundo {
         this.personaje.mover(this, direccion);
     }
 
+    public void desmontarse() {
+        this.personaje.desmontarme();
+    }
+
     public Bloque getBloque(Posicion posicion) {
-        return null;
+        return this.bloques[posicion.x()][posicion.y()];
     }
 
     public Entidad getEntidad(Posicion posicion) {
-        return null;
+        return this.entidades.stream()
+                .filter(it -> it.getPosicionActual().mismaPosicion(posicion))
+                .findFirst()
+                .orElse(null);
     }
 
     public boolean posicionFueraDeLosLimites(Posicion posicion) {
-        return false;
+        return posicion.x() < 0 ||
+               posicion.y() < 0 ||
+               posicion.x() + 1 > this.getLargo() ||
+               posicion.y() + 1 > this.getAncho();
     }
 
-    public void desmontarse() {
+    public void tick() {
+
     }
 
-    private void actualizarEntidades() {
+    private int getAncho() {
+        return this.bloques[0].length;
+    }
+
+    private int getLargo() {
+        return this.bloques.length;
     }
 }

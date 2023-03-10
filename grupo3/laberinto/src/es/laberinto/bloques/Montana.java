@@ -7,13 +7,13 @@ import java.util.List;
 
 public final class Montana extends Bloque {
     @Override
-    public String tipo() {
-        return "BloqueMontana";
+    public double velocidad() {
+        return 1;
     }
 
     @Override
-    public double velocidad() {
-        return 1;
+    public boolean todasLasEntidadesPuedenTransitar() {
+        return false;
     }
 
     @Override
