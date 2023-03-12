@@ -33,10 +33,18 @@
 
   <div align="center">
 
-| Estado                             | Descripción                                                                                |
-| ---------------------------------- | ------------------------------------------------------------------------------------------ |
-|                                    |                                                                                            |
-
+| Estado                | Descripción                                                        |
+| ----------------------| ------------------------------------------------------------------ |
+| Ascensor Parado       |  El ascensor donde no se esta moviendo.                            |
+| Ascensor Subiendo     |  EL ascensor donde se esta moviendo hacia una planta superior.     |
+| Ascensor Bajando      |  El ascensor donde se esta moviendo havia una planta inferior.     |                                      
+| Puerta Abierta        |  La puerta permite el paso de las personas.                        |
+| Puerta Cerrada        |  La puerta impide el paso de las personas.                         |
+| Boton Pulsado         |  El boton esta siendo presionado.                                  |
+| Boton NoPulsado       |  El boton no esta siendo presionado.                               | 
+| Persona EnAscensor    |  La persona se encuentra dentro del ascensor.                      |
+| Persona EnPlanta      |  La persona se encuentra en una planta de la universidad.          |
+| Persona EnPuerta      |  La persona se encuentra en una planta esperando el ascensor.      |
 
 </div>
   
