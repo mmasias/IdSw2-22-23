@@ -27,4 +27,12 @@ public enum Direccion {
     public int cambioY() {
         return this.vector.y();
     }
+
+    public static Direccion aleatorio() {
+        double random = Math.random();
+
+        return random > 0.5 ?
+                (random > 0.75 ? Direccion.IZQUIERDA : Direccion.DERECHA) :
+                (random > 0.25 ? Direccion.ARRIBA : Direccion.ABAJO);
+    }
 }

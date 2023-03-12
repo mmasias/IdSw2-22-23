@@ -8,6 +8,7 @@ import es.laberinto.utils.Vector;
 import lombok.Getter;
 
 public abstract class Entidad {
+    @Getter private final Mundo mundo;
     @Getter private Posicion posicionActual;
     @Getter private Entidad entidadSobreLaQueEstoyMontado;
     @Getter private Entidad entidadMontadaSobreMi;
@@ -18,11 +19,15 @@ public abstract class Entidad {
     public abstract boolean puedeMontarseEnOtraEntidad();
     public abstract boolean otraEntidadPuedeMontarse();
 
+    public Entidad(Mundo mundo) {
+        this.mundo = mundo;
+    }
+
     public boolean estaMontadoSobreEntidad() {
         return this.entidadSobreLaQueEstoyMontado != null;
     }
 
-    public boolean otraEntidadEstaMontadaSobreMi() {
+    public boolean otraEntidadEstaMontada() {
         return this.entidadMontadaSobreMi != null;
     }
 
@@ -38,20 +43,19 @@ public abstract class Entidad {
         this.entidadSobreLaQueEstoyMontado = entidadAMontarme;
     }
 
-    public void mover(Mundo mundo, Direccion direccion) {
-        Vector vectorDireccion = direccion.getVector();
+    public void mover(Vector vectorDireccion) {
         Posicion nuevaPosicion = this.posicionActual.nuevaPosicionAPartirDe(vectorDireccion);
 
-        if(!mePuedoMover(mundo, nuevaPosicion))
+        if(!mePuedoMoverALaPosicion(nuevaPosicion))
             return;
 
         double velocidadSiguienteBloque = mundo.getBloque(nuevaPosicion).velocidad();
         if(velocidadSiguienteBloque >= 1){
-            nuevaPosicion = posicionActual.nuevaPosicionAPartirDe(direccion.aumentarEn(velocidadSiguienteBloque));
+            nuevaPosicion = posicionActual.nuevaPosicionAPartirDe(vectorDireccion.aumentarEn(velocidadSiguienteBloque));
 
-            if(!mePuedoMover(mundo, nuevaPosicion)) return;
+            if(!mePuedoMoverALaPosicion(nuevaPosicion)) return;
 
-            actualizarPosicion(mundo, nuevaPosicion);
+            actualizarPosicion(nuevaPosicion);
 
             return;
         }
@@ -64,11 +68,11 @@ public abstract class Entidad {
         this.posicionDondeQuiereMoverseAnteriorTurno = nuevaPosicion;
 
         if(this.bufferMovimeintoAnteriorTurno >= 1){
-            actualizarPosicion(mundo, nuevaPosicion);
+            actualizarPosicion(nuevaPosicion);
         }
     }
 
-    private void actualizarPosicion(Mundo mundo, Posicion nuevaPosicion) {
+    private void actualizarPosicion(Posicion nuevaPosicion) {
         this.posicionActual = nuevaPosicion;
         this.posicionDondeQuiereMoverseAnteriorTurno = null;
         this.bufferMovimeintoAnteriorTurno = 0;
@@ -79,8 +83,8 @@ public abstract class Entidad {
         }
     }
 
-    private boolean mePuedoMover(Mundo mundo, Posicion posicion) {
-        if(mundo.posicionFueraDeLosLimites(posicion) || otraEntidadEstaMontadaSobreMi())
+    private boolean mePuedoMoverALaPosicion(Posicion posicion) {
+        if(mundo.posicionFueraDeLosLimites(posicion) || otraEntidadEstaMontada())
             return false;
 
         Bloque siguienteBloque = mundo.getBloque(posicion);
@@ -95,11 +99,11 @@ public abstract class Entidad {
     private boolean hayEntidadYNoSePuedeMontar(Entidad entidad) {
         return entidad != null && (
                         !entidad.otraEntidadPuedeMontarse() ||
-                        entidad.otraEntidadEstaMontadaSobreMi() ||
+                        entidad.otraEntidadEstaMontada() ||
                         entidad.estaMontadoSobreEntidad());
     }
 
     private boolean mePuedoMontar() {
-        return this.otraEntidadPuedeMontarse() && !otraEntidadEstaMontadaSobreMi();
+        return this.otraEntidadPuedeMontarse() && !otraEntidadEstaMontada();
     }
 }
