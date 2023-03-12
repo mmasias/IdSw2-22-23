@@ -16,9 +16,9 @@
 ## Diagramas
 
 <details>
-  <summary>Diagrama de clases</summary>
+  <summary>Modelo del Dominio</summary>
   
-|         Diagrama de clases         
+|         Modelo del Dominio         
 | :-: 
 | ![](images/modeloDelDominio.png)
 | [Código](modeloDelDominio.puml) 

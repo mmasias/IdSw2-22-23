@@ -8,17 +8,19 @@ class Universidad
 class Puerta
 class Boton
 
-Planta -u-- Persona : "< Esta en"
-Ascensor -u-- Persona : "< Esta en"
-Planta -u-- Ascensor : "< Esta en"
-Ascensor --- Tiempo : "> Funciona en"
+Planta -u-o Persona 
+Ascensor o-u- Persona 
+Planta *-u- Ascensor 
+Ascensor .r.. Tiempo 
 
-Boton -u-- Ascensor : "> Pertenece"
-Boton -u-- Puerta : "> Pertenece"
-Puerta -u-- Ascensor : "> Pertenece"
+Boton -u-* Ascensor 
+Boton -u-* Puerta 
+Puerta -u-* Ascensor 
 
-Planta -u-- Universidad : "> Pertenece"
-Ascensor -u-- Universidad : "> Pertenece"
-Persona -u-- Universidad : "> Esta en"
+Planta -u-* Universidad 
+Ascensor -u-* Universidad
+Persona -u-o Universidad 
+
+Persona ... Tiempo
 
 @enduml
