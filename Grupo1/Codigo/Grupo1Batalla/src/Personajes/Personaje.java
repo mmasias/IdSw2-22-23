@@ -11,22 +11,30 @@ public abstract class Personaje {
     protected int armaEquipada;
     protected boolean desmayado;
 
+    protected final int _UMBRAL_VIDA_DESMAYO;
+    protected final int _VIDA_CURAR_DESMAYO;
 
-    public Personaje(String nombre, int vidaMaxima, Arma[] armas, String[][] sprite) {
+
+    public Personaje(String nombre, int vidaMaxima, Arma[] armas, String[][] sprite, int umbralDesmayo, int curaPorDesmayo) {
         this.nombre = nombre;
         this.vidaMaxima = vidaMaxima;
         this.armas = armas;
         this.sprite = sprite;
+        _UMBRAL_VIDA_DESMAYO = umbralDesmayo;
+        _VIDA_CURAR_DESMAYO = curaPorDesmayo;
 
         vidaActual = vidaMaxima;
     }
 
-    public void recibirDaño(int daño) {
-        vidaActual -= daño;
+    public void recibirDano(int dano) {
+        vidaActual -= dano;
+        if (vidaActual < _UMBRAL_VIDA_DESMAYO){
+            desmayado = true;
+        }
     }
 
     public void desmayar(){
-
+        desmayado = true;
     }
 
     public boolean estaDesmayado(){
@@ -34,14 +42,15 @@ public abstract class Personaje {
     }
 
     public int hacerDano(){
-        double probAcertar = Math.random();
-        double probDesgastar = Math.random();
+        int probAcertar = (int) (Math.random() * 100);
+        //double probDesgastar = Math.random();
         Arma arma = armas[armaEquipada];
 
+        // de momento, despues de atacar correctamente se desgasta
         if (arma.getDurabilidad() > 0){
             if (probAcertar < arma.getProbAcertar()){
                 arma.desgastar();
-                return arma.getDaño();
+                return arma.getDano();
             }
         }
 
@@ -60,14 +69,6 @@ public abstract class Personaje {
         return armas;
     }
 
-    public int getVidaMaxima(){
-        return vidaMaxima;
-    }
-
-    public int getArmaEquipada(){
-        return armaEquipada;
-    }
-
     public String[][] getSprite(){
         return sprite;
     }
@@ -77,14 +78,44 @@ public abstract class Personaje {
     }
 
     public void curarse(int vidaACurar){
-        if ((vidaActual + vidaACurar ) > vidaMaxima)
+        if ((vidaActual + vidaACurar ) > vidaMaxima){
             vidaActual = vidaMaxima;
-
-        else
+        } else {
             vidaActual += vidaACurar;
+        }
     }
 
     public void despertar(){
         desmayado = false;
+    }
+
+    public boolean puedeActuar(){
+        return !desmayado;
+    }
+
+    public void comprobarSiSeDespierta(){
+        if (!this.porDeBajoDelUmbralDesmayo() && desmayado){
+            despertar();
+            System.out.println("Heroe : Despertado");
+        }
+    }
+
+    public Arma getArmaEquipada(){
+        return armas[armaEquipada];
+    }
+    public boolean estaVivo(){
+        return vidaActual > 0;
+    }
+
+    public boolean estaMuerto(){
+        return vidaActual <= 0;
+    }
+
+    public boolean porDeBajoDelUmbralDesmayo(){
+        return vidaActual < _UMBRAL_VIDA_DESMAYO;
+    }
+
+    public void curarseDesmayado(){
+        curarse(_VIDA_CURAR_DESMAYO);
     }
 }

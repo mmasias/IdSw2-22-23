@@ -1,27 +1,32 @@
 package Renderizacion;
 
 import Objetos.Arma;
+import Personajes.Heroe;
 
 public class MenuAcciones {
+    private final Heroe heroe;
     private Arma[] armas;
     private String[] acciones; // las acciones las podemos crear desde aqui
 
-    public MenuAcciones(Arma[] armas, String[] acciones){
-        this.armas = armas;
-        this.acciones = acciones;
+    public MenuAcciones(Heroe heroe){
+        this.heroe = heroe;
     }
 
     public void imprimirAcciones(){
-        for (int i = 0 ; i < acciones.length; i++){
-            System.out.print(acciones[i] + " _ _ ");
+        for (String accion : heroe.getAcciones()) {
+            System.out.print(accion + " || ");
         }
+        System.out.println();
+        System.out.println("-----------------------------------------------------");
         System.out.println();
     }
 
     public void imprimirArmas(){
-        for (int i = 0 ; i < armas.length; i++){
-            System.out.print(armas[i].getNombre() + " _ _ ");
+        for (Arma arma : heroe.getArmas()) {
+            System.out.print(arma.getNombre() + " ; ");
         }
+        System.out.println();
+        System.out.println("-----------------------------------------------------");
         System.out.println();
     }
 }

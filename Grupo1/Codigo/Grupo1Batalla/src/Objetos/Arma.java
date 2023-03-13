@@ -3,14 +3,14 @@ package Objetos;
 public class Arma {
 
     private String nombre;
-    private int daño;
+    private int dano;
     private int durabilidad;
     private double probAcertar;
     private double probDesgaste;
 
-    public Arma(String nombre, int daño, int durabilidad, double probAcertar, double probDesgaste) {
+    public Arma(String nombre, int dano, int durabilidad, double probAcertar, double probDesgaste) {
         this.nombre = nombre;
-        this.daño = daño;
+        this.dano = dano;
         this.durabilidad = durabilidad;
         this.probAcertar = probAcertar;
         this.probDesgaste = probDesgaste;
@@ -24,8 +24,8 @@ public class Arma {
         return durabilidad;
     }
 
-    public int getDaño() {
-        return daño;
+    public int getDano() {
+        return dano;
     }
 
     public double getProbAcertar() {

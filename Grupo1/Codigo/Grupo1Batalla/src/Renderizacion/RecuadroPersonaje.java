@@ -1,25 +1,25 @@
 package Renderizacion;
 
-public class RecuadroPersonaje {
-    private String[][] sprite;
-    private int vida; // pasar personaje en lugar de vida y nombre
-    private String nombre;
+import Personajes.*;
 
-    public RecuadroPersonaje(String[][] sprite, int vida, String nombre){
-        this.sprite = sprite;
-        this.vida = vida;
-        this.nombre = nombre;
+public class RecuadroPersonaje {
+    private final Personaje personaje;
+
+    public RecuadroPersonaje(Personaje personaje){
+        this.personaje = personaje;
     }
 
     public void imprimir(){
-        for(int i = 0; i < sprite.length; i++){
-            for (int j = 0 ; j < sprite[i].length; j++){
-                System.out.print(sprite[i][j]);
+        System.out.println("////////////////////////////////////////////////////////////");
+        for(int i = 0; i < personaje.getSprite().length; i++){
+            for (int j = 0 ; j < personaje.getSprite()[i].length; j++){
+                System.out.print(personaje.getSprite()[i][j]);
             }
             System.out.println();
         }
 
-        System.out.println("Nombre -->" + nombre + " _ " + vida);
+        System.out.println("Nombre --> " + personaje.getNombre() + " | Vida --> " + personaje.getVidaActual());
+        System.out.println("////////////////////////////////////////////////////////////");
         System.out.println();
     }
 
