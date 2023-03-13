@@ -7,11 +7,6 @@ public class Mantenimiento {
         this.tipo = tipo;
     }
 
-    Mantenimiento() {
-        this.nombre = "";
-        this.tipo = "";
-    }
-
     void generarReposicion() {
 
     }

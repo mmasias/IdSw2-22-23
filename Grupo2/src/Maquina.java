@@ -1,10 +1,12 @@
+import java.util.List;
+
 public class Maquina {
     String nombre;
-    Billete[] billetes;
-    Moneda[] monedas;
-    Producto[] productos;
+    List<Billete> billetes;
+    List<Moneda> monedas;
+    List<Producto> productos;
 
-    Maquina(String nombre, Billete[] billetes, Moneda[] monedas, Producto[] productos) {
+    Maquina(String nombre, List<Billete> billetes, List<Moneda> monedas, List<Producto> productos) {
         this.nombre = nombre;
         this.billetes = billetes;
         this.monedas = monedas;
@@ -12,14 +14,14 @@ public class Maquina {
     }
 
     public int totalBilletes() {
-        return (this.billetes.length);
+        return (this.billetes.size());
     }
 
     public int totalMonedas() {
-        return this.monedas.length;
+        return this.monedas.size();
     }
 
     public int totalProductos() {
-        return this.productos.length;
+        return this.productos.size();
     }
 }
