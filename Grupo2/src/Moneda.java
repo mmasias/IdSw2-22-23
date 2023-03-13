@@ -1,5 +1,5 @@
-public class Moneda {
-    Moneda() {
-        super();
+public class Moneda extends Dinero {
+    Moneda(double valor) {
+        super(valor);
     }
 }
