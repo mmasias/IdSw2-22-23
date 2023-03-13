@@ -2,6 +2,7 @@ package es.laberinto.bloques;
 
 import es.laberinto.entides.Entidad;
 
+import java.util.Collections;
 import java.util.List;
 
 public final class Pared extends Bloque {
@@ -17,7 +18,7 @@ public final class Pared extends Bloque {
 
     @Override
     public List<Class<? extends Entidad>> soloTransitableCon() {
-        return null;
+        return Collections.EMPTY_LIST;
     }
 
     public static Pared crear() {
