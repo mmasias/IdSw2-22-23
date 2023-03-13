@@ -20,4 +20,8 @@ public final class AguaTurbulenta extends Bloque {
     public List<Class<? extends Entidad>> soloTransitableCon() {
         return List.of(Barca.class);
     }
+
+    public static AguaTurbulenta crear() {
+        return new AguaTurbulenta();
+    }
 }

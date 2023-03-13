@@ -20,4 +20,8 @@ public final class Arena extends Bloque{
     public List<Class<? extends Entidad>> soloTransitableCon() {
         return List.of(Personaje.class);
     }
+
+    public static Arena crear() {
+        return new Arena();
+    }
 }

@@ -122,4 +122,7 @@ public abstract class Entidad {
         return this.mundo;
     }
 
+    public void setPosicionActual(Posicion posicionActual) {
+        this.posicionActual = posicionActual;
+    }
 }

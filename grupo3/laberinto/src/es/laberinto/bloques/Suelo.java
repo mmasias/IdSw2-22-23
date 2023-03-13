@@ -20,4 +20,8 @@ public final class Suelo extends Bloque {
     public List<Class<? extends Entidad>> soloTransitableCon() {
         return List.of(Personaje.class);
     }
+
+    public static Suelo crear(){
+        return new Suelo();
+    }
 }

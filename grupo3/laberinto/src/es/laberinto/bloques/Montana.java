@@ -20,4 +20,8 @@ public final class Montana extends Bloque {
     public List<Class<? extends Entidad>> soloTransitableCon() {
         return List.of(Alfombra.class);
     }
+
+    public static Montana crear() {
+        return new Montana();
+    }
 }

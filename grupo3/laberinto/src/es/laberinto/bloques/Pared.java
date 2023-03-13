@@ -19,4 +19,8 @@ public final class Pared extends Bloque {
     public List<Class<? extends Entidad>> soloTransitableCon() {
         return null;
     }
+
+    public static Pared crear() {
+        return new Pared();
+    }
 }

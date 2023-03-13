@@ -20,4 +20,8 @@ public final class CespedBajo extends Bloque {
     public List<Class<? extends Entidad>> soloTransitableCon() {
         return List.of(Personaje.class);
     }
+
+    public static CespedBajo crear() {
+        return new CespedBajo();
+    }
 }

@@ -17,18 +17,24 @@ public final class Mundo {
     private final List<Entidad> entidades;
     private final Personaje personaje;
 
-    public Mundo(int tamano) {
-        this.bloques = new Bloque[tamano][tamano];
+    public Mundo(int ancho, int largo, int xPersonaje, int yPersonaje) {
+        this.bloques = new Bloque[ancho][largo];
         this.entidades = new LinkedList<>();
-        this.personaje = new Personaje(this);
-    }
 
-    public void insertarEntidad(Entidad entidad) {
-        this.entidades.add(entidad);
+        this.personaje = new Personaje(this);
+        this.personaje.setPosicionActual(new Posicion(xPersonaje, yPersonaje));
     }
 
     public void insertarEntidades(List<Entidad> entidades) {
         this.entidades.addAll(entidades);
+    }
+
+    public void insertarBloques(Bloque[][] bloquesInsertar) {
+        for(int i = 0; i < bloquesInsertar.length; i++){
+            for(int j = 0; j < bloquesInsertar.length; j++){
+                this.bloques[i][j] = bloquesInsertar[i][j];
+            }
+        }
     }
 
     public void moverPersonaje(Direccion direccion) {
