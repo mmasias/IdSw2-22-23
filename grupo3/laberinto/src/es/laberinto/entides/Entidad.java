@@ -5,13 +5,12 @@ import es.laberinto.Mundo;
 import es.laberinto.utils.Posicion;
 import es.laberinto.bloques.Bloque;
 import es.laberinto.utils.Vector;
-import lombok.Getter;
 
 public abstract class Entidad {
-    @Getter private final Mundo mundo;
-    @Getter private Posicion posicionActual;
-    @Getter private Entidad entidadSobreLaQueEstoyMontado;
-    @Getter private Entidad entidadMontadaSobreMi;
+    private final Mundo mundo;
+    private Posicion posicionActual;
+    private Entidad entidadSobreLaQueEstoyMontado;
+    private Entidad entidadMontadaSobreMi;
 
     private double bufferMovimeintoAnteriorTurno;
     private Posicion posicionDondeQuiereMoverseAnteriorTurno;
@@ -106,4 +105,21 @@ public abstract class Entidad {
     private boolean mePuedoMontar() {
         return this.otraEntidadPuedeMontarse() && !otraEntidadEstaMontada();
     }
+
+    public Entidad getEntidadMontadaSobreMi() {
+        return entidadMontadaSobreMi;
+    }
+
+    public Posicion getPosicionActual() {
+        return posicionActual;
+    }
+
+    public Entidad getEntidadSobreLaQueEstoyMontado() {
+        return entidadSobreLaQueEstoyMontado;
+    }
+
+    public Mundo getMundo() {
+        return this.mundo;
+    }
+
 }

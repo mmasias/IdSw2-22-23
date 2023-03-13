@@ -64,7 +64,8 @@ public final class Mundo {
 
     private void actualizarEntidades() {
         for(Entidad entidad : this.entidades){
-            if(!(entidad instanceof SeMueveSolo seMueveSoloEntidad) || entidad.otraEntidadEstaMontada())
+            if(!(entidad instanceof SeMueveSolo seMueveSoloEntidad)
+                    || entidad.otraEntidadEstaMontada())
                 continue;
 
             Vector vectorMovimientoSolo = seMueveSoloEntidad.getVectorMovimientoSolo(entidad);
