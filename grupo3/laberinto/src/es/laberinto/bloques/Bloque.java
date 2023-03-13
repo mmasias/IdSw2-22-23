@@ -15,7 +15,7 @@ public abstract class Bloque {
     public boolean puedeTransitar(Entidad entidad) {
         return this.todasLasEntidadesPuedenTransitar()
                 || soloTransitableCon().stream().anyMatch(it -> it.equals(entidad.getClass()))
-                || soloTransitableCon().stream().anyMatch(it -> entidad.estaMontadoSobreEntidad()
+                || soloTransitableCon().stream().anyMatch(it -> entidad.estoyMontadoSobreEntidad()
                                                                 && it.equals(entidad.getEntidadSobreLaQueEstoyMontado().getClass()));
     }
 }

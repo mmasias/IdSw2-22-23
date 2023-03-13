@@ -1,13 +1,12 @@
 package es.laberinto.entides;
 
-import es.laberinto.utils.Direccion;
 import es.laberinto.Mundo;
 import es.laberinto.utils.Posicion;
 import es.laberinto.bloques.Bloque;
 import es.laberinto.utils.Vector;
 
 public abstract class Entidad {
-    private final Mundo mundo;
+    private Mundo mundo;
     private Posicion posicionActual;
     private Entidad entidadSobreLaQueEstoyMontado;
     private Entidad entidadMontadaSobreMi;
@@ -22,7 +21,7 @@ public abstract class Entidad {
         this.mundo = mundo;
     }
 
-    public boolean estaMontadoSobreEntidad() {
+    public boolean estoyMontadoSobreEntidad() {
         return this.entidadSobreLaQueEstoyMontado != null;
     }
 
@@ -40,26 +39,29 @@ public abstract class Entidad {
     public void montarme(Entidad entidadAMontarme) {
         entidadAMontarme.entidadMontadaSobreMi = this;
         this.entidadSobreLaQueEstoyMontado = entidadAMontarme;
+
+        entidadAMontarme.posicionDondeQuiereMoverseAnteriorTurno = null;
+        entidadAMontarme.bufferMovimeintoAnteriorTurno = 0;
     }
 
-    public void mover(Vector vectorDireccion) {
+    public boolean mover(Vector vectorDireccion) {
         Posicion nuevaPosicion = this.posicionActual.nuevaPosicionAPartirDe(vectorDireccion);
 
         if(!mePuedoMoverALaPosicion(nuevaPosicion))
-            return;
+            return false;
 
         double velocidadSiguienteBloque = mundo.getBloque(nuevaPosicion).velocidad();
         if(velocidadSiguienteBloque >= 1){
             nuevaPosicion = posicionActual.nuevaPosicionAPartirDe(vectorDireccion.aumentarEn(velocidadSiguienteBloque));
 
-            if(!mePuedoMoverALaPosicion(nuevaPosicion)) return;
+            if(!mePuedoMoverALaPosicion(nuevaPosicion)) return false;
 
             actualizarPosicion(nuevaPosicion);
 
-            return;
+            return true;
         }
 
-        if(!this.posicionActual.mismaPosicion(this.posicionDondeQuiereMoverseAnteriorTurno)) {
+        if(!nuevaPosicion.mismaPosicion(this.posicionDondeQuiereMoverseAnteriorTurno)) {
             this.bufferMovimeintoAnteriorTurno = 0;
         }
 
@@ -68,7 +70,10 @@ public abstract class Entidad {
 
         if(this.bufferMovimeintoAnteriorTurno >= 1){
             actualizarPosicion(nuevaPosicion);
+            return true;
         }
+
+        return false;
     }
 
     private void actualizarPosicion(Posicion nuevaPosicion) {
@@ -79,6 +84,9 @@ public abstract class Entidad {
         Entidad entidadEnLaNuevaPosicion = mundo.getEntidad(nuevaPosicion);
         if(entidadEnLaNuevaPosicion != null && entidadEnLaNuevaPosicion.mePuedoMontar()){
             montarme(entidadEnLaNuevaPosicion);
+        }
+        if(estoyMontadoSobreEntidad()){
+            this.entidadSobreLaQueEstoyMontado.setPosicionActual(nuevaPosicion);
         }
     }
 
@@ -98,8 +106,7 @@ public abstract class Entidad {
     private boolean hayEntidadYNoSePuedeMontar(Entidad entidad) {
         return entidad != null && (
                         !entidad.otraEntidadPuedeMontarse() ||
-                        entidad.otraEntidadEstaMontada() ||
-                        entidad.estaMontadoSobreEntidad());
+                        entidad.otraEntidadEstaMontada());
     }
 
     private boolean mePuedoMontar() {
@@ -123,6 +130,22 @@ public abstract class Entidad {
     }
 
     public void setPosicionActual(Posicion posicionActual) {
-        this.posicionActual = posicionActual;
+        this.posicionActual = new Posicion(posicionActual.x(), posicionActual.y());
+    }
+
+    public double getBufferMovimeintoAnteriorTurno() {
+        return bufferMovimeintoAnteriorTurno;
+    }
+
+    public void setEntidadMontadaSobreMi(Entidad entidadMontadaSobreMi) {
+        this.entidadMontadaSobreMi = entidadMontadaSobreMi;
+    }
+
+    public void setEntidadSobreLaQueEstoyMontado(Entidad entidadSobreLaQueEstoyMontado) {
+        this.entidadSobreLaQueEstoyMontado = entidadSobreLaQueEstoyMontado;
+    }
+
+    public Posicion getPosicionDondeQuiereMoverseAnteriorTurno() {
+        return posicionDondeQuiereMoverseAnteriorTurno;
     }
 }
