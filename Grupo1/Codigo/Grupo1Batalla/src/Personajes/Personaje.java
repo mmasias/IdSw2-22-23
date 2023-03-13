@@ -32,15 +32,6 @@ public abstract class Personaje {
             desmayado = true;
         }
     }
-
-    public void desmayar(){
-        desmayado = true;
-    }
-
-    public boolean estaDesmayado(){
-        return desmayado;
-    }
-
     public int hacerDano(){
         int probAcertar = (int) (Math.random() * 100);
         //double probDesgastar = Math.random();
@@ -56,27 +47,13 @@ public abstract class Personaje {
 
         return 0;
     }
-
-    public void equiparArma(int armaAEquipar){
-        armaEquipada = armaAEquipar;
+    public boolean puedeActuar(){
+        return !desmayado;
     }
 
-    public int getVidaActual(){
-        return vidaActual;
+    public void curarseDesmayado(){
+        curarse(_VIDA_CURAR_DESMAYO);
     }
-
-    public Arma[] getArmas(){
-        return armas;
-    }
-
-    public String[][] getSprite(){
-        return sprite;
-    }
-
-    public String getNombre(){
-        return nombre;
-    }
-
     public void curarse(int vidaACurar){
         if ((vidaActual + vidaACurar ) > vidaMaxima){
             vidaActual = vidaMaxima;
@@ -89,24 +66,15 @@ public abstract class Personaje {
         desmayado = false;
     }
 
-    public boolean puedeActuar(){
-        return !desmayado;
-    }
-
     public void comprobarSiSeDespierta(){
         if (!this.porDeBajoDelUmbralDesmayo() && desmayado){
             despertar();
             System.out.println("Heroe : Despertado");
         }
     }
-
-    public Arma getArmaEquipada(){
-        return armas[armaEquipada];
-    }
     public boolean estaVivo(){
         return vidaActual > 0;
     }
-
     public boolean estaMuerto(){
         return vidaActual <= 0;
     }
@@ -115,7 +83,29 @@ public abstract class Personaje {
         return vidaActual < _UMBRAL_VIDA_DESMAYO;
     }
 
-    public void curarseDesmayado(){
-        curarse(_VIDA_CURAR_DESMAYO);
+
+    public void desmayar(){
+        desmayado = true;
+    }
+    public boolean estaDesmayado(){
+        return desmayado;
+    }
+    public int getVidaActual(){
+        return vidaActual;
+    }
+    public Arma getArmaEquipada(){
+        return armas[armaEquipada];
+    }
+    public void equiparArma(int armaAEquipar){
+        armaEquipada = armaAEquipar;
+    }
+    public Arma[] getArmas(){
+        return armas;
+    }
+    public String[][] getSprite(){
+        return sprite;
+    }
+    public String getNombre(){
+        return nombre;
     }
 }

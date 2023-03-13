@@ -63,6 +63,7 @@ public class Heroe extends Personaje{
             curando = false;
         }
     }
+
     @Override
     public boolean puedeActuar(){
         return !desmayado && !curando;
