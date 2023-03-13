@@ -7,12 +7,10 @@ public class Compra {
         this.fechaDeCompra = fechaDeCompra;
     }
 
-    Compra() {
-        this.descripcion = "";
-        this.fechaDeCompra = "";
-    }
+    void realizarCompra(double coste, double pago) {
+        
 
-    void realizarCompra() {
-
+        double cambio = this.pago - this.coste;
+        return this.cambio;
     }
 }
