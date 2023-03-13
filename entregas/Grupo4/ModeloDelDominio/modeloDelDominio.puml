@@ -5,17 +5,11 @@ class Tiempo
 class Planta
 class Ascensor
 class Universidad
-class Puerta
-class Boton
 
 Planta -u-o Persona 
 Ascensor o-u- Persona 
 Planta *-u- Ascensor 
 Ascensor .r.. Tiempo 
-
-Boton -u-* Ascensor 
-Boton -u-* Puerta 
-Puerta -u-* Ascensor 
 
 Planta -u-* Universidad 
 Ascensor -u-* Universidad
