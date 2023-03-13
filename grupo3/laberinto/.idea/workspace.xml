@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0e1683bd-cdfb-4b20-a290-713c279aa7f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/Pared.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/Pared.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +178,7 @@
       <workItem from="1678469057272" duration="4577000" />
       <workItem from="1678620787323" duration="4461000" />
       <workItem from="1678693238050" duration="8903000" />
-      <workItem from="1678721586842" duration="2306000" />
+      <workItem from="1678721586842" duration="3885000" />
     </task>
     <servers />
   </component>
