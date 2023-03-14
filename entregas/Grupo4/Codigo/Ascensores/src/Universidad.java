@@ -50,7 +50,7 @@ class Universidad {
     }
 
     private boolean llegoUnaPersona() {
-        if (Math.random() < .5) {
+        if (Math.random() < Constans.PROBABILIDAD_PERSONA_LLEGA) {
             return true;
         } else {
             return false;
@@ -91,6 +91,8 @@ class Universidad {
         Scanner scanner = new Scanner(System.in);
         String entrada = "";
         do{
+            llamarAscensorLibreMasCercano();
+            personaTieneQueIrse();
             for (Ascensor ascensor : ascensores) {
                 ascensor.mover();
                 List<Persona> personasEsperandoAscensor = getPersonasEsperandoAscensorPorPlanta(ascensor.getPlantaActual());
@@ -101,10 +103,6 @@ class Universidad {
                     }
                 }
             }
-            personaTieneQueIrse();
-            llamarAscensorLibreMasCercano();
-
-
             if (llegoUnaPersona()) {
                 Persona persona = new Persona(getPlanta0());
                 agregarPersona(persona);
@@ -156,8 +154,10 @@ class Universidad {
                 if (ascensorMasCercano != null) {
                     if (ascensorMasCercano.getPlantaActual().compareTo(planta) > 0) {
                         ascensorMasCercano.bajar();
+                        break;
                     } else if (ascensorMasCercano.getPlantaActual().compareTo(planta) < 0) {
                         ascensorMasCercano.subir();
+                        break;
                     }
                 }
             }
