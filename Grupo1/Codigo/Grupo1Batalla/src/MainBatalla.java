@@ -5,13 +5,13 @@ import Objetos.*;
 public class MainBatalla {
 
     public static void main (String[] args){
-        Arma arma1Heroe = new Arma("Arma1", 7, 100, 50, 1);
-        Arma arma2Heroe = new Arma("Arma2", 15, 100, 25, 1);
-        Arma arma3Heroe = new Arma("Arma3", 25, 100, 12, 1);
+        Arma arma1Heroe = new Arma("Arma1", 7, 100, 50);
+        Arma arma2Heroe = new Arma("Arma2", 15, 100, 25);
+        Arma arma3Heroe = new Arma("Arma3", 25, 100, 12);
 
-        Arma arma1Enemigo = new Arma("Arma1", 5, 100, 90, 1);
-        Arma arma2Enemigo = new Arma("Arma2", 10, 100, 60, 1);
-        Arma arma3Enemigo = new Arma("Arma3", 20, 100, 40, 1);
+        Arma arma1Enemigo = new Arma("Arma1", 5, 100, 90);
+        Arma arma2Enemigo = new Arma("Arma2", 10, 100, 60);
+        Arma arma3Enemigo = new Arma("Arma3", 20, 100, 40);
 
         Arma[] armasHeroe = new Arma[]{arma1Heroe, arma2Heroe, arma3Heroe};
         Arma[] armasEnemigo = new Arma[]{arma1Enemigo, arma2Enemigo, arma3Enemigo};

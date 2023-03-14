@@ -37,17 +37,6 @@ public class Heroe extends Personaje{
         }
     }
 
-    public void recibirDanoDefendiendose(int danoARecibir){
-        if (danoARecibir > _ARMADURA) {
-            System.out.println("Enemigo : Ha hecho " + (danoARecibir - _ARMADURA) + " de dano");
-            vidaActual -= danoARecibir - _ARMADURA;
-        }
-    }
-
-    public void acabarDefensa(){
-        defendiendo = false;
-    }
-
     public void iniciarEstadoDeCuracion(){
         turnosParaCurarseConPocion = 3;
         curando = true;
@@ -79,6 +68,15 @@ public class Heroe extends Personaje{
 
         if (vidaActual < _UMBRAL_VIDA_DESMAYO){
             desmayado = true;
+        }
+
+        defendiendo = false;
+    }
+
+    private void recibirDanoDefendiendose(int danoARecibir){
+        if (danoARecibir > _ARMADURA) {
+            System.out.println("Enemigo : Ha hecho " + (danoARecibir - _ARMADURA) + " de dano");
+            vidaActual -= danoARecibir - _ARMADURA;
         }
     }
 

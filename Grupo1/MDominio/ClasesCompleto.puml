@@ -1,0 +1,123 @@
+@startuml ClasesCompleto
+
+class Batalla{
+    +Heroe heroe
+    +Enemigo enemigo    
+    +int turno
+    +RecuadroPersonaje recuadroHeroe
+    +RecuadroPersonaje recuadroEnemigo
+    +MenuAcciones menuAcciones
+
+    Batalla(heroe, enemigos)
+
+    void empezarBatalla()
+}
+
+abstract Personaje{
+    +String nombre
+    +String[][] sprite
+    +int vidaMaxima;
+    +Arma[] armas;
+    +int armaEquipada;
+    +boolean desmayado;
+    +int _UMBRAL_VIDA_DESMAYO;
+    +int _VIDA_CURAR_DESMAYO;
+
+    Personaje(nombre, vidaMaxima, armas, sprite, umbralDesmayo, curaPorDesmayo)
+    
+    void recibirDano(int danoARecibir)
+    void curarseDesmayado()
+    void curarse()
+    void despertar()
+    void comprobarSiSeDespierta()
+    void equiparArma(int posicionArmaAEquipar)
+
+    int hacerDano()
+    boolean puedeActuar()
+    boolean estaVivo()
+    boolean estaMuerto()
+    boolean porDebajoDelUmbralDesmayo()
+    boolean estaDesmayado()
+
+    int getVidaActual()
+    Arma getArmaEquipada()
+    Arma[] getArmas()
+    String[][] getSprite()
+    String getNombre()
+}
+
+class Arma {
+    +String nombre
+    +int daño
+    +int durabilidad
+    +float probabilidadAcertar
+
+    Arma(nombre, daño, durabilidad, probAcertar)
+
+    void Desgastar()
+
+    String getNombre()
+    int getDurabilidad()
+    int getDano()
+    double getProbAcertar()
+}
+
+
+class Enemigo{
+    Enemigo(nombre, vidaMaxima,armas, sprite, umbralDesmayo, curaPorDesmayo)
+
+    void equiparArmaAleatoria()
+}   
+
+class Heroe{
+    +String[] acciones
+    +boolean defendiendo
+    +boolean CloudBackgroundColor
+    +int turnosParaCurarseConPocion
+    +int _ARMADURA
+
+    Heroe(nombre, vidaMaxima, armas, sprite, umbralDesmayo, curaPorDesmayo)
+
+    void defenderse()
+    void iniciarEstadoDeCuracion()
+    void avanzarTurnoDeCuracion()
+
+    boolean esperandoAPocion()
+
+    String[] getAcciones()
+    int getTurnoCuracion()
+}
+
+class RecuadroPersonaje {
+    +Personaje personaje
+
+    RecuadroPersonaje(personaje)
+
+    void imprimir()
+}
+
+class MenuAcciones {
+    +Heroe heroe
+
+    MenuAcciones(heroe)
+   
+   void imprimirAcciones()
+   void imprimirArmas()
+    
+}
+
+
+Batalla o-l-> RecuadroPersonaje : Muestra >
+Batalla o-r-> MenuAcciones : Muestra >
+
+Personaje <|-u- Heroe
+Personaje <|-u- Enemigo
+
+Batalla *-d-> Heroe : Lucha <
+Batalla *-d-> Enemigo : Lucha <
+
+Personaje o-r-> Arma : Usa >
+
+
+
+@enduml

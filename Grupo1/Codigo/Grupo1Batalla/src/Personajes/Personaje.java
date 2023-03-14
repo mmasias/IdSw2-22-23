@@ -11,7 +11,7 @@ public abstract class Personaje {
     protected int armaEquipada;
     protected boolean desmayado;
 
-    protected final int _UMBRAL_VIDA_DESMAYO;
+    protected final int _UMBRAL_VIDA_DESMAYO; //hace falta llamarles asi???? revisar
     protected final int _VIDA_CURAR_DESMAYO;
 
 
@@ -50,7 +50,6 @@ public abstract class Personaje {
     public boolean puedeActuar(){
         return !desmayado;
     }
-
     public void curarseDesmayado(){
         curarse(_VIDA_CURAR_DESMAYO);
     }
@@ -61,13 +60,11 @@ public abstract class Personaje {
             vidaActual += vidaACurar;
         }
     }
-
     public void despertar(){
         desmayado = false;
     }
-
     public void comprobarSiSeDespierta(){
-        if (!this.porDeBajoDelUmbralDesmayo() && desmayado){
+        if (!this.pordDebajoDelUmbralDesmayo() && desmayado){
             despertar();
             System.out.println("Heroe : Despertado");
         }
@@ -78,12 +75,9 @@ public abstract class Personaje {
     public boolean estaMuerto(){
         return vidaActual <= 0;
     }
-
-    public boolean porDeBajoDelUmbralDesmayo(){
+    public boolean pordDebajoDelUmbralDesmayo(){
         return vidaActual < _UMBRAL_VIDA_DESMAYO;
     }
-
-
     public void desmayar(){
         desmayado = true;
     }

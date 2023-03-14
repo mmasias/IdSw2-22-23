@@ -5,8 +5,6 @@ import Personajes.Heroe;
 
 public class MenuAcciones {
     private final Heroe heroe;
-    private Arma[] armas;
-    private String[] acciones; // las acciones las podemos crear desde aqui
 
     public MenuAcciones(Heroe heroe){
         this.heroe = heroe;

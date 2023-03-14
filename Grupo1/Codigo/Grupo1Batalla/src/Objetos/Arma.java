@@ -6,14 +6,12 @@ public class Arma {
     private int dano;
     private int durabilidad;
     private double probAcertar;
-    private double probDesgaste;
 
-    public Arma(String nombre, int dano, int durabilidad, double probAcertar, double probDesgaste) {
+    public Arma(String nombre, int dano, int durabilidad, double probAcertar) {
         this.nombre = nombre;
         this.dano = dano;
         this.durabilidad = durabilidad;
         this.probAcertar = probAcertar;
-        this.probDesgaste = probDesgaste;
     }
 
     public String getNombre(){
@@ -30,10 +28,6 @@ public class Arma {
 
     public double getProbAcertar() {
         return probAcertar;
-    }
-
-    public double getProbDesgaste() {
-        return probDesgaste;
     }
 
     public void desgastar(){

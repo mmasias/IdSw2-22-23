@@ -9,24 +9,20 @@ public class Batalla {
     private final Enemigo enemigo;
     private int turno;
 
-
     private RecuadroPersonaje recuadroHeroe;
     private RecuadroPersonaje recuadroEnemigo;
     private MenuAcciones menuAcciones;
-
 
     public Batalla(Heroe heroe, Enemigo enemigo){
         this.heroe = heroe;
         this.enemigo = enemigo;
     }
-
     public void empezarBatalla(){
         recuadroHeroe = new RecuadroPersonaje(heroe);
         recuadroEnemigo = new RecuadroPersonaje(enemigo);
         menuAcciones = new MenuAcciones(heroe);
         comenzarIteracion();
     }
-
     private void comenzarIteracion(){
         while(ambosPersonajesVivos()){
 
@@ -110,7 +106,6 @@ public class Batalla {
         }
 
     }
-
     private void turnoEnemigo(){
         if (enemigo.estaVivo()){
 
@@ -121,7 +116,7 @@ public class Batalla {
 
                 enemigo.comprobarSiSeDespierta();
 
-            } else if (enemigo.porDeBajoDelUmbralDesmayo()){
+            } else if (enemigo.pordDebajoDelUmbralDesmayo()){
 
                 enemigo.desmayar();
                 System.out.println("Enemigo : Desmayado");
@@ -133,7 +128,6 @@ public class Batalla {
                 int danoARealizar = enemigo.hacerDano();
 
                 heroe.recibirDano(danoARealizar);
-                heroe.acabarDefensa();
 
                 System.out.println("Enemigo : Ha atacado con el arma --> " + enemigo.getArmaEquipada().getNombre());
 
@@ -143,7 +137,6 @@ public class Batalla {
             }
         }
     }
-
     private void elegirArma(){
         int armaAEquipar = scanInteraccion() - 1;
 
