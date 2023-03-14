@@ -15,23 +15,25 @@ public final class Mundo {
     private int tiempoTranscurrido;
     public final Bloque[][] bloques;
     public final List<Entidad> entidades;
-    public final Personaje personaje;
+    public Personaje personaje;
 
-    public Mundo(int ancho, int largo, int xPersonaje, int yPersonaje) {
+    public Mundo(int ancho, int largo) {
         this.bloques = new Bloque[ancho][largo];
         this.entidades = new LinkedList<>();
-
-        this.personaje = new Personaje(this);
-        this.personaje.setPosicionActual(new Posicion(xPersonaje, yPersonaje));
     }
 
     public void insertarEntidades(List<Entidad> entidades) {
-        this.entidades.addAll(entidades);
+        for (Entidad entidad : entidades) {
+            this.entidades.add(entidad);
+            if(entidad instanceof Personaje personaje) {
+                this.personaje = personaje;
+            }
+        }
     }
 
     public void insertarBloques(Bloque[][] bloquesInsertar) {
         for(int i = 0; i < bloquesInsertar.length; i++){
-            for(int j = 0; j < bloquesInsertar.length; j++){
+            for(int j = 0; j < bloquesInsertar[i].length; j++){
                 this.bloques[i][j] = bloquesInsertar[i][j];
             }
         }
@@ -84,5 +86,9 @@ public final class Mundo {
 
     public int getLargo() {
         return this.bloques.length;
+    }
+
+    public List<Entidad> getEntidades() {
+        return entidades;
     }
 }
