@@ -11,30 +11,12 @@ State Ascensor{
     Bajando --> Parado : Parar
 }
 
-State Puerta{
-    State Abierta
-    State Cerrada
-
-    Abierta --> Cerrada : Cerrar
-    Cerrada --> Abierta : Abrir
-}
-
-State Boton{
-    State Pulsado
-    State NoPulsado
-
-    Pulsado --> NoPulsado : NoPulsado
-    NoPulsado --> Pulsado : Pulsado
-}
-
 State Persona {
     State EnAscensor
     State EnPlanta
-    State EnPuerta
 
     EnAscensor --> EnPlanta : Bajarse del ascensor
-    EnPlanta --> EnPuerta : Esperar Ascensor
-    EnPuerta --> EnAscensor : Subirse al ascensor
+    EnPlanta --> EnAscensor : Subirse al ascensor
 
 }
 

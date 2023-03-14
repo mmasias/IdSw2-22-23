@@ -3,22 +3,18 @@
 class Persona
 class Tiempo
 class Planta
-class Ascensor
+class Ascensor implements "structures.enums.EstadoAscensor"
 class Universidad
-class Puerta
-class Boton
+enum "structures.enums.EstadoAscensor"
 
-Planta -u-- Persona : "< Esta en"
-Ascensor -u-- Persona : "< Esta en"
-Planta -u-- Ascensor : "< Esta en"
-Ascensor --- Tiempo : "> Funciona en"
+Planta -u-o Persona 
+Ascensor o-u- Persona 
+Planta *-u- Ascensor
 
-Boton -u-- Ascensor : "> Pertenece"
-Boton -u-- Puerta : "> Pertenece"
-Puerta -u-- Ascensor : "> Pertenece"
+Planta -u-* Universidad 
+Ascensor -u-* Universidad
+Persona -u-o Universidad 
 
-Planta -u-- Universidad : "> Pertenece"
-Ascensor -u-- Universidad : "> Pertenece"
-Persona -u-- Universidad : "> Esta en"
+Persona ... Tiempo
 
 @enduml
