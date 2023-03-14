@@ -21,6 +21,11 @@
     - [x] [Nombrado](https://docs.google.com/presentation/d/1PeEVJG80ytDgpkpK6vJAWBWbkt6QBd3Ir4jcKdwiF_c/edit?usp=share_link)
     - [x] [Comentarios](https://docs.google.com/presentation/d/1dqmZhhJ0VEb-vKKTRIu4iKxHCxv4Qh88AMT5-tgjl5Q/edit?usp=sharing)
 
+### Caso ejemplo: repo de [**theWorld**](https://github.com/mmasias/theWorld)
+
+- Clases por colaboración: *rama mundo-habitacion-baldosa-gato*
+- Clases por transmisión: *rama mundo-habitacion-baldosa-elemento*
+
 ## Diseño modular
 
 > Nivel: clases y métodos...
