@@ -13,9 +13,9 @@ import java.util.List;
 
 public final class Mundo {
     private int tiempoTranscurrido;
-    private final Bloque[][] bloques;
-    private final List<Entidad> entidades;
-    private final Personaje personaje;
+    public final Bloque[][] bloques;
+    public final List<Entidad> entidades;
+    public final Personaje personaje;
 
     public Mundo(int ancho, int largo, int xPersonaje, int yPersonaje) {
         this.bloques = new Bloque[ancho][largo];
@@ -79,11 +79,11 @@ public final class Mundo {
         }
     }
 
-    private int getAncho() {
+    public int getAncho() {
         return this.bloques[0].length;
     }
 
-    private int getLargo() {
+    public int getLargo() {
         return this.bloques.length;
     }
 }

@@ -49,7 +49,7 @@ public final class Main {
     );
 
     public static void main(String[] args) {
-        JuegoLaberinto juegoLaberinto = new JuegoLaberinto(20, 25, 10, 10);
+        JuegoLaberinto juegoLaberinto = new JuegoLaberinto(20, 25, 2, 2);
         juegoLaberinto.insertarBloques(crearArrayaBloques());
         juegoLaberinto.insertarEntidades(crearListaEntidades(juegoLaberinto.getMundo()));
 
