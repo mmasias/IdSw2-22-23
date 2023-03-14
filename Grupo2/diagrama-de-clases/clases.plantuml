@@ -5,6 +5,7 @@ class Compra {
 
     + Compra()
     + realizarCompra()
+    + menu(List<Maquina> maquinas)
 }
 
 class Maquina {
@@ -13,37 +14,51 @@ class Maquina {
     + Monedas[]
     + Productos[]
 
-    + Maquina()
+    + Maquina(String nombre, List<Billete> billetes, List<Moneda> monedas, List<Producto> productos)
     + totalBilletes()
     + totalMonedas()
     + totalProductos()
+    + menu(Scanner scanner)
+    + agregar(Scanner scanner, List<Maquina> maquinas)
 
 }
 
 class Billete {
     + valor
+    + cantidad
 
-    + Billete(int valor)
+    + Billete(double valor, int cantidad)
+    + menu(Scanner scanner)
+    + agregar(Scanner scanner, List<Billete> billetes)
 }
 
 class Moneda {
     + valor
+    + cantidad
 
-    + Moneda(int valor)
+    + Moneda(double valor, int cantidad)
+    + menu(Scanner scanner)
+    + agregar(Scanner scanner, List<Moneda> monedas)
 }
 
 class Producto {
     + nombre
     + precio
-    + proveedor
+    + cantidad
 
-    + Producto()
+    + Producto(String nombre, double precio, int cantidad)
+    + actualizarPrecio(double precio)
+    + actualizarNombre(String nombre)
+    + actualizarCantidad(int cantidad)
+    + menu(Scanner scanner)
+    + agregar(Scanner scanner, List<Producto> productos)
 }
 
 class Dinero {
     + valor
+    + cantidad
 
-    + Dinero(int valor)
+    + Dinero(double valor, int cantidad)
 }
 
 class Mantenimiento {
