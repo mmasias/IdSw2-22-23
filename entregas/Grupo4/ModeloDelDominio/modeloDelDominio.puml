@@ -3,8 +3,9 @@
 class Persona
 class Tiempo
 class Planta
-class Ascensor
+class Ascensor implements "structures.enums.EstadoAscensor"
 class Universidad
+enum "structures.enums.EstadoAscensor"
 
 Planta -u-o Persona 
 Ascensor o-u- Persona 

@@ -1,5 +1,5 @@
 package structures.enums;
 
-public enum Estado {
+public enum EstadoAscensor {
     SUBIENDO, BAJANDO, PARADO
 }

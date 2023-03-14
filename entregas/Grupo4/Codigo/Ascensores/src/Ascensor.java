@@ -1,4 +1,4 @@
-import structures.enums.Estado;
+import structures.enums.EstadoAscensor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +7,12 @@ class Ascensor {
 
     private Planta plantaActual;
     private List<Persona> personas;
-    private Estado estado;
+    private EstadoAscensor estado;
 
     public Ascensor(Planta plantaActual) {
         this.plantaActual = plantaActual;
         personas = new ArrayList<>();
-        estado = Estado.PARADO;
+        estado = EstadoAscensor.PARADO;
     }
 
     public Planta getPlantaActual() {
@@ -44,7 +44,7 @@ class Ascensor {
         if (plantaActual.getPlantaSiguiente() == null)
             throw new RuntimeException("No hay mas plantas");
         plantaActual = plantaActual.getPlantaSiguiente();
-        this.estado = Estado.SUBIENDO;
+        this.estado = EstadoAscensor.SUBIENDO;
         if (estaVacio())
             return;
 
@@ -54,7 +54,7 @@ class Ascensor {
             if (persona.getPlantaDestino().compareTo(plantaActual) == 0) {
                 personasAEliminar.add(persona);
                 persona.setPlantaActual(plantaActual);
-                this.estado = Estado.PARADO;
+                this.estado = EstadoAscensor.PARADO;
             }
         }
         for (Persona persona : personasAEliminar) {
@@ -66,7 +66,7 @@ class Ascensor {
         if (plantaActual.getPlantaAnterior() == null)
             throw new RuntimeException("No hay mas plantas");
         plantaActual = plantaActual.getPlantaAnterior();
-        this.estado = Estado.BAJANDO;
+        this.estado = EstadoAscensor.BAJANDO;
         if (personas.size() == 0)
             return;
 
@@ -76,7 +76,7 @@ class Ascensor {
             if (persona.getPlantaDestino().compareTo(plantaActual) == 0) {
                 persona.setPlantaActual(plantaActual);
                 personasAEliminar.add(persona);
-                this.estado = Estado.PARADO;
+                this.estado = EstadoAscensor.PARADO;
             }
         }
         for (Persona persona : personasAEliminar) {
@@ -93,15 +93,15 @@ class Ascensor {
     }
 
     public boolean estaSubiendo() {
-        return estado == Estado.SUBIENDO;
+        return estado == EstadoAscensor.SUBIENDO;
     }
 
     public boolean estaBajando() {
-        return estado == Estado.BAJANDO;
+        return estado == EstadoAscensor.BAJANDO;
     }
 
     public boolean estaParado() {
-        return estado == Estado.PARADO;
+        return estado == EstadoAscensor.PARADO;
     }
 
     public void mover() {
@@ -111,18 +111,18 @@ class Ascensor {
         // La prioridad del movimiento está definida por la primera persona que entró al ascensor
         if (personas.get(0).getPlantaDestino().compareTo(plantaActual) < 0) {
             if (estaParado()){
-                estado = Estado.BAJANDO;
+                estado = EstadoAscensor.BAJANDO;
             } else {
                 bajar();
             }
         } else if (personas.get(0).getPlantaDestino().compareTo(plantaActual) > 0) {
             if (estaParado()){
-                estado = Estado.SUBIENDO;
+                estado = EstadoAscensor.SUBIENDO;
             } else {
                 subir();
             }
         } else {
-            estado = Estado.PARADO;
+            estado = EstadoAscensor.PARADO;
         }
     }
 }
