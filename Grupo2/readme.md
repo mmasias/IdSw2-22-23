@@ -1,4 +1,4 @@
-# Máquinas expendedoras
+# Máquinas expendedoras 
 
 |                modelo de dominio                   |
 | :------------------------------------------------: |
