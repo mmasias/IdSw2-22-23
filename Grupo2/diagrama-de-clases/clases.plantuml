@@ -1,26 +1,15 @@
 @startuml modelo-de-dominio
-class Compra {
-    + descripcion
-    + fechaDeCompra
-
-    + Compra()
-    + realizarCompra()
-    + menu(List<Maquina> maquinas)
-}
 
 class Maquina {
     + nombre
-    + Billetes[]
-    + Monedas[]
-    + Productos[]
+    + List<Billetes> billetes
+    + List<Monedas> monedas
+    + List<Productos> productos
 
     + Maquina(String nombre, List<Billete> billetes, List<Moneda> monedas, List<Producto> productos)
     + totalBilletes()
     + totalMonedas()
     + totalProductos()
-    + menu(Scanner scanner)
-    + agregar(Scanner scanner, List<Maquina> maquinas)
-
 }
 
 class Billete {
@@ -28,8 +17,7 @@ class Billete {
     + cantidad
 
     + Billete(double valor, int cantidad)
-    + menu(Scanner scanner)
-    + agregar(Scanner scanner, List<Billete> billetes)
+    + List<Billete> crearListaDeBilletes(int cant1, int cant2, int cant3, int cant4, int cant5)
 }
 
 class Moneda {
@@ -37,8 +25,7 @@ class Moneda {
     + cantidad
 
     + Moneda(double valor, int cantidad)
-    + menu(Scanner scanner)
-    + agregar(Scanner scanner, List<Moneda> monedas)
+    + List<Moneda> crearListaDeMonedas(int cant1, int cant2, int cant3)
 }
 
 class Producto {
@@ -50,8 +37,7 @@ class Producto {
     + actualizarPrecio(double precio)
     + actualizarNombre(String nombre)
     + actualizarCantidad(int cantidad)
-    + menu(Scanner scanner)
-    + agregar(Scanner scanner, List<Producto> productos)
+    + List<Producto> crearListaDeProductos()
 }
 
 class Dinero {
@@ -69,9 +55,8 @@ class Mantenimiento {
     + generarReposicion()
 }
 
-Maquina -u-o Compra
-Maquina *--l Mantenimiento
-Maquina o---r Producto
+Maquina *--r Mantenimiento
+Maquina o--- Producto
 Maquina o--- Billete
 Maquina o--- Moneda
 
