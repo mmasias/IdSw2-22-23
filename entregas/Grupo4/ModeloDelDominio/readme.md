@@ -58,3 +58,14 @@
 
 
 </details>
+
+<details>
+  <summary>Diagrama de clases</summary>
+  
+| Diagrama de clases
+| :-: 
+| ![](images/diagramaDeClases.png)
+| [Código](diagramaDeClases.puml) 
+
+
+</details>

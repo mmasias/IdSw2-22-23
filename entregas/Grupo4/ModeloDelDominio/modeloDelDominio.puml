@@ -8,8 +8,7 @@ class Universidad
 
 Planta -u-o Persona 
 Ascensor o-u- Persona 
-Planta *-u- Ascensor 
-Ascensor .r.. Tiempo 
+Planta *-u- Ascensor
 
 Planta -u-* Universidad 
 Ascensor -u-* Universidad

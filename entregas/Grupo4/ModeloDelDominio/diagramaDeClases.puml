@@ -1,0 +1,103 @@
+@startuml modeloDelDominio
+
+class Persona {
+    - Planta plantaActual
+    - Planta plantaDestino
+    - Tiempo estanciaEnDestino
+    - boolean esperandoAscensor
+    - boolean dentroAscensor
+
+    + Persona(Planta plantaActual)
+    - Tiempo elegirEstanciaEnDestino()
+    - Planta elegirPlantaDestino()
+    + Planta getPlantaActual()
+    + boolean estaEsperandoAscensor()
+    + boolean estaDentroAscensor()
+    + void esperarAscensor()
+    + void entrarAscensor()
+    + void salirAscensor()
+    + void incrementarTiempo()
+    + boolean tieneQueIrse()
+    + Planta getPlantaDestino()
+    + void setPlantaDestino(Planta plantaDestino)
+    + void setPlantaActual(Planta plantaActual)
+}
+
+
+class Tiempo {
+    - int contador
+    - int estancia
+
+    + Tiempo(int estancia)
+    + void incrementar()
+    + boolean haPasado()
+}
+
+
+class Planta implements "java.lang.Comparable<Planta>" {
+    - int nivel
+    - Planta plantaSiguiente
+    - Planta plantaAnterior
+
+    + Planta(int nivel, Planta plantaSiguiente, Planta plantaAnterior)
+    + int getNivel()
+    + Planta getPlantaSiguiente()
+    + Planta getPlantaAnterior()
+    + void setPlantaSiguiente(Planta plantaSiguiente)
+    + compareTo(Planta o)
+}
+
+
+class Ascensor {
+    - Planta plantaActual
+    - List<Persona> personas
+    - Estado estado
+
+    + Ascensor(Planta plantaActual)
+    + Planta getPlantaActual()
+    + int getPersonasEnAscensor()
+    + void agregarPersona(Persona persona)
+    + void eliminarPersona(Persona persona)
+    + void subir()
+    + void bajar()
+    + boolean estaVacio()
+    + boolean estaLleno()
+    + boolean estaSubiendo()
+    + boolean estaBajando()
+    + boolean estaParado()
+    + void mover()
+}
+
+
+class Universidad {
+    - List<Planta> plantas
+    - List<Ascensor> ascensores
+    - List<Persona> personas
+
+    + Universidad()
+    - void establecerConfigInicial()
+    + void agregarPersona(Persona persona)
+    + void removerPersona(Persona persona)
+    - boolean llegoUnaPersona()
+    - Planta getPlanta0;
+    - List<Persona> getPersonasEsperandoAscensorPorplanta(Planta planta)
+    - List<Persona> getPersonasEnPlanta(Planta planta)
+    - void empezar()
+    - void personaTieneQueIrse()
+    - void llamarAscensorLibreMasCercano()
+    - void imprimirInterfaz()
+    + {static} void main(String[] args)
+}
+
+
+Planta -u-o Persona 
+Ascensor o-u- Persona 
+Planta *-u- Ascensor
+
+Planta -u-* Universidad 
+Ascensor -u-* Universidad
+Persona -u-o Universidad 
+
+Persona ... Tiempo
+
+@enduml
