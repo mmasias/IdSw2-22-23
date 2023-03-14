@@ -56,7 +56,7 @@ class Planta implements "java.lang.Comparable<Planta>" {
 class Ascensor implements "structures.enums.EstadoAscensor" {
     - Planta plantaActual
     - List<Persona> personas
-    - Estado estado
+    - EstadoAscensor estado
 
     + Ascensor(Planta plantaActual)
     + Planta getPlantaActual()
