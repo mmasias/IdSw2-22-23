@@ -11,7 +11,7 @@ public final class RenderizadorMundo {
         for(int i = 0; i<mundo.bloques.length; i++){
             for(int j = 0; j< mundo.bloques[0].length;j++){
                 necesitasBloque = true;
-                if(posicionX == i && posicionY == j) {
+                if(posicionX == j && posicionY == i) {
                     System.out.print("/0/");
                     necesitasBloque = false;
                 }
@@ -21,7 +21,7 @@ public final class RenderizadorMundo {
                         necesitasBloque = false;
                     }
                 }
-                if(necesitasBloque == true){
+                if(necesitasBloque){
                     if (mundo.bloques[i][j]instanceof Agua)	{System.out.print("~~~");}
                     else if (mundo.bloques[i][j]instanceof AguaTurbulenta)	{System.out.print("888");}
                     else if (mundo.bloques[i][j]instanceof Arena)	{System.out.print("...");}
@@ -33,7 +33,7 @@ public final class RenderizadorMundo {
                     else if (mundo.bloques[i][j]instanceof Suelo)	{System.out.print("___");}
                 }
             }
-            System.out.println("\n");
+            System.out.println();
         }
     }
 }
