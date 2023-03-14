@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Enemigo extends Personaje {
 
-    public Enemigo(String nombre, int vidaMaxima, Arma[] armas, String[][] sprite, int umbralDesmayo, int curaPorDesmayo) {
+    public Enemigo(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo) {
         super(nombre, vidaMaxima, armas, sprite, umbralDesmayo, curaPorDesmayo);
 
     }
@@ -18,3 +18,17 @@ public class Enemigo extends Personaje {
 
     }
 }
+
+
+//____   Turned invader               Normal invader
+//         /___/\_                                __
+//        _\   \/_/\__                          _|  |_
+//      __\       \/_/\                       _|      |_
+//      \   __    __ \ \                     |  _    _  |
+//     __\  \_\   \_\ \ \   __               | |_|  |_| |
+//    /_/\\   __   __  \ \_/_/\           _  |  _    _  |  _
+//    \_\/_\__\/\__\/\__\/_\_\/          |_|_|_| |__| |_|_|_|
+//       \_\/_/\       /_\_\/              |_|_        _|_|
+//          \_\/       \_\/                  |_|      |_|
+
+

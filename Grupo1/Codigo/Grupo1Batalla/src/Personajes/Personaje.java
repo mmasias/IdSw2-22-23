@@ -4,7 +4,7 @@ import Objetos.*;
 
 public abstract class Personaje {
     protected String nombre;
-    protected String[][] sprite;
+    protected String[] sprite;
     protected int vidaActual;
     protected int vidaMaxima;
     protected Arma[] armas;
@@ -15,7 +15,7 @@ public abstract class Personaje {
     protected final int _VIDA_CURAR_DESMAYO;
 
 
-    public Personaje(String nombre, int vidaMaxima, Arma[] armas, String[][] sprite, int umbralDesmayo, int curaPorDesmayo) {
+    public Personaje(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo) {
         this.nombre = nombre;
         this.vidaMaxima = vidaMaxima;
         this.armas = armas;
@@ -96,7 +96,7 @@ public abstract class Personaje {
     public Arma[] getArmas(){
         return armas;
     }
-    public String[][] getSprite(){
+    public String[] getSprite(){
         return sprite;
     }
     public String getNombre(){

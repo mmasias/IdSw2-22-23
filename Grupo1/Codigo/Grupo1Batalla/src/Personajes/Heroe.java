@@ -13,7 +13,7 @@ public class Heroe extends Personaje{
 
     private final int _ARMADURA = 5;
 
-    public Heroe(String nombre, int vidaMaxima, Arma[] armas, String[][] sprite, int umbralDesmayo, int curaPorDesmayo){
+    public Heroe(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo){
         super(nombre, vidaMaxima, armas, sprite, umbralDesmayo, curaPorDesmayo);
     }
 
@@ -81,3 +81,22 @@ public class Heroe extends Personaje{
     }
 
 }
+
+//      _ _
+//     /.-.`.
+//    //o;o\ \
+//    \\_-_/)/
+//    _`) ( _\\
+// .`) '-.-' ( `.
+/// `/   .   \`. \
+//\ \\___A___/_` /
+// '-)|)=@=(|(-'`\
+//   |/\   /\|  )/
+//   /__\_/__\
+//  '---' '---'
+//   \ /   \ /
+//   ( )   ( )
+//   /_\   /_\
+//  '---' '---'
+//   \ /   \ /
+//   /_\   /_\
