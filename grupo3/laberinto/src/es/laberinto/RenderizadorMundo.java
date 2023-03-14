@@ -16,7 +16,7 @@ public final class RenderizadorMundo {
                     necesitasBloque = false;
                 }
                 for(int k = 0; k< mundo.entidades.size();k++){
-                    if(mundo.entidades.get(k).getPosicionActual().x() == i && mundo.entidades.get(k).getPosicionActual().y() == j){
+                    if(mundo.entidades.get(k).getPosicionActual().x() == j && mundo.entidades.get(k).getPosicionActual().y() == i){
                         System.out.print("EEE");
                         necesitasBloque = false;
                     }
@@ -33,6 +33,7 @@ public final class RenderizadorMundo {
                     else if (mundo.bloques[i][j]instanceof Suelo)	{System.out.print("___");}
                 }
             }
+
             System.out.println();
         }
     }
