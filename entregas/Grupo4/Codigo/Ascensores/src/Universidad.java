@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 class Universidad {
     private List<Planta> plantas;
@@ -11,77 +12,44 @@ class Universidad {
         ascensores = new ArrayList<>();
         personas = new ArrayList<>();
 
-        //Crear boton por planta
-        Boton[] botonesPlanta = {new Boton(-3), new Boton(-2), new Boton(-1), new Boton(0), new Boton(1), new Boton(2), new Boton(3)};
-        //Crear puertas
-        //Ascensor1
-        Puerta[] puertasAscensor1 = {new Puerta(botonesPlanta[0]), new Puerta(botonesPlanta[1]), new Puerta(botonesPlanta[2]), new Puerta(botonesPlanta[3]), new Puerta(botonesPlanta[4]), new Puerta(botonesPlanta[5]), new Puerta(botonesPlanta[6])};
-        //Ascensor2
-        Puerta[] puertasAscensor2 = {new Puerta(botonesPlanta[0]), new Puerta(botonesPlanta[1]), new Puerta(botonesPlanta[2]), new Puerta(botonesPlanta[3]), new Puerta(botonesPlanta[4]), new Puerta(botonesPlanta[5]), new Puerta(botonesPlanta[6])};
-        //Ascensor3
-        Puerta[] puertasAscensor3 = {new Puerta(botonesPlanta[0]), new Puerta(botonesPlanta[1]), new Puerta(botonesPlanta[2]), new Puerta(botonesPlanta[3]), new Puerta(botonesPlanta[4]), new Puerta(botonesPlanta[5]), new Puerta(botonesPlanta[6])};
-
-
-        // Crear plantas y agregarlas a la universidad
-        Planta plantam3 = new Planta(-3, new Puerta[]{puertasAscensor1[0], puertasAscensor2[0], puertasAscensor3[0]}, null, null);
-        Planta plantam2 = new Planta(-2, new Puerta[]{puertasAscensor1[1], puertasAscensor2[1], puertasAscensor3[1]}, null, plantam3);
-        Planta plantam1 = new Planta(-1, new Puerta[]{puertasAscensor1[2], puertasAscensor2[2], puertasAscensor3[2]}, null, plantam2);
-        Planta planta0 = new Planta(0, new Puerta[]{puertasAscensor1[3], puertasAscensor2[3], puertasAscensor3[3]}, null, plantam1);
-        Planta planta1 = new Planta(1, new Puerta[]{puertasAscensor1[4], puertasAscensor2[4], puertasAscensor3[4]}, null, planta0);
-        Planta planta2 = new Planta(2, new Puerta[]{puertasAscensor1[5], puertasAscensor2[5], puertasAscensor3[5]}, null, planta1);
-        Planta planta3 = new Planta(3, new Puerta[]{puertasAscensor1[6], puertasAscensor2[6], puertasAscensor3[6]}, null, planta2);
-        plantam3.setPlantaSiguiente(plantam2);
-        plantam2.setPlantaSiguiente(plantam1);
-        plantam1.setPlantaSiguiente(planta0);
-        planta0.setPlantaSiguiente(planta1);
-        planta1.setPlantaSiguiente(planta2);
-        planta2.setPlantaSiguiente(planta3);
-        plantas.add(plantam3);
-        plantas.add(plantam2);
-        plantas.add(plantam1);
-        plantas.add(planta0);
-        plantas.add(planta1);
-        plantas.add(planta2);
-        plantas.add(planta3);
-
-        //Crear Botones del Ascensor
-        Boton[] botonesAscensores = {new Boton(-3), new Boton(-2), new Boton(-1), new Boton(0), new Boton(1), new Boton(2), new Boton(3)};
-
-        // Crear ascensores y agregarlos a la universidad
-        Ascensor ascensor1 = new Ascensor(plantas.get(0), botonesAscensores);
-        Ascensor ascensor2 = new Ascensor(plantas.get(0), botonesAscensores);
-        Ascensor ascensor3 = new Ascensor(plantas.get(0), botonesAscensores);
-        ascensores.add(ascensor1);
-        ascensores.add(ascensor2);
-        ascensores.add(ascensor3);
-        ascensor1.agregarPuertas(puertasAscensor1);
-        ascensor2.agregarPuertas(puertasAscensor2);
-        ascensor3.agregarPuertas(puertasAscensor3);
+        establecerConfigInicial();
     }
 
-    public Universidad(Ascensor[] ascensores, Planta[] plantas) {
-        this.plantas = List.of(plantas);
-        this.ascensores = List.of(ascensores);
-        personas = new ArrayList<>();
+    private void establecerConfigInicial() {
+        ArrayList<Ascensor> listaDeAscensores = new ArrayList<>();
+        ArrayList<Planta> listaDePlantas = new ArrayList<>();
+
+        // Crear plantas
+        Planta plantaAnterior = null;
+
+        for (int i = Constans.NIVEL_INFERIOR; i <= Constans.NIVEL_SUPERIOR; i++) {
+            Planta planta = new Planta(i, null, plantaAnterior);
+            plantaAnterior = planta;
+            listaDePlantas.add(planta);
+        }
+        for (int i = 0; i < listaDePlantas.size() - 1; i++) {
+            listaDePlantas.get(i).setPlantaSiguiente(listaDePlantas.get(i + 1));
+        }
+        plantas = listaDePlantas;
+
+        // Crear ascensores
+        Planta planta0 = getPlanta0();
+        for (int i = 0; i < Constans.TOTAL_ASCENSORES; i++) {
+            Ascensor ascensor = new Ascensor(planta0);
+            listaDeAscensores.add(ascensor);
+        }
+        ascensores = listaDeAscensores;
     }
 
     public void agregarPersona(Persona persona) {
         personas.add(persona);
     }
 
-    public List<Ascensor> getAscensores() {
-        return ascensores;
-    }
-
-    public List<Planta> getPlantas() {
-        return plantas;
-    }
-
     public void removerPersona(Persona persona) {
         personas.remove(persona);
     }
 
-    boolean llegoUnaPersona() {
+    private boolean llegoUnaPersona() {
         if (Math.random() < .5) {
             return true;
         } else {
@@ -89,42 +57,147 @@ class Universidad {
         }
     }
 
-    int contarPersonasEsperandoAscensorPorPlanta( Planta planta) {
-        int contador = 0;
-        for (Persona persona : personas) {
-            if (persona.getPlantaActual() == planta) {
-                contador++;
+    private Planta getPlanta0() {
+        for (int i = 0; i < plantas.size(); i++) {
+            if (plantas.get(i).getNivel() == 0) {
+                return plantas.get(i);
             }
         }
-        return contador;
+        throw new RuntimeException("No se encontró la planta 0");
+    }
+
+    private List<Persona> getPersonasEsperandoAscensorPorPlanta(Planta planta) {
+        List<Persona> personasEsperandoAscensor = new ArrayList<>();
+        for (Persona persona : personas) {
+            if (persona.estaEsperandoAscensor() && persona.getPlantaActual().compareTo(planta) == 0) {
+                personasEsperandoAscensor.add(persona);
+            }
+        }
+        return personasEsperandoAscensor;
+    }
+
+    private List<Persona> getPersonasEnPlanta(Planta planta) {
+        List<Persona> personasEnPlanta = new ArrayList<>();
+        for (Persona persona : personas) {
+            if (persona.getPlantaActual().compareTo(planta) == 0 && !persona.estaDentroAscensor()) {
+                personasEnPlanta.add(persona);
+            }
+        }
+        return personasEnPlanta;
     }
 
 
-
-    int contarPersonasEnPlanta(Planta planta) {
-        int contador = 0;
-        for (Persona persona : personas) {
-            if (persona.getPlantaActual() == planta) {
-                contador++;
-            }
-        }
-        return contador;
-    }
-
-
-    public void empezar() {
+    private void empezar() {
+        Scanner scanner = new Scanner(System.in);
+        String entrada = "";
         do{
-            if (llegoUnaPersona()) {
-                Persona persona = new Persona(plantas.get(3));
-                agregarPersona(persona);
-                persona.esperarAscensor(); // validar si hay ascensores libres y en la planta 0
+            for (Ascensor ascensor : ascensores) {
+                ascensor.mover();
+                List<Persona> personasEsperandoAscensor = getPersonasEsperandoAscensorPorPlanta(ascensor.getPlantaActual());
+                for (Persona persona : personasEsperandoAscensor) {
+                    if (!ascensor.estaLleno()) {
+                        ascensor.agregarPersona(persona);
+                        persona.entrarAscensor();
+                    }
+                }
             }
-            System.out.println("---------- Personas esperando ---------- ---------- ---------- Personas en la planta");
-            for (Planta planta : plantas) {
-                System.out.println("Planta " + planta.getNivel() + "    _____" + contarPersonasEsperandoAscensorPorPlanta(planta) + "_____" + "       |    |      |    |      |    |      ____" + contarPersonasEnPlanta(planta) + "___");
+            personaTieneQueIrse();
+            llamarAscensorLibreMasCercano();
+
+
+            if (llegoUnaPersona()) {
+                Persona persona = new Persona(getPlanta0());
+                agregarPersona(persona);
+                persona.esperarAscensor();
+            }
+            imprimirInterfaz();
+
+            entrada = scanner.nextLine();
+        }
+        while (entrada.compareTo("s") != 0);
+    }
+
+    private void personaTieneQueIrse(){
+        for(Planta planta : plantas){
+            if (planta.getNivel() == 0) continue;
+            List<Persona> personasEnPlanta = getPersonasEnPlanta(planta);
+            for(Persona persona : personasEnPlanta){
+                if (persona.tieneQueIrse() && persona.getPlantaActual().compareTo(getPlanta0()) != 0){
+                    persona.esperarAscensor();
+                    persona.setPlantaDestino(getPlanta0());
+                } else {
+                    persona.incrementarTiempo();
+                }
             }
         }
-        while (true);
+        List<Persona> personasEnPlanta0 = getPersonasEnPlanta(getPlanta0());
+        for(Persona persona : personasEnPlanta0){
+            if (persona.tieneQueIrse()){
+                removerPersona(persona);
+            }
+        }
+    }
+    private void llamarAscensorLibreMasCercano(){
+        Ascensor ascensorMasCercano = null;
+        for (Planta planta : plantas) {
+            if (getPersonasEsperandoAscensorPorPlanta(planta).size() > 0) {
+                for (Ascensor ascensor : ascensores) {
+                    if (ascensor.estaVacio()) {
+                        if (ascensorMasCercano == null) {
+                            ascensorMasCercano = ascensor;
+                        } else {
+                            int distanciaAscensorMasCercano = Math.abs(ascensorMasCercano.getPlantaActual().compareTo(planta));
+                            if (Math.abs(ascensor.getPlantaActual().compareTo(planta)) < distanciaAscensorMasCercano) {
+                                ascensorMasCercano = ascensor;
+                            }
+                        }
+                    }
+                }
+                if (ascensorMasCercano != null) {
+                    if (ascensorMasCercano.getPlantaActual().compareTo(planta) > 0) {
+                        ascensorMasCercano.bajar();
+                    } else if (ascensorMasCercano.getPlantaActual().compareTo(planta) < 0) {
+                        ascensorMasCercano.subir();
+                    }
+                }
+            }
+        }
+    }
+
+    private void imprimirInterfaz(){
+        //Imprimir cabecera
+        String linea = "----------- Personas esperando  ";
+        for (int i = 0; i < ascensores.size(); i++) {
+            linea += "-------- ";
+        }
+        linea += "  Personas en la planta";
+        System.out.println(linea);
+        //Imprimir plantas
+        for (int i = plantas.size() - 1; i >= 0; i--) {
+
+            linea = "Planta "
+                    + (plantas.get(i).getNivel() < 0 ? plantas.get(i).getNivel() : " " + plantas.get(i).getNivel())
+                    + "      _____"
+                    + getPersonasEsperandoAscensorPorPlanta(plantas.get(i)).size()
+                    + "_____     " ;
+
+            for (Ascensor ascensor : ascensores) {
+                if (ascensor.getPlantaActual().compareTo(plantas.get(i)) == 0){
+                    if (ascensor.estaParado()){
+                        linea += "   [-" + ascensor.getPersonasEnAscensor() + "-] ";
+                    } else if (ascensor.estaSubiendo()){
+                        linea += "   [^" + ascensor.getPersonasEnAscensor() + "^] ";
+                    } else if (ascensor.estaBajando()){
+                        linea += "   [v" + ascensor.getPersonasEnAscensor() + "v] ";
+                    }
+                } else {
+                    linea += "   |  |  ";
+                }
+            }
+            linea+= "          ___" + getPersonasEnPlanta(plantas.get(i)).size() + "___";
+            System.out.println(linea);
+        }
+        System.out.println();
     }
 
     public static void main(String[] args) {

@@ -1,18 +1,31 @@
+import java.util.Random;
+
 class Persona {
     private Planta plantaActual;
     private Planta plantaDestino;
-
+    private Tiempo estanciaEnDestino;
     private boolean esperandoAscensor;
+    private boolean dentroAscensor;
 
     public Persona(Planta plantaActual) {
-
         this.plantaActual = plantaActual;
         this.plantaDestino = elegirPlantaDestino();
+        estanciaEnDestino = elegirEstanciaEnDestino();
         esperandoAscensor = false;
+        dentroAscensor = false;
     }
 
-    Planta elegirPlantaDestino() {
-        int nivel = (int) (Math.random() * 10);
+    private Tiempo elegirEstanciaEnDestino(){
+        Random random = new Random();
+        int tiempo = random.nextInt(Constans.ESTANCIA_MAXIMA - 0 + 1) + 0;
+        return new Tiempo(tiempo);
+    }
+
+    private Planta elegirPlantaDestino() {
+        int a = Constans.NIVEL_INFERIOR;
+        int b = Constans.NIVEL_SUPERIOR;
+        Random random = new Random();
+        int nivel = random.nextInt(b - a + 1) + a;
         if (nivel == plantaActual.getNivel()) {
             return elegirPlantaDestino();
         } else {
@@ -36,26 +49,27 @@ class Persona {
         return esperandoAscensor;
     }
 
+    public boolean estaDentroAscensor() {
+        return dentroAscensor;
+    }
+
     public void esperarAscensor() {
         esperandoAscensor = true;
     }
-
-    public void subir() {
+    public void entrarAscensor() {
         esperandoAscensor = false;
-        plantaActual = plantaActual.getPlantaSiguiente();
+        dentroAscensor = true;
     }
 
-    public void bajar() {
-        esperandoAscensor = false;
-        plantaActual = plantaActual.getPlantaAnterior();
+    public void salirAscensor() {
+        dentroAscensor = false;
     }
 
-    public boolean llegoADestino() {
-        return plantaActual == plantaDestino;
+    public void incrementarTiempo() {
+        estanciaEnDestino.incrementar();
     }
-
-    public void estaEnAscensor() {
-        esperandoAscensor = false;
+    public boolean tieneQueIrse() {
+        return estanciaEnDestino.haPasado();
     }
 
     public Planta getPlantaDestino() {
@@ -69,4 +83,5 @@ class Persona {
     public void setPlantaDestino(Planta plantaDestino) {
         this.plantaDestino = plantaDestino;
     }
+
 }
