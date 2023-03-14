@@ -1,8 +1,8 @@
 package es.laberinto.utils;
 
 public enum Direccion {
-    ARRIBA(Vector.crear(0, 1)),
-    ABAJO(Vector.crear(0, -1)),
+    ARRIBA(Vector.crear(0, -1)),
+    ABAJO(Vector.crear(0, 1)),
     IZQUIERDA(Vector.crear(-1, 0)),
     DERECHA(Vector.crear(1, 0));
 

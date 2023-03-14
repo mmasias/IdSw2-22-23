@@ -46,7 +46,7 @@ public final class Mundo {
     }
 
     public Bloque getBloque(Posicion posicion) {
-        return this.bloques[posicion.x()][posicion.y()];
+        return this.bloques[posicion.y()][posicion.x()];
     }
 
     public Entidad getEntidad(Posicion posicion) {
@@ -59,8 +59,8 @@ public final class Mundo {
     public boolean posicionFueraDeLosLimites(Posicion posicion) {
         return posicion.x() < 0 ||
                posicion.y() < 0 ||
-               posicion.x() + 1 > this.getLargo() ||
-               posicion.y() + 1 > this.getAncho();
+               posicion.y() + 1 > this.getLargo() ||
+               posicion.x() + 1 > this.getAncho();
     }
 
     public void tick() {
@@ -70,8 +70,7 @@ public final class Mundo {
 
     private void actualizarEntidades() {
         for(Entidad entidad : this.entidades){
-            if(!(entidad instanceof SeMueveSolo seMueveSoloEntidad)
-                    || entidad.otraEntidadEstaMontada())
+            if(!(entidad instanceof SeMueveSolo seMueveSoloEntidad) || entidad.otraEntidadEstaMontada())
                 continue;
 
             Vector vectorMovimientoSolo = seMueveSoloEntidad.getVectorMovimientoSolo(entidad);

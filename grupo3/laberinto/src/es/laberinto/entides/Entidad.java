@@ -47,6 +47,8 @@ public abstract class Entidad {
     public boolean mover(Vector vectorDireccion) {
         Posicion nuevaPosicion = this.posicionActual.nuevaPosicionAPartirDe(vectorDireccion);
 
+        System.out.println(nuevaPosicion);
+
         if(!mePuedoMoverALaPosicion(nuevaPosicion))
             return false;
 
