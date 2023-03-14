@@ -4,4 +4,6 @@ public final class Constans {
     public static final int CAPACIDAD_MAXIMA_ASCENSOR = 6;
     public static final int TOTAL_ASCENSORES = 4;
     public static final int ESTANCIA_MAXIMA = 24;
+
+    public static final double PROBABILIDAD_PERSONA_LLEGA = .3;
 }
