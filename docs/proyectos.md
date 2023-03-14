@@ -33,14 +33,21 @@ Similar a la utilizada en la asignatura de Ingeniería de Software 1
 
 ## Entregas
 
+### Segunda entrega / presentación
+
+> **Fecha:** 28/03/2023
+
+* Diagramas refinados de la primera entrega.
+* Código en correspondencia con los diagramas.
+
 ### Primera entrega / presentación
 
 > **Fecha:** 21/02/2023
 
 Se ha de plantear un conjunto breve de herramientas de requisitado, como referencia para el desarrollo del proyecto, en la forma de diagrama(s) que describan el ***modelo del dominio***:
 
-* Diagramas de clases *&& ||* diagramas de objetos
-* Diagramas de estados
+* Diagramas de clases *&& ||* diagramas de objetos.
+* Diagramas de estados.
 
 La solución avanzada hasta la fecha y su código fuente.
 

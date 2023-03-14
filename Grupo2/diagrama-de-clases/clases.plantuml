@@ -1,61 +1,81 @@
 @startuml modelo-de-dominio
 class Compra {
-    - id
-    + nombre
     + descripcion
     + fechaDeCompra
 
+    + Compra()
     + realizarCompra()
+    + menu(List<Maquina> maquinas)
 }
 
 class Maquina {
-    - id
     + nombre
-    + numeroDeSerie
-    + totalDeProductos
-    + cantidadDeDinero
-    + productos
+    + Billetes[]
+    + Monedas[]
+    + Productos[]
 
-    + generarReposicion()
+    + Maquina(String nombre, List<Billete> billetes, List<Moneda> monedas, List<Producto> productos)
+    + totalBilletes()
+    + totalMonedas()
+    + totalProductos()
+    + menu(Scanner scanner)
+    + agregar(Scanner scanner, List<Maquina> maquinas)
+
 }
 
 class Billete {
-    - id
-    + nombre
     + valor
-    + moneda
+    + cantidad
+
+    + Billete(double valor, int cantidad)
+    + menu(Scanner scanner)
+    + agregar(Scanner scanner, List<Billete> billetes)
 }
 
 class Moneda {
-    - id
-    + nombre
     + valor
-    + moneda
+    + cantidad
+
+    + Moneda(double valor, int cantidad)
+    + menu(Scanner scanner)
+    + agregar(Scanner scanner, List<Moneda> monedas)
 }
 
 class Producto {
-    - id
     + nombre
     + precio
-    + proveedor
+    + cantidad
+
+    + Producto(String nombre, double precio, int cantidad)
+    + actualizarPrecio(double precio)
+    + actualizarNombre(String nombre)
+    + actualizarCantidad(int cantidad)
+    + menu(Scanner scanner)
+    + agregar(Scanner scanner, List<Producto> productos)
 }
 
-class Cambio {
-    - id
-    + nombre
+class Dinero {
+    + valor
+    + cantidad
+
+    + Dinero(double valor, int cantidad)
 }
 
-class Mantenimiento  {
-    - id
+class Mantenimiento {
     + nombre
     + tipo
+
+    + Mantenimiento()
+    + generarReposicion()
 }
 
-Maquina -u-* Compra
+Maquina -u-o Compra
 Maquina *--l Mantenimiento
-Maquina o-- Cambio
 Maquina o---r Producto
+Maquina o--- Billete
+Maquina o--- Moneda
 
-Cambio *--- Billete
-Cambio *--- Moneda
+Dinero <|--- Billete
+Dinero <|--- Moneda
+
 @enduml
