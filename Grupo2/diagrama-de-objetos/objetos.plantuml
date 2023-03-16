@@ -4,12 +4,6 @@ Ubicación = "planta -2"
 No. Serie = "XXXDKL7"
 }
 
-object "Compra: compra1" as comp1{
-fecha comp. = "12/05/2022"
-hora comp. = "17:50"
-descripción comp. 
-}
-
 object "Usuario: Mantenimiento" as man1{
 }
 
@@ -43,7 +37,6 @@ precio = 1,4
 moneda = "Euro"
 }
 
-maq1 --u comp1
 maq1 --l man1 
 
 maq1 --r pro1

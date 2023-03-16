@@ -18,7 +18,7 @@
 
 |                diagrama de objetos                 |
 | :------------------------------------------------: |
-|      ![Imagen](images/diagrama-de-objetos.PNG)     |
+|      ![Imagen](images/diagrama-de-objetos.png)     |
 
 </details>
 
