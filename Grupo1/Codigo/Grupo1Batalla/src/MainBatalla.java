@@ -16,7 +16,28 @@ public class MainBatalla {
         Arma[] armasHeroe = new Arma[]{arma1Heroe, arma2Heroe, arma3Heroe};
         Arma[] armasEnemigo = new Arma[]{arma1Enemigo, arma2Enemigo, arma3Enemigo};
 
-        String[] spriteHeroe = new String[]{"|a|"};
+        String[] spriteHeroe = new String[]{
+                "             _ _              ",
+                "            /.-.`.            ",
+                "           //o;o\\ \\         ",
+                "           \\\\_-_/)/         ",
+                "           _`) ( _\\\\        ",
+                "        .`) '-.-' ( `.        ",
+                "       / `/   .   \\`. \\     ",
+                "       \\ \\\\___A___/_` /    ",
+                "        '-)|)=@=(|(-'`\\      ",
+                "          |/\\   /\\|  )/     ",
+                "          /__\\_/__\\         ",
+                "         '---' '---'          ",
+                "          \\ /   \\ /         ",
+                "          ( )   ( )           ",
+                "          /_\\   /_\\         ",
+                "         '---' '---'          ",
+                "          \\ /   \\ /         ",
+                "          /_\\   /_\\         "
+
+        };
+
         String[] spriteEnemigo = new String[]{"|b|"};
 
 
