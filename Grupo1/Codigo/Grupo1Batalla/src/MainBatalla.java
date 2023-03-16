@@ -38,14 +38,33 @@ public class MainBatalla {
 
         };
 
-        String[] spriteEnemigo = new String[]{"|b|"};
-
+        String[] spriteEnemigo = new String[]{
+                "              .-.              ",
+                "             (o.o)             ",
+                "              |=|              ",
+                "             __|__             ",
+                "           //.=|=.\\\\         ",
+                "          // .=|=. \\\\        ",
+                "          \\\\ .=|=. //        ",
+                "           \\\\(_=_)//         ",
+                "            (:| |:)            ",
+                "             || ||             ",
+                "             () ()             ",
+                "             || ||             ",
+                "             || ||             ",
+                "            ==' '==            "
+        };
 
         Heroe heroe = new Heroe("Jairo", 150,armasHeroe, spriteHeroe, 30, 2);
         Enemigo enemigo = new Enemigo("Tortajeitor", 60, armasEnemigo, spriteEnemigo, 20, 2);
 
         // Si se quiere hacer la horda de enemigos
         String[] spriteHorda = new String[]{"|b|"};
+
+
+
+
+
         Enemigo hordaDeEnemigos = new Enemigo("Horda de Tortajeitors", 250, armasEnemigo, spriteHorda, 20, 2);
 
         Batalla batalla;

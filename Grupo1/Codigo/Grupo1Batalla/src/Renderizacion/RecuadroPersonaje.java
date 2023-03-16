@@ -2,6 +2,10 @@ package Renderizacion;
 
 import Personajes.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class RecuadroPersonaje {
     private final Personaje personaje;
 
@@ -10,15 +14,27 @@ public class RecuadroPersonaje {
     }
 
     public void imprimir(){
-        System.out.println("////////////////////////////////////////////////////////////");
-        for(int i = 0; i < personaje.getSprite().length; i++){
-                System.out.print(personaje.getSprite()[i]);
-            System.out.println();
-        }
 
-        System.out.println("Nombre --> " + personaje.getNombre() + " | Vida --> " + personaje.getVidaActual());
-        System.out.println("////////////////////////////////////////////////////////////");
-        System.out.println();
+        ArrayList<String> recuadro = new ArrayList<>();
+
+        int largo = personaje.getSprite()[0].length();
+        String borde = String.join("", Collections.nCopies(largo, "/"));
+        String vida = String.join("", Collections.nCopies(personaje.getVidaActual()/10, "❤️"));
+
+        //Borde
+        recuadro.add(borde);
+        //Vida y Nombre
+        recuadro.add(vida);
+        recuadro.add(personaje.getNombre());
+        //Personaje
+        recuadro.addAll(Arrays.asList(personaje.getSprite()));
+        //Borde
+        recuadro.add(borde);
+
+        for (String line: recuadro) {
+            System.out.println(line);
+
+        }
     }
 
 }
