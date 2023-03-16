@@ -12,9 +12,7 @@ public class RecuadroPersonaje {
     public void imprimir(){
         System.out.println("////////////////////////////////////////////////////////////");
         for(int i = 0; i < personaje.getSprite().length; i++){
-            for (int j = 0 ; j < personaje.getSprite()[i].length; j++){
-                System.out.print(personaje.getSprite()[i][j]);
-            }
+                System.out.print(personaje.getSprite()[i]);
             System.out.println();
         }
 
