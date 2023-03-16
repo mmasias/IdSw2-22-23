@@ -1,6 +1,6 @@
-package Renderizacion;
+package renderizacion;
 
-import Personajes.*;
+import personajes.*;
 
 public class RecuadroPersonaje {
     private final Personaje personaje;

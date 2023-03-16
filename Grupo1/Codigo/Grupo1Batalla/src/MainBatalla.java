@@ -1,6 +1,5 @@
-import Personajes.*;
-import Objetos.*;
-
+import personajes.*;
+import objetos.*;
 
 public class MainBatalla {
 

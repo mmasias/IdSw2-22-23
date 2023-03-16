@@ -1,6 +1,6 @@
-package Personajes;
+package personajes;
 
-import Objetos.*;
+import objetos.*;
 
 import java.util.Random;
 

@@ -1,6 +1,6 @@
-package Personajes;
+package personajes;
 
-import Objetos.*;
+import objetos.*;
 
 public abstract class Personaje {
     protected String nombre;
