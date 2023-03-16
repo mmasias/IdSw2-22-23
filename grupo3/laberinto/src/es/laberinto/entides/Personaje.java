@@ -5,10 +5,6 @@ import es.laberinto.entides.Entidad;
 import es.laberinto.utils.Posicion;
 
 public final class Personaje extends Entidad {
-    public Personaje(Mundo mundo) {
-        super(mundo);
-    }
-
     @Override
     public boolean puedeMontarseEnOtraEntidad() {
         return true;
@@ -19,8 +15,8 @@ public final class Personaje extends Entidad {
         return false;
     }
 
-    public static Personaje crear(Mundo mundo, Posicion posicion) {
-        Personaje personaje = new Personaje(mundo);
+    public static Personaje crear(Posicion posicion) {
+        Personaje personaje = new Personaje();
         personaje.setPosicionActual(posicion);
 
         return personaje;

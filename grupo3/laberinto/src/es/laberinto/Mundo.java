@@ -10,25 +10,51 @@ import es.laberinto.utils.Vector;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public final class Mundo {
+    private final RenderizadorMundo renderizadorMundo;
+    private final Scanner scanner;
     private int tiempoTranscurrido;
     public final Bloque[][] bloques;
     public final List<Entidad> entidades;
     public Personaje personaje;
 
-    public Mundo(int ancho, int largo) {
-        this.bloques = new Bloque[ancho][largo];
-        this.entidades = new LinkedList<>();
+    public Mundo(List<Entidad> entidades, Bloque[][] bloques, RenderizadorMundo renderizadorMundo) {
+        this.entidades = entidades;
+        this.bloques = bloques;
+        this.scanner = new Scanner(System.in);
+        this.renderizadorMundo = new RenderizadorMundo();
+        this.personaje = this.getPersonaje(entidades);
     }
 
-    public void insertarEntidades(List<Entidad> entidades) {
+    public void iniciar() {
+        while(true){
+            leerInputUsuarioYAplicar();
+            tick();
+            renderizadorMundo.renderizar(this);
+        }
+    }
+
+    private void leerInputUsuarioYAplicar() {
+        switch (this.scanner.next()) {
+            case "w" -> moverPersonaje(Direccion.ARRIBA);
+            case "a" -> moverPersonaje(Direccion.IZQUIERDA);
+            case "d" -> moverPersonaje(Direccion.DERECHA);
+            case "s" -> moverPersonaje(Direccion.ABAJO);
+            case "r" -> desmontarse();
+            case "e" -> System.exit(1);
+        }
+    }
+
+    public Personaje getPersonaje(List<Entidad> entidades) {
         for (Entidad entidad : entidades) {
-            this.entidades.add(entidad);
             if(entidad instanceof Personaje personaje) {
-                this.personaje = personaje;
+                return personaje;
             }
         }
+
+        return null;
     }
 
     public void insertarBloques(Bloque[][] bloquesInsertar) {
@@ -40,7 +66,7 @@ public final class Mundo {
     }
 
     public void moverPersonaje(Direccion direccion) {
-        this.personaje.mover(direccion.getVector());
+        this.personaje.mover(this, direccion.getVector());
     }
 
     public void desmontarse() {
@@ -76,7 +102,7 @@ public final class Mundo {
                 continue;
 
             Vector vectorMovimientoSolo = seMueveSoloEntidad.getVectorMovimientoSolo(entidad);
-            entidad.mover(vectorMovimientoSolo);
+            entidad.mover(this, vectorMovimientoSolo);
         }
     }
 

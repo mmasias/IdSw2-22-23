@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e1683bd-cdfb-4b20-a290-713c279aa7f8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/RenderizadorMundo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/RenderizadorMundo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/JuegoLaberinto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/Mundo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/Mundo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Alfombra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Alfombra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Barca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Barca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Caballo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Caballo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Entidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/NPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Personaje.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,6 +191,10 @@
       <workItem from="1678784976185" duration="961000" />
       <workItem from="1678787007665" duration="435000" />
       <workItem from="1678787548640" duration="47000" />
+      <workItem from="1678906320938" duration="44000" />
+      <workItem from="1678906380806" duration="16000" />
+      <workItem from="1678968074173" duration="1278000" />
+      <workItem from="1678973343198" duration="1527000" />
     </task>
     <servers />
   </component>

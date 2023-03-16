@@ -6,7 +6,6 @@ import es.laberinto.bloques.Bloque;
 import es.laberinto.utils.Vector;
 
 public abstract class Entidad {
-    private Mundo mundo;
     private Posicion posicionActual;
     private Entidad entidadSobreLaQueEstoyMontado;
     private Entidad entidadMontadaSobreMi;
@@ -16,10 +15,6 @@ public abstract class Entidad {
 
     public abstract boolean puedeMontarseEnOtraEntidad();
     public abstract boolean otraEntidadPuedeMontarse();
-
-    public Entidad(Mundo mundo) {
-        this.mundo = mundo;
-    }
 
     public boolean estoyMontadoSobreEntidad() {
         return this.entidadSobreLaQueEstoyMontado != null;
@@ -44,19 +39,19 @@ public abstract class Entidad {
         entidadAMontarme.bufferMovimeintoAnteriorTurno = 0;
     }
 
-    public boolean mover(Vector vectorDireccion) {
+    public boolean mover(Mundo mundo, Vector vectorDireccion) {
         Posicion nuevaPosicion = this.posicionActual.nuevaPosicionAPartirDe(vectorDireccion);
 
-        if(!mePuedoMoverALaPosicion(nuevaPosicion))
+        if(!mePuedoMoverALaPosicion(mundo, nuevaPosicion))
             return false;
 
         double velocidadSiguienteBloque = mundo.getBloque(nuevaPosicion).velocidad();
         if(velocidadSiguienteBloque >= 1){
             nuevaPosicion = posicionActual.nuevaPosicionAPartirDe(vectorDireccion.aumentarEn(velocidadSiguienteBloque));
 
-            if(!mePuedoMoverALaPosicion(nuevaPosicion)) return false;
+            if(!mePuedoMoverALaPosicion(mundo, nuevaPosicion)) return false;
 
-            actualizarPosicion(nuevaPosicion);
+            actualizarPosicion(mundo, nuevaPosicion);
 
             return true;
         }
@@ -69,14 +64,14 @@ public abstract class Entidad {
         this.posicionDondeQuiereMoverseAnteriorTurno = nuevaPosicion;
 
         if(this.bufferMovimeintoAnteriorTurno >= 1){
-            actualizarPosicion(nuevaPosicion);
+            actualizarPosicion(mundo, nuevaPosicion);
             return true;
         }
 
         return false;
     }
 
-    private void actualizarPosicion(Posicion nuevaPosicion) {
+    private void actualizarPosicion(Mundo mundo, Posicion nuevaPosicion) {
         this.posicionActual = nuevaPosicion;
         this.posicionDondeQuiereMoverseAnteriorTurno = null;
         this.bufferMovimeintoAnteriorTurno = 0;
@@ -90,7 +85,7 @@ public abstract class Entidad {
         }
     }
 
-    private boolean mePuedoMoverALaPosicion(Posicion posicion) {
+    private boolean mePuedoMoverALaPosicion(Mundo mundo, Posicion posicion) {
         if(mundo.posicionFueraDeLosLimites(posicion) || otraEntidadEstaMontada())
             return false;
 
@@ -123,10 +118,6 @@ public abstract class Entidad {
 
     public Entidad getEntidadSobreLaQueEstoyMontado() {
         return entidadSobreLaQueEstoyMontado;
-    }
-
-    public Mundo getMundo() {
-        return this.mundo;
     }
 
     public void setPosicionActual(Posicion posicionActual) {

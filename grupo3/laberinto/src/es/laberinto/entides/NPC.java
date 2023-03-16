@@ -8,10 +8,6 @@ import es.laberinto.utils.Vector;
 import javax.swing.*;
 
 public final class NPC extends Entidad implements SeMueveSolo {
-    public NPC(Mundo mundo) {
-        super(mundo);
-    }
-
     @Override
     public boolean puedeMontarseEnOtraEntidad() {
         return false;
@@ -27,8 +23,8 @@ public final class NPC extends Entidad implements SeMueveSolo {
         return Direccion.aleatorio().getVector();
     }
 
-    public static NPC crear(Mundo mundo, Posicion posicion) {
-        NPC npc = new NPC(mundo);
+    public static NPC crear(Posicion posicion) {
+        NPC npc = new NPC();
         npc.setPosicionActual(posicion);
         return npc;
     }

@@ -51,20 +51,22 @@ public final class Main {
     );
 
     public static void main(String[] args) {
-        JuegoLaberinto juegoLaberinto = new JuegoLaberinto(22, 26);
-        juegoLaberinto.insertarBloques(crearArrayaBloques());
-        juegoLaberinto.insertarEntidades(crearListaEntidades(juegoLaberinto.getMundo()));
+        Mundo mundo = new Mundo(
+                crearListaEntidades(),
+                crearArrayaBloques(),
+                new RenderizadorMundo()
+        );
 
-        juegoLaberinto.iniciar();
+        mundo.iniciar();
     }
 
-    private static List<Entidad> crearListaEntidades(Mundo mundo) {
+    private static List<Entidad> crearListaEntidades() {
         return List.of(
-                Barca.crear(mundo, POSICION_BARCA),
-                Alfombra.crear(mundo, POSICION_ALFOMBRA),
-                Caballo.crear(mundo, POSICION_CABALLO),
-                NPC.crear(mundo, POSICION_NPC),
-                Personaje.crear(mundo, POSICION_PERSONAJE)
+                Barca.crear(POSICION_BARCA),
+                Alfombra.crear(POSICION_ALFOMBRA),
+                Caballo.crear(POSICION_CABALLO),
+                NPC.crear(POSICION_NPC),
+                Personaje.crear(POSICION_PERSONAJE)
         );
     }
 

@@ -4,10 +4,6 @@ import es.laberinto.Mundo;
 import es.laberinto.utils.Posicion;
 
 public final class Caballo extends Entidad {
-    public Caballo(Mundo mundo) {
-        super(mundo);
-    }
-
     @Override
     public boolean puedeMontarseEnOtraEntidad() {
         return false;
@@ -18,8 +14,8 @@ public final class Caballo extends Entidad {
         return true;
     }
 
-    public static Caballo crear(Mundo mundo, Posicion posicion) {
-        Caballo caballo = new Caballo(mundo);
+    public static Caballo crear(Posicion posicion) {
+        Caballo caballo = new Caballo();
         caballo.setPosicionActual(posicion);
         return caballo;
     }
