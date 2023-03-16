@@ -15,17 +15,27 @@ class Main {
         List<Billete> billetesMaquina003 = Billete.crearListaDeBilletes(3, 1, 3, 5, 12);
         List<Moneda> monedasMaquina003 = Moneda.crearListaDeMonedas(30, 10, 15);
 
-        List<Producto> productos = Producto.crearListaDeProductos();
+        List<Producto> productos = crearListaDeProductos();
 
         List<Maquina> maquinas = new ArrayList<Maquina>();
         maquinas.add(new Maquina("Maquina 1", billetesMaquina001, monedasMaquina001, productos));
         maquinas.add(new Maquina("Maquina 2", billetesMaquina002, monedasMaquina002, productos));
         maquinas.add(new Maquina("Maquina 3", billetesMaquina003, monedasMaquina003, productos));
 
-        menu(maquinas);
+        imprimirProductos(maquinas);
+        menu();
     }
 
-    public static void menu(List<Maquina> maquinas) {
+    public static List<Producto> crearListaDeProductos() {
+        List<Producto> productos = new ArrayList<Producto>();
+        productos.add(new Producto("Galletas", 1.50, 10));
+        productos.add(new Producto("Chocolates", 1.10, 10));
+        productos.add(new Producto("Bebida", 1.05, 10));
+        productos.add(new Producto("Bocadillo", 1.75, 10));
+        return productos;
+    }
+
+    public static void imprimirProductos(List<Maquina> maquinas) {
         try {
             System.out.println("____________________________________________________________________________________");  
             imprimirNombreMaquinas(maquinas);
@@ -57,24 +67,20 @@ class Main {
         System.out.println();
     }
 
-    public static void showMenu() {
+    public static void menu() {
         boolean salir = false;
-        List<Maquina> maquinas = new ArrayList<Maquina>();
 
         do{
             String option = "";
-            System.out.println("-----------------------------------------------------");
-            System.out.println("[1] Agregar maquinas");
-            System.out.println("[2] Comprar");
-            System.out.println("[3] Salir");
+            System.out.println("------------------------------------------------------------------------------------");
+            System.out.println("[1] Comprar");
+            System.out.println("[2] Salir");
             System.out.println("----------------   Elige una opcion: ");
             option = input.nextLine();
 
             if(option.equals("1"))
                 System.out.println();
-            else if(option.equals("2"))
-                System.out.println();
-            else if(option.equals("3")){
+            else if(option.equals("2")){
                 System.out.println("Saliendo...");
                 salir = true;
             }

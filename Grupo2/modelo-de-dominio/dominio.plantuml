@@ -6,12 +6,11 @@ class Producto
 class Dinero
 class Mantenimiento
 
-Maquina *--l Mantenimiento
-Maquina o-- Dinero
+Maquina *--r Mantenimiento
+Maquina o--l Dinero
 Maquina o--- Producto
 
 Dinero *--- Billete
 Dinero *--- Moneda
 
-Mantenimiento ...r.o Dinero
 @enduml
