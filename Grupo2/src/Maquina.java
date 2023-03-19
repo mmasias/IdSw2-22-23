@@ -1,6 +1,8 @@
 import java.util.List;
+import java.util.Scanner;
 
 public class Maquina {
+    static Scanner input = new Scanner(System.in);
     String nombre;
     List<Billete> billetes;
     List<Moneda> monedas;
@@ -23,5 +25,25 @@ public class Maquina {
 
     public int totalProductos() {
         return this.productos.size();
+    }
+
+    public static void menuCompra() {
+        boolean salir = false;
+
+        do{
+            String option = "";
+            System.out.println("------------------------------------------------------------------------------------");
+            System.out.println("[1] Comprar");
+            System.out.println("[2] Salir");
+            System.out.println("----------------   Elige una opcion: ");
+            option = input.nextLine();
+
+            if(option.equals("1"))
+                System.out.println();
+            else if(option.equals("2")){
+                System.out.println("Saliendo...");
+                salir = true;
+            }
+        }while(!salir);
     }
 }
