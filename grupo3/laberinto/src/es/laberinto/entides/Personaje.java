@@ -17,7 +17,7 @@ public final class Personaje extends Entidad {
 
     public static Personaje crear(Posicion posicion) {
         Personaje personaje = new Personaje();
-        personaje.setPosicionActual(posicion);
+        personaje.setPosicion(posicion);
 
         return personaje;
     }

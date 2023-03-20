@@ -16,7 +16,7 @@ public final class Barca extends Entidad {
 
     public static Barca crear(Posicion posicion) {
         Barca barca = new Barca();
-        barca.setPosicionActual(posicion);
+        barca.setPosicion(posicion);
 
         return barca;
     }

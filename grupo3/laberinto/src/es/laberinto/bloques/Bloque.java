@@ -6,9 +6,8 @@ import es.laberinto.entides.Entidad;
 import java.util.List;
 
 public abstract class Bloque {
-    private Posicion posicion;
-
     public abstract double velocidad();
+
     public abstract boolean todasLasEntidadesPuedenTransitar();
     public abstract List<Class<? extends Entidad>> soloTransitableCon();
 

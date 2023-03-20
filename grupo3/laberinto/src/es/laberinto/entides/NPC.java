@@ -25,7 +25,7 @@ public final class NPC extends Entidad implements SeMueveSolo {
 
     public static NPC crear(Posicion posicion) {
         NPC npc = new NPC();
-        npc.setPosicionActual(posicion);
+        npc.setPosicion(posicion);
         return npc;
     }
 }

@@ -16,7 +16,7 @@ public final class Alfombra extends Entidad {
 
     public static Alfombra crear(Posicion posicion) {
         Alfombra alfombra = new Alfombra();
-        alfombra.setPosicionActual(posicion);
+        alfombra.setPosicion(posicion);
 
         return alfombra;
     }

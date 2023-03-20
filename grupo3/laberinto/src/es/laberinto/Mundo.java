@@ -8,7 +8,6 @@ import es.laberinto.utils.Direccion;
 import es.laberinto.utils.Posicion;
 import es.laberinto.utils.Vector;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +30,8 @@ public final class Mundo {
     public void iniciar() {
         while(true){
             leerInputUsuarioYAplicar();
-            tick();
+            tiempoTranscurrido++;
+            actualizarEntidades();
             renderizadorMundo.renderizar(this);
         }
     }
@@ -47,7 +47,7 @@ public final class Mundo {
         }
     }
 
-    public Personaje getPersonaje(List<Entidad> entidades) {
+    private Personaje getPersonaje(List<Entidad> entidades) {
         for (Entidad entidad : entidades) {
             if(entidad instanceof Personaje personaje) {
                 return personaje;
@@ -57,20 +57,16 @@ public final class Mundo {
         return null;
     }
 
-    public void insertarBloques(Bloque[][] bloquesInsertar) {
-        for(int i = 0; i < bloquesInsertar.length; i++){
-            for(int j = 0; j < bloquesInsertar[i].length; j++){
-                this.bloques[i][j] = bloquesInsertar[i][j];
-            }
-        }
-    }
-
     public void moverPersonaje(Direccion direccion) {
-        this.personaje.mover(this, direccion.getVector());
+        this.mover(this.personaje, direccion.getVector());
     }
 
     public void desmontarse() {
-        this.personaje.desmontarme();
+        Bloque bloqueDondeDesmontarse = getBloque(this.personaje.getPosicion());
+
+        if(bloqueDondeDesmontarse.puedeTransitar(this.personaje)){
+            this.personaje.desmontarme();
+        }
     }
 
     public Bloque getBloque(Posicion posicion) {
@@ -79,7 +75,7 @@ public final class Mundo {
 
     public Entidad getEntidad(Posicion posicion) {
         return this.entidades.stream()
-                .filter(it -> it.getPosicionActual().mismaPosicion(posicion))
+                .filter(it -> it.getPosicion().mismaPosicion(posicion))
                 .findFirst()
                 .orElse(null);
     }
@@ -91,18 +87,13 @@ public final class Mundo {
                posicion.x() + 1 > this.getAncho();
     }
 
-    public void tick() {
-        this.tiempoTranscurrido++;
-        this.actualizarEntidades();
-    }
-
     private void actualizarEntidades() {
         for(Entidad entidad : this.entidades){
             if(!(entidad instanceof SeMueveSolo seMueveSoloEntidad) || entidad.otraEntidadEstaMontada())
                 continue;
 
             Vector vectorMovimientoSolo = seMueveSoloEntidad.getVectorMovimientoSolo(entidad);
-            entidad.mover(this, vectorMovimientoSolo);
+            this.mover(entidad, vectorMovimientoSolo);
         }
     }
 
@@ -116,5 +107,64 @@ public final class Mundo {
 
     public List<Entidad> getEntidades() {
         return entidades;
+    }
+
+    private boolean mover(Entidad entidad, Vector vector) {
+        Posicion posicionAPartirDeVector = entidad.getPosicion().nuevaPosicionAPartirDe(vector);
+
+        if(!this.entidadSePuedeMoverALaPosicion(entidad, posicionAPartirDeVector))
+            return false;
+
+        Bloque bloqueEnPosicionAPartirDeVector = getBloque(posicionAPartirDeVector);
+        double velocidadSiguienteBloque = bloqueEnPosicionAPartirDeVector.velocidad();
+        if(velocidadSiguienteBloque >= 1){
+            Posicion nuevaPosicion = entidad.getPosicion().nuevaPosicionAPartirDe(vector.aumentarEn(velocidadSiguienteBloque));
+
+            if(!this.entidadSePuedeMoverALaPosicion(entidad, nuevaPosicion)) return false;
+
+            actualizarPosicionEntidad(entidad, nuevaPosicion);
+
+            return true;
+        }
+
+        if(!posicionAPartirDeVector.mismaPosicion(entidad.getPosicionDondeQuiereMoverseAnteriorTurno())) {
+            entidad.setBufferMovimeintoAnteriorTurno(0);
+        }
+
+        entidad.setBufferMovimeintoAnteriorTurno(entidad.getBufferMovimeintoAnteriorTurno() + velocidadSiguienteBloque);
+        entidad.setPosicionDondeQuiereMoverseAnteriorTurno(posicionAPartirDeVector);
+
+        if(entidad.getBufferMovimeintoAnteriorTurno() >= 1){
+            actualizarPosicionEntidad(entidad, posicionAPartirDeVector);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void actualizarPosicionEntidad(Entidad entidad, Posicion nuevaPosicion) {
+        entidad.setPosicion(nuevaPosicion);
+
+        Entidad entidadEnNuevaPosicion = this.getEntidad(nuevaPosicion);
+        if(entidadEnNuevaPosicion != null && entidadEnNuevaPosicion.mePuedoMontar()){
+            entidad.montarme(entidadEnNuevaPosicion);
+        }
+    }
+
+    private boolean entidadSePuedeMoverALaPosicion(Entidad entidad, Posicion posicion) {
+        if(posicionFueraDeLosLimites(posicion) || entidad.otraEntidadEstaMontada())
+            return false;
+
+        Bloque siguienteBloque = this.getBloque(posicion);
+        if(!siguienteBloque.puedeTransitar(entidad))
+            return false;
+
+        return !hayColisionConEntidadNoMontable(posicion);
+    }
+
+    private boolean hayColisionConEntidadNoMontable(Posicion posicion) {
+        Entidad entidad = this.getEntidad(posicion);
+
+        return entidad != null && !entidad.mePuedoMontar();
     }
 }

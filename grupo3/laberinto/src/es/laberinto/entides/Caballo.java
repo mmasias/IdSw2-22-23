@@ -16,7 +16,7 @@ public final class Caballo extends Entidad {
 
     public static Caballo crear(Posicion posicion) {
         Caballo caballo = new Caballo();
-        caballo.setPosicionActual(posicion);
+        caballo.setPosicion(posicion);
         return caballo;
     }
 }
