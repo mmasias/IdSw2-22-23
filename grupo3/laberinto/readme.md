@@ -1,11 +1,13 @@
+[Diagrama de clases](diagramas/clases.png)
+```
 @startuml
 class Mundo
-class JuegoLaberinto
 abstract class Entidad
 abstract class Bloque
+class Main
 class RenderizadorMundo
 interface SeMueveSolo
-enum Direccion { 
+enum Direccion {
    ARRIBA (0, 1)
    ABAJO (0, -1)
    IZQUIERDA (-1, 0)
@@ -15,49 +17,46 @@ enum Direccion {
 RenderizadorMundo : void renderizar(Mundo mundo)
 SeMueveSolo : Vector getVectorMovimientoSolo(Entidad entidad)
 
-JuegoLaberinto --> Mundo : Controla
-JuegoLaberinto : Mundo mundo
-JuegoLaberinto : RenderizadorMundo renderizador
-JuegoLaberinto : void iniciar()
+Main --> Mundo : Crea y inicia
 
 Mundo --> Bloque : esta formado por
+Mundo --> RenderizadorMundo : Contiene
 
 Bloque : double velocidad()
 Bloque : boolean todasEntidadesPuedenTransitar()
-Bloque : List soloTrasitableCon()
-
+Bloque : List<tipo Entidad> soloTrasitableCon()
 
 Mundo -> Entidad : contiene
+Mundo : RenderizadorMundo renderizador
 Mundo : int tiempoTranscurrido
 Mundo : Bloque[][] bloques
 Mundo : Entidad[] entidades
 Mundo : Personaje personaje
-Mundo : void insertarEntidades(Lista Entidad)
-Mundo : void insertarBloques(Bloques[][] bloques)
+Mundo : Mundo(Bloque[][], Entidad[], RenderizadorMundo)
+Mundo : void iniciar()
+Mundo : void desmontarsePersonaje()
 Mundo : void moverPersonaje(Direccion direccion)
-Mundo : getBloque(Posicion posicion)
-Mundo : getEntidad(Posicion posicion)
-Mundo : void Tick()
-Mundo : void actualizarEntidades()
-Mundo : int getAncho()
-Mundo : int getLargo
-Mundo : List getEntidades()
+Mundo : Bloque getBloque(Posicion posicion)
+Mundo : Entidad getEntidad(Posicion posicion)
 
-Entidad : Posicion
-Entidad : Mundo
+Mundo : void leerInputUsuarioYAplicar()
+Mundo : void actualizarEntidades()
+Mundo : boolean mover(Entidad entidad, Vector vector)
+
+Entidad : Posicion posicion
 Entidad : Entidad entidadSobreLaQueEstoyMontado
 Entidad : Entidad entidadMontadaSobreMi
 Entidad : boolean puedeMontarseEnOtraEntidad()
 Entidad : boolean otraEntidadPuedeMontarse()
-Entidad : void Desmontarse()
-Entidad : void Montarme(Entidad entidad)
-Entidad : void Mover(Vector vector)
+Entidad : void desmontarse()
+Entidad : void montarme(Entidad entidad)
+Entidad : void setPosicion(Posicion posicion)
 
-Entidad --> NPC
-Entidad --> Personaje
-Entidad --> Barca
-Entidad --> Alfombra
-Entidad --> Caballo
-NPC --> SeMueveSolo
-
+Entidad <|-- NPC
+Entidad <|-- Personaje
+Entidad <|-- Barca
+Entidad <|-- Alfombra
+Entidad <|-- Caballo
+NPC --|> SeMueveSolo
 @enduml
+```

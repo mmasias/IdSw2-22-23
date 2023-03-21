@@ -42,7 +42,7 @@ public final class Mundo {
             case "a" -> moverPersonaje(Direccion.IZQUIERDA);
             case "d" -> moverPersonaje(Direccion.DERECHA);
             case "s" -> moverPersonaje(Direccion.ABAJO);
-            case "r" -> desmontarse();
+            case "r" -> desmontarsePersonaje();
             case "e" -> System.exit(1);
         }
     }
@@ -61,7 +61,7 @@ public final class Mundo {
         this.mover(this.personaje, direccion.getVector());
     }
 
-    public void desmontarse() {
+    public void desmontarsePersonaje() {
         Bloque bloqueDondeDesmontarse = getBloque(this.personaje.getPosicion());
 
         if(bloqueDondeDesmontarse.puedeTransitar(this.personaje)){
@@ -80,7 +80,7 @@ public final class Mundo {
                 .orElse(null);
     }
 
-    public boolean posicionFueraDeLosLimites(Posicion posicion) {
+    private boolean posicionFueraDeLosLimites(Posicion posicion) {
         return posicion.x() < 0 ||
                posicion.y() < 0 ||
                posicion.y() + 1 > this.getLargo() ||

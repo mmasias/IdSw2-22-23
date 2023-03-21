@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e1683bd-cdfb-4b20-a290-713c279aa7f8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/diagramas/clases.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/es/laberinto/Mundo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/Mundo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/Bloque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/Suelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/Suelo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Alfombra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Alfombra.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Barca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Barca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Caballo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Caballo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Entidad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/NPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Personaje.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/es/laberinto/entidades/EntidadTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/es/laberinto/entidades/EntidadTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +43,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Downloaded.Files.Path.Enabled": "false",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -198,22 +190,15 @@
       <workItem from="1678968074173" duration="1278000" />
       <workItem from="1678973343198" duration="4516000" />
       <workItem from="1679170844571" duration="57000" />
-      <workItem from="1679303097061" duration="2841000" />
+      <workItem from="1679303097061" duration="3496000" />
+      <workItem from="1679384233776" duration="1046000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/es/laberinto/Mundo.java</url>
-          <line>91</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
