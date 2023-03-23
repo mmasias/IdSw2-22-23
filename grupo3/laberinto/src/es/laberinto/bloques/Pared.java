@@ -12,13 +12,8 @@ public final class Pared extends Bloque {
     }
 
     @Override
-    public boolean todasLasEntidadesPuedenTransitar() {
+    public boolean puedeTransitar(Class<? extends Entidad> entidad) {
         return false;
-    }
-
-    @Override
-    public List<Class<? extends Entidad>> soloTransitableCon() {
-        return Collections.EMPTY_LIST;
     }
 
     public static Pared crear() {

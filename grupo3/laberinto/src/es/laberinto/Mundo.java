@@ -28,6 +28,8 @@ public final class Mundo {
     }
 
     public void iniciar() {
+        renderizadorMundo.renderizar(this);
+
         while(true){
             leerInputUsuarioYAplicar();
             tiempoTranscurrido++;
@@ -64,7 +66,7 @@ public final class Mundo {
     public void desmontarsePersonaje() {
         Bloque bloqueDondeDesmontarse = getBloque(this.personaje.getPosicion());
 
-        if(bloqueDondeDesmontarse.puedeTransitar(this.personaje)){
+        if(bloqueDondeDesmontarse.puedeTransitar(this.personaje.getClass())){
             this.personaje.desmontarme();
         }
     }
@@ -156,7 +158,7 @@ public final class Mundo {
             return false;
 
         Bloque siguienteBloque = this.getBloque(posicion);
-        if(!siguienteBloque.puedeTransitar(entidad))
+        if(!siguienteBloque.puedeTransitar(entidad.getClass()))
             return false;
 
         return !hayColisionConEntidadNoMontable(posicion);

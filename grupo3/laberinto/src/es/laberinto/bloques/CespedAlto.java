@@ -12,13 +12,8 @@ public final class CespedAlto extends Bloque {
     }
 
     @Override
-    public boolean todasLasEntidadesPuedenTransitar() {
-        return false;
-    }
-
-    @Override
-    public List<Class<? extends Entidad>> soloTransitableCon() {
-        return List.of(Caballo.class);
+    public boolean puedeTransitar(Class<? extends Entidad> entidad) {
+        return entidad == Caballo.class;
     }
 
     public static CespedAlto crear() {

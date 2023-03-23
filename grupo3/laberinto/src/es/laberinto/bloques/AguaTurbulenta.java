@@ -12,13 +12,8 @@ public final class AguaTurbulenta extends Bloque {
     }
 
     @Override
-    public boolean todasLasEntidadesPuedenTransitar() {
-        return false;
-    }
-
-    @Override
-    public List<Class<? extends Entidad>> soloTransitableCon() {
-        return List.of(Barca.class);
+    public boolean puedeTransitar(Class<? extends Entidad> entidad) {
+        return entidad == Barca.class;
     }
 
     public static AguaTurbulenta crear() {
