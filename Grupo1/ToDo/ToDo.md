@@ -1,5 +1,9 @@
 # TO DO
 
+## Diagramas
+
+- [ ] Diagrama de colaboracion
+
 ## Visual
 
 #### Texto
