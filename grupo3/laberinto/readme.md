@@ -60,3 +60,21 @@ Entidad <|-- Caballo
 NPC --|> SeMueveSolo
 @enduml
 ```
+
+### Diagrama de colaboración -> entrega 28/03/2023
+@startuml
+actor Personaje
+control Main
+entity Entidad
+entity Bloque
+entity RenderizadorMundo
+
+
+Personaje --> (Mundo) : 4.Pulsa tecla para moverse y \nse actualizan las posiciones de las entidades
+Main --> (Mundo) : 1. Crea lista entidades\n2.Crea bloques\n3.Pasa renderizor mundo
+Mundo --> Bloque : 5. Me puedo mover?
+Mundo --> Personaje: 6. Cambiar posicion
+Personaje --> Entidad: 7. Si estoy montado, \ncambio de posicion de la entidad sobre la que se estoy montando.
+Mundo --> RenderizadorMundo: 8. Renderizar mundo
+
+@enduml
