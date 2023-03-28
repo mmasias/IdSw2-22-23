@@ -1,50 +1,50 @@
 @startuml modelo-de-dominio
-class Compra {
-    + descripcion
-    + fechaDeCompra
-
-    + Compra()
-    + realizarCompra()
-}
 
 class Maquina {
     + nombre
-    + Dinero[]
-    + Productos[]
+    + List<Billetes> billetes
+    + List<Monedas> monedas
+    + List<Productos> productos
 
-    + Maquina()
-    + totalDinero()
+    + Maquina(String nombre, List<Billete> billetes, List<Moneda> monedas, List<Producto> productos)
+    + totalBilletes()
+    + totalMonedas()
     + totalProductos()
-
 }
 
 class Billete {
     + valor
-    + moneda
+    + cantidad
 
-    + Billete()
+    + Billete(double valor, int cantidad)
+    + List<Billete> crearListaDeBilletes(int cant1, int cant2, int cant3, int cant4, int cant5)
 }
 
 class Moneda {
     + valor
-    + moneda
+    + cantidad
 
-    + Moneda()
+    + Moneda(double valor, int cantidad)
+    + List<Moneda> crearListaDeMonedas(int cant1, int cant2, int cant3)
 }
 
 class Producto {
     + nombre
     + precio
-    + proveedor
+    + cantidad
 
-    + Producto()
+    + Producto(String nombre, double precio, int cantidad)
+    + actualizarPrecio(double precio)
+    + actualizarNombre(String nombre)
+    + actualizarCantidad(int cantidad)
+    + List<Producto> crearListaDeProductos()
 }
 
 class Dinero {
     + valor
-    + moneda
+    + cantidad
 
-    + Dinero()
+    + Dinero(double valor, int cantidad)
 }
 
 class Mantenimiento {
@@ -55,13 +55,12 @@ class Mantenimiento {
     + generarReposicion()
 }
 
-Maquina -u-o Compra
-Maquina *--l Mantenimiento
-Maquina o-- Dinero
-Maquina o---r Producto
+Maquina *--r Mantenimiento
+Maquina o--- Producto
+Maquina o--- Billete
+Maquina o--- Moneda
 
-Dinero *--- Billete
-Dinero *--- Moneda
-Mantenimiento ...r.o Dinero
+Dinero <|--- Billete
+Dinero <|--- Moneda
 
 @enduml

@@ -1,11 +1,17 @@
 public abstract class  Dinero {
-    float precio;
-    String moneda;
+    double valor;
+    int cantidad;
 
-    Dinero(float precio, String moneda) {
-        this.precio = precio;
-        this.moneda = moneda;
+    Dinero(double valor, int cantidad) {
+        this.valor = valor;
+        this.cantidad = cantidad;
     }
 
-    Dinero() {}
+    void actualizarPrecio(double valor) {
+        this.valor = valor;
+    }
+
+    void actualizarCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 }

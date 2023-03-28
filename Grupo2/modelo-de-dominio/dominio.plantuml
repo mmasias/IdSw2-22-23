@@ -4,16 +4,13 @@ class Billete
 class Moneda
 class Producto
 class Dinero
-class Compra
 class Mantenimiento
 
-Maquina -u-o Compra
-Maquina *--l Mantenimiento
-Maquina o-- Dinero
-Maquina o---r Producto
+Maquina *--r Mantenimiento
+Maquina o--l Dinero
+Maquina o--- Producto
 
 Dinero *--- Billete
 Dinero *--- Moneda
 
-Mantenimiento ...r.o Dinero
 @enduml

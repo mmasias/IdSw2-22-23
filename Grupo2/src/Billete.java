@@ -1,5 +1,6 @@
 public class Billete extends Dinero {
-    Billete() {
-        super();
+    Billete(double valor, int cantidad) {
+        super(valor, cantidad);
     }
+
 }
