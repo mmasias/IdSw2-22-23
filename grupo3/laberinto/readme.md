@@ -62,6 +62,7 @@ NPC --|> SeMueveSolo
 ```
 
 ### Diagrama de colaboración -> entrega 28/03/2023
+[Diagrama de colaboracion](diagramas/colaboracion.png)
 ```
 @startuml
 actor Personaje
