@@ -1,3 +1,4 @@
+### Diagrama de clases
 [Diagrama de clases](diagramas/clases.png)
 ```
 @startuml
@@ -61,7 +62,7 @@ NPC --|> SeMueveSolo
 @enduml
 ```
 
-### Diagrama de colaboración -> entrega 28/03/2023
+### Diagrama de colaboración
 [Diagrama de colaboracion](diagramas/colaboracion.png)
 ```
 @startuml
