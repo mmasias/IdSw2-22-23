@@ -62,6 +62,7 @@ NPC --|> SeMueveSolo
 ```
 
 ### Diagrama de colaboración -> entrega 28/03/2023
+```
 @startuml
 actor Personaje
 control Main
@@ -78,3 +79,4 @@ Personaje --> Entidad: 7. Si estoy montado, \ncambio de posicion de la entidad s
 Mundo --> RenderizadorMundo: 8. Renderizar mundo
 
 @enduml
+```
