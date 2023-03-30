@@ -44,7 +44,7 @@
 
 |                diagrama de colaboracion                 |
 | :------------------------------------------------: |
-|      ![Imagen](images/diagrama colaboracion.png)      |
+|      ![Imagen](images/diagrama-colaboracion.png)      |
 
 </details>
 
