@@ -1,6 +1,7 @@
-@startuml diagrama-de-colaboracion
-
+@startuml 
+state Configuring {
 Gestor -> Maquina : controla
+
 Maquina -> Dinero : maneja
 Maquina -> Producto : vende
 
@@ -8,5 +9,5 @@ Dinero -> Billete : contiene
 Dinero -> Moneda : contiene
 
 Producto -> Dinero: cuesta
-
+}
 @enduml
