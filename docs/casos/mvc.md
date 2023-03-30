@@ -68,3 +68,39 @@ class Controlador {
 }
 
 ```
+
+## Extensión
+
+```java
+class Modelo {
+  public double convertirCelsiusAFahrenheit(double celsius) {
+    return (celsius * 9 / 5) + 32;
+  }
+
+  public double convertirFahrenheitACelsius(double fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+  }
+}
+
+class Vista {
+  public String obtenerTipoTemperatura() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("¿Qué tipo de temperatura quieres convertir (C/F)? ");
+    return scanner.next();
+  }
+
+  public void mostrarTemperatura(double temperatura, String tipo) {
+    if (tipo.equals("C")) {
+      System.out.println("La temperatura en grados Celsius es: " + temperatura);
+    } else {
+      System.out.println("La temperatura en grados Fahrenheit es: " + temperatura);
+    }
+  }
+
+  public double obtenerTemperatura() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Introduce la temperatura: ");
+    return scanner.nextDouble();
+  }
+}
+```
