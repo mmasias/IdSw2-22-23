@@ -37,3 +37,16 @@
 </details>
 
 </br>
+
+> Diagrama de colaboracion
+
+<details><summary><b> Mostrar </b></summary>
+
+|                diagrama de colaboracion                 |
+| :------------------------------------------------: |
+|      ![Imagen](images/diagrama colaboracion.png)      |
+
+</details>
+
+</br>
+
