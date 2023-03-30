@@ -1,13 +1,18 @@
-@startuml 
-state Configuring {
+@startuml
+state Programa{
+  
 Gestor -> Maquina : controla
 
-Maquina -> Dinero : maneja
-Maquina -> Producto : vende
+Maquina ---> Billete : totalBilletes()
+Maquina ---> Moneda : totalMonedas()
+Maquina --> Producto : totalProductos()
 
-Dinero -> Billete : contiene
-Dinero -> Moneda : contiene
+Dinero --> Billete : actualizarPrecio()
+Dinero --> Billete : actualizarCantidad()
+Dinero --> Moneda : actualizarPrecio()
+Dinero --> Moneda : actualizarCantidad()
 
 Producto -> Dinero: cuesta
+
 }
 @enduml
