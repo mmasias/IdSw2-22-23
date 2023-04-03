@@ -52,6 +52,16 @@
 |[Link](MDominio/Estados.puml)
 
 </details>
+
+<details>
+  <summary>Diagrama de colaboración</summary>
+  
+|Diagrama de colaboración
+|:-:
+|![](../out/Grupo1/MDominio/Colaboracion/Colaboracion.png)
+|[Link](MDominio/Colaboracion.puml)
+
+</details>
 <hr>
 
 <h5> Futuro de proyecto </h5>
