@@ -11,10 +11,10 @@ Conviene también darle un vistazo a los [antipatrones](https://es.wikipedia.org
 |Smell|Code|Detalle
 -|-|-
 Long method|Método extenso|Precisa de su reducción para ser más legible y mantenible.
-Large class |clase larga|Con síntomas y consecuencias muy similares al caso anterior.
-Primitive obsession |obsesión por tipos primitivos|Cuyo síntoma es la utilización de tipos primitivos para almacenar datos de entidades pequeñas, por ejemplo, usar un long para guardar un número de teléfono.
-Long parameter list |lista de parámetros larga|Incrementan la complejidad de un método de forma considerable.
-Dataclumps |grupos de datos|O uso de un conjunto de variables o propiedades de tipos primitivos en lugar de crear una clase apropiada para almacenar los datos, lo que a su vez provoca el incremento de parámetros en métodos y clases.
+Large class |Clase larga|Con síntomas y consecuencias muy similares al caso anterior.
+Primitive obsession |Obsesión por tipos primitivos|Cuyo síntoma es la utilización de tipos primitivos para almacenar datos de entidades pequeñas, por ejemplo, usar un long para guardar un número de teléfono.
+Long parameter list |Lista de parámetros larga|Incrementan la complejidad de un método de forma considerable.
+Dataclumps |Grupos de datos|O uso de un conjunto de variables o propiedades de tipos primitivos en lugar de crear una clase apropiada para almacenar los datos, lo que a su vez provoca el incremento de parámetros en métodos y clases.
 
 ## The Object-Orientation Abusers
 
@@ -22,20 +22,20 @@ Dataclumps |grupos de datos|O uso de un conjunto de variables o propiedades de t
 
 |Smell|Code|Detalle
 -|-|-
-Switch statements |sentencias Switch|Que podrían indicar una falta de utilización de mecanismos de herencia.
-Temporary field |campo temporal|Que se salta el principio de encapsulamiento y ocultación de variables haciendo que éstas pertenezcan a la clase cuando su ámbito debería ser exclusivamente el método que las usa.
-Refused bequest |rechazo del legado|Cuando una subclase ‘rechaza’ métodos o propiedades heredadas, atentando directamente contra uno de los principales pilares de la OOP.
-Alternative Classes with Different Interfaces |clases alternativas con distintos interfaces|Indica la ausencia de interfaces comunes entre clases similares.
+Switch statements |Sentencias Switch|Que podrían indicar una falta de utilización de mecanismos de herencia.
+Temporary field |Campo temporal|Que se salta el principio de encapsulamiento y ocultación de variables haciendo que éstas pertenezcan a la clase cuando su ámbito debería ser exclusivamente el método que las usa.
+Refused bequest |Rechazo del legado|Cuando una subclase ‘rechaza’ métodos o propiedades heredadas, atentando directamente contra uno de los principales pilares de la OOP.
+Alternative Classes with Different Interfaces |Clases alternativas con distintos interfaces|Indica la ausencia de interfaces comunes entre clases similares.
 
 ## The change preventers
 
 *Los impedidores de cambios*
 
-|Smell|Code|Detalle
--|-|-
-Divergent Change|Cambio divergente|Hace que sean implementadas dentro de la misma clase funcionalidades sin ninguna relación entre ellas, lo que sugiere extraerlas a una nueva clase.
-Shotgun surgery |Cirujía de escopeta|Cuando un cambio en una clase implica modificar varias clases relacionadas.
-Parallel Inheritance Hierarchies|Jerarquías de herencia paralelas|Paralelismo que aparece cuando cada vez que se crea una instancia de una clase es necesario crear una instancia de otra clase, evitable uniendo ambas en una única clase final.
+|Smell|Code|Detalle|Posible causa
+-|-|-|-
+Divergent Change|Cambio divergente|Hace que sean implementadas dentro de la misma clase funcionalidades sin ninguna relación entre ellas, lo que sugiere extraerlas a una nueva clase.|CTRL+C & CTRL+V indiscriminado
+Shotgun surgery |Cirujía de escopeta|Cuando un cambio en una clase implica modificar varias clases relacionadas.|Una única responsabilidad ha sido dividida en un gran número de clases.
+Parallel Inheritance Hierarchies|Jerarquías de herencia paralelas|Paralelismo que aparece cuando cada vez que se crea una instancia de una clase es necesario crear una instancia de otra clase, evitable uniendo ambas en una única clase final.|Una evolución inadecuada de la jerarquía de herencias
 
 ## The Dispensables
 
@@ -43,12 +43,11 @@ Parallel Inheritance Hierarchies|Jerarquías de herencia paralelas|Paralelismo q
 
 |Smell|Code|Detalle
 -|-|-
-Lazy class (clase holgazana), una clase sin apenas responsabilidades que hay que dotar de sentido, o bien eliminar.
-Data class (clase de datos), cuando una clase sólo se utiliza para almacenar datos, pero no dispone de métodos asociados a éstos.
-Duplicate code (código duplicado), presencia de código duplicado que dificulta enormemente el mantenimiento.
-Dead code (código muerto), aparición de código que no se utiliza, probablemente procedente de versiones anteriores, prototipos o pruebas.
-Speculative generality (generalización especulativa), ocurre cuando un código intenta solucionar problemas más allá de sus necesidades actuales.
-
+Lazy class|Clase holgazana|Clase sin apenas responsabilidades que hay que dotar de sentido, o bien eliminar.
+Data class|Clase de datos|Clase que sólo se utiliza para almacenar datos, pero no dispone de métodos asociados a éstos.
+Duplicate code|Código duplicado|Presencia de código duplicado que dificulta enormemente el mantenimiento.
+Dead code|Código muerto|Aparición de código que no se utiliza, probablemente procedente de versiones anteriores, prototipos o pruebas.
+Speculative generality|Generalización especulativa|Ocurre cuando un código intenta solucionar problemas más allá de sus necesidades actuales.
 
 ## The couplers
 
