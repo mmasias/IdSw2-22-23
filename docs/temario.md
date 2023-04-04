@@ -30,11 +30,11 @@
 
 > Nivel: clases y métodos...
 
-- [ ] Cohesión
-- [ ] Acoplamiento
-- [ ] Granularidad
-- [ ] Smell Codes
-- [ ] Patrón Modelo, Vista, Controlador
+- [x] Cohesión
+- [x] Acoplamiento
+- [x] Granularidad
+- [ ] [Smell Codes](/docs/casos/moreSmells.md)
+- [x] Patrón Modelo, Vista, Controlador ([Código](/docs/casos/mvc.md))
 
 ## Diseño orientado a objetos
 
@@ -45,7 +45,7 @@
 - [ ] Patrón Método Plantilla
 - [ ] Inversión de Dependencias
 - [ ] Inversión de Control
-- [ ] Inyección de Dependencias
+- [ ] Inyección de Dependencias / [Caso](casos/inyeccionDependenciasCaso.md)
 
 ## Patrones de diseño
 
