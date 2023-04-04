@@ -1,63 +1,100 @@
+![Alt text](./Diagrama.png "Optional Title")
+
+```
 @startuml
-class Mundo
-class JuegoLaberinto
-abstract class Entidad
-abstract class Bloque
-class RenderizadorMundo
-interface SeMueveSolo
-enum Direccion { 
-   ARRIBA (0, 1)
-   ABAJO (0, -1)
-   IZQUIERDA (-1, 0)
-   DERECHA (1, 0)
+class World
+class Main
+class User
+class Position
+class Pared
+class Suelo
+class AguaTurbulenta
+class Montana
+class CespedMedio
+class Agua
+class Arena
+class CespedAlto
+class CespedBajo
+
+abstract class Entity
+abstract class Block
+
+enum PlayerSprite { 
+DEFAULT
+ALT
+}
+enum BlockSprite {
+DAY
+NIGHT
 }
 
-RenderizadorMundo : void renderizar(Mundo mundo)
-SeMueveSolo : Vector getVectorMovimientoSolo(Entidad entidad)
+Main : World world
+Main : Scanner scanner
+Main -- World
 
-JuegoLaberinto --> Mundo : Controla
-JuegoLaberinto : Mundo mundo
-JuegoLaberinto : RenderizadorMundo renderizador
-JuegoLaberinto : void iniciar()
+World : final int[][] INTMAP
+World : private static int rows
+World : private static int columns
+World : private static Block[][] map
+World : private User user
+World : private static final Map<Integer, Block> BLOCKMAPPER
+World : public static Block[][] getMap()
+World : public static int getRows()
+World : public static int getColumns()
+World : public static Block getBlock(Position position)
+World : public void printWorld(Scanner scanner)
+World - User
 
-Mundo --> Bloque : esta formado por
+Entity : protected Position position
+Entity : protected PlayerSprite sprite
+Entity : protected boolean canBeMounted
+Entity : protected boolean isBeingRidden
+Entity : public abstract String getSprite();
+Entity : public abstract void setSprite(String sprite)
+Entity : public Position getPosition()
+Entity : protected void setPosition(double x, double y)
+Entity : protected void setPosition(Position position)
+Entity : protected abstract void move(String direccion)
+Entity --> User
+Entity --> Caballo
+Entity --> Barca
+Entity --> Alfombra
+Entity - Position
 
-Bloque : double velocidad()
-Bloque : boolean todasEntidadesPuedenTransitar()
-Bloque : List soloTrasitableCon()
+User : public boolean isMounted
+User : public Entity mount
+User : public void toggleMount(Entity entityToMount)
+
+Position : public Position(double x, double y)
+Position : public double getX()
+Position : public double getY()
+Position : public void setX(double x)
+Position : public void setY(double y)
+Position : private double x
+Position : private double y
 
 
-Mundo -> Entidad : contiene
-Mundo : int tiempoTranscurrido
-Mundo : Bloque[][] bloques
-Mundo : Entidad[] entidades
-Mundo : Personaje personaje
-Mundo : void insertarEntidades(Lista Entidad)
-Mundo : void insertarBloques(Bloques[][] bloques)
-Mundo : void moverPersonaje(Direccion direccion)
-Mundo : getBloque(Posicion posicion)
-Mundo : getEntidad(Posicion posicion)
-Mundo : void Tick()
-Mundo : void actualizarEntidades()
-Mundo : int getAncho()
-Mundo : int getLargo
-Mundo : List getEntidades()
+Block : protected BlockSprite sprite
+Block : protected double speed
+Block : protected Integer id
+Block : protected List<Entity> transitList
+Block : public double getSpeed() 
+Block : public abstract String getSprite()
+Block : public abstract void setSprite(String sprite)
+Block : public abstract boolean canStep(User user)
+Block : public Integer getId() 
+Block : public List<Entity> getTransitList() 
+Block --> Pared
+Block --> Suelo
+Block --> AguaTurbulenta
+Block --> Montana
+Block --> CespedMedio
+Block --> Agua
+Block --> Arena
+Block --> CespedAlto
+Block --> CespedBajo
 
-Entidad : Posicion
-Entidad : Mundo
-Entidad : Entidad entidadSobreLaQueEstoyMontado
-Entidad : Entidad entidadMontadaSobreMi
-Entidad : boolean puedeMontarseEnOtraEntidad()
-Entidad : boolean otraEntidadPuedeMontarse()
-Entidad : void Desmontarse()
-Entidad : void Montarme(Entidad entidad)
-Entidad : void Mover(Vector vector)
 
-Entidad --> NPC
-Entidad --> Personaje
-Entidad --> Barca
-Entidad --> Alfombra
-Entidad --> Caballo
-NPC --> SeMueveSolo
-
+World -- Block
 @enduml
+```

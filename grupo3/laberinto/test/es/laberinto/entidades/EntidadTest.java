@@ -3,7 +3,6 @@ package es.laberinto.entidades;
 import es.laberinto.Mundo;
 import es.laberinto.bloques.Bloque;
 import es.laberinto.entides.Barca;
-import es.laberinto.entides.Caballo;
 import es.laberinto.entides.Entidad;
 import es.laberinto.entides.Personaje;
 import es.laberinto.utils.Direccion;
@@ -15,7 +14,7 @@ import org.mockito.stubbing.Answer;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public final class EntidadTest {
+public final class çEntidadTest {
     @Test
     public void mover_seMuevaMientrasVaMontado() {
         Posicion posicionInicial = Posicion.crear(0, 0);
@@ -35,8 +34,8 @@ public final class EntidadTest {
 
         boolean seHaMovido2 = entidad.mover(Direccion.ARRIBA.getVector());
         assertTrue(seHaMovido2);
-        assertEquals(entidad.getPosicionActual(), posicionArriba);
-        assertEquals(entidadALaQueVaMontada.getPosicionActual(), posicionArriba);
+        assertEquals(entidad.getPosicion(), posicionArriba);
+        assertEquals(entidadALaQueVaMontada.getPosicion(), posicionArriba);
     }
 
     @Test
@@ -60,13 +59,13 @@ public final class EntidadTest {
 
         boolean seHaMovido1 = entidad.mover(Direccion.ARRIBA.getVector());
         assertFalse(seHaMovido1);
-        assertEquals(entidad.getPosicionActual(), posicionInicial);
+        assertEquals(entidad.getPosicion(), posicionInicial);
         assertEquals(entidad.getBufferMovimeintoAnteriorTurno(), 0.5d);
         assertEquals(entidad.getPosicionDondeQuiereMoverseAnteriorTurno(), posicionArriba);
 
         boolean seHaMovido2 = entidad.mover(Direccion.ABAJO.getVector());
         assertTrue(seHaMovido2);
-        assertEquals(entidad.getPosicionActual(), posicionAbajo);
+        assertEquals(entidad.getPosicion(), posicionAbajo);
         assertEquals(entidad.getBufferMovimeintoAnteriorTurno(), 0.0d);
         assertNull(entidad.getPosicionDondeQuiereMoverseAnteriorTurno());
     }
@@ -87,13 +86,13 @@ public final class EntidadTest {
 
         boolean seHaMovido1 = entidad.mover(Direccion.ARRIBA.getVector());
         assertFalse(seHaMovido1);
-        assertEquals(entidad.getPosicionActual(), posicionInicial);
+        assertEquals(entidad.getPosicion(), posicionInicial);
         assertEquals(entidad.getBufferMovimeintoAnteriorTurno(), 0.5d);
         assertEquals(entidad.getPosicionDondeQuiereMoverseAnteriorTurno(), posicionArriba);
 
         boolean seHaMovido2 = entidad.mover(Direccion.ARRIBA.getVector());
         assertTrue(seHaMovido2);
-        assertEquals(entidad.getPosicionActual(), posicionArriba);
+        assertEquals(entidad.getPosicion(), posicionArriba);
         assertEquals(entidad.getBufferMovimeintoAnteriorTurno(), 0.0d);
         assertNull(entidad.getPosicionDondeQuiereMoverseAnteriorTurno());
     }
@@ -122,7 +121,7 @@ public final class EntidadTest {
 
         boolean seHaMovido1 = entidad.mover(Direccion.ARRIBA.getVector());
         assertTrue(seHaMovido1);
-        assertEquals(entidad.getPosicionActual(), posicionMoverse);
+        assertEquals(entidad.getPosicion(), posicionMoverse);
         assertEquals(entidad.getBufferMovimeintoAnteriorTurno(), 0.0d);
 
         assertEquals(entidad.getEntidadSobreLaQueEstoyMontado(), entidadPosicionMoverse);
@@ -179,7 +178,7 @@ public final class EntidadTest {
 
         boolean seHaMovido = entidad.mover(Direccion.ARRIBA.getVector());
         assertFalse(seHaMovido);
-        assertEquals(entidad.getPosicionActual(), Posicion.crear(0, 0));
+        assertEquals(entidad.getPosicion(), Posicion.crear(0, 0));
     }
 
     @Test
@@ -203,7 +202,7 @@ public final class EntidadTest {
 
         boolean seHaMovido = entidad.mover(Direccion.ARRIBA.getVector());
         assertTrue(seHaMovido);
-        assertEquals(entidad.getPosicionActual(), posicionMoverse);
+        assertEquals(entidad.getPosicion(), posicionMoverse);
         assertEquals(entidad.getBufferMovimeintoAnteriorTurno(), 0.0d);
     }
 

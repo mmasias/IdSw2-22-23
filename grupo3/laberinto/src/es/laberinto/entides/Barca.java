@@ -4,10 +4,6 @@ import es.laberinto.Mundo;
 import es.laberinto.utils.Posicion;
 
 public final class Barca extends Entidad {
-    public Barca(Mundo mundo) {
-        super(mundo);
-    }
-
     @Override
     public boolean puedeMontarseEnOtraEntidad() {
         return false;
@@ -18,9 +14,9 @@ public final class Barca extends Entidad {
         return true;
     }
 
-    public static Barca crear(Mundo mundo, Posicion posicion) {
-        Barca barca = new Barca(mundo);
-        barca.setPosicionActual(posicion);
+    public static Barca crear(Posicion posicion) {
+        Barca barca = new Barca();
+        barca.setPosicion(posicion);
 
         return barca;
     }

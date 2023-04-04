@@ -4,10 +4,6 @@ import es.laberinto.Mundo;
 import es.laberinto.utils.Posicion;
 
 public final class Alfombra extends Entidad {
-    public Alfombra(Mundo mundo) {
-        super(mundo);
-    }
-
     @Override
     public boolean puedeMontarseEnOtraEntidad() {
         return false;
@@ -18,9 +14,9 @@ public final class Alfombra extends Entidad {
         return true;
     }
 
-    public static Alfombra crear(Mundo mundo, Posicion posicion) {
-        Alfombra alfombra = new Alfombra(mundo);
-        alfombra.setPosicionActual(posicion);
+    public static Alfombra crear(Posicion posicion) {
+        Alfombra alfombra = new Alfombra();
+        alfombra.setPosicion(posicion);
 
         return alfombra;
     }
