@@ -13,7 +13,7 @@ public final class Suelo extends Bloque {
     }
 
     @Override
-    public boolean puedeTransitar(Class<? extends Entidad> entidad) {
+    public boolean puedeTransitar(Entidad entidad) {
         return true;
     }
 

@@ -21,11 +21,13 @@ public abstract class Entidad {
     }
 
     public void montarme(Entidad entidadAMontarme) {
-        entidadAMontarme.entidadMontadaSobreMi = this;
-        this.entidadSobreLaQueEstoyMontado = entidadAMontarme;
+        if(entidadAMontarme.mePuedoMontar()){
+            entidadAMontarme.entidadMontadaSobreMi = this;
+            this.entidadSobreLaQueEstoyMontado = entidadAMontarme;
 
-        entidadAMontarme.posicionDondeQuiereMoverseAnteriorTurno = null;
-        entidadAMontarme.bufferMovimeintoAnteriorTurno = 0;
+            entidadAMontarme.posicionDondeQuiereMoverseAnteriorTurno = null;
+            entidadAMontarme.bufferMovimeintoAnteriorTurno = 0;
+        }
     }
 
     public void setPosicion(Posicion nuevaPosicion) {

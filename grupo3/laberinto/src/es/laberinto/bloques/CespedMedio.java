@@ -12,8 +12,8 @@ public final class CespedMedio extends Bloque {
     }
 
     @Override
-    public boolean puedeTransitar(Class<? extends Entidad> entidad) {
-        return entidad == Personaje.class;
+    public boolean puedeTransitar(Entidad entidad) {
+        return entidad.getClass() == Personaje.class;
     }
 
     public static CespedMedio crear() {

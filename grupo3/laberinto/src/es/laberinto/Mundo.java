@@ -66,7 +66,7 @@ public final class Mundo {
     public void desmontarsePersonaje() {
         Bloque bloqueDondeDesmontarse = getBloque(this.personaje.getPosicion());
 
-        if(bloqueDondeDesmontarse.puedeTransitar(this.personaje.getClass())){
+        if(bloqueDondeDesmontarse.puedeTransitar(this.personaje)){
             this.personaje.desmontarme();
         }
     }
@@ -158,7 +158,7 @@ public final class Mundo {
             return false;
 
         Bloque siguienteBloque = this.getBloque(posicion);
-        if(!siguienteBloque.puedeTransitar(entidad.getClass()))
+        if(!siguienteBloque.puedeTransitar(entidad))
             return false;
 
         return !hayColisionConEntidadNoMontable(posicion);

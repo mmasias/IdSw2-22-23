@@ -12,8 +12,8 @@ public final class Montana extends Bloque {
     }
 
     @Override
-    public boolean puedeTransitar(Class<? extends Entidad> entidad) {
-        return entidad == Alfombra.class;
+    public boolean puedeTransitar(Entidad entidad) {
+        return entidad.getClass() == Alfombra.class;
     }
 
     public static Montana crear() {

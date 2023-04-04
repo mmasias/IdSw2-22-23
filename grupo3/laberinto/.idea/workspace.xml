@@ -5,11 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e1683bd-cdfb-4b20-a290-713c279aa7f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/alejandro/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/borrame" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrama.png" beforeDir="false" afterPath="$PROJECT_DIR$/alejandro/Diagrama.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrama.puml" beforeDir="false" afterPath="$PROJECT_DIR$/alejandro/Diagrama.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/Mundo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/Mundo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/Agua.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/Agua.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/AguaTurbulenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/AguaTurbulenta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/Arena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/Bloque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/CespedAlto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/CespedAlto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/CespedBajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/CespedBajo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/CespedMedio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/CespedMedio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/Montana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/Montana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/Pared.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/Pared.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/bloques/Suelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/bloques/Suelo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/es/laberinto/entides/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/es/laberinto/entides/Entidad.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,30 +51,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/programacion/IdSw2-22-23/grupo3/laberinto",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/programacion/krs/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\programacion\IdSw2-22-23\grupo3\laberinto\alejandro" />
@@ -80,7 +89,20 @@
       <recent name="es.laberinto.entidades" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Bloque">
+    <configuration name="Bloque" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="es.laberinto.bloques.Bloque" />
+      <module name="laberinto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.laberinto.bloques.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="es.laberinto.Main" />
       <module name="laberinto" />
@@ -105,22 +127,6 @@
       <option name="PACKAGE_NAME" value="es.laberinto.entidades" />
       <option name="MAIN_CLASS_NAME" value="es.laberinto.entidades.EntidadTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EntidadTest.mover_seMuevaMientrasVaMontado" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="laberinto" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.laberinto.entidades.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.laberinto.entidades" />
-      <option name="MAIN_CLASS_NAME" value="es.laberinto.entidades.EntidadTest" />
-      <option name="METHOD_NAME" value="mover_seMuevaMientrasVaMontado" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -157,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Bloque" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.es.laberinto.entidades in laberinto" />
         <item itemvalue="JUnit.EntidadTest" />
         <item itemvalue="JUnit.EntidadTest.noMover_otraEntidadEstaMondtada" />
-        <item itemvalue="JUnit.EntidadTest.mover_seMuevaMientrasVaMontado" />
       </list>
     </recent_temporary>
   </component>
@@ -197,7 +203,9 @@
       <workItem from="1679594041775" duration="19000" />
       <workItem from="1679594095330" duration="990000" />
       <workItem from="1679602828820" duration="30000" />
-      <workItem from="1679998782005" duration="406000" />
+      <workItem from="1679998782005" duration="4381000" />
+      <workItem from="1680165210824" duration="78000" />
+      <workItem from="1680458900012" duration="32000" />
     </task>
     <servers />
   </component>
