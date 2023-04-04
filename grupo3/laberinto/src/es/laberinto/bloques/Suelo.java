@@ -13,13 +13,8 @@ public final class Suelo extends Bloque {
     }
 
     @Override
-    public boolean todasLasEntidadesPuedenTransitar() {
+    public boolean puedeTransitar(Class<? extends Entidad> entidad) {
         return true;
-    }
-
-    @Override
-    public List<Class<? extends Entidad>> soloTransitableCon() {
-        return Collections.EMPTY_LIST;
     }
 
     public static Suelo crear(){

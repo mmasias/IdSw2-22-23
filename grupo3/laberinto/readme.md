@@ -1,100 +1,84 @@
-![Alt text](./Diagrama.png "Optional Title")
-
+### Diagrama de clases
+[Diagrama de clases](diagramas/clases.png)
 ```
 @startuml
-class World
+class Mundo
+abstract class Entidad
+abstract class Bloque
 class Main
-class User
-class Position
-class Pared
-class Suelo
-class AguaTurbulenta
-class Montana
-class CespedMedio
-class Agua
-class Arena
-class CespedAlto
-class CespedBajo
-
-abstract class Entity
-abstract class Block
-
-enum PlayerSprite { 
-DEFAULT
-ALT
-}
-enum BlockSprite {
-DAY
-NIGHT
+class RenderizadorMundo
+interface SeMueveSolo
+enum Direccion {
+   ARRIBA (0, 1)
+   ABAJO (0, -1)
+   IZQUIERDA (-1, 0)
+   DERECHA (1, 0)
 }
 
-Main : World world
-Main : Scanner scanner
-Main -- World
+RenderizadorMundo : void renderizar(Mundo mundo)
+SeMueveSolo : Vector getVectorMovimientoSolo(Entidad entidad)
 
-World : final int[][] INTMAP
-World : private static int rows
-World : private static int columns
-World : private static Block[][] map
-World : private User user
-World : private static final Map<Integer, Block> BLOCKMAPPER
-World : public static Block[][] getMap()
-World : public static int getRows()
-World : public static int getColumns()
-World : public static Block getBlock(Position position)
-World : public void printWorld(Scanner scanner)
-World - User
+Main --> Mundo : Crea y inicia
 
-Entity : protected Position position
-Entity : protected PlayerSprite sprite
-Entity : protected boolean canBeMounted
-Entity : protected boolean isBeingRidden
-Entity : public abstract String getSprite();
-Entity : public abstract void setSprite(String sprite)
-Entity : public Position getPosition()
-Entity : protected void setPosition(double x, double y)
-Entity : protected void setPosition(Position position)
-Entity : protected abstract void move(String direccion)
-Entity --> User
-Entity --> Caballo
-Entity --> Barca
-Entity --> Alfombra
-Entity - Position
+Mundo --> Bloque : esta formado por
+Mundo --> RenderizadorMundo : Contiene
 
-User : public boolean isMounted
-User : public Entity mount
-User : public void toggleMount(Entity entityToMount)
+Bloque : double velocidad()
+Bloque : boolean todasEntidadesPuedenTransitar()
+Bloque : List<tipo Entidad> soloTrasitableCon()
 
-Position : public Position(double x, double y)
-Position : public double getX()
-Position : public double getY()
-Position : public void setX(double x)
-Position : public void setY(double y)
-Position : private double x
-Position : private double y
+Mundo -> Entidad : contiene
+Mundo : RenderizadorMundo renderizador
+Mundo : int tiempoTranscurrido
+Mundo : Bloque[][] bloques
+Mundo : Entidad[] entidades
+Mundo : Personaje personaje
+Mundo : Mundo(Bloque[][], Entidad[], RenderizadorMundo)
+Mundo : void iniciar()
+Mundo : void desmontarsePersonaje()
+Mundo : void moverPersonaje(Direccion direccion)
+Mundo : Bloque getBloque(Posicion posicion)
+Mundo : Entidad getEntidad(Posicion posicion)
 
+Mundo : void leerInputUsuarioYAplicar()
+Mundo : void actualizarEntidades()
+Mundo : boolean mover(Entidad entidad, Vector vector)
 
-Block : protected BlockSprite sprite
-Block : protected double speed
-Block : protected Integer id
-Block : protected List<Entity> transitList
-Block : public double getSpeed() 
-Block : public abstract String getSprite()
-Block : public abstract void setSprite(String sprite)
-Block : public abstract boolean canStep(User user)
-Block : public Integer getId() 
-Block : public List<Entity> getTransitList() 
-Block --> Pared
-Block --> Suelo
-Block --> AguaTurbulenta
-Block --> Montana
-Block --> CespedMedio
-Block --> Agua
-Block --> Arena
-Block --> CespedAlto
-Block --> CespedBajo
+Entidad : Posicion posicion
+Entidad : Entidad entidadSobreLaQueEstoyMontado
+Entidad : Entidad entidadMontadaSobreMi
+Entidad : boolean puedeMontarseEnOtraEntidad()
+Entidad : boolean otraEntidadPuedeMontarse()
+Entidad : void desmontarse()
+Entidad : void montarme(Entidad entidad)
+Entidad : void setPosicion(Posicion posicion)
+
+Entidad <|-- NPC
+Entidad <|-- Personaje
+Entidad <|-- Barca
+Entidad <|-- Alfombra
+Entidad <|-- Caballo
+NPC --|> SeMueveSolo
+@enduml
+```
+
+### Diagrama de colaboración
+[Diagrama de colaboracion](diagramas/colaboracion.png)
+```
+@startuml
+actor Personaje
+control Main
+entity Entidad
+entity Bloque
+entity RenderizadorMundo
 
 
-World -- Block
+Personaje --> (Mundo) : 4.Pulsa tecla para moverse y \nse actualizan las posiciones de las entidades
+Main --> (Mundo) : 1. Crea lista entidades\n2.Crea bloques\n3.Pasa renderizor mundo
+Mundo --> Bloque : 5. Me puedo mover?
+Mundo --> Personaje: 6. Cambiar posicion
+Personaje --> Entidad: 7. Si estoy montado, \ncambio de posicion de la entidad sobre la que se estoy montando.
+Mundo --> RenderizadorMundo: 8. Renderizar mundo
+
 @enduml
 ```

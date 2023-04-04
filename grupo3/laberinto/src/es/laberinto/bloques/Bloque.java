@@ -8,13 +8,5 @@ import java.util.List;
 public abstract class Bloque {
     public abstract double velocidad();
 
-    public abstract boolean todasLasEntidadesPuedenTransitar();
-    public abstract List<Class<? extends Entidad>> soloTransitableCon();
-
-    public boolean puedeTransitar(Entidad entidad) {
-        return this.todasLasEntidadesPuedenTransitar()
-                || soloTransitableCon().stream().anyMatch(it -> it.equals(entidad.getClass()))
-                || soloTransitableCon().stream().anyMatch(it -> entidad.estoyMontadoSobreEntidad()
-                                                                && it.equals(entidad.getEntidadSobreLaQueEstoyMontado().getClass()));
-    }
+    public abstract boolean puedeTransitar(Class<? extends Entidad> entidad);
 }

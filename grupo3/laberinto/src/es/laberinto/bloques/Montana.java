@@ -12,13 +12,8 @@ public final class Montana extends Bloque {
     }
 
     @Override
-    public boolean todasLasEntidadesPuedenTransitar() {
-        return false;
-    }
-
-    @Override
-    public List<Class<? extends Entidad>> soloTransitableCon() {
-        return List.of(Alfombra.class);
+    public boolean puedeTransitar(Class<? extends Entidad> entidad) {
+        return entidad == Alfombra.class;
     }
 
     public static Montana crear() {
