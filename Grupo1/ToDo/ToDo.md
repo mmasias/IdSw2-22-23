@@ -28,8 +28,6 @@
 - [ ] Renombrar el método para preguntar si el héroe está esperando a pocion (heroe.esperandoAPocion())
 - [ ] Renombrar heroe.curarseDesmayado() a un nombre más identificativo
 
-</details>
-
 #### Clases nuevas
 
 - [ ] Interacción usuario con la batalla
