@@ -1,7 +1,7 @@
-package Renderizacion;
+package renderizacion;
 
-import Objetos.Arma;
-import Personajes.Heroe;
+import objetos.Arma;
+import personajes.Heroe;
 
 public class MenuAcciones {
     private final Heroe heroe;

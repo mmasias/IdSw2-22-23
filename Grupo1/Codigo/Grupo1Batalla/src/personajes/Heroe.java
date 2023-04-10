@@ -1,8 +1,6 @@
-package Personajes;
+package personajes;
 
-import Objetos.*;
-
-import javax.print.DocFlavor;
+import objetos.*;
 
 public class Heroe extends Personaje{
     private final String[] acciones = new String[]{"Atacar", "Defender", "Curarse"};

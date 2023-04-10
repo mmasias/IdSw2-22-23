@@ -1,6 +1,6 @@
-import Personajes.*;
-import Renderizacion.MenuAcciones;
-import Renderizacion.RecuadroPersonaje;
+import personajes.*;
+import renderizacion.MenuAcciones;
+import renderizacion.RecuadroPersonaje;
 
 import java.util.Scanner;
 

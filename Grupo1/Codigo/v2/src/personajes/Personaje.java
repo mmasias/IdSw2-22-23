@@ -1,6 +1,7 @@
-package Personajes;
+package personajes;
 
-import Objetos.*;
+import Extras.RegistroDeCombate;
+import objetos.*;
 
 public abstract class Personaje {
     protected String nombre;
@@ -11,8 +12,8 @@ public abstract class Personaje {
     protected int armaEquipada;
     protected boolean desmayado;
 
-    protected final int _UMBRAL_VIDA_DESMAYO; //hace falta llamarles asi???? revisar
-    protected final int _VIDA_CURAR_DESMAYO;
+    protected final int umbralVidaDesmayo;
+    protected final int vidaCurarDesmayo;
 
 
     public Personaje(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo) {
@@ -20,51 +21,61 @@ public abstract class Personaje {
         this.vidaMaxima = vidaMaxima;
         this.armas = armas;
         this.sprite = sprite;
-        _UMBRAL_VIDA_DESMAYO = umbralDesmayo;
-        _VIDA_CURAR_DESMAYO = curaPorDesmayo;
+        this.umbralVidaDesmayo = umbralDesmayo;
+        this.vidaCurarDesmayo = curaPorDesmayo;
 
         vidaActual = vidaMaxima;
     }
 
     public void recibirDano(int dano) {
         vidaActual -= dano;
-        if (vidaActual < _UMBRAL_VIDA_DESMAYO){
+
+        RegistroDeCombate.anadirLog(this.nombre + ": Ha recibido " + dano + " puntos de daño");
+
+        if (vidaActual < umbralVidaDesmayo){
             desmayado = true;
+            RegistroDeCombate.anadirLog(this.nombre + " : Se ha desmayado");
         }
     }
-    public int hacerDano(){
+
+    public void atacarAPersonaje(Personaje personajeAAtacar){
         int probAcertar = (int) (Math.random() * 100);
-        //double probDesgastar = Math.random();
         Arma arma = armas[armaEquipada];
 
-        // de momento, despues de atacar correctamente se desgasta
-        if (arma.getDurabilidad() > 0){
-            if (probAcertar < arma.getProbAcertar()){
-                arma.desgastar();
-                return arma.getDano();
-            }
+        if ((probAcertar < arma.getProbAcertar()) && (arma.getDurabilidad() > 0)){
+            RegistroDeCombate.anadirLog(this.nombre + " : Ha acertado con el arma " + arma.getNombre());
+
+            int danoARealizar = arma.getDano();
+            personajeAAtacar.recibirDano(danoARealizar);
+
+            arma.desgastar();
+            RegistroDeCombate.anadirLog(this.nombre + " : El arma " + arma.getNombre() + " se ha desgastado, ahora le quedan " + arma.getDurabilidad() + " puntos de durabilidad");
         }
 
-        return 0;
     }
+
     public boolean puedeActuar(){
         return !desmayado;
     }
     public void curarseDesmayado(){
-        curarse(_VIDA_CURAR_DESMAYO);
+        RegistroDeCombate.anadirLog(this.nombre + " : Está desmayado");
+        curarse(vidaCurarDesmayo);
     }
     public void curarse(int vidaACurar){
         if ((vidaActual + vidaACurar ) > vidaMaxima){
             vidaActual = vidaMaxima;
+            RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado por completo");
         } else {
             vidaActual += vidaACurar;
+            RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado " + vidaACurar + " puntos de vida, ahora tiene " + this.vidaActual);
         }
     }
     public void despertar(){
         desmayado = false;
+        RegistroDeCombate.anadirLog(this.nombre + " : Se ha despertado");
     }
     public void comprobarSiSeDespierta(){
-        if (!this.pordDebajoDelUmbralDesmayo() && desmayado){
+        if (!this.porDebajoDelUmbralDeDesmayo() && desmayado){
             despertar();
             System.out.println("Heroe : Despertado");
         }
@@ -72,11 +83,9 @@ public abstract class Personaje {
     public boolean estaVivo(){
         return vidaActual > 0;
     }
-    public boolean estaMuerto(){
-        return vidaActual <= 0;
-    }
-    public boolean pordDebajoDelUmbralDesmayo(){
-        return vidaActual < _UMBRAL_VIDA_DESMAYO;
+
+    public boolean porDebajoDelUmbralDeDesmayo(){
+        return vidaActual < umbralVidaDesmayo;
     }
     public void desmayar(){
         desmayado = true;

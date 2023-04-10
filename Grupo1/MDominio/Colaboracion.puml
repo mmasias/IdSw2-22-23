@@ -1,0 +1,26 @@
+@startuml Colaboracion
+state MenuAcciones 
+state Arma
+
+MainBatalla-->Arma : Crea varias armas
+
+MainBatalla-->Heroe :  Crea un heroe 
+MainBatalla-->Enemigo : Crea un enemigo
+
+MainBatalla-->Batalla :  Crea e inicia batalla 
+
+Batalla --> RecuadroPersonaje :  Crea recuadros \n Imprimir
+Batalla --> MenuAcciones:  Crea Menu \n  ImprimirAcciones \n  ImprimirArmas
+
+Batalla --> Heroe:  Esta vivo \n  Puede Actuar \n  hacer daño\n  defenderse \n  IniciarEstadoCuracion \n GetArmas \n  equiparArma \n Esta Desmayado \n  EsperandoPocion \n Curarse \n Desmayado \n AvanzarTurnoCuracion \n ComprobarSiSeDespierta  \n RecibirDaño \n EstaMuerto
+Batalla --> Enemigo:  Esta vivo \n  RecibirDaño \n  EstaMuerto \n  Esta Desmayado \n  Curarse Desmayado \n  ComprobarsiSeDespierta \n  PorDebajoDelUmbralDesmayo \n Desmayar \n EquiparArmaAleatoria \n HacerDaño \n 3ArmaEquipada.GetNombre 
+
+Batalla --> Personaje:  GetNombre
+
+Heroe --> Personaje:  super()
+Enemigo --> Personaje: super()
+Personaje --> Arma: Obtener durabilidad \n Probabilidad de acertar \n Obtener daño del arma
+MenuAcciones --> Heroe:  Obtener Acciones \n   Obtener Armas
+RecuadroPersonaje --> Personaje: Obtener Sprite \n  Obtener nombre \n  Obtener VidaActual
+
+@enduml

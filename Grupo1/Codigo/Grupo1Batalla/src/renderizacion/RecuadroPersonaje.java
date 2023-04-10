@@ -1,6 +1,6 @@
-package Renderizacion;
+package renderizacion;
 
-import Personajes.*;
+import personajes.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
