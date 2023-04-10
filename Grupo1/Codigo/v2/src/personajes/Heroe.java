@@ -1,28 +1,19 @@
 package personajes;
 
-import Extras.RegistroDeCombate;
+import extras.RegistroDeCombate;
 import objetos.*;
 
 public class Heroe extends Personaje{
     private final String[] acciones = new String[]{"Atacar", "Defender", "Curarse"};
     private boolean defendiendo = false;
-    private boolean curando = false;
+    private boolean esperandoACurarseConPocion = false;
 
     private int turnosParaCurarseConPocion;
 
-    private final int _ARMADURA = 5;
+    private final int armadura = 5;
 
     public Heroe(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo){
         super(nombre, vidaMaxima, armas, sprite, umbralDesmayo, curaPorDesmayo);
-    }
-
-
-    public boolean esperandoAPocion(){
-        return turnosParaCurarseConPocion > 0;
-    }
-
-    public int getTurnoCuracion(){
-        return turnosParaCurarseConPocion;
     }
 
     public void defenderse(){
@@ -30,53 +21,67 @@ public class Heroe extends Personaje{
 
         if (randomDefenderse < 0.8){
             defendiendo = true;
-            RegistroDeCombate.anadirLog(this.nombre + " : Se está defendiendo");
+            RegistroDeCombate.anadirLog(this.nombre + " : Se esta defendiendo");
         }
     }
 
     public void iniciarEstadoDeCuracion(){
-        RegistroDeCombate.anadirLog(this.nombre + " : Comienza el estado de curación");
+        RegistroDeCombate.anadirLog(this.nombre + " : Comienza el estado de curacion");
         turnosParaCurarseConPocion = 3;
-        curando = true;
+        esperandoACurarseConPocion = true;
     }
 
     public void avanzarTurnoDeCuracion(){
         turnosParaCurarseConPocion--;
 
-        RegistroDeCombate.anadirLog(this.nombre + " : Avanza turno de curación");
+        RegistroDeCombate.anadirLog(this.nombre + " : Avanza turno de curacion");
 
 
         if (turnosParaCurarseConPocion <= 0){
-            vidaActual = vidaMaxima;
-            desmayado = false;
-            curando = false;
+            curarse(vidaMaxima);
+            esperandoACurarseConPocion = false;
         }
     }
 
     @Override
     public boolean puedeActuar(){
-        return !desmayado && !curando;
+        return !desmayado && !esperandoACurarseConPocion;
     }
 
     @Override
     public void recibirDano(int danoARecibir){
         if (defendiendo){
             recibirDanoDefendiendose(danoARecibir);
+            defendiendo = false;
+            RegistroDeCombate.anadirLog(this.nombre + ": Ha dejado de defenderse");
         } else {
             vidaActual -= danoARecibir;
+            RegistroDeCombate.anadirLog(this.nombre + ": Ha recibido " + danoARecibir + " puntos de dano");
         }
 
         if (vidaActual < umbralVidaDesmayo){
-            desmayado = true;
+            desmayar();
         }
+    }
 
-        defendiendo = false;
+    @Override
+    public void avanzarTurnoSinActuar(){
+        if (desmayado && esperandoACurarseConPocion){
+            curarseDesmayado();
+            avanzarTurnoDeCuracion();
+        } else if (desmayado){
+            curarseDesmayado();
+        } else if (esperandoACurarseConPocion) {
+            avanzarTurnoDeCuracion();
+        }
     }
 
     private void recibirDanoDefendiendose(int danoARecibir){
-        if (danoARecibir > _ARMADURA) {
-            System.out.println("Enemigo : Ha hecho " + (danoARecibir - _ARMADURA) + " de dano");
-            vidaActual -= danoARecibir - _ARMADURA;
+        if (danoARecibir > armadura) {
+            RegistroDeCombate.anadirLog(this.nombre + ": Se estaba defendiendo y recibio " + (danoARecibir - armadura) + " puntos de dano");
+            vidaActual -= danoARecibir - armadura;
+        } else {
+            RegistroDeCombate.anadirLog(this.nombre + " : No ha recibido dano");
         }
     }
 
@@ -85,22 +90,3 @@ public class Heroe extends Personaje{
     }
 
 }
-
-//      _ _
-//     /.-.`.
-//    //o;o\ \
-//    \\_-_/)/
-//    _`) ( _\\
-// .`) '-.-' ( `.
-/// `/   .   \`. \
-//\ \\___A___/_` /
-// '-)|)=@=(|(-'`\
-//   |/\   /\|  )/
-//   /__\_/__\
-//  '---' '---'
-//   \ /   \ /
-//   ( )   ( )
-//   /_\   /_\
-//  '---' '---'
-//   \ /   \ /
-//   /_\   /_\

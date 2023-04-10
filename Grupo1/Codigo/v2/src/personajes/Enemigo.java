@@ -17,6 +17,7 @@ public class Enemigo extends Personaje {
         armaEquipada = rand.nextInt(armas.length);
 
     }
+
 }
 
 
