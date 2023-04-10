@@ -8,7 +8,22 @@ import java.util.Collections;
 
 public class RecuadroPersonaje {
     private final Personaje personaje;
-
+    private final String[] spriteEnemigo = new String[]{
+            "              .-.              ",
+            "             (o.o)             ",
+            "              |=|              ",
+            "             __|__             ",
+            "           //.=|=.\\\\         ",
+            "          // .=|=. \\\\        ",
+            "          \\\\ .=|=. //        ",
+            "           \\\\(_=_)//         ",
+            "            (:| |:)            ",
+            "             || ||             ",
+            "             () ()             ",
+            "             || ||             ",
+            "             || ||             ",
+            "            ==' '==            "
+    };
     public RecuadroPersonaje(Personaje personaje){
         this.personaje = personaje;
     }

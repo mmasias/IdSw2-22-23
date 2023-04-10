@@ -2,6 +2,9 @@ package personajes;
 
 import objetos.*;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public abstract class Personaje {
     protected String nombre;
     protected String[] sprite;
@@ -19,11 +22,22 @@ public abstract class Personaje {
         this.nombre = nombre;
         this.vidaMaxima = vidaMaxima;
         this.armas = armas;
-        this.sprite = sprite;
+        this.sprite = rectangular(sprite);
         _UMBRAL_VIDA_DESMAYO = umbralDesmayo;
         _VIDA_CURAR_DESMAYO = curaPorDesmayo;
 
         vidaActual = vidaMaxima;
+    }
+
+    private String[] rectangular(String[] sprite) {
+        int max = Arrays.asList(sprite).stream().map(String::length).max(Integer::compareTo).get();
+
+        for (String line : sprite
+             ) {
+            if (line.length() < max){
+                line += String.join("", Collections.nCopies(max - line.length(), " "));
+            }
+        }
     }
 
     public void recibirDano(int dano) {
