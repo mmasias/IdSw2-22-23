@@ -9,8 +9,7 @@ public class Batalla {
     private final Enemigo enemigo;
     private int turno;
 
-    private RecuadroPersonaje recuadroHeroe;
-    private RecuadroPersonaje recuadroEnemigo;
+    private RecuadroPersonaje recuadroPersonajes;
     private MenuAcciones menuAcciones;
 
     public Batalla(Heroe heroe, Enemigo enemigo){
@@ -18,8 +17,7 @@ public class Batalla {
         this.enemigo = enemigo;
     }
     public void empezarBatalla(){
-        recuadroHeroe = new RecuadroPersonaje(heroe);
-        recuadroEnemigo = new RecuadroPersonaje(enemigo);
+        recuadroPersonajes = new RecuadroPersonaje(heroe,enemigo);
         menuAcciones = new MenuAcciones(heroe);
         comenzarIteracion();
     }
@@ -173,8 +171,7 @@ public class Batalla {
     }
 
     private void imprimirPersonajes(){
-        recuadroHeroe.imprimir();
-        recuadroEnemigo.imprimir();
+        recuadroPersonajes.imprimir();
     }
 
     private void imprimirInterfazConAcciones(){
