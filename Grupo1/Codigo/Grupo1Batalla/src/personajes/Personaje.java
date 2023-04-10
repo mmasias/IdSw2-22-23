@@ -4,6 +4,7 @@ import objetos.*;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 public abstract class Personaje {
     protected String nombre;
@@ -32,28 +33,33 @@ public abstract class Personaje {
     private String[] rectangular(String[] sprite) {
         int max = Arrays.asList(sprite).stream().map(String::length).max(Integer::compareTo).get();
 
-        for (String line : sprite
-             ) {
-            if (line.length() < max){
-                line += String.join("", Collections.nCopies(max - line.length(), " "));
-            }
-        }
+
+        sprite = Arrays.stream(sprite).map(line -> {
+                    if (line.length() < max) {
+                        line += String.join("", Collections.nCopies(max - line.length(), " "));
+                    }
+                    return line;
+                }
+        ).toList().toArray(new String[0]);
+
+        return sprite;
     }
 
     public void recibirDano(int dano) {
         vidaActual -= dano;
-        if (vidaActual < _UMBRAL_VIDA_DESMAYO){
+        if (vidaActual < _UMBRAL_VIDA_DESMAYO) {
             desmayado = true;
         }
     }
-    public int hacerDano(){
+
+    public int hacerDano() {
         int probAcertar = (int) (Math.random() * 100);
         //double probDesgastar = Math.random();
         Arma arma = armas[armaEquipada];
 
         // de momento, despues de atacar correctamente se desgasta
-        if (arma.getDurabilidad() > 0){
-            if (probAcertar < arma.getProbAcertar()){
+        if (arma.getDurabilidad() > 0) {
+            if (probAcertar < arma.getProbAcertar()) {
                 arma.desgastar();
                 return arma.getDano();
             }
@@ -61,59 +67,75 @@ public abstract class Personaje {
 
         return 0;
     }
-    public boolean puedeActuar(){
+
+    public boolean puedeActuar() {
         return !desmayado;
     }
-    public void curarseDesmayado(){
+
+    public void curarseDesmayado() {
         curarse(_VIDA_CURAR_DESMAYO);
     }
-    public void curarse(int vidaACurar){
-        if ((vidaActual + vidaACurar ) > vidaMaxima){
+
+    public void curarse(int vidaACurar) {
+        if ((vidaActual + vidaACurar) > vidaMaxima) {
             vidaActual = vidaMaxima;
         } else {
             vidaActual += vidaACurar;
         }
     }
-    public void despertar(){
+
+    public void despertar() {
         desmayado = false;
     }
-    public void comprobarSiSeDespierta(){
-        if (!this.pordDebajoDelUmbralDesmayo() && desmayado){
+
+    public void comprobarSiSeDespierta() {
+        if (!this.pordDebajoDelUmbralDesmayo() && desmayado) {
             despertar();
             System.out.println("Heroe : Despertado");
         }
     }
-    public boolean estaVivo(){
+
+    public boolean estaVivo() {
         return vidaActual > 0;
     }
-    public boolean estaMuerto(){
+
+    public boolean estaMuerto() {
         return vidaActual <= 0;
     }
-    public boolean pordDebajoDelUmbralDesmayo(){
+
+    public boolean pordDebajoDelUmbralDesmayo() {
         return vidaActual < _UMBRAL_VIDA_DESMAYO;
     }
-    public void desmayar(){
+
+    public void desmayar() {
         desmayado = true;
     }
-    public boolean estaDesmayado(){
+
+    public boolean estaDesmayado() {
         return desmayado;
     }
-    public int getVidaActual(){
+
+    public int getVidaActual() {
         return vidaActual;
     }
-    public Arma getArmaEquipada(){
+
+    public Arma getArmaEquipada() {
         return armas[armaEquipada];
     }
-    public void equiparArma(int armaAEquipar){
+
+    public void equiparArma(int armaAEquipar) {
         armaEquipada = armaAEquipar;
     }
-    public Arma[] getArmas(){
+
+    public Arma[] getArmas() {
         return armas;
     }
-    public String[] getSprite(){
+
+    public String[] getSprite() {
         return sprite;
     }
-    public String getNombre(){
+
+    public String getNombre() {
         return nombre;
     }
 }
