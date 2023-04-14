@@ -1,185 +1,85 @@
+import extras.RegistroDeCombate;
 import personajes.*;
-import renderizacion.MenuAcciones;
-import renderizacion.RecuadroPersonaje;
 
 import java.util.Scanner;
 
 public class Batalla {
-    private final Heroe heroe;
-    private final Enemigo enemigo;
-    private int turno;
+    protected VistaBatalla vista;
+    protected Heroe heroe;
+    protected Enemigo enemigo;
 
-    private RecuadroPersonaje recuadroPersonajes;
-    private MenuAcciones menuAcciones;
+    private final int ATACAR = 1;
+    private final int DEFENDER = 2;
+    private final int CURAR = 3;
 
     public Batalla(Heroe heroe, Enemigo enemigo){
+        vista = new VistaBatalla(heroe, enemigo);
         this.heroe = heroe;
         this.enemigo = enemigo;
     }
-    public void empezarBatalla(){
-        recuadroPersonajes = new RecuadroPersonaje(heroe,enemigo);
-        menuAcciones = new MenuAcciones(heroe);
-        comenzarIteracion();
-    }
-    private void comenzarIteracion(){
-        while(ambosPersonajesVivos()){
 
-            System.out.println("\n\n");
-            System.out.println("----- SIGUIENTE TURNO -----");
-            System.out.println("Turno " + turno);
+    public void comenzarBatalla(){
+
+        while (true){
+
+            vista.imprimirInterfaz();
 
             if (heroe.puedeActuar()){
-                elegirTurno();
+                turnoHeroe();
 
-                if (enemigo.estaMuerto()){
-                    anunciarGanador(heroe);
+                if (!enemigo.estaVivo()){
+                    vista.anunciarGanador(heroe);
+                    break;
                 }
 
             } else {
-                imprimirPersonajes();
-                System.out.println("****************************");
+                heroe.avanzarTurnoSinActuar();
 
-                if (heroe.estaDesmayado() && heroe.esperandoAPocion()){
-                    esperarInteraccion();
+                vista.esperarInteraccion();
+            }
 
-                    heroe.curarseDesmayado();
-                    heroe.avanzarTurnoDeCuracion();
+            if (enemigo.puedeActuar()){
+                turnoEnemigo();
 
-                    System.out.println("Heroe : Curarse desmayado + Turno curacion --> " + heroe.getTurnoCuracion());
-
-                    heroe.comprobarSiSeDespierta();
-
-                } else if (heroe.estaDesmayado()){
-                    esperarInteraccion();
-
-                    heroe.curarseDesmayado();
-
-                    System.out.println("Heroe : Curarse desmayado");
-
-                    heroe.comprobarSiSeDespierta();
-
-                } else {
-                    esperarInteraccion();
-
-                    heroe.avanzarTurnoDeCuracion();
-
-                    System.out.println("Heroe : Avanzado turno curacion --> turno " + heroe.getTurnoCuracion());
-
-                    heroe.comprobarSiSeDespierta();
+                if (!heroe.estaVivo()){
+                    vista.anunciarGanador(enemigo);
+                    break;
                 }
-            }
 
-            turnoEnemigo();
-            turno++;
+            } else {
+                enemigo.avanzarTurnoSinActuar();
+            }
+            RegistroDeCombate.sacarAccionesTurnoACtual();
+
+            RegistroDeCombate.pasarTurno();
+
         }
-    }
-    private boolean ambosPersonajesVivos(){
-        return heroe.estaVivo() && enemigo.estaVivo();
-    }
-    private void elegirTurno(){
-        System.out.println("----------------------------------------------------------");
-        imprimirInterfazConAcciones();
 
-        System.out.println("Elige accion: ");
-        switch (scanInteraccion()) {
-            case 1 -> {
-                imprimirInterfazConArmas();
-                elegirArma();
+        System.out.println("-----");
+        RegistroDeCombate.sacarAccionesTotal();
+    }
+
+
+    private void turnoHeroe(){
+        switch(vista.elegirAccion()){
+            case ATACAR -> {
+                heroe.equiparArma(vista.elegirArma() - 1);
+                heroe.atacar(enemigo);
             }
-            case 2 -> {
+            case DEFENDER -> {
                 heroe.defenderse();
-                System.out.println("Heroe : Se defiende");
             }
-            case 3 -> {
+            case CURAR -> {
                 heroe.iniciarEstadoDeCuracion();
-                System.out.println("Heroe : Comienza curacion");
-            }
-            case 4 -> {
-                System.out.println(" HAS PASAO TURNO CRACK ");
             }
             default -> {
-                System.out.println("Elige turno correctamente");
-                elegirTurno();
+                // ????
             }
         }
-
     }
+
     private void turnoEnemigo(){
-        if (enemigo.estaVivo()){
-
-            if (enemigo.estaDesmayado()){
-
-                enemigo.curarseDesmayado();
-                System.out.println("Enemigo : Curado desmayado");
-
-                enemigo.comprobarSiSeDespierta();
-
-            } else if (enemigo.pordDebajoDelUmbralDesmayo()){
-
-                enemigo.desmayar();
-                System.out.println("Enemigo : Desmayado");
-
-            } else {
-
-                enemigo.equiparArmaAleatoria();
-
-                int danoARealizar = enemigo.hacerDano();
-
-                heroe.recibirDano(danoARealizar);
-
-                System.out.println("Enemigo : Ha atacado con el arma --> " + enemigo.getArmaEquipada().getNombre());
-
-                if(heroe.estaMuerto()){
-                    anunciarGanador(enemigo);
-                }
-            }
-        }
-    }
-    private void elegirArma(){
-        int armaAEquipar = scanInteraccion() - 1;
-
-        if (armaAEquipar < 0 || armaAEquipar >= heroe.getArmas().length){
-            imprimirInterfazConArmas();
-            System.out.println("------- ESCOGE UN ARMA CORRECTA ------------");
-            elegirArma();
-        }
-        else {
-            heroe.equiparArma(armaAEquipar);
-
-            int danoARealizar = heroe.hacerDano();
-
-            enemigo.recibirDano(danoARealizar);
-            System.out.println("**************************");
-            System.out.println("Heroe : Ha hecho "+ danoARealizar + " de dano");
-        }
-
-
-    }
-
-    private void esperarInteraccion(){
-        Scanner entrada = new Scanner(System.in);
-        entrada.nextLine();
-    }
-
-    private void anunciarGanador(Personaje ganador){
-        System.out.println("Ha ganado " + ganador.getNombre() + " !!");
-    }
-
-    private int scanInteraccion(){
-        Scanner entrada = new Scanner(System.in);
-        return entrada.nextInt();
-    }
-
-    private void imprimirPersonajes(){
-        recuadroPersonajes.imprimir();
-    }
-
-    private void imprimirInterfazConAcciones(){
-        imprimirPersonajes();
-        menuAcciones.imprimirAcciones();
-    }
-
-    private void imprimirInterfazConArmas(){
-        menuAcciones.imprimirArmas();
+        enemigo.equiparArmaAleatoria();
+        enemigo.atacar(heroe);
     }
 }

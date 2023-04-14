@@ -1,4 +1,4 @@
-package Extras;
+package extras;
 
 import java.util.TreeMap;
 
@@ -37,5 +37,9 @@ public class RegistroDeCombate {
 
     public static void pasarTurno(){
         turnoActual++;
+    }
+
+    public static int turnoActual(){
+        return turnoActual;
     }
 }

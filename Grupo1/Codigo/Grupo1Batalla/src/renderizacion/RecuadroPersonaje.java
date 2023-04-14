@@ -1,5 +1,6 @@
 package renderizacion;
 
+import extras.RegistroDeCombate;
 import personajes.*;
 
 import java.util.ArrayList;
@@ -8,23 +9,23 @@ import java.util.Collections;
 import java.util.List;
 
 public class RecuadroPersonaje {
-    private final Personaje personaje;
-    private final Personaje personaje2;
+    private final Personaje heroe;
+    private final Personaje enemigo;
 
-    public RecuadroPersonaje(Personaje personaje1, Personaje personaje2) {
-        this.personaje = personaje1;
-        this.personaje2 = personaje2;
+    public RecuadroPersonaje(Personaje heroe, Personaje enemigo) {
+        this.heroe = heroe;
+        this.enemigo = enemigo;
     }
 
 
     private String[] unirSprites() {
 
         // Determinar la longitud del nuevo array
-        int alturaMaxima = Math.max(personaje.getSprite().length, personaje2.getSprite().length);
+        int alturaMaxima = Math.max(heroe.getSprite().length, enemigo.getSprite().length);
 
         //Fill gaps
-        String[] sprite1 = llenarHuecos(personaje.getSprite(), alturaMaxima);
-        String[] sprite2 = llenarHuecos(personaje2.getSprite(), alturaMaxima);
+        String[] sprite1 = llenarHuecos(heroe.getSprite(), alturaMaxima);
+        String[] sprite2 = llenarHuecos(enemigo.getSprite(), alturaMaxima);
 
         // Cree un nuevo array para contener los elementos de los dos arrays anteriores
         String[] newArray = new String[alturaMaxima];
@@ -55,25 +56,29 @@ public class RecuadroPersonaje {
 
     public void imprimir() {
 
-        int largo = personaje.getSprite()[0].length() + personaje2.getSprite()[0].length();
+        int largo = heroe.getSprite()[0].length() + enemigo.getSprite()[0].length();
 
         ArrayList<String> recuadro = new ArrayList<>();
 
         String borde = String.join("", Collections.nCopies(largo, "+"));
 
-        String vidaPersonaje1 = String.join("", Collections.nCopies(personaje.getVidaActual() / 10, "❤️"));
-        String vidaPersonaje2 = String.join("", Collections.nCopies(personaje2.getVidaActual() / 10, "❤️"));
+        String vidaPersonaje1 = String.join("", Collections.nCopies(heroe.getVidaActual() / 10, "❤"));
+        String vidaPersonaje2 = String.join("", Collections.nCopies(enemigo.getVidaActual() / 10, "❤"));
 
         String espacioVidas = String.join("",
-                Collections.nCopies(borde.length() - vidaPersonaje2.length() - vidaPersonaje1.length(), " "));
+                Collections.nCopies(4, " "));
         String espacioNombres = String.join("",
-                Collections.nCopies(borde.length() - personaje.getNombre().length() - personaje2.getNombre().length() , " "));
+                Collections.nCopies(borde.length() - heroe.getNombre().length() - enemigo.getNombre().length() , " "));
 
         //Borde
         recuadro.add(borde);
+        //Turno
+        recuadro.add("Turno " + RegistroDeCombate.turnoActual());
         //Vida y Nombre
         recuadro.add(vidaPersonaje1 + espacioVidas + vidaPersonaje2);
-        recuadro.add(personaje.getNombre() + espacioNombres + personaje2.getNombre());
+        recuadro.add(heroe.getNombre() + espacioNombres + enemigo.getNombre());
+
+        recuadro.add(heroe.getVidaActual() + "    " + enemigo.getVidaActual());
         //Personaje
         recuadro.addAll(Arrays.asList(unirSprites()));
         //Borde

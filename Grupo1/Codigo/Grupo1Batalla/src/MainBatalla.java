@@ -1,16 +1,17 @@
-import personajes.*;
-import objetos.*;
+import objetos.Arma;
+import personajes.Enemigo;
+import personajes.Heroe;
 
 public class MainBatalla {
 
     public static void main (String[] args){
-        Arma arma1Heroe = new Arma("Arma1", 7, 100, 50);
-        Arma arma2Heroe = new Arma("Arma2", 15, 100, 25);
-        Arma arma3Heroe = new Arma("Arma3", 25, 100, 12);
+        Arma arma1Heroe = new Arma("Pepinardo", 7, 100, 50);
+        Arma arma2Heroe = new Arma("Excalibur", 15, 100, 25);
+        Arma arma3Heroe = new Arma("Hamburguesa", 25, 100, 12);
 
-        Arma arma1Enemigo = new Arma("Arma1", 5, 100, 90);
-        Arma arma2Enemigo = new Arma("Arma2", 10, 100, 60);
-        Arma arma3Enemigo = new Arma("Arma3", 20, 100, 40);
+        Arma arma1Enemigo = new Arma("Chorizo", 5, 100, 90);
+        Arma arma2Enemigo = new Arma("Beso de gato", 10, 100, 60);
+        Arma arma3Enemigo = new Arma("TEO", 20, 100, 40);
 
         Arma[] armasHeroe = new Arma[]{arma1Heroe, arma2Heroe, arma3Heroe};
         Arma[] armasEnemigo = new Arma[]{arma1Enemigo, arma2Enemigo, arma3Enemigo};
@@ -61,9 +62,6 @@ public class MainBatalla {
         String[] spriteHorda = new String[]{"|b|"};
 
 
-
-
-
         Enemigo hordaDeEnemigos = new Enemigo("Horda de Tortajeitors", 250, armasEnemigo, spriteHorda, 20, 2);
 
         Batalla batalla;
@@ -76,6 +74,6 @@ public class MainBatalla {
             batalla = new Batalla(heroe, enemigo);
         }
 
-        batalla.empezarBatalla();
+        batalla.comenzarBatalla();
     }
 }
