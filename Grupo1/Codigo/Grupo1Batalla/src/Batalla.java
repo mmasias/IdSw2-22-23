@@ -1,7 +1,5 @@
-import extras.RegistroDeCombate;
 import personajes.*;
-
-import java.util.Scanner;
+import extras.*;
 
 public class Batalla {
     protected VistaBatalla vista;
