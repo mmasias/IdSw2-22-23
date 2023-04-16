@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Gestor {
     String nombre;
+    static Scanner input = new Scanner(System.in);
 
     Gestor(String nombre) {
         this.nombre = nombre;
@@ -66,4 +68,52 @@ public class Gestor {
         }
         System.out.println();
     }
+
+    public void eleccionMaquina(List<Maquina> maquinas) {
+        boolean salir = false;
+
+        do{
+            String option = "";
+            System.out.println("------------------------------------------------------------------------------------");
+            System.out.println("[1]" + maquinas.get(0).nombre);
+            System.out.println("[2]" + maquinas.get(1).nombre);
+            System.out.println("[3]" + maquinas.get(2).nombre);
+            System.out.println("[4] Salir");
+            System.out.println("----------------   Elige una opcion: ");
+            option = input.nextLine();
+
+            if(option.equals("1"))
+                maquinas.get(0).compra();
+            else if(option.equals("2"))
+                maquinas.get(1).compra();
+            else if(option.equals("3"))
+                maquinas.get(2).compra();
+            else if(option.equals("4")){
+                System.out.println("Saliendo...");
+                salir = true;
+            }
+        }while(!salir);
+    }
+
+    public void menuCompra(List<Maquina> maquinas) {
+        boolean salir = false;
+
+        do{
+            String option = "";
+            System.out.println("------------------------------------------------------------------------------------");
+            System.out.println("[1] Comprar");
+            System.out.println("[2] Salir");
+            System.out.println("----------------   Elige una opcion: ");
+            option = input.nextLine();
+
+            if(option.equals("1"))
+                eleccionMaquina(maquinas);
+            else if(option.equals("2")){
+                System.out.println("Saliendo...");
+                salir = true;
+            }
+        }while(!salir);
+    }
+
+    
 }

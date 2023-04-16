@@ -22,7 +22,7 @@ class Main {
         maquinas.add(new Maquina("Maquina 3", billetesMaquina003, monedasMaquina003, productos));
 
         gestor.imprimirProductos(maquinas);
-        Maquina.menuCompra();
+        gestor.menuCompra(maquinas);
     }
 
 }
