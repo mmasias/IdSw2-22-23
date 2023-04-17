@@ -41,11 +41,11 @@ public class Gestor {
         try {
             System.out.println("____________________________________________________________________________________");  
             imprimirNombreMaquinas(maquinas);
-            for (int i = 0; i < maquinas.get(0).productos.size(); i++) {
+            for (int i = 0; i < maquinas.get(0).listaDeProductos().size(); i++) {
                 System.out.print("|");
-                System.out.printf("%26s|",maquinas.get(0).productos.get(i).nombre + " $: " + maquinas.get(0).productos.get(i).precio);
+                System.out.printf("%26s|",maquinas.get(0).listaDeProductos().get(i).nombre + " $: " + maquinas.get(0).listaDeProductos().get(i).precio);
                 for (int j = 1; j < maquinas.size(); j++) {
-                    System.out.printf("%26s |",maquinas.get(j).productos.get(i).nombre + " $: " + maquinas.get(j).productos.get(i).precio);
+                    System.out.printf("%26s |",maquinas.get(j).listaDeProductos().get(i).nombre + " $: " + maquinas.get(j).listaDeProductos().get(i).precio);
                 }
                 System.out.println();
             }
@@ -58,8 +58,8 @@ public class Gestor {
     public void imprimirNombreMaquinas(List<Maquina> maquinas) {
         maquinas.forEach(maquina -> {
             int width = 28;
-            int padding = (width - maquina.nombre.length()) / 2;
-            System.out.print(String.format("%" + padding + "s%s%" + padding + "s", "", maquina.nombre, ""));
+            int padding = (width - maquina.mostrarNombre().length()) / 2;
+            System.out.print(String.format("%" + padding + "s%s%" + padding + "s", "", maquina.mostrarNombre(), ""));
         });
         System.out.print("\n|__________________________|");
         for(int j=0;j<maquinas.size() -1;j++)
@@ -75,9 +75,9 @@ public class Gestor {
         do{
             String option = "";
             System.out.println("------------------------------------------------------------------------------------");
-            System.out.println("[1]" + maquinas.get(0).nombre);
-            System.out.println("[2]" + maquinas.get(1).nombre);
-            System.out.println("[3]" + maquinas.get(2).nombre);
+            System.out.println("[1]" + maquinas.get(0).mostrarNombre());
+            System.out.println("[2]" + maquinas.get(1).mostrarNombre());
+            System.out.println("[3]" + maquinas.get(2).mostrarNombre());
             System.out.println("[4] Salir");
             System.out.println("----------------   Elige una opcion: ");
             option = input.nextLine();
@@ -115,5 +115,4 @@ public class Gestor {
         }while(!salir);
     }
 
-    
 }
