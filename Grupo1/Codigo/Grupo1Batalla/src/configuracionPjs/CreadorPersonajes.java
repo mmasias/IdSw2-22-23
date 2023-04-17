@@ -28,14 +28,14 @@ public class CreadorPersonajes {
                 "            ==' '==            "
         };
 
-        Enemigo enemigo = new Enemigo("Tortajeitor", 60, armasEnemigo, spriteEnemigo, 20, 2);
+        Enemigo enemigo = new Enemigo("Vampiro", 60, armasEnemigo, spriteEnemigo, 20, 2);
 
         return enemigo;
 
     }
 
     public static Heroe Heroe(){
-        Arma arma1Heroe = new Arma("Pepinardo", 7, 100, 50);
+        Arma arma1Heroe = new Arma("Thousand truths", 7, 100, 50);
         Arma arma2Heroe = new Arma("Excalibur", 15, 100, 25);
         Arma arma3Heroe = new Arma("Hamburguesa", 25, 100, 12);
 
@@ -63,7 +63,7 @@ public class CreadorPersonajes {
 
         };
 
-        Heroe heroe = new Heroe("Heroe", 150,armasHeroe, spriteHeroe, 30, 2);
+        Heroe heroe = new Heroe("Heroina", 150,armasHeroe, spriteHeroe, 30, 2);
 
         return heroe;
     }
