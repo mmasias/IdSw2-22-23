@@ -71,7 +71,7 @@ public class Batalla {
                 heroe.iniciarEstadoDeCuracion();
             }
             default -> {
-                // ????
+                // solo se puede elegir una accion correcta
             }
         }
     }
