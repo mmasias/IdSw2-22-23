@@ -1,8 +1,10 @@
 package es.laberinto;
 
-import es.laberinto.bloques.*;
-import es.laberinto.entides.*;
-import es.laberinto.utils.Posicion;
+import es.laberinto.controlador.Mundo;
+import es.laberinto.modelo.bloques.*;
+import es.laberinto.modelo.entides.*;
+import es.laberinto.modelo.Posicion;
+import es.laberinto.vista.RenderizadorMundo;
 
 import java.util.List;
 import java.util.Map;
