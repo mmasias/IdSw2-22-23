@@ -2,7 +2,7 @@
 object "batalla : Batalla" as Batalla
 
 object "mago : Heroe" as Heroe
-object "vampiresa : Vampiro" as Enemigo
+object "vampiresa : Enemigo" as Enemigo
 
 object "baston : Arma" as ArmaH1
 object "libro : Arma" as ArmaH2
@@ -10,13 +10,9 @@ object "libro : Arma" as ArmaH2
 object "arma1 : Arma" as ArmaV1
 object "arma2 : Arma" as ArmaV2
 
-object "recuadroHeroe : RecuadroPersonaje" as RecuadroHeroe
-object "recuadroEnemigo : RecuadroPersonaje" as RecuadroEnemigo
-object "menuAcciones : MenuAcciones" as MenuAcciones
+object "vista : VistaBatalla" as VistaBatalla
 
-Batalla -l- RecuadroHeroe
-Batalla -l- RecuadroEnemigo
-Batalla -r- MenuAcciones
+Batalla -l- VistaBatalla
 
 Enemigo -u- Batalla : Participa en <
 Heroe -u- Batalla : Participa en <

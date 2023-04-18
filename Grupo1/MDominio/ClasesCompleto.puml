@@ -2,59 +2,85 @@
 
 class Batalla{
     +Heroe heroe
-    +Enemigo enemigo    
-    +int turno
-    +RecuadroPersonaje recuadroHeroe
-    +RecuadroPersonaje recuadroEnemigo
-    +MenuAcciones menuAcciones
+    +Enemigo enemigo
+    +VistaBatalla vista
 
     Batalla(heroe, enemigos)
 
-    void empezarBatalla()
+    void comenzarBatalla()
 }
 
 abstract Personaje{
-    +String nombre
-    +String[][] sprite
-    +int vidaMaxima;
-    +Arma[] armas;
-    +int armaEquipada;
-    +boolean desmayado;
-    +int _UMBRAL_VIDA_DESMAYO;
-    +int _VIDA_CURAR_DESMAYO;
 
-    Personaje(nombre, vidaMaxima, armas, sprite, umbralDesmayo, curaPorDesmayo)
-    
+    +String nombre
+    +String[] sprite
+    +int vidaActual
+    +int vidaMaxima
+    +Arma[] armas
+    +int armaEquipada
+    +boolean desmayado
+    +int umbralVidaDesmayo
+    +int vidaCurarDesmayo
+
+    Personaje(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo)
+   
     void recibirDano(int danoARecibir)
+    void atacar(Personaje personajeAtacar)
+    void avanzarTurnoSinActuar()
     void curarseDesmayado()
-    void curarse()
+    void equiparArma(int armaAEquipar)
+    void curarse(int vidaACurar)
     void despertar()
     void comprobarSiSeDespierta()
-    void equiparArma(int posicionArmaAEquipar)
+    void desmayar()
 
-    int hacerDano()
-    boolean puedeActuar()
     boolean estaVivo()
-    boolean estaMuerto()
-    boolean porDebajoDelUmbralDesmayo()
-    boolean estaDesmayado()
-
+    boolean porDebajoDelUmbralDeDesmayo()
+    boolean puedeActuar()
+    
     int getVidaActual()
-    Arma getArmaEquipada()
     Arma[] getArmas()
-    String[][] getSprite()
+    String[] getSprite()
     String getNombre()
+    
+}
+
+class RecuadroPersonaje {
+
+    +Personaje heroe
+    +Personaje enemigo
+
+    RecuadroPersonaje(Personaje heroe, Personaje enemigo)
+
+    void imprimir()
+
+}
+
+class VistaBatalla {
+
+    +Heroe heroe
+    +RecuadroPersonaje recuadro
+
+    VistaBatalla(Heroe heroe, Enemigo enemigo)
+
+    void imprimirInterfaz()
+    void anunciarGanador()
+
+    int elegirAccion()
+    int elegirArma()
+
 }
 
 class Arma {
     +String nombre
-    +int daño
+    +int dano
     +int durabilidad
-    +float probabilidadAcertar
+    +double probAcertar
 
-    Arma(nombre, daño, durabilidad, probAcertar)
+    Arma(String nombre, int dano, int durabilidad, double probAcertar) {
+        
 
-    void Desgastar()
+    void desgastar()
 
     String getNombre()
     int getDurabilidad()
@@ -64,60 +90,53 @@ class Arma {
 
 
 class Enemigo{
-    Enemigo(nombre, vidaMaxima,armas, sprite, umbralDesmayo, curaPorDesmayo)
-
+    Enemigo(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo) {
+        
     void equiparArmaAleatoria()
 }   
 
 class Heroe{
     +String[] acciones
     +boolean defendiendo
-    +boolean CloudBackgroundColor
+    +boolean esperandoACurarseConPocion
     +int turnosParaCurarseConPocion
-    +int _ARMADURA
-
-    Heroe(nombre, vidaMaxima, armas, sprite, umbralDesmayo, curaPorDesmayo)
-
+    +int armadura
+    
+    Heroe(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo)
+    
     void defenderse()
     void iniciarEstadoDeCuracion()
     void avanzarTurnoDeCuracion()
-
-    boolean esperandoAPocion()
+    void recibirDanoDefendiendose()
 
     String[] getAcciones()
-    int getTurnoCuracion()
 }
 
-class RecuadroPersonaje {
-    +Personaje personaje
+class RegistroDeCombate {
 
-    RecuadroPersonaje(personaje)
+    +Map log
+    +int turnoActual
 
-    void imprimir()
+    void anadirLog(String accionActual)
+    void sacarAccionesTotal()
+    void sacarAccionesTurnoACtual()
+    void sacarAccionesTurnoElegir(Integer turno)
+    void pasarTurno()
+
+    int turnoActual()
 }
 
-class MenuAcciones {
-    +Heroe heroe
-
-    MenuAcciones(heroe)
-   
-   void imprimirAcciones()
-   void imprimirArmas()
-    
-}
-
-
-Batalla o-l-> RecuadroPersonaje : Muestra >
-Batalla o-r-> MenuAcciones : Muestra >
+Batalla o-l-> VistaBatalla : Muestra 
 
 Personaje <|-u- Heroe
 Personaje <|-u- Enemigo
 
-Batalla *-d-> Heroe : Lucha <
-Batalla *-d-> Enemigo : Lucha <
+Batalla *-d-> Heroe : Lucha 
+Batalla *-d-> Enemigo : Lucha 
 
-Personaje o-r-> Arma : Usa >
+Personaje o-r-> Arma : Usa 
 
-
+Personaje -l-> RegistroDeCombate : Registra acciones 
+VistaBatalla --> RegistroDeCombate : Muestra 
 
 @enduml

@@ -26,9 +26,6 @@ public abstract class Personaje {
         vidaActual = vidaMaxima;
     }
 
-    public void avanzarTurnoSinActuar(){
-        curarseDesmayado();
-    }
     public void recibirDano(int dano) {
         vidaActual -= dano;
 
@@ -59,6 +56,10 @@ public abstract class Personaje {
     public boolean puedeActuar(){
         return !desmayado;
     }
+    public void avanzarTurnoSinActuar(){
+        curarseDesmayado();
+    }
+    
     public void curarseDesmayado(){
         RegistroDeCombate.anadirLog(this.nombre + " : Está desmayado");
         curarse(vidaCurarDesmayo);

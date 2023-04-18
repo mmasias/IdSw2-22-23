@@ -1,37 +1,6 @@
 @startuml ClasesSimple
 
-class Batalla{
-
-}
-
-abstract Personaje{
-
-}
-
-class Arma {
-
-}
-
-
-class Enemigo{
-
-}   
-
-class Heroe{
-
-}
-
-class RecuadroPersonaje {
-
-}
-
-class MenuAcciones {
-
-}
-
-
-Batalla o-l-> RecuadroPersonaje : Muestra 
-Batalla o-r-> MenuAcciones : Muestra 
+Batalla o-l-> VistaBatalla : Muestra 
 
 Personaje <|-u- Heroe
 Personaje <|-u- Enemigo
@@ -40,6 +9,9 @@ Batalla *-d-> Heroe : Lucha
 Batalla *-d-> Enemigo : Lucha 
 
 Personaje o-r-> Arma : Usa 
+
+Personaje --> RegistroDeCombate : Registra acciones 
+VistaBatalla --> RegistroDeCombate : Muestra 
 
 
 
