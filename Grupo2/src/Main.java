@@ -1,28 +1,49 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
+import controllers.BillController;
+import controllers.CoinController;
+import controllers.ProductController;
+
+import models.Bill;
+import models.Machine;
+import models.Coin;
+import models.Product;
+
+import views.MachineView;
+import views.ProductView;
+import views.PurchaseView;
+
 class Main {
     public static void main(String[] args) {
-        Gestor gestor = new Gestor("gestorDeMaquinas");
+        BillController billController = new BillController();
+        CoinController coinController = new CoinController();
+        ProductController productController = new ProductController();
 
-        List<Billete> billetesMaquina001 = gestor.crearListaDeBilletes(3,1,2,5,10);
-        List<Moneda> monedasMaquina001 = gestor.crearListaDeMonedas(10, 20, 10);
+        ProductView productsView = new ProductView();
+        MachineView machineView = new MachineView();
+        PurchaseView purchaseView = new PurchaseView();
 
-        List<Billete> billetesMaquina002 = gestor.crearListaDeBilletes(3, 2, 3, 7, 15);
-        List<Moneda> monedasMaquina002 = gestor.crearListaDeMonedas(25, 30, 20);
+        List<Bill> billsMachine01 = billController.createBillList(3,1,2,5,10);
+        List<Coin> coinsMachine01 = coinController.createCoinList(10, 20, 10);
 
-        List<Billete> billetesMaquina003 = gestor.crearListaDeBilletes(3, 1, 3, 5, 12);
-        List<Moneda> monedasMaquina003 = gestor.crearListaDeMonedas(30, 10, 15);
+        List<Bill> billsMachine02 = billController.createBillList(3, 2, 3, 7, 15);
+        List<Coin> coinsMachine02 = coinController.createCoinList(25, 30, 20);
 
-        List<Producto> productos = gestor.crearListaDeProductos();
+        List<Bill> billsMachine03 = billController.createBillList(3, 1, 3, 5, 12);
+        List<Coin> coinsMachine03 = coinController.createCoinList(30, 10, 15);
 
-        List<Maquina> maquinas = new ArrayList<Maquina>();
-        maquinas.add(new Maquina("Maquina 1", billetesMaquina001, monedasMaquina001, productos));
-        maquinas.add(new Maquina("Maquina 2", billetesMaquina002, monedasMaquina002, productos));
-        maquinas.add(new Maquina("Maquina 3", billetesMaquina003, monedasMaquina003, productos));
+        List<Product> products = productController.createProductList();
 
-        gestor.imprimirProductos(maquinas);
-        gestor.menuCompra(maquinas);
+        List<Machine> machines = new ArrayList<Machine>();
+        machines.add(new Machine("Maquina 1", billsMachine01, coinsMachine01, products));
+        machines.add(new Machine("Maquina 2", billsMachine02, coinsMachine02, products));
+        machines.add(new Machine("Maquina 3", billsMachine03, coinsMachine03, products));
+
+        machineView.printMachineName(machines);
+        productsView.printProducts(machines);
+        purchaseView.purchaseMenu(machines);
     }
 
 }
