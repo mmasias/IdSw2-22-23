@@ -8,11 +8,11 @@ public abstract class  Money {
         this.quantity = quantity;
     }
 
-    void actualizarPrecio(double value) {
+    void updatePrice(double value) {
         this.value = value;
     }
 
-    void actualizarquantity(int quantity) {
+    void updateQuantity(int quantity) {
         this.quantity = quantity;
     }
 }

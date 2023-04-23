@@ -11,8 +11,8 @@ import models.Product;
 public class PurchaseView {
     static Scanner input = new Scanner(System.in);
 
-    public void purchaseMenu(List<Machine> maquinas) {
-        boolean salir = false;
+    public void purchaseMenu(List<Machine> machines) {
+        boolean exit = false;
         MachineView machineView = new MachineView();
 
         do{
@@ -24,53 +24,54 @@ public class PurchaseView {
             option = input.nextLine();
 
             if(option.equals("1"))
-            machineView.machineSelection(maquinas);
+            machineView.machineSelection(machines);
             else if(option.equals("2")){
                 System.out.println("Saliendo...");
-                salir = true;
+                exit = true;
             }
-        }while(!salir);
+        }while(!exit);
     }
 
-    public String generateChangeMessage(double monto,  List<Bill> billetes, List<Coin> monedas) {
-        System.out.println("montooo: " + monto);
-        String mensaje = "";
-        for (Bill billete : billetes) {
-            if (billete.value <= monto) {
-                int cantidad = (int) Math.floor(monto / billete.value);
-                monto -= (cantidad * billete.value);
-                if (mensaje.equals("")) {
-                    mensaje = cantidad + "x $" + billete.value;
+    public String generateChangeMessage(double amount,  List<Bill> bills, List<Coin> coins) {
+        System.out.println("montooo: " + amount);
+        String message = "";
+        for (Bill bill : bills) {
+            if (bill.value <= amount) {
+                int quantity = (int) Math.floor(amount / bill.value);
+                amount -= (quantity * bill.value);
+                if (message.equals("")) {
+                    message = quantity + "x $" + bill.value;
                 } else {
-                    mensaje += ", " + cantidad + "x $" + billete.value;
+                    message += ", " + quantity + "x $" + bill.value;
                 }
-                if (monto == 0) {
-                    return mensaje;
+                if (amount == 0) {
+                    return message;
                 }
             }
         }
-        for (Coin moneda : monedas) {
-            if (moneda.value <= monto) {
-                int cantidad = (int) Math.floor(monto / moneda.value);
-                monto -= (cantidad * moneda.value);
-                if (mensaje.equals("")) {
-                    mensaje = cantidad + "x $" + moneda.value;
+        for (Coin coin : coins) {
+            if (coin.value <= amount) {
+                int quantity = (int) Math.floor(amount / coin.value);
+                amount -= (quantity * coin.value);
+                if (message.equals("")) {
+                    message = quantity + "x $" + coin.value;
                 } else {
-                    mensaje += ", " + cantidad + "x $" + moneda.value;
+                    message += ", " + quantity + "x $" + coin.value;
                 }
-                if (monto == 0) {
-                    return mensaje;
+                if (amount == 0) {
+                    return message;
                 }
             }
         }
-        return mensaje;
+        return message;
     }
 
-    public void printTicket(Product producto, String mensajeCambio) {
+    public void printTicket(Product product, String messageChange) {
         System.out.println("---------------------");
-        System.out.println("Gracias por su compra. Aquí tiene su " + producto.name + ".");
-        if (!mensajeCambio.isEmpty()) {
-            System.out.println("Su cambio es: " + mensajeCambio);
+        System.out.println("Gracias por su compra. Aquí tiene su " + product.name + ".");
+
+        if (!messageChange.isEmpty()) {
+            System.out.println("Su cambio es: " + messageChange);
         }
     }
 }

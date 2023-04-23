@@ -3,27 +3,27 @@ import java.util.List;
 
 public class Machine {
     private String name;
-    private List<Coin> monedas;
-    private List<Bill> billetes;
-    private List<Product> productos;
+    private List<Coin> coins;
+    private List<Bill> bills;
+    private List<Product> products;
 
-    public Machine(String name, List<Bill> billetes, List<Coin> monedas, List<Product> productos) {
+    public Machine(String name, List<Bill> bills, List<Coin> coins, List<Product> products) {
         this.name = name;
-        this.monedas = monedas;
-        this.billetes = billetes;
-        this.productos = productos;
+        this.coins = coins;
+        this.bills = bills;
+        this.products = products;
     }
 
-    public void addBills(Bill billete) {
-        billetes.add(billete);
+    public void addBills(Bill bill) {
+        bills.add(bill);
     }
 
-    public void addCoins(Coin moneda) {
-        monedas.add(moneda);
+    public void addCoins(Coin coin) {
+        coins.add(coin);
     }
 
-    public void addProducts(Product producto) {
-        productos.add(producto);
+    public void addProducts(Product product) {
+        products.add(product);
     }
 
     public String showName() {
@@ -31,15 +31,15 @@ public class Machine {
     }
 
     public List<Bill> listOfBills() {
-        return billetes;
+        return bills;
     }
 
     public List<Coin> listOfCoins() {
-        return monedas;
+        return coins;
     }
 
     public List<Product> listOfProducts() {
-        return productos;
+        return products;
     }
 
 }

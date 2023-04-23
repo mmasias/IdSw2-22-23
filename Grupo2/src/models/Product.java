@@ -10,15 +10,15 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public void actualizarPrecio(double price) {
+    public void updatePrice(double price) {
         this.price = price;
     }
 
-    public void actualizarNombre(String name) {
+    public void updateName(String name) {
         this.name = name;
     }
 
-    public void actualizarCantidad(int quantity) {
+    public void updateQuantity(int quantity) {
         this.quantity = quantity;
     }
 }
