@@ -3,15 +3,15 @@ package views;
 import java.util.List;
 import java.util.Scanner;
 
-import models.Bill;
-import models.Machine;
-import models.Coin;
-import models.Product;
+import models.BillModel;
+import models.MachineModel;
+import models.CoinModel;
+import models.ProductModel;
 
 public class PurchaseView {
     static Scanner input = new Scanner(System.in);
 
-    public void purchaseMenu(List<Machine> machines) {
+    public void purchaseMenu(List<MachineModel> machines) {
         boolean exit = false;
         MachineView machineView = new MachineView();
 
@@ -32,10 +32,10 @@ public class PurchaseView {
         }while(!exit);
     }
 
-    public String generateChangeMessage(double amount,  List<Bill> bills, List<Coin> coins) {
+    public String generateChangeMessage(double amount,  List<BillModel> bills, List<CoinModel> coins) {
         System.out.println("montooo: " + amount);
         String message = "";
-        for (Bill bill : bills) {
+        for (BillModel bill : bills) {
             if (bill.value <= amount) {
                 int quantity = (int) Math.floor(amount / bill.value);
                 amount -= (quantity * bill.value);
@@ -49,7 +49,7 @@ public class PurchaseView {
                 }
             }
         }
-        for (Coin coin : coins) {
+        for (CoinModel coin : coins) {
             if (coin.value <= amount) {
                 int quantity = (int) Math.floor(amount / coin.value);
                 amount -= (quantity * coin.value);
@@ -66,7 +66,7 @@ public class PurchaseView {
         return message;
     }
 
-    public void printTicket(Product product, String messageChange) {
+    public void printTicket(ProductModel product, String messageChange) {
         System.out.println("---------------------");
         System.out.println("Gracias por su compra. Aquí tiene su " + product.name + ".");
 

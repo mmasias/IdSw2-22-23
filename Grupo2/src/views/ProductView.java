@@ -1,9 +1,9 @@
 package views;
 import java.util.List;
-import models.Machine;
+import models.MachineModel;
 
 public class ProductView {
-    public void printProducts(List<Machine> machines) {
+    public void printProducts(List<MachineModel> machines) {
         try {
             System.out.println("____________________________________________________________________________________");  
             for (int i = 0; i < machines.get(0).listOfProducts().size(); i++) {
