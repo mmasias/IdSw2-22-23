@@ -8,13 +8,13 @@ import views.PurchaseView;
 public class PurchaseModel {
     private Scanner scanner = new Scanner(System.in);
 
-    public void purchase(Machine machine) {
+    public void purchase(MachineModel machine) {
         PurchaseView purchaseView = new PurchaseView();
 
         System.out.println("Bienvenido");
 
         showProductSelection(machine.listOfProducts());
-        Product selectedProduct = selectProduct(machine.listOfProducts());
+        ProductModel selectedProduct = selectProduct(machine.listOfProducts());
         double moneyDeposited = depositMoney();
 
         while (moneyDeposited < selectedProduct.price) {
@@ -28,7 +28,7 @@ public class PurchaseModel {
         purchaseView.printTicket(selectedProduct, messageChange);
     }
 
-    public String calculateChange(double amountReceived, double amountProduct, Machine machine) {
+    public String calculateChange(double amountReceived, double amountProduct, MachineModel machine) {
         PurchaseView purchaseView = new PurchaseView();
         double missingAmount = amountProduct - amountReceived;
 
@@ -46,16 +46,16 @@ public class PurchaseModel {
         }
     }
     
-    private void showProductSelection(List<Product> products) {
+    private void showProductSelection(List<ProductModel> products) {
         System.out.println("Seleccione un producto:");
 
         for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
+            ProductModel product = products.get(i);
             System.out.println((i + 1) + ". " + product.name + " - $" + product.price);
         }
     }
     
-    private Product selectProduct(List<Product> products) {
+    private ProductModel selectProduct(List<ProductModel> products) {
         System.out.println("Ingrese el número del producto que desea comprar:");
 
         int optionProduct = this.scanner.nextInt();

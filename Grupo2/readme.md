@@ -8,7 +8,7 @@
 
 |                modelo de dominio                   |
 | :------------------------------------------------: |
-|      ![Imagen](images/modelo-de-dominio.png)       |
+|      ![Imagen](images/domain-model.PNG)       |
 
 </details>
 
@@ -20,7 +20,7 @@
 
 |                diagrama de objetos                 |
 | :------------------------------------------------: |
-|      ![Imagen](images/diagrama-de-objetos.png)     |
+|      ![Imagen](images/object-diagram.PNG)     |
 
 </details>
 
@@ -32,7 +32,7 @@
 
 |                diagrama de clases                  |
 | :------------------------------------------------: |
-|      ![Imagen](images/diagrama-de-clases.PNG)      |
+|      ![Imagen](images/class-diagram.PNG)      |
 
 </details>
 

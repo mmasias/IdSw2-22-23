@@ -3,13 +3,13 @@ package views;
 import java.util.List;
 import java.util.Scanner;
 
-import models.Machine;
+import models.MachineModel;
 import models.PurchaseModel;
 
 public class MachineView {
     static Scanner input = new Scanner(System.in);
 
-    public void printMachineName(List<Machine> machines) {
+    public void printMachineName(List<MachineModel> machines) {
         machines.forEach(machine -> {
             int width = 28;
             int padding = (width - machine.showName().length()) / 2;
@@ -23,7 +23,7 @@ public class MachineView {
         System.out.println();
     }
 
-    public void machineSelection(List<Machine> machines) {
+    public void machineSelection(List<MachineModel> machines) {
         boolean exit = false;
         PurchaseModel purchaseModel = new PurchaseModel();
 
