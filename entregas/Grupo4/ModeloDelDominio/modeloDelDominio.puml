@@ -1,38 +1,33 @@
 @startuml modeloDelDominio
 
-class Persona {
+class "models.Persona" {
 
 }
 
 enum "structures.enums.EstadoAscensor" {
 }
 
-class Tiempo {
+class "models.Tiempo" {
 }
 
 
-class Planta {
+class "models.Planta" {
 }
 
 
-class Ascensor {
+class "models.Ascensor" {
 }
 
 
-class Universidad {
+class "models.Universidad" {
 
 }
 
 Ascensor *--d Persona 
-Ascensor *-u Planta 
-Ascensor *- "structures.enums.EstadoAscensor" 
-Universidad *- Ascensor 
-Universidad *- Planta 
-Universidad *- Persona 
+Ascensor *--d Planta 
+Ascensor ---r "structures.enums.EstadoAscensor" 
+Universidad *-- Ascensor 
+Universidad *-- Planta
 Planta *--d Persona 
-Persona *--d Tiempo 
-
-
- 
-
-@enduml
+Persona *---u Tiempo 
+Tiempo *--d Universidad
