@@ -11,13 +11,15 @@ import models.ProductModel;
 public class PurchaseView {
     static Scanner input = new Scanner(System.in);
 
-    public void purchaseMenu(List<MachineModel> machines) {
+    public void purchaseMenu(final List<MachineModel> machines) {
         boolean exit = false;
-        MachineView machineView = new MachineView();
+        final MachineView machineView = new MachineView();
 
         do{
             String option = "";
-            System.out.println("------------------------------------------------------------------------------------");
+            System.out.println(
+                "---------------------------------------------------------------------------------"
+            );
             System.out.println("[1] Comprar");
             System.out.println("[2] Salir");
             System.out.println("----------------   Elige una opcion: ");
@@ -32,7 +34,9 @@ public class PurchaseView {
         }while(!exit);
     }
 
-    public String generateChangeMessage(double amount,  List<BillModel> bills, List<CoinModel> coins) {
+    public String generateChangeMessage(
+        double amount,  List<BillModel> bills, List<CoinModel> coins
+    ) {
         System.out.println("montooo: " + amount);
         String message = "";
         for (BillModel bill : bills) {

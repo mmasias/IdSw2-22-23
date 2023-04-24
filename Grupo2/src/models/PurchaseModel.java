@@ -2,19 +2,18 @@ package models;
 
 import java.util.List;
 import java.util.Scanner;
-
 import views.PurchaseView;
 
 public class PurchaseModel {
     private Scanner scanner = new Scanner(System.in);
 
     public void purchase(MachineModel machine) {
-        PurchaseView purchaseView = new PurchaseView();
+        final PurchaseView purchaseView = new PurchaseView();
 
         System.out.println("Bienvenido");
 
         showProductSelection(machine.listOfProducts());
-        ProductModel selectedProduct = selectProduct(machine.listOfProducts());
+        final ProductModel selectedProduct = selectProduct(machine.listOfProducts());
         double moneyDeposited = depositMoney();
 
         while (moneyDeposited < selectedProduct.price) {
@@ -23,12 +22,12 @@ public class PurchaseModel {
         }
 
         double change = moneyDeposited - selectedProduct.price;
-        String messageChange = calculateChange(change, selectedProduct.price, machine);
+        final String messageChange = calculateChange(change, selectedProduct.price, machine);
 
         purchaseView.printTicket(selectedProduct, messageChange);
     }
 
-    public String calculateChange(double amountReceived, double amountProduct, MachineModel machine) {
+    public String calculateChange(final double amountReceived, double amountProduct, MachineModel machine) {
         PurchaseView purchaseView = new PurchaseView();
         double missingAmount = amountProduct - amountReceived;
 
@@ -58,7 +57,7 @@ public class PurchaseModel {
     private ProductModel selectProduct(List<ProductModel> products) {
         System.out.println("Ingrese el número del producto que desea comprar:");
 
-        int optionProduct = this.scanner.nextInt();
+        final int optionProduct = this.scanner.nextInt();
         return products.get(optionProduct - 1);
     }
     
