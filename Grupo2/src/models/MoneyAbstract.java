@@ -1,9 +1,10 @@
 package models;
-public abstract class  MoneyModel {
+public abstract class  MoneyAbstract {
     public double value;
+
     public int quantity;
 
-    MoneyModel(double value, int quantity) {
+    MoneyAbstract(double value, int quantity) {
         this.value = value;
         this.quantity = quantity;
     }

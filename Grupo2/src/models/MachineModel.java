@@ -1,10 +1,14 @@
 package models;
+
 import java.util.List;
 
 public class MachineModel {
     private String name;
+
     private List<CoinModel> coins;
+
     private List<BillModel> bills;
+
     private List<ProductModel> products;
 
     public MachineModel(String name, List<BillModel> bills, List<CoinModel> coins, List<ProductModel> products) {

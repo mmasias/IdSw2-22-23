@@ -2,7 +2,6 @@ package views;
 
 import java.util.List;
 import java.util.Scanner;
-
 import models.MachineModel;
 import models.PurchaseModel;
 
@@ -29,7 +28,9 @@ public class MachineView {
 
         do{
             String option = "";
-            System.out.println("------------------------------------------------------------------------------------");
+            System.out.println(
+                "---------------------------------------------------------------------------------"
+            );
             System.out.println("[1]" + machines.get(0).showName());
             System.out.println("[2]" + machines.get(1).showName());
             System.out.println("[3]" + machines.get(2).showName());

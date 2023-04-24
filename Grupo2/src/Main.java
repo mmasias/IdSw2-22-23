@@ -14,16 +14,15 @@ import models.ProductModel;
 import views.MachineView;
 import views.ProductView;
 import views.PurchaseView;
-
 class Main {
     public static void main(String[] args) {
-        BillController billController = new BillController();
-        CoinController coinController = new CoinController();
-        ProductController productController = new ProductController();
+        final BillController billController = new BillController();
+        final CoinController coinController = new CoinController();
+        final ProductController productController = new ProductController();
 
-        ProductView productsView = new ProductView();
-        MachineView machineView = new MachineView();
-        PurchaseView purchaseView = new PurchaseView();
+        final ProductView productsView = new ProductView();
+        final MachineView machineView = new MachineView();
+        final PurchaseView purchaseView = new PurchaseView();
 
         List<BillModel> billsMachine01 = billController.createBillList(3,1,2,5,10);
         List<CoinModel> coinsMachine01 = coinController.createCoinList(10, 20, 10);
