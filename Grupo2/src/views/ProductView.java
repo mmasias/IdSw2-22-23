@@ -7,7 +7,7 @@ public class ProductView {
     public void printProducts(final List<MachineModel> machines) {
         try {
             System.out.println(
-                "_________________________________________________________________________________"
+                "____________________________________________________________________________________"
             );
             for (int i = 0; i < machines.get(0).listOfProducts().size(); i++) {
                 System.out.print("|");
@@ -24,7 +24,7 @@ public class ProductView {
                 System.out.println();
             }
             System.out.println(
-                "_________________________________________________________________________________"
+                "____________________________________________________________________________________"
             ); 
         } catch (Exception e) {
             System.out.println(e.getMessage());

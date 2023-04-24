@@ -1,12 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
-import controllers.BillController;
-import controllers.CoinController;
-import controllers.ProductController;
+
 import models.BillModel;
 import models.MachineModel;
 import models.CoinModel;
 import models.ProductModel;
+
+import controllers.BillController;
+import controllers.CoinController;
+import controllers.ProductController;
+
 import views.MachineView;
 import views.ProductView;
 import views.PurchaseView;
