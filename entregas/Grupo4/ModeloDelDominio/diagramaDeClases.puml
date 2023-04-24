@@ -3,24 +3,21 @@
 class Persona {
     - Planta plantaActual
     - Planta plantaDestino
-    - Tiempo estanciaEnDestino
+    - Tiempo tiempoEnDestino
     - boolean esperandoAscensor
     - boolean dentroAscensor
-
-    + Persona(Planta plantaActual)
-    - Tiempo elegirEstanciaEnDestino()
+    - Tiempo elegirTiempoEnDestino()
     - Planta elegirPlantaDestino()
+    # void mover()
     + Planta getPlantaActual()
-    + boolean estaEsperandoAscensor()
-    + boolean estaDentroAscensor()
-    + void esperarAscensor()
+    + Planta getPlantaDestino()
+    + boolean estadoEsperandoAscensor()
+    + void setPlantaActual(Planta plantaActual)
+    + void setPlantaDestino(Planta plantaDestino)
+    + void esperar Ascensor()
     + void entrarAscensor()
     + void salirAscensor()
-    + void incrementarTiempo()
-    + boolean tieneQueIrse()
-    + Planta getPlantaDestino()
-    + void setPlantaDestino(Planta plantaDestino)
-    + void setPlantaActual(Planta plantaActual)
+
 }
 
 enum "structures.enums.EstadoAscensor" {
@@ -30,79 +27,80 @@ enum "structures.enums.EstadoAscensor" {
 }
 
 class Tiempo {
-    - int contador
-    - int estancia
+    - int horas
+    - int minutos
+    - int segundos 
+    - Universidad universidad
+    + void incremenrtar()
+    + void disminuir()
+    + int getHoras()
+    + int getMinutos()
+    + int getSegundos()
+    + Universidad getUniversidad()
+    - void empezar()
+    + {static} void main(String[] args)
 
-    + Tiempo(int estancia)
-    + void incrementar()
-    + boolean haPasado()
 }
 
 
-class Planta implements "java.lang.Comparable<Planta>" {
+class Planta {
     - int nivel
-    - Planta plantaSiguiente
-    - Planta plantaAnterior
-
-    + Planta(int nivel, Planta plantaSiguiente, Planta plantaAnterior)
-    + int getNivel()
-    + Planta getPlantaSiguiente()
-    + Planta getPlantaAnterior()
-    + void setPlantaSiguiente(Planta plantaSiguiente)
-    + compareTo(Planta o)
-}
-
-
-class Ascensor implements "structures.enums.EstadoAscensor" {
-    - Planta plantaActual
-    - List<Persona> personas
-    - EstadoAscensor estado
-
-    + Ascensor(Planta plantaActual)
-    + Planta getPlantaActual()
-    + int getPersonasEnAscensor()
+    - ArrayList<Persona> personasEnPlanta
     + void agregarPersona(Persona persona)
     + void eliminarPersona(Persona persona)
-    + void subir()
-    + void bajar()
+    + void mover(Ascensor ascensor)
+    + int getNivel()
+    + ArrayList<Persona> getPersonasEsperandoAscensor()
+    + void setNivel(int nivel)
+    + int compareTo(Planta o)
+
+}
+
+
+class Ascensor {
+    - int idAscensor
+    - int nivel
+    - ArrayList<Planta> plantas
+    - ArrayList<Persona> personas
+    - EstadoAscensor estado
+    + void agregarPersona(Persona persona)
+    + void eliminarPersona(Persona persona)
+    # void mover()
+    + Planta getPlantaActual()
+    + int getPersonasEnAscensor()
     + boolean estaVacio()
     + boolean estaLleno()
     + boolean estaSubiendo()
     + boolean estaBajando()
     + boolean estaParado()
-    + void mover()
+    - void Bajarpersona()
+    + void llamar(persona persona)
+    + void subir()
+    + void bajar()
 }
 
 
 class Universidad {
-    - List<Planta> plantas
-    - List<Ascensor> ascensores
-    - List<Persona> personas
-
-    + Universidad()
-    - void establecerConfigInicial()
-    + void agregarPersona(Persona persona)
-    + void removerPersona(Persona persona)
-    - boolean llegoUnaPersona()
-    - Planta getPlanta0;
-    - List<Persona> getPersonasEsperandoAscensorPorplanta(Planta planta)
-    - List<Persona> getPersonasEnPlanta(Planta planta)
-    - void empezar()
-    - void personaTieneQueIrse()
-    - void llamarAscensorLibreMasCercano()
-    - void imprimirInterfaz()
-    + {static} void main(String[] args)
+    - ArrayList<Planta> plantas
+    - Map<int, Ascensor> ascensores
+    - void crearPlantas()
+    # void configurarAscensores()
+    + ArrayList<Planta> getPlantas()
+    + Map<Integer,Ascensor> getAscensores()
+    + boolean llegoUnaPersona()
+    # void mover()
 }
 
+Ascensor *--d Persona 
+Ascensor *-u Planta 
+Ascensor *- "structures.enums.EstadoAscensor" 
+Universidad *- Ascensor 
+Universidad *- Planta 
+Universidad *- Persona 
+Planta *--d Persona 
+Persona *--d Tiempo 
 
-Planta -u-o Persona 
-Ascensor o-u- Persona 
-Planta *-u- Ascensor
 
-Planta -u-* Universidad 
-Ascensor -u-* Universidad
-Persona -u-o Universidad 
-
-Persona ... Tiempo
+ 
 
 @enduml
