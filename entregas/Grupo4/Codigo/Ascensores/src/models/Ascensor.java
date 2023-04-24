@@ -3,7 +3,6 @@ package models;
 import constants.Constans;
 import structures.enums.EstadoAscensor;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Ascensor {
 
@@ -24,22 +23,6 @@ public class Ascensor {
     public Planta getPlantaActual() {
         for (Planta planta : plantas) {
             if (planta.getNivel() == nivel)
-                return planta;
-        }
-        return null;
-    }
-
-    public Planta getPlantaSiguiente() {
-        for (Planta planta : plantas) {
-            if (planta.getNivel() == nivel + 1)
-                return planta;
-        }
-        return null;
-    }
-
-    public Planta getPlantaAnterior() {
-        for (Planta planta : plantas) {
-            if (planta.getNivel() == nivel - 1)
                 return planta;
         }
         return null;
@@ -71,14 +54,6 @@ public class Ascensor {
         } else {
             throw new RuntimeException("El ascensor esta lleno");
         }
-    }
-
-    public void eliminarPersona(Persona persona) {
-        if (personas.size() == 0)
-            throw new RuntimeException("El ascensor esta vacio");
-        if (!personas.contains(persona))
-            throw new RuntimeException("La persona no esta en el ascensor");
-
     }
 
     private void bajarPersonas() {
