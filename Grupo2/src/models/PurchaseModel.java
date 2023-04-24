@@ -21,22 +21,29 @@ public class PurchaseModel {
             moneyDeposited += scanner.nextDouble();
         }
 
-        double change = moneyDeposited - selectedProduct.price;
+        final double change = moneyDeposited - selectedProduct.price;
         final String messageChange = calculateChange(change, selectedProduct.price, machine);
 
         purchaseView.printTicket(selectedProduct, messageChange);
     }
 
-    public String calculateChange(final double amountReceived, double amountProduct, MachineModel machine) {
-        PurchaseView purchaseView = new PurchaseView();
-        double missingAmount = amountProduct - amountReceived;
+    public String calculateChange(
+        final double amountReceived, double amountProduct, MachineModel machine
+    ) {
+        final PurchaseView purchaseView = new PurchaseView();
+        final double missingAmount = amountProduct - amountReceived;
 
         if (missingAmount > 0) {
             return String.format("Falta $%.2f para completar la compra.", missingAmount);
         } else if (missingAmount < 0) {
-            String messageChange = purchaseView.generateChangeMessage(amountReceived, machine.listOfBills(), machine.listOfCoins());
+            final String messageChange = purchaseView.generateChangeMessage(
+                amountReceived, machine.listOfBills(), machine.listOfCoins()
+            );
             if (messageChange.equals("")) {
-                return String.format("No se puede dar cambio exacto. Devolviendo $%.2f", amountReceived - amountProduct);
+                return String.format(
+                    "No se puede dar cambio exacto. Devolviendo $%.2f",
+                    amountReceived - amountProduct
+                );
             } else {
                 return messageChange;
             }
@@ -49,7 +56,7 @@ public class PurchaseModel {
         System.out.println("Seleccione un producto:");
 
         for (int i = 0; i < products.size(); i++) {
-            ProductModel product = products.get(i);
+            final ProductModel product = products.get(i);
             System.out.println((i + 1) + ". " + product.name + " - $" + product.price);
         }
     }

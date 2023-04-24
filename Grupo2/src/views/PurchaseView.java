@@ -2,10 +2,9 @@ package views;
 
 import java.util.List;
 import java.util.Scanner;
-
 import models.BillModel;
-import models.MachineModel;
 import models.CoinModel;
+import models.MachineModel;
 import models.ProductModel;
 
 public class PurchaseView {
@@ -26,7 +25,7 @@ public class PurchaseView {
             option = input.nextLine();
 
             if(option.equals("1"))
-            machineView.machineSelection(machines);
+                machineView.machineSelection(machines);
             else if(option.equals("2")){
                 System.out.println("Saliendo...");
                 exit = true;
@@ -41,7 +40,7 @@ public class PurchaseView {
         String message = "";
         for (BillModel bill : bills) {
             if (bill.value <= amount) {
-                int quantity = (int) Math.floor(amount / bill.value);
+                final int quantity = (int) Math.floor(amount / bill.value);
                 amount -= (quantity * bill.value);
                 if (message.equals("")) {
                     message = quantity + "x $" + bill.value;
@@ -55,7 +54,7 @@ public class PurchaseView {
         }
         for (CoinModel coin : coins) {
             if (coin.value <= amount) {
-                int quantity = (int) Math.floor(amount / coin.value);
+                final int quantity = (int) Math.floor(amount / coin.value);
                 amount -= (quantity * coin.value);
                 if (message.equals("")) {
                     message = quantity + "x $" + coin.value;

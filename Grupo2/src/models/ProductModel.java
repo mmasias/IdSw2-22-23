@@ -2,7 +2,9 @@ package models;
 
 public class ProductModel {
     public String name;
+
     public double price;
+
     public int quantity;
 
     public ProductModel(String name, double price, int quantity) {

@@ -10,9 +10,11 @@ public class MachineView {
 
     public void printMachineName(List<MachineModel> machines) {
         machines.forEach(machine -> {
-            int width = 28;
-            int padding = (width - machine.showName().length()) / 2;
-            System.out.print(String.format("%" + padding + "s%s%" + padding + "s", "", machine.showName(), ""));
+            final int width = 28;
+            final int padding = (width - machine.showName().length()) / 2;
+            System.out.print(
+                String.format("%" + padding + "s%s%" + padding + "s", "", machine.showName(), "")
+            );
         });
         System.out.print("\n|__________________________|");
         for(int j=0;j<machines.size() -1;j++)
@@ -24,7 +26,7 @@ public class MachineView {
 
     public void machineSelection(List<MachineModel> machines) {
         boolean exit = false;
-        PurchaseModel purchaseModel = new PurchaseModel();
+        final PurchaseModel purchaseModel = new PurchaseModel();
 
         do{
             String option = "";
