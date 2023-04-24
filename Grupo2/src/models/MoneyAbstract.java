@@ -1,4 +1,5 @@
 package models;
+
 public abstract class  MoneyAbstract {
     public double value;
 

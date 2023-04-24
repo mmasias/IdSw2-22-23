@@ -11,7 +11,9 @@ public class MachineModel {
 
     private List<ProductModel> products;
 
-    public MachineModel(String name, List<BillModel> bills, List<CoinModel> coins, List<ProductModel> products) {
+    public MachineModel(
+        String name, List<BillModel> bills, List<CoinModel> coins, List<ProductModel> products
+    ) {
         this.name = name;
         this.coins = coins;
         this.bills = bills;
