@@ -10,7 +10,9 @@ public class PurchaseModel {
     public void purchase(MachineModel machine) {
         final PurchaseView purchaseView = new PurchaseView();
 
-        System.out.println("Bienvenido");
+        System.out.println(
+                "====================================================================================="
+        );
 
         showProductSelection(machine.listOfProducts());
         final ProductModel selectedProduct = selectProduct(machine.listOfProducts());

@@ -17,7 +17,7 @@ public class PurchaseView {
         do{
             String option = "";
             System.out.println(
-                "---------------------------------------------------------------------------------"
+                "------------------------------------------------------------------------------------"
             );
             System.out.println("[1] Comprar");
             System.out.println("[2] Salir");

@@ -9,6 +9,9 @@ public class MachineView {
     static Scanner input = new Scanner(System.in);
 
     public void printMachineName(List<MachineModel> machines) {
+        System.out.println(
+                "____________________________________________________________________________________"
+        );
         machines.forEach(machine -> {
             final int width = 28;
             final int padding = (width - machine.showName().length()) / 2;
@@ -31,7 +34,7 @@ public class MachineView {
         do{
             String option = "";
             System.out.println(
-                "---------------------------------------------------------------------------------"
+                "------------------------------------------------------------------------------------"
             );
             System.out.println("[1]" + machines.get(0).showName());
             System.out.println("[2]" + machines.get(1).showName());
