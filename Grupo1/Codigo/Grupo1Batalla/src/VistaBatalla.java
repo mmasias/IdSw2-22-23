@@ -23,9 +23,7 @@ public class VistaBatalla {
     }
 
     public void imprimirInterfaz(){
-        System.out.println("---------------------------");
         recuadro.imprimir();
-        System.out.println("---------------------------");
     }
 
     public void anunciarGanador(Personaje ganador){
@@ -34,8 +32,8 @@ public class VistaBatalla {
 
     public Acciones elegirAccion(){
         mostrarAcciones();
-        int accionEscogida = scanElegir(heroe.getAcciones().length);
-        switch (accionEscogida){
+
+        switch (scanElegir(heroe.getAcciones().length)){
             case ATACAR -> {
                 return Acciones.ATACAR;
             }
