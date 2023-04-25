@@ -61,7 +61,7 @@ public abstract class Personaje {
     }
     
     public void curarseDesmayado(){
-        RegistroDeCombate.anadirLog(this.nombre + " : Está desmayado");
+        RegistroDeCombate.anadirLog(this.nombre + " : Esta desmayado");
         curarse(vidaCurarDesmayo);
     }
     public void curarse(int vidaACurar){

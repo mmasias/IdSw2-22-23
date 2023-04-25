@@ -6,9 +6,6 @@ public class Batalla {
     protected Heroe heroe;
     protected Enemigo enemigo;
 
-    private final int ATACAR = 1;
-    private final int DEFENDER = 2;
-    private final int CURAR = 3;
 
     public Batalla(Heroe heroe, Enemigo enemigo){
         vista = new VistaBatalla(heroe, enemigo);
@@ -67,11 +64,8 @@ public class Batalla {
             case DEFENDER -> {
                 heroe.defenderse();
             }
-            case CURAR -> {
+            case CURARSE -> {
                 heroe.iniciarEstadoDeCuracion();
-            }
-            default -> {
-                // solo se puede elegir una accion correcta
             }
         }
     }

@@ -1,4 +1,4 @@
-import extras.RegistroDeCombate;
+import extras.*;
 import personajes.*;
 import objetos.*;
 import renderizacion.RecuadroPersonaje;
@@ -11,6 +11,10 @@ public class VistaBatalla {
     protected Heroe heroe;
 
     private Scanner entrada;
+
+    private final int ATACAR = 1;
+    private final int DEFENDER = 2;
+    private final int CURARSE = 3;
 
     public VistaBatalla(Heroe heroe, Enemigo enemigo){
         this.heroe = heroe;
@@ -28,9 +32,23 @@ public class VistaBatalla {
         System.out.println(ganador.getNombre() + " ha sido el ganador!");
     }
 
-    public int elegirAccion(){
+    public Acciones elegirAccion(){
         mostrarAcciones();
-        return scanElegir(heroe.getAcciones().length);
+        int accionEscogida = scanElegir(heroe.getAcciones().length);
+        switch (accionEscogida){
+            case ATACAR -> {
+                return Acciones.ATACAR;
+            }
+            case DEFENDER -> {
+                return Acciones.DEFENDER;
+            }
+            case CURARSE -> {
+                return Acciones.CURARSE;
+            }
+            default -> {
+                return null;
+            }
+        }
     }
 
     public int elegirArma(){
