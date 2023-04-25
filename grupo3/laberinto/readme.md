@@ -24,11 +24,12 @@ Mundo --> Bloque : esta formado por
 Mundo --> RenderizadorMundo : Contiene
 
 Bloque : double velocidad()
-Bloque : boolean todasEntidadesPuedenTransitar()
-Bloque : List<tipo Entidad> soloTrasitableCon()
+Bloque : boolean puedeTransitar(Entidad entidad)
 
 Mundo -> Entidad : contiene
+Mundo --> InputUsuario : Lee
 Mundo : RenderizadorMundo renderizador
+Mundo : InputUsuario inputUsuario
 Mundo : int tiempoTranscurrido
 Mundo : Bloque[][] bloques
 Mundo : Entidad[] entidades
@@ -59,6 +60,9 @@ Entidad <|-- Barca
 Entidad <|-- Alfombra
 Entidad <|-- Caballo
 NPC --|> SeMueveSolo
+
+class InputUsuario
+InputUsuario : String leer()
 @enduml
 ```
 
