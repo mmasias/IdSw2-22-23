@@ -2,43 +2,19 @@ package models;
 
 import java.util.List;
 import java.util.Scanner;
-import views.PurchaseView;
 
 public class PurchaseModel {
     private Scanner scanner = new Scanner(System.in);
 
-    public void purchase(MachineModel machine) {
-        final PurchaseView purchaseView = new PurchaseView();
-
-        System.out.println(
-                "====================================================================================="
-        );
-
-        showProductSelection(machine.listOfProducts());
-        final ProductModel selectedProduct = selectProduct(machine.listOfProducts());
-        double moneyDeposited = depositMoney();
-
-        while (moneyDeposited < selectedProduct.price) {
-            System.out.println("Dinero insuficiente. Ingrese más dinero:");
-            moneyDeposited += scanner.nextDouble();
-        }
-
-        final double change = moneyDeposited - selectedProduct.price;
-        final String messageChange = calculateChange(change, selectedProduct.price, machine);
-
-        purchaseView.printTicket(selectedProduct, messageChange);
-    }
-
     public String calculateChange(
         final double amountReceived, double amountProduct, MachineModel machine
     ) {
-        final PurchaseView purchaseView = new PurchaseView();
         final double missingAmount = amountProduct - amountReceived;
 
         if (missingAmount > 0) {
             return String.format("Falta $%.2f para completar la compra.", missingAmount);
         } else if (missingAmount < 0) {
-            final String messageChange = purchaseView.generateChangeMessage(
+            final String messageChange = generateChangeMessage(
                 amountReceived, machine.listOfBills(), machine.listOfCoins()
             );
             if (messageChange.equals("")) {
@@ -53,8 +29,44 @@ public class PurchaseModel {
             return "";
         }
     }
+
+    public String generateChangeMessage(
+        double amount,  List<BillModel> bills, List<CoinModel> coins
+    ) {
+        System.out.println("montooo: " + amount);
+        String message = "";
+        for (BillModel bill : bills) {
+            if (bill.value <= amount) {
+                final int quantity = (int) Math.floor(amount / bill.value);
+                amount -= (quantity * bill.value);
+                if (message.equals("")) {
+                    message = quantity + "x $" + bill.value;
+                } else {
+                    message += ", " + quantity + "x $" + bill.value;
+                }
+                if (amount == 0) {
+                    return message;
+                }
+            }
+        }
+        for (CoinModel coin : coins) {
+            if (coin.value <= amount) {
+                final int quantity = (int) Math.floor(amount / coin.value);
+                amount -= (quantity * coin.value);
+                if (message.equals("")) {
+                    message = quantity + "x $" + coin.value;
+                } else {
+                    message += ", " + quantity + "x $" + coin.value;
+                }
+                if (amount == 0) {
+                    return message;
+                }
+            }
+        }
+        return message;
+    }
     
-    private void showProductSelection(List<ProductModel> products) {
+    public void showProductSelection(List<ProductModel> products) {
         System.out.println("Seleccione un producto:");
 
         for (int i = 0; i < products.size(); i++) {
@@ -63,14 +75,14 @@ public class PurchaseModel {
         }
     }
     
-    private ProductModel selectProduct(List<ProductModel> products) {
+    public ProductModel selectProduct(List<ProductModel> products) {
         System.out.println("Ingrese el número del producto que desea comprar:");
 
         final int optionProduct = this.scanner.nextInt();
         return products.get(optionProduct - 1);
     }
     
-    private double depositMoney() {
+    public double depositMoney() {
         System.out.println("Ingrese su dinero:");
         return scanner.nextDouble();
     }
