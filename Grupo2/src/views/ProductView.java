@@ -2,13 +2,19 @@ package views;
 
 import java.util.List;
 import models.MachineModel;
+import utils.Line;
 
 public class ProductView {
+    private Line line;
+
+    public ProductView(Line line) {
+        this.line = line;
+    }
+
     public void printProducts(final List<MachineModel> machines) {
         try {
-            System.out.println(
-                "____________________________________________________________________________________"
-            );
+            line.printLine();
+
             for (int i = 0; i < machines.get(0).listOfProducts().size(); i++) {
                 System.out.print("|");
                 System.out.printf(
@@ -23,9 +29,8 @@ public class ProductView {
                 }
                 System.out.println();
             }
-            System.out.println(
-                "____________________________________________________________________________________"
-            ); 
+            
+            line.printLine();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
