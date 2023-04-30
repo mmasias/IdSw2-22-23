@@ -80,11 +80,20 @@
 <details>
   <summary>Clase Batalla</summary>
 
-  | Métrica | Métrica calculada |
+Métricas de la clase Batalla
+| Métrica | Valor |
 | --- | --- |
 | Número de líneas | 77 |
 | Número de métodos | 4 |
 | Número de atributos | 3 |
+
+### Métricas métodos clase Batalla
+
+|Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
+|----|-----| ---- | -----| ---- |
+|comenzarBatalla() | 0 | 22 | 2 | 7  |
+|turnoHeroe() |  0 | 8 |  0 |   4  |
+|turnoEnemigo() | 0 | 2 |  0 |   1  |
 
 </details>
 
@@ -97,10 +106,22 @@
 | Número de métodos       | 9     |
 | Número de atributos     | 6     |
 
+### Métricas métodos clase VistaBatalla
+
+|Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
+|----|-----| ---- | -----| ---- |
+|imprimirInterfaz() | 0 | 1 | 0 | 1  |
+|anuciarGanador() | 1 | 1 | 0 | 1  |
+|elegirAcción() | 0 | 13 | 0 | 5  |
+|elegirArma() | 0 | 2 | 0 | 1  |
+|esperarInteraccion() | 0 | 2 | 0 | 1  |
+|scanElegir() | 1 | 12 | 0 | 2  |
+|mostrarAcciones() | 0 | 3 | 0 | 1  |
+|mostrarArmas() | 0 | 3 | 0 | 1 |
 
 </details>
 
-<details>
+  <details>
   <summary>Clase Personaje</summary>
 
 | Métricas  | Valor |
@@ -109,7 +130,28 @@
 | Número de métodos           | 17       |
 | Número de atributos          | 9        |
 
-</details>
+### Métricas métodos clase Personaje
+
+|Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
+|----|-----| ---- | -----| ---- |
+|recibirDaño() | 1 | 6 | 0 | 2  |
+|atacar() | 1 | 11 | 0 | 4 |
+|puedeActuar() | 0 | 1 | 0 | 1  |
+|avanzarTurnoSinActuar() | 0 | 1 | 0 | 1  |
+|curarseDesmayado() | 0 | 2 | 0 | 1  |
+|curarse() | 1 | 1 | 0 | 3  |
+|despertar() | 0 | 2 | 0 | 1  |
+|comprobarSiSeDespierta() | 0 | 3 | 0 | 3  |
+|estaVivo() | 0 | 1 | 0 | 1  |
+|desmayar() | 0 | 2 | 0 | 1  |
+|getVidaActual() | 0 | 1 | 0 | 1  |
+|equiparArma() | 0 | 1 | 0 | 1  |
+|getArmas() | 0 | 1 | 0 | 1  |
+|getSprite() | 0 | 1 | 0 | 1  |
+|getNombre() | 0 | 1 | 0 | 1  |
+
+
+  </details>
 
 <details>
   <summary>Clase Heroe</summary>
