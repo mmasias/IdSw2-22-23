@@ -64,6 +64,121 @@
 </details>
 <hr>
 
+<h5>Métricas</h5>
+
+<details>
+  <summary>Clase MainBatalla</summary>
+
+| Métricas  | Valor |
+|---|---|
+| Número de líneas | 12   |
+| Número de métodos           | 1      |
+| Número de atributos          | 0     |
+
+</details>
+
+<details>
+  <summary>Clase Batalla</summary>
+
+  | Métrica | Métrica calculada |
+| --- | --- |
+| Número de líneas | 77 |
+| Número de métodos | 4 |
+| Número de atributos | 3 |
+
+</details>
+
+<details>
+  <summary>Clase VistaBatalla</summary>
+
+| Métricas                | Valor |
+|------------------------|-------|
+| Número de líneas        | 90   |
+| Número de métodos       | 9     |
+| Número de atributos     | 6     |
+
+
+</details>
+
+<details>
+  <summary>Clase Personaje</summary>
+
+| Métricas  | Valor |
+|---|---|
+| Número de líneas | 112      |
+| Número de métodos           | 17       |
+| Número de atributos          | 9        |
+
+</details>
+
+<details>
+  <summary>Clase Heroe</summary>
+
+| Métricas  | Valor |
+|---|---|
+| Número de líneas | 92      |
+| Número de métodos           | 9    |
+| Número de atributos          | 5      |
+
+</details>
+
+<details>
+  <summary>Clase Enemigo</summary>
+
+| Métricas  | Valor |
+|---|---|
+| Número de líneas | 21    |
+| Número de métodos           | 2       |
+| Número de atributos          | 0        |
+
+</details>
+
+<details>
+  <summary>Clase RecuadroPersonaje</summary>
+
+| Métricas  | Valor |
+|---|---|
+| Número de líneas | 93   |
+| Número de métodos           | 4      |
+| Número de atributos          | 2      |
+
+</details>
+
+<details>
+  <summary>Clase Arma</summary>
+
+| Métricas  | Valor |
+|---|---|
+| Número de líneas | 37   |
+| Número de métodos           | 6    |
+| Número de atributos          | 4     |
+
+</details>
+
+<details>
+  <summary>Clase RegistroDeCombate</summary>
+
+| Métricas  | Valor |
+|---|---|
+| Número de líneas | 45   |
+| Número de métodos           | 6      |
+| Número de atributos          | 2      |
+
+</details>
+
+<details>
+  <summary>Clase CreadorPersonajes</summary>
+
+| Métricas  | Valor |
+|---|---|
+| Número de líneas | 70   |
+| Número de métodos           | 2      |
+| Número de atributos          | 0      |
+
+</details>
+
+<hr>
+
 <h5> Futuro de proyecto </h5>
 <details>
   <summary> Consideraciones tenidas para la escalabilidad </summary>
