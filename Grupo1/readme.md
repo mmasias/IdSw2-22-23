@@ -69,11 +69,19 @@
 <details>
   <summary>Clase MainBatalla</summary>
 
+### Métricas de la clase MainBatalla
+
 | Métricas  | Valor |
 |---|---|
 | Número de líneas | 12   |
 | Número de métodos           | 1      |
 | Número de atributos          | 0     |
+
+### Métricas métodos clase MainBatalla
+
+|Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
+|----|-----| ---- | -----| ---- |
+|main() | 1 | 3 |  0 |   1  |
 
 </details>
 
