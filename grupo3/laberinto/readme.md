@@ -1,5 +1,8 @@
 ### Diagrama de clases
 [Diagrama de clases](diagramas/clases.png)
+
+
+
 ```
 @startuml
 class Mundo
