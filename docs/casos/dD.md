@@ -8,10 +8,10 @@ Debido a un reparto de responsabilidades justificado, existe la necesidad de que
 - Indirectamente con métodos explícitos, ***get<Tipo>()***
 - Abriendo distintas ramas de sentencias alternativas para tratar cada tipo de clase derivada.
 
-|||
-|-|-|
-|![](/images/dd-00-00.svg)|
-|![](/images/dd-00-01.svg)|
+||
+|:-:|
+|![](/images/dd-00-00.svg)
+|![](/images/dd-00-01.svg)
 
 - 👎Se ve obligado a **preguntar** por el tipo de objeto (supuestamente polimórfico)
 - 👎Incurre en cambios divergentes, implementanndo una nueva rama en **cada clase cliente** que hay que localizar por toda la aplicación
@@ -23,8 +23,8 @@ Debido a un reparto de responsabilidades justificado, existe la necesidad de que
 - Cada clase derivada devuelve un mensaje visitar al propio cliente auto-pasándose como parámetro (this)
 - El cliente atiende por separado con métodos visitar para cada tipo de clase derivada con el comportamiento particular para cada uno
 
-|||
-|-|-|
+||
+|:-:|
 |![](/images/dd-01-00.svg)|No hace falta preguntar el tipo de objeto
 |![](/images/dd-01-01.svg)|No rompe el principio Open/Close
 
@@ -40,7 +40,9 @@ Debido a un reparto de responsabilidades justificado, existe la necesidad de que
 - La nueva clase derivada debe redefinir el método aceptar para no ser abstracta enviando un mensaje visitar auto-pasandose por parámetro
 - Los cambios están guiados por el compilador porque cada clase cliente debe definir un nuevo método visitar para la nueva clase derivada
 
-![](/images/dd-02-00.svg)
+||
+|:-:|
+|![](/images/dd-02-00.svg)
 
 - 👍No pregunta por el tipo de objeto polimórfico
 - 👍No incurre en cambios divergentes para atender con una nueva rama en cada clase cliente
