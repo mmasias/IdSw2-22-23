@@ -30,7 +30,7 @@ class Main {
 
         final ProductView productsView = new ProductView(line);
         final MachineView machineView = new MachineView(line);
-        final PurchaseView purchaseView = new PurchaseView(machineController, line);
+        final PurchaseView purchaseView = new PurchaseView(machineController, purchaseController, line);
 
         final List<MachineModel> machines = generateMachines(billController, coinController, productController);
 

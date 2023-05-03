@@ -4,16 +4,19 @@ import java.util.List;
 import java.util.Scanner;
 
 import controllers.MachineController;
+import controllers.PurchaseController;
 import models.MachineModel;
 import utils.Line;
 
 public class PurchaseView {
     static Scanner input = new Scanner(System.in);
     private MachineController machineController;
+    private PurchaseController purchaseController;
     private Line line;
 
-    public PurchaseView(MachineController machineController, Line line) {
+    public PurchaseView(MachineController machineController, PurchaseController purchaseController, Line line) {
         this.machineController = machineController;
+        this.purchaseController = purchaseController;
         this.line = line;
     }
 
@@ -21,7 +24,7 @@ public class PurchaseView {
         boolean exit = false;
 
         do{
-            line.printLineOfHyphens();
+            line.printDoubleLine();
             System.out.println("[1] Comprar");
             System.out.println("[2] Salir");
             System.out.println("----------------   Elige una opcion: ");
@@ -35,6 +38,8 @@ public class PurchaseView {
                 System.out.println("Saliendo...");
                 exit = true;
             }
+            exit = true;
         }while(!exit);
     }
+
 }

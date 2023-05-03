@@ -2,7 +2,10 @@ package controllers;
 
 import java.util.Scanner;
 
+import models.BillModel;
+import models.CoinModel;
 import models.MachineModel;
+import models.MoneyAbstract;
 import models.ProductModel;
 import models.PurchaseModel;
 import utils.Line;
@@ -22,7 +25,7 @@ public class PurchaseController {
 
         purchaseModel.showProductSelection(machine.listOfProducts());
         final ProductModel selectedProduct = purchaseModel.selectProduct(machine.listOfProducts());
-        double moneyDeposited = purchaseModel.depositMoney();
+        double moneyDeposited = selectTypeMoney();
 
         while (moneyDeposited < selectedProduct.price) {
             System.out.println("Dinero insuficiente. Ingrese más dinero:");
@@ -33,6 +36,34 @@ public class PurchaseController {
         final String messageChange = purchaseModel.calculateChange(change, selectedProduct.price, machine);
 
         printTicket(selectedProduct, messageChange);
+    }
+
+    public double selectTypeMoney() {
+        boolean exit = false;
+        double moneyDeposited = 0;
+
+        do{
+            line.printLineOfHyphens();
+            System.out.println("Seleccione el tipo de pago: ");
+            System.out.println("[1] Billetes");
+            System.out.println("[2] Monedas");
+            System.out.println("[3] Salir");
+            System.out.println("----------------   Elige una opcion: ");
+            String option = "";
+            option = scanner.nextLine();
+
+            if(option.equals("1"))
+                moneyDeposited = purchaseModel.depositMoney(new BillModel(0, 0)).value;
+            else if(option.equals("2"))
+                moneyDeposited = purchaseModel.depositMoney(new CoinModel(0, 0)).value;
+            else if(option.equals("3")){
+                System.out.println("Saliendo...");
+                exit = true;
+            }
+            exit = true;
+        }while(!exit);
+
+        return moneyDeposited;
     }
 
     public void printTicket(ProductModel product, String messageChange) {

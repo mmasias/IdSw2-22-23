@@ -82,8 +82,27 @@ public class PurchaseModel {
         return products.get(optionProduct - 1);
     }
     
-    public double depositMoney() {
-        System.out.println("Ingrese su dinero:");
-        return scanner.nextDouble();
+    public BillModel depositMoney(BillModel bill) {
+        System.out.println("Ingrese el tamaño: ");
+        double sizeMoney = scanner.nextDouble();
+        bill.updateValue(sizeMoney);
+
+        System.out.println("Ingrese la cantidad: ");
+        double quantity = scanner.nextDouble();
+        bill.updateQuantity((int)quantity);
+
+        return bill;
+    }
+
+    public CoinModel depositMoney(CoinModel coin) {
+        System.out.println("Ingrese el tamaño: ");
+        double sizeMoney = scanner.nextDouble();
+        coin.updateValue(sizeMoney);
+
+        System.out.println("Ingrese la cantidad: ");
+        double quantity = scanner.nextDouble();
+        coin.updateQuantity((int)quantity);
+
+        return coin;
     }
 }
