@@ -59,7 +59,7 @@ public final class Main {
             7, CespedAlto.crear(),
             8, CespedBajo.crear()
     );
-
+    
     private static final int[][] MAPA_BLOQUES_ID = new int[][]{
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
             {1,8,8,8,0,0,0,0,0,0,0,8,8,8,0,0,3,3,3,3,3,3,3,1},
