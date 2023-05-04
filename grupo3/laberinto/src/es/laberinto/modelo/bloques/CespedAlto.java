@@ -1,9 +1,11 @@
 package es.laberinto.modelo.bloques;
 
+import es.laberinto.controlador.Mundo;
 import es.laberinto.modelo.entides.Caballo;
 import es.laberinto.modelo.entides.Entidad;
+import es.laberinto.vista.SePuedeRenderizar;
 
-public final class CespedAlto extends Bloque {
+public final class CespedAlto extends Bloque implements SePuedeRenderizar {
     @Override
     public double velocidad() {
         return 2;
@@ -12,6 +14,11 @@ public final class CespedAlto extends Bloque {
     @Override
     public boolean puedeTransitar(Entidad entidad) {
         return entidad.getClass() == Caballo.class;
+    }
+
+    @Override
+    public String getDibujo(Mundo mundo) {
+        return "///";
     }
 
     public static CespedAlto crear() {
