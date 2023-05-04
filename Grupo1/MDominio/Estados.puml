@@ -1,0 +1,26 @@
+@startuml Estados
+
+State IteracionBatalla {
+
+    PersonajeVivo --> Turno
+
+    State accion <<choice>>
+    State ganadorPerdedor <<choice>>
+
+    Turno --> accion
+
+    accion --> PersonajeVivo : Ningun personaje muere
+    accion --> ganadorPerdedor : Algun personaje muere
+
+    ganadorPerdedor --> Victoria : Gana el heroe
+    ganadorPerdedor --> Derrota : Gana el vampiro
+
+    Victoria --> [*]
+    Derrota --> [*]
+
+}
+
+[*] --> IteracionBatalla
+
+
+@enduml

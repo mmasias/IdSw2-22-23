@@ -1,0 +1,18 @@
+@startuml ClasesSimple
+
+Batalla o-l-> VistaBatalla : Muestra 
+
+Personaje <|-u- Heroe
+Personaje <|-u- Enemigo
+
+Batalla *-d-> Heroe : Lucha 
+Batalla *-d-> Enemigo : Lucha 
+
+Personaje o-r-> Arma : Usa 
+
+Personaje --> RegistroDeCombate : Registra acciones 
+VistaBatalla --> RegistroDeCombate : Muestra 
+
+
+
+@enduml
