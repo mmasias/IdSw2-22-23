@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 import java.util.Scanner;
 
+import models.BillModel;
 import models.MachineModel;
 import utils.Line;
 
@@ -39,6 +40,7 @@ public class MachineController {
                 System.out.println("Saliendo...");
                 exit = true;
             }
+            exit = true;
         }while(!exit);
     }
 }
