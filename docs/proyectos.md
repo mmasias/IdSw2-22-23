@@ -33,9 +33,16 @@ Similar a la utilizada en la asignatura de Ingeniería de Software 1
 
 ## Entregas
 
-### Segunda entrega / presentación
+### Tercera entrega / presentación 
 
-> **Fecha:** 28/03/2023
+> **Fecha:** 09/05/2023
+
+* Código mejorado (si se aplica) siguiendo los planteamientos vistos en las sesiones de clase.
+* Aplicación del doble despacho para permitir la extensión del proyecto.
+
+### Segunda entrega / presentación / a.k.a. Examen Parcial
+
+> **Fecha:** 28/03/2023 / Extendido
 
 * Diagramas refinados de la primera entrega.
 * Código en correspondencia con los diagramas.
