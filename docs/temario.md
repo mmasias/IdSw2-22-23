@@ -40,12 +40,14 @@
 
 > Nivel: Jerarquías de clasificación
 
-- [ ] Principios Open/Close
-- [ ] Sustitución de Liskov
-- [ ] Patrón Método Plantilla
-- [ ] Inversión de Dependencias
+- [x] S [Principio de responsabilidad única](/docs/SOLID/SOLID_S.md)
+- [ ] O [Principio de abierto/cerrado](/docs/SOLID/SOLID_O.md)
+- [ ] L [Principio de Sustitución de Liskov](/docs/SOLID/SOLID_L.md)
+- [ ] I [Principio de segregación de interfaces](/docs/SOLID/SOLID_I.md)
+- [ ] D [Principio de Inversión de Dependencias](/docs/SOLID/SOLID_D.md)
 - [ ] Inversión de Control
 - [ ] Inyección de Dependencias / [Caso](casos/inyeccionDependenciasCaso.md)
+- [ ] Patrón Método Plantilla
 
 ## Patrones de diseño
 
