@@ -1,6 +1,6 @@
 package models;
 
-import views.Mundo;
+import views.Renderizado;
 
 import java.util.Scanner;
 
@@ -68,7 +68,7 @@ public class Tiempo {
         String entrada = "";
         do {
             universidad.mover();
-            Mundo.imprimirInterfaz(this);
+            Renderizado.renderizar(this);
             incrementar();
             entrada = scanner.nextLine();
         } while (entrada.toLowerCase().compareTo("s") != 0);
