@@ -4,22 +4,24 @@ import constants.Constans;
 import models.Ascensor;
 import models.Planta;
 import models.Tiempo;
-import models.Universidad;
 
 import java.util.ArrayList;
 
-public class Mundo {
+public class Interfaz {
 
-    public static void imprimirInterfaz(Tiempo tiempo) {
-        //Imprimir cabecera
+    private static void generarCabecera(){
         String linea = "----------- Personas esperando  ";
         for (int i = 0; i < Constans.TOTAL_ASCENSORES; i++) {
             linea += "-------- ";
         }
         linea += "  Personas en la planta";
         System.out.println(linea);
+
+    }
+
+    private static void generarPlantas(Tiempo tiempo){
+        String linea = "";
         ArrayList<Planta> plantas = tiempo.getUniversidad().getPlantas();
-        //Imprimir plantas
         for (Planta planta : plantas) {
 
             linea = "Planta "
@@ -46,5 +48,11 @@ public class Mundo {
             System.out.println(linea);
         }
         System.out.println("Tiempo: " + tiempo.getHoras() + ":" + tiempo.getMinutos() + ":" + tiempo.getSegundos() + "");
+    }
+
+
+    public static void imprimirInterfaz(Tiempo tiempo) {
+        generarCabecera();
+        generarPlantas(tiempo);
     }
 }
