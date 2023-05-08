@@ -1,11 +1,12 @@
 @startuml modeloDelDominio
 
-class Persona {
+class "models.Persona" {
     - Planta plantaActual
     - Planta plantaDestino
     - Tiempo tiempoEnDestino
     - boolean esperandoAscensor
     - boolean dentroAscensor
+    + Persona()
     - Tiempo elegirTiempoEnDestino()
     - Planta elegirPlantaDestino()
     # void mover()
@@ -26,11 +27,13 @@ enum "structures.enums.EstadoAscensor" {
     PARADO
 }
 
-class Tiempo {
+class "models.Tiempo" {
     - int horas
     - int minutos
     - int segundos 
     - Universidad universidad
+    + Tiempo()
+    + Tiempo(int horas, int minutos, int segundos)
     + void incremenrtar()
     + void disminuir()
     + int getHoras()
@@ -39,16 +42,18 @@ class Tiempo {
     + Universidad getUniversidad()
     - void empezar()
     + {static} void main(String[] args)
-
 }
 
 
-class Planta {
+class "models.Planta" {
     - int nivel
     - ArrayList<Persona> personasEnPlanta
+    + Planta(int nivel)
     + void agregarPersona(Persona persona)
     + void eliminarPersona(Persona persona)
-    + void mover(Ascensor ascensor)
+    + void subirAAscensor(Ascensor ascensor)
+    + void mover()
+    + void llamadaAscensorMasCercano(ArrayList<Ascensor> ascensores)
     + int getNivel()
     + ArrayList<Persona> getPersonasEsperandoAscensor()
     + void setNivel(int nivel)
@@ -57,15 +62,15 @@ class Planta {
 }
 
 
-class Ascensor {
+class "models.Ascensor" {
     - int idAscensor
     - int nivel
     - ArrayList<Planta> plantas
     - ArrayList<Persona> personas
     - EstadoAscensor estado
+    + Ascensor(int idAscensor, ArrayList<Planta> plantas) 
     + void agregarPersona(Persona persona)
-    + void eliminarPersona(Persona persona)
-    # void mover()
+    - void bajarPersonas()
     + Planta getPlantaActual()
     + int getPersonasEnAscensor()
     + boolean estaVacio()
@@ -73,16 +78,17 @@ class Ascensor {
     + boolean estaSubiendo()
     + boolean estaBajando()
     + boolean estaParado()
-    - void Bajarpersona()
+    + void mover()
     + void llamar(persona persona)
     + void subir()
     + void bajar()
 }
 
 
-class Universidad {
+class "models.Universidad" {
     - ArrayList<Planta> plantas
     - Map<int, Ascensor> ascensores
+    + Universidad()
     - void crearPlantas()
     # void configurarAscensores()
     + ArrayList<Planta> getPlantas()
@@ -92,15 +98,12 @@ class Universidad {
 }
 
 Ascensor *--d Persona 
-Ascensor *-u Planta 
-Ascensor *- "structures.enums.EstadoAscensor" 
-Universidad *- Ascensor 
-Universidad *- Planta 
-Universidad *- Persona 
+Ascensor *--d Planta 
+Ascensor ---r "structures.enums.EstadoAscensor"
+Universidad *-- Ascensor 
+Universidad *-- Planta
 Planta *--d Persona 
-Persona *--d Tiempo 
-
-
- 
+Persona *---u Tiempo 
+Tiempo *--d Universidad
 
 @enduml

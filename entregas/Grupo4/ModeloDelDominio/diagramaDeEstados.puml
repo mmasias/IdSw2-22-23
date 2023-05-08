@@ -11,13 +11,4 @@ State Ascensor{
     Bajando --> Parado : Parar
 }
 
-State Persona {
-    State EnAscensor
-    State EnPlanta
-
-    EnAscensor --> EnPlanta : Bajarse del ascensor
-    EnPlanta --> EnAscensor : Subirse al ascensor
-
-}
-
 @enduml

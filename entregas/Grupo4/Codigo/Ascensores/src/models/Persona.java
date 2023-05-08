@@ -53,19 +53,15 @@ class Persona {
     public Planta getPlantaActual() {
         return plantaActual;
     }
-
     public Planta getPlantaDestino() {
         return plantaDestino;
     }
-
     public boolean estaEsperandoAscensor() {
         return esperandoAscensor;
     }
-
     public boolean estaDentroAscensor() {
         return dentroAscensor;
     }
-
     public void setPlantaActual(Planta plantaActual) {
         this.plantaActual = plantaActual;
     }
