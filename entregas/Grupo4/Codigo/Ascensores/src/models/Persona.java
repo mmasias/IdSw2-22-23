@@ -4,7 +4,7 @@ import constants.Constans;
 
 import java.util.Random;
 
-class Persona {
+public class Persona {
     private Planta plantaActual;
     private Planta plantaDestino;
     private Tiempo tiempoEnDestino;
@@ -40,7 +40,7 @@ class Persona {
         }
     }
 
-    void mover() {
+    public void mover() {
         if (tiempoEnDestino.getSegundos() == 0 && tiempoEnDestino.getMinutos() == 0 && tiempoEnDestino.getHoras() == 0) {
             esperarAscensor();
             setPlantaDestino(new Planta(Constans.PLANTA_PRINCIPAL));

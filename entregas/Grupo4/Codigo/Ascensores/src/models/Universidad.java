@@ -14,6 +14,14 @@ public class Universidad {
         this.crearPlantas();
     }
 
+    public ArrayList<Planta> getPlantas() {
+        return plantas;
+    }
+
+    public Map<Integer,Ascensor> getAscensores() {
+        return ascensores;
+    }
+
     private void crearPlantas() {
         for (int i = Constans.NIVEL_SUPERIOR; i >= Constans.NIVEL_INFERIOR; i--) {
             Planta nuevaPlanta = new Planta(i);
@@ -28,14 +36,6 @@ public class Universidad {
         }
     }
 
-    public ArrayList<Planta> getPlantas() {
-        return plantas;
-    }
-
-    public Map<Integer,Ascensor> getAscensores() {
-        return ascensores;
-    }
-
     private boolean llegoUnaPersona() {
         if (Math.random() < .5) {
             return true;
@@ -44,7 +44,7 @@ public class Universidad {
         }
     }
 
-    void mover() {
+    public void mover() {
         ArrayList<Ascensor> ascensores = new ArrayList<>(this.ascensores.values());
         for (Ascensor ascensor : ascensores) {
             ascensor.mover();
