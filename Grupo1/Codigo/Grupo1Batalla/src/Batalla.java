@@ -15,17 +15,14 @@ public class Batalla {
 
     public void comenzarBatalla(){
 
-        while (true){
+        boolean ambosPersonajesVivos = true;
+
+        while (ambosPersonajesVivos){
 
             vista.imprimirInterfaz();
 
             if (heroe.puedeActuar()){
                 turnoHeroe();
-
-                if (!enemigo.estaVivo()){
-                    vista.anunciarGanador(heroe);
-                    break;
-                }
 
             } else {
                 heroe.avanzarTurnoSinActuar();
@@ -33,19 +30,24 @@ public class Batalla {
                 vista.esperarInteraccion();
             }
 
-            if (enemigo.puedeActuar()){
-                turnoEnemigo();
+            if (enemigo.estaVivo()){
+                if (enemigo.puedeActuar()){
+                    turnoEnemigo();
 
-                if (!heroe.estaVivo()){
-                    vista.anunciarGanador(enemigo);
-                    break;
+                } else {
+                    enemigo.avanzarTurnoSinActuar();
                 }
-
             } else {
-                enemigo.avanzarTurnoSinActuar();
+                vista.anunciarGanador(heroe);
+                ambosPersonajesVivos = false;
             }
-            RegistroDeCombate.sacarAccionesTurnoACtual();
 
+            if (!heroe.estaVivo()){
+                vista.anunciarGanador(enemigo);
+                ambosPersonajesVivos = false;
+            }
+
+            RegistroDeCombate.sacarAccionesTurnoACtual();
             RegistroDeCombate.pasarTurno();
 
         }
