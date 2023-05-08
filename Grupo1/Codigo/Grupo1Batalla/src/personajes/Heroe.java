@@ -59,7 +59,9 @@ public class Heroe extends Personaje{
             RegistroDeCombate.anadirLog(this.nombre + ": Ha recibido " + danoARecibir + " puntos de dano");
         }
 
-        if (vidaActual < umbralVidaDesmayo){
+        if (vidaActual <= 0 ){
+            RegistroDeCombate.anadirLog(this.nombre + " : Ha muerto");
+        } else if (vidaActual < umbralVidaDesmayo){
             desmayar();
         }
     }

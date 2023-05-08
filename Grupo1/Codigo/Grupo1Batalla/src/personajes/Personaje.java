@@ -31,7 +31,9 @@ public abstract class Personaje {
 
         RegistroDeCombate.anadirLog(this.nombre + ": Ha recibido " + dano + " puntos de dano");
 
-        if (vidaActual < umbralVidaDesmayo){
+        if (vidaActual <= 0 ){
+            RegistroDeCombate.anadirLog(this.nombre + " : Ha muerto");
+        } else if (vidaActual < umbralVidaDesmayo){
             desmayado = true;
             RegistroDeCombate.anadirLog(this.nombre + " : Se ha desmayado");
         }
