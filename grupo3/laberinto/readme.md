@@ -11,6 +11,8 @@ abstract class Bloque
 class Main
 class RenderizadorMundo
 interface SeMueveSolo
+interface SePuedeRenderizar
+
 enum Direccion {
    ARRIBA (0, 1)
    ABAJO (0, -1)
@@ -20,6 +22,7 @@ enum Direccion {
 
 RenderizadorMundo : void renderizar(Mundo mundo)
 SeMueveSolo : Vector getVectorMovimientoSolo(Entidad entidad)
+SePuedeRenderizar : String getDibujo(Mundo mundo)
 
 Main --> Mundo : Crea y inicia
 
@@ -63,6 +66,9 @@ Entidad <|-- Barca
 Entidad <|-- Alfombra
 Entidad <|-- Caballo
 NPC --|> SeMueveSolo
+
+Bloque <|-- SePuedeRenderizar
+Entidad <|-- SePuedeRenderizar
 
 class InputUsuario
 InputUsuario : String leer()
