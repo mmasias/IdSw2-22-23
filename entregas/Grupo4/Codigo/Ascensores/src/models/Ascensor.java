@@ -19,7 +19,6 @@ public class Ascensor {
         this.personas = new ArrayList<>();
         this.estado = EstadoAscensor.PARADO;
     }
-
     public Planta getPlantaActual() {
         for (Planta planta : plantas) {
             if (planta.getNivel() == nivel)
@@ -27,7 +26,6 @@ public class Ascensor {
         }
         return null;
     }
-
     public int getPersonasEnAscensor() {
         return personas.size();
     }
@@ -94,7 +92,6 @@ public class Ascensor {
             bajarPersonas();
         }
     }
-
     public void llamar(Planta planta) {
         if (planta.getNivel() == nivel)
             return;
@@ -118,7 +115,6 @@ public class Ascensor {
         nivel++;
         bajarPersonas();
     }
-
     public void bajar() {
         if (getPlantaActual().getNivel()-1 < Constans.NIVEL_INFERIOR)
             throw new RuntimeException("No hay mas plantas");
