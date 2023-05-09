@@ -81,17 +81,33 @@ public class PurchaseModel {
         final int optionProduct = this.scanner.nextInt();
         return products.get(optionProduct - 1);
     }
+
+    private Boolean correctBillSize(double billSize){
+        if(billSize==5||billSize==10||billSize==20){
+            return true;
+        }
+        else{
+            System.out.println("Debes ingresar un tamaño de billete valido");
+            return false;
+        }
+    }
     
-    public BillModel depositMoney(BillModel bill) {
-        System.out.println("Ingrese el tamaño: ");
-        double sizeMoney = scanner.nextDouble();
-        bill.updateValue(sizeMoney);
+    public BillModel depositMoney(List<BillModel> bills) {
+        boolean correctSize = false;
+        do{
+            System.out.println("Ingrese el tamaño: ");
+            double sizeMoney = scanner.nextDouble();
+            correctSize = correctBillSize(sizeMoney);
+            //bill.updateValue(sizeMoney);
+        }
+        while (!correctSize);
+
 
         System.out.println("Ingrese la cantidad: ");
         double quantity = scanner.nextDouble();
-        bill.updateQuantity((int)quantity);
+        //bill.updateQuantity((int)quantity);
 
-        return bill;
+        return new BillModel(8,8);
     }
 
     public CoinModel depositMoney(CoinModel coin) {

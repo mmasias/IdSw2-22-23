@@ -25,7 +25,7 @@ public class PurchaseController {
 
         purchaseModel.showProductSelection(machine.listOfProducts());
         final ProductModel selectedProduct = purchaseModel.selectProduct(machine.listOfProducts());
-        double moneyDeposited = selectTypeMoney();
+        double moneyDeposited = selectTypeMoney(machine);
 
         while (moneyDeposited < selectedProduct.price) {
             System.out.println("Dinero insuficiente. Ingrese más dinero:");
@@ -38,7 +38,7 @@ public class PurchaseController {
         printTicket(selectedProduct, messageChange);
     }
 
-    public double selectTypeMoney() {
+    public double selectTypeMoney(MachineModel machine) {
         boolean exit = false;
         double moneyDeposited = 0;
 
@@ -53,7 +53,7 @@ public class PurchaseController {
             option = scanner.nextLine();
 
             if(option.equals("1"))
-                moneyDeposited = purchaseModel.depositMoney(new BillModel(0, 0)).value;
+                moneyDeposited = purchaseModel.depositMoney(machine.listOfBills()).value;
             else if(option.equals("2"))
                 moneyDeposited = purchaseModel.depositMoney(new CoinModel(0, 0)).value;
             else if(option.equals("3")){
