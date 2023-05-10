@@ -1,5 +1,7 @@
 # Principio de Demeter
 
+No hables con extraños...
+
 ```java
 
 public class Simulacion {
