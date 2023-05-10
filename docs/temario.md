@@ -40,11 +40,12 @@
 
 > Nivel: Jerarquías de clasificación
 
-- [x] S [Principio de responsabilidad única](/docs/SOLID/SOLID_S.md)
-- [ ] O [Principio de abierto/cerrado](/docs/SOLID/SOLID_O.md)
-- [ ] L [Principio de Sustitución de Liskov](/docs/SOLID/SOLID_L.md)
-- [ ] I [Principio de segregación de interfaces](/docs/SOLID/SOLID_I.md)
-- [ ] D [Principio de Inversión de Dependencias](/docs/SOLID/SOLID_D.md)
+- [x] S [Principio de responsabilidad única](/docs/SOLID_et_al/SOLID_S.md)
+- [x] O [Principio de abierto/cerrado](/docs/SOLID_et_al/SOLID_O.md)
+- [x] L [Principio de Sustitución de Liskov](/docs/SOLID_et_al/SOLID_L.md)
+- [x] I [Principio de segregación de interfaces](/docs/SOLID_et_al/SOLID_I.md)
+- [x] D [Principio de Inversión de Dependencias](/docs/SOLID_et_al/SOLID_D.md)
+- [x] [Demeter](/docs/SOLID_et_al/demeter.md)
 - [ ] Inversión de Control
 - [ ] Inyección de Dependencias / [Caso](casos/inyeccionDependenciasCaso.md)
 - [ ] Patrón Método Plantilla
