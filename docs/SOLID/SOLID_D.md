@@ -23,26 +23,6 @@ class Mapa {
     }
 }
 
-public class Main {
-    public static void main(String[] args) {
-        Mapa mapa = new Mapa();
-        mapa.moverGato();
-        mapa.moverAspiradora();
-    }
-}
-
-class Gato {
-    public void mover() {
-        System.out.println("El gato se está moviendo");
-    }
-}
-
-class Aspiradora {
-    public void mover() {
-        System.out.println("La aspiradora se está moviendo");
-    }
-}
-
 ```
 
 </td>
@@ -68,6 +48,27 @@ class Mapa {
     }
 }
 
+```
+</td></td>
+<tr><td valign="top">
+
+```java
+
+public class Main {
+    public static void main(String[] args) {
+        Mapa mapa = new Mapa();
+        mapa.moverGato();
+        mapa.moverAspiradora();
+    }
+}
+
+```
+
+</td>
+<td valign="top">
+
+```java
+
 public class Main {
     public static void main(String[] args) {
         ObjetoMovable gato = new Gato();
@@ -78,9 +79,47 @@ public class Main {
     }
 }
 
+```
+</td></td>
+<tr><td valign="top">
+
+```java
+
+```
+
+</td>
+<td valign="top">
+
+```java
+
 interface ObjetoMovable {
     void mover();
 }
+
+```
+</td></td>
+<tr><td valign="top">
+
+```java
+
+class Gato {
+    public void mover() {
+        System.out.println("El gato se está moviendo");
+    }
+}
+
+class Aspiradora {
+    public void mover() {
+        System.out.println("La aspiradora se está moviendo");
+    }
+}
+
+```
+
+</td>
+<td valign="top">
+
+```java
 
 class Gato implements ObjetoMovable {
     @Override
@@ -97,4 +136,5 @@ class Aspiradora implements ObjetoMovable {
 }
 
 ```
-</td></td></table>
+</td></td>
+</table>
