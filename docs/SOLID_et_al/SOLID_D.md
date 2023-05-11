@@ -107,3 +107,7 @@ class Aspiradora implements ObjetoMovible {
 ```
 
 ---
+
+## Inyección de dependencias
+
+[Caso calculadora](../casos/inyeccionDependenciasCaso.md)
