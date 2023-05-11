@@ -47,7 +47,7 @@
 - [x] D [Principio de Inversión de Dependencias](/docs/SOLID_et_al/SOLID_D.md)
 - [x] [Demeter](/docs/SOLID_et_al/demeter.md)
 - [x] [Inversión de Control](casos/IoC.md)
-- [x] Inyección de Dependencias / [Caso](casos/inyeccionDependenciasCaso.md)
+- [x] [Inyección de Dependencias](casos/inyeccionDependenciasCaso.md)
 - [ ] Patrón Método Plantilla
 
 ## Patrones de diseño
