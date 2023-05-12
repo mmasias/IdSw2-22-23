@@ -5,6 +5,7 @@ import java.util.List;
 import models.BillModel;
 
 public class BillController {
+
     public List<BillModel> createBillList(
         int quantity1, int quantity2, int quantity3, int quantity4, int quantity5
     ) {
@@ -16,4 +17,5 @@ public class BillController {
         bills.add(new BillModel(1, quantity5));
         return bills;
     }
+
 }

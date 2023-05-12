@@ -18,5 +18,6 @@ public abstract class  MoneyAbstract {
         this.quantity = quantity;
     }
 
+
     public abstract void received(PurchaseModel purchaseModel);
 }

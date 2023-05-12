@@ -1,5 +1,7 @@
 package models;
 
+import controllers.BillController;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -82,8 +84,8 @@ public class PurchaseModel {
         return products.get(optionProduct - 1);
     }
 
-    private Boolean correctBillSize(double billSize){
-        if(billSize==5||billSize==10||billSize==20){
+    private Boolean correctBillSize(double moneySize){
+        if(moneySize==5||moneySize==10||moneySize==20){
             return true;
         }
         else{
@@ -91,21 +93,34 @@ public class PurchaseModel {
             return false;
         }
     }
+
+    public BillModel getBillByValue(double value, List<BillModel> billList){
+        BillModel billShell = new BillModel(value, 0);
+        for (BillModel currentBill:billList) {
+            if(currentBill.compareValue(billShell) == 0){
+                return currentBill;
+            }
+        }
+        return billShell;
+    }
     
     public BillModel depositMoney(List<BillModel> bills) {
-        boolean correctSize = false;
+        boolean correctSize = true;
+        double sizeMoney = 0;
+
         do{
             System.out.println("Ingrese el tamaño: ");
-            double sizeMoney = scanner.nextDouble();
+            sizeMoney = scanner.nextDouble();
             correctSize = correctBillSize(sizeMoney);
-            //bill.updateValue(sizeMoney);
         }
         while (!correctSize);
 
+        BillModel billSelect = getBillByValue(sizeMoney, bills);
 
         System.out.println("Ingrese la cantidad: ");
         double quantity = scanner.nextDouble();
-        //bill.updateQuantity((int)quantity);
+        double currentQuantity = billSelect.quantity;
+        billSelect.updateQuantity(((int)quantity + (int)currentQuantity));
 
         return new BillModel(8,8);
     }
