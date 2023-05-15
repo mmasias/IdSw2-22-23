@@ -84,17 +84,18 @@ public class PurchaseModel {
         return products.get(optionProduct - 1);
     }
 
-    private Boolean correctBillSize(double moneySize){
-        if(moneySize==5||moneySize==10||moneySize==20){
-            return true;
+    private Boolean correctBillSize(double moneySize, List<BillModel> billList){
+        BillModel billShell = new BillModel(moneySize, 0);
+        for(BillModel currentBill:billList){
+            if (currentBill.compareValue(billShell)==0){
+                return true;
+            }
         }
-        else{
-            System.out.println("Debes ingresar un tamaño de billete valido");
-            return false;
-        }
+        System.out.println("Debes ingresar un tamaño de billete valido");
+        return false;
     }
 
-    public BillModel getBillByValue(double value, List<BillModel> billList){
+    private BillModel getBillModelByValue(double value, List<BillModel> billList){
         BillModel billShell = new BillModel(value, 0);
         for (BillModel currentBill:billList) {
             if(currentBill.compareValue(billShell) == 0){
@@ -103,25 +104,33 @@ public class PurchaseModel {
         }
         return billShell;
     }
+
+    private void printBillsList(List<BillModel> bills){
+        for(BillModel bill:bills){
+            System.out.println("Billete: "+bill.value);
+            System.out.println("Cantidad: "+bill.quantity);
+            System.out.println("-------------------------");
+        }
+    }
     
     public BillModel depositMoney(List<BillModel> bills) {
         boolean correctSize = true;
         double sizeMoney = 0;
-
+        printBillsList(bills);
         do{
             System.out.println("Ingrese el tamaño: ");
             sizeMoney = scanner.nextDouble();
-            correctSize = correctBillSize(sizeMoney);
+            correctSize = correctBillSize(sizeMoney, bills);
         }
         while (!correctSize);
 
-        BillModel billSelect = getBillByValue(sizeMoney, bills);
+        BillModel billSelect = getBillModelByValue(sizeMoney, bills);
 
         System.out.println("Ingrese la cantidad: ");
         double quantity = scanner.nextDouble();
         double currentQuantity = billSelect.quantity;
         billSelect.updateQuantity(((int)quantity + (int)currentQuantity));
-
+        printBillsList(bills);
         return new BillModel(8,8);
     }
 
