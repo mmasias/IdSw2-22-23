@@ -18,4 +18,16 @@ public class BillController {
         return bills;
     }
 
+    public int getHighestValue(List<BillModel> bills){
+       int highestValue = 0;
+
+        for (BillModel bill: bills) {
+            if(highestValue < (int) bill.value){
+                highestValue = (int) bill.value;
+            }
+        }
+
+        return highestValue;
+    }
+
 }
