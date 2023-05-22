@@ -107,7 +107,6 @@ public class PurchaseModel {
         double quantity = scanner.nextDouble();
         double currentQuantity = billSelect.quantity;
         billSelect.updateQuantity(((int)quantity + (int)currentQuantity));
-        printBillsList(bills);
 
         double balance = billSelect.value * quantity;
         return balance;
