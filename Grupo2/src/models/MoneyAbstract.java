@@ -19,4 +19,12 @@ public abstract class  MoneyAbstract {
     }
 
     public abstract void received(PurchaseModel purchaseModel);
+
+    public double getValue(){
+        return value;
+    }
+
+    public int getQuantity(){
+        return quantity;
+    }
 }

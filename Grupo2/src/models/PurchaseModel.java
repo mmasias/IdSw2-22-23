@@ -3,6 +3,8 @@ package models;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 public class PurchaseModel {
     private Scanner scanner = new Scanner(System.in);
 
@@ -23,6 +25,7 @@ public class PurchaseModel {
                     amountReceived - amountProduct
                 );
             } else {
+                updateUsedMoneyQuantity(machine, messageChange);
                 return messageChange;
             }
         } else {
@@ -71,7 +74,7 @@ public class PurchaseModel {
 
         for (int i = 0; i < products.size(); i++) {
             final ProductModel product = products.get(i);
-            System.out.println((i + 1) + ". " + product.name + " - $" + product.price + " C: " + product.quantity);
+            System.out.println((i + 1) + ". " + product.name + " - $" + product.price);
         }
     }
     
@@ -106,5 +109,40 @@ public class PurchaseModel {
         coin.updateQuantity((int)quantity);
 
         return coin;
+    }
+
+    private void updateUsedMoneyQuantity(MachineModel machine, String messageChange){
+        List<BillModel> bills = machine.listOfBills();
+        List<CoinModel> coins = machine.listOfCoins();
+
+        String[] changeParts = messageChange.split(", ");
+
+        for(String part : changeParts) {
+            String[] quantityParts = part.split("x ");
+            int quantity = Integer.parseInt(quantityParts[0]);
+            String valueString = quantityParts[1].substring(1);
+            double value = Double.parseDouble(valueString);
+
+            if (isBill(value)) {
+                updateQuantity(bills, value, -quantity);
+            } else {
+                updateQuantity(coins, value, -quantity);
+            }
+        }
+    }
+
+    private boolean isBill(double value) {
+        return value % 1 == 0;
+    }
+
+    private void updateQuantity(List<? extends MoneyAbstract> moneyList, double value, int quantityChange) {
+        for (MoneyAbstract money : moneyList) {
+            if (money.value == value) {
+                money.updateQuantity(money.quantity + quantityChange);
+                /*System.out.print("Value : " + money.getValue());
+                System.out.println(" Quantity : " + money.getQuantity());*/
+                break;
+            }
+        }
     }
 }

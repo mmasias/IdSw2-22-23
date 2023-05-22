@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bdd7b49-1381-4be9-8f7b-c3b8d8aa8726" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Grupo2/src/controllers/MaintenanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grupo2/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grupo2/src/Mantenimiento.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grupo2/src/models/MaintenanceModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/models/MaintenanceModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grupo2/src/models/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/models/ProductModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grupo2/src/models/MoneyAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/models/MoneyAbstract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Grupo2/src/models/PurchaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/models/PurchaseModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grupo2/src/views/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/views/ProductView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grupo2/src/views/PurchaseView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/views/PurchaseView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/MoneyAbstract.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/MoneyAbstract.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/PurchaseModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/PurchaseModel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +48,7 @@
       <option name="presentableId" value="Default" />
       <updated>1678363176764</updated>
       <workItem from="1684727445850" duration="684000" />
-      <workItem from="1684728169889" duration="5963000" />
+      <workItem from="1684728169889" duration="15010000" />
     </task>
     <servers />
   </component>
