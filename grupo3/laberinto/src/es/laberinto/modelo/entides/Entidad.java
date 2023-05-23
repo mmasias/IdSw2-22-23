@@ -52,28 +52,12 @@ public abstract class Entidad {
         return this.otraEntidadPuedeMontarse() && !otraEntidadEstaMontada();
     }
 
-    public Entidad getEntidadMontadaSobreMi() {
-        return entidadMontadaSobreMi;
-    }
-
     public Posicion getPosicion() {
         return posicion;
     }
 
-    public Entidad getEntidadSobreLaQueEstoyMontado() {
-        return entidadSobreLaQueEstoyMontado;
-    }
-
     public double getBufferMovimeintoAnteriorTurno() {
         return bufferMovimeintoAnteriorTurno;
-    }
-
-    public void setEntidadMontadaSobreMi(Entidad entidadMontadaSobreMi) {
-        this.entidadMontadaSobreMi = entidadMontadaSobreMi;
-    }
-
-    public void setEntidadSobreLaQueEstoyMontado(Entidad entidadSobreLaQueEstoyMontado) {
-        this.entidadSobreLaQueEstoyMontado = entidadSobreLaQueEstoyMontado;
     }
 
     public Posicion getPosicionDondeQuiereMoverseAnteriorTurno() {

@@ -17,18 +17,16 @@ public final class Mundo {
     private final RenderizadorMundo renderizadorMundo;
     private final InputUsuario inputUsuario;
 
-    public final List<Entidad> entidades;
-    public final Bloque[][] bloques;
+    private final List<Entidad> entidades;
+    private final Bloque[][] bloques;
+    private final Personaje personaje;
     private int tiempoTranscurrido;
-    private final Scanner scanner;
-    public Personaje personaje;
 
-    public Mundo(List<Entidad> entidades, Bloque[][] bloques, RenderizadorMundo renderizadorMundo) {
+    public Mundo(List<Entidad> entidades, Personaje personaje, Bloque[][] bloques, RenderizadorMundo renderizadorMundo) {
         this.entidades = entidades;
+        this.personaje = personaje;
         this.bloques = bloques;
-        this.scanner = new Scanner(System.in);
-        this.renderizadorMundo = new RenderizadorMundo();
-        this.personaje = this.getPersonaje(entidades);
+        this.renderizadorMundo = renderizadorMundo;
         this.inputUsuario = new InputUsuario();
     }
 
@@ -54,18 +52,8 @@ public final class Mundo {
         }
     }
 
-    private Personaje getPersonaje(List<Entidad> entidades) {
-        for (Entidad entidad : entidades) {
-            if(entidad instanceof Personaje personaje) {
-                return personaje;
-            }
-        }
-
-        return null;
-    }
-
     public void moverPersonaje(Direccion direccion) {
-        this.mover(this.personaje, direccion.getVector());
+        mover(this.personaje, direccion.getVector());
     }
 
     public void desmontarsePersonaje() {
@@ -78,6 +66,10 @@ public final class Mundo {
 
     public Bloque getBloque(Posicion posicion) {
         return this.bloques[posicion.y()][posicion.x()];
+    }
+
+    public Bloque[][] getBloques() {
+        return this.bloques;
     }
 
     public Entidad getEntidad(Posicion posicion) {
@@ -116,22 +108,23 @@ public final class Mundo {
         return entidades;
     }
 
-    private boolean mover(Entidad entidad, Vector vector) {
+    private void mover(Entidad entidad, Vector vector) {
         Posicion posicionAPartirDeVector = entidad.getPosicion().nuevaPosicionAPartirDe(vector);
 
         if(!this.entidadSePuedeMoverALaPosicion(entidad, posicionAPartirDeVector))
-            return false;
+            return;
 
         Bloque bloqueEnPosicionAPartirDeVector = getBloque(posicionAPartirDeVector);
         double velocidadSiguienteBloque = bloqueEnPosicionAPartirDeVector.velocidad();
         if(velocidadSiguienteBloque >= 1){
             Posicion nuevaPosicion = entidad.getPosicion().nuevaPosicionAPartirDe(vector.aumentarEn(velocidadSiguienteBloque));
 
-            if(!this.entidadSePuedeMoverALaPosicion(entidad, nuevaPosicion)) return false;
+            if(!entidadSePuedeMoverALaPosicion(entidad, nuevaPosicion)){
+                return;
+            }
 
             actualizarPosicionEntidad(entidad, nuevaPosicion);
-
-            return true;
+            return;
         }
 
         if(!posicionAPartirDeVector.mismaPosicion(entidad.getPosicionDondeQuiereMoverseAnteriorTurno())) {
@@ -143,10 +136,7 @@ public final class Mundo {
 
         if(entidad.getBufferMovimeintoAnteriorTurno() >= 1){
             actualizarPosicionEntidad(entidad, posicionAPartirDeVector);
-            return true;
         }
-
-        return false;
     }
 
     private void actualizarPosicionEntidad(Entidad entidad, Posicion nuevaPosicion) {

@@ -19,6 +19,7 @@ public final class Main {
     public static void main(String[] args) {
         Mundo mundo = new Mundo(
                 crearListaEntidades(),
+                Personaje.crear(POSICION_INICIAL_PERSONAJE),
                 crearArrayaBloques(),
                 new RenderizadorMundo()
         );
@@ -31,8 +32,7 @@ public final class Main {
                 Barca.crear(POSICION_INICIAL_BARCA),
                 Alfombra.crear(POSICION_INICIAL_ALFOMBRA),
                 Caballo.crear(POSICION_INICIAL_CABALLO),
-                NPC.crear(POSICION_INICIAL_NPC),
-                Personaje.crear(POSICION_INICIAL_PERSONAJE)
+                NPC.crear(POSICION_INICIAL_NPC)
         );
     }
 
