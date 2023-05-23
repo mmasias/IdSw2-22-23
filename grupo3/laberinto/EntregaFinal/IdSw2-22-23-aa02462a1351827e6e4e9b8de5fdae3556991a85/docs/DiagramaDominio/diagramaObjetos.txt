@@ -1,0 +1,38 @@
+@startuml
+object "mundo: Mundo" as mundo{
+        Tamaño: 6x6 
+        TiempoTranscurrido: 0.10
+        ArrayBloques[]
+        ListaEntidades[]
+	Movimiento: Se mueve derecha()
+        Comprobarmovimiento: Se puede mover a la derecha()
+}
+object "bloques: Bloques" as bloques{
+        Tipo: Cesped
+	Velocidad: 1
+	TransitableCon: Personaje
+}
+object "entidades: Entidades" as entidades{ 
+        Posicion: 1,1
+	Direccion: tecla d (0,+1)/Movimiento derecha
+}
+object "npcs: NPCs" as npcs{
+}
+object "personaje: Personaje" as personaje{
+        TipoEntidadMontado: Null (equivale a pie)
+        CampoVision: 10
+}
+object "barca: Barca" as barca{
+}
+object "alfombra: Alfombra" as alfombra{
+}
+object "caballo: Caballo" as caballo{
+}
+mundo --> bloques : esta formado por
+mundo -> entidades : contiene
+entidades --> npcs
+entidades --> personaje
+entidades --> barca
+entidades --> alfombra
+entidades --> caballo
+@enduml

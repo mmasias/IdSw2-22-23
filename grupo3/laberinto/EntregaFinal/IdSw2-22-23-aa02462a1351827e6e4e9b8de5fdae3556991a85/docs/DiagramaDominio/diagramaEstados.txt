@@ -1,0 +1,10 @@
+@startuml
+state c <<choice>>
+MundoCreado --> JugadorCreado
+JugadorCreado --> JugadorPosicionado : se posiciona el jugador en casilla inicial
+JugadorPosicionado --> JugadorMovido : se mueve el jugador
+JugadorMovido --> c
+c -> JugadorPosicionado : se posiciona el jugador en nueva casilla
+c --> JuegoAcabado : se posiciona el jugador en casilla de salida
+JuegoAcabado --> [*]
+@enduml
