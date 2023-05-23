@@ -25,7 +25,7 @@ public class PurchaseController {
 
         purchaseModel.showProductSelection(machine.listOfProducts());
         final ProductModel selectedProduct = purchaseModel.selectProduct(machine.listOfProducts());
-        double moneyDeposited = selectTypeMoney();
+        double moneyDeposited = selectTypeMoney(machine);
 
         while (moneyDeposited < selectedProduct.price) {
             System.out.println("Dinero insuficiente. Ingrese más dinero:");
@@ -33,12 +33,13 @@ public class PurchaseController {
         }
 
         final double change = moneyDeposited - selectedProduct.price;
-        final String messageChange = purchaseModel.calculateChange(change, selectedProduct.price, machine);
+        //final String messageChange = purchaseModel.calculateChange(change, selectedProduct.price, machine);
+        String messageChange = purchaseModel.returnChange(change, machine);
 
         printTicket(selectedProduct, messageChange);
     }
 
-    public double selectTypeMoney() {
+    public double selectTypeMoney(MachineModel machine) {
         boolean exit = false;
         double moneyDeposited = 0;
 
@@ -53,7 +54,7 @@ public class PurchaseController {
             option = scanner.nextLine();
 
             if(option.equals("1"))
-                moneyDeposited = purchaseModel.depositMoney(new BillModel(0, 0)).value;
+                moneyDeposited = purchaseModel.depositMoney(machine.listOfBills());
             else if(option.equals("2"))
                 moneyDeposited = purchaseModel.depositMoney(new CoinModel(0, 0)).value;
             else if(option.equals("3")){
@@ -71,7 +72,7 @@ public class PurchaseController {
         System.out.println("Gracias por su compra. Aquí tiene su " + product.name + ".");
 
         if (!messageChange.isEmpty()) {
-            System.out.println("Su cambio es: " + messageChange);
+            System.out.println("Su cambio es: \n" + messageChange);
         }
     }
 
