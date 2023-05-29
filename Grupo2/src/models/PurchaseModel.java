@@ -1,5 +1,6 @@
 package models;
 
+import javax.crypto.Mac;
 import java.util.List;
 import java.util.Scanner;
 
@@ -94,7 +95,15 @@ public class PurchaseModel {
 
         System.out.println("Ingrese la cantidad: ");
         double quantity = scanner.nextDouble();
-        bill.updateQuantity((int)quantity);
+
+        bill.updateQuantity((int) quantity);
+
+        /*for (BillModel machineBill : machine.listOfBills()) {
+            if (machineBill.value == bill.value) {
+                machineBill.updateQuantity(machineBill.getQuantity() + bill.getQuantity());
+                break;
+            }
+        }*/
 
         return bill;
     }
@@ -106,7 +115,7 @@ public class PurchaseModel {
 
         System.out.println("Ingrese la cantidad: ");
         double quantity = scanner.nextDouble();
-        coin.updateQuantity((int)quantity);
+        coin.updateQuantity((int) quantity);
 
         return coin;
     }
@@ -139,8 +148,6 @@ public class PurchaseModel {
         for (MoneyAbstract money : moneyList) {
             if (money.value == value) {
                 money.updateQuantity(money.quantity + quantityChange);
-                /*System.out.print("Value : " + money.getValue());
-                System.out.println(" Quantity : " + money.getQuantity());*/
                 break;
             }
         }

@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3bdd7b49-1381-4be9-8f7b-c3b8d8aa8726" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grupo2/src/models/MoneyAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/models/MoneyAbstract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grupo2/src/models/BillModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/models/BillModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Grupo2/src/models/PurchaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/models/PurchaseModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/MoneyAbstract.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/MoneyAbstract.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/BillModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/BillModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/PurchaseModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IdSw2-22-23/models/PurchaseModel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +36,10 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/René/Documents/Ing de Soft 2/IdSw2-22-23&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rene Ixcopal/Documents/Progra 2/awesome-projects-prograii&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -49,6 +52,11 @@
       <updated>1678363176764</updated>
       <workItem from="1684727445850" duration="684000" />
       <workItem from="1684728169889" duration="15010000" />
+      <workItem from="1684751393488" duration="2996000" />
+      <workItem from="1684759030780" duration="1138000" />
+      <workItem from="1684760395952" duration="1204000" />
+      <workItem from="1684761709646" duration="2182000" />
+      <workItem from="1685359858369" duration="796000" />
     </task>
     <servers />
   </component>
