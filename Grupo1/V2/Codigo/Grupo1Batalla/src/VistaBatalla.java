@@ -9,9 +9,7 @@ public class VistaBatalla {
 
     protected RecuadroPersonaje recuadro;
     protected Heroe heroe;
-
     private Scanner entrada;
-
     private final int ATACAR = 1;
     private final int DEFENDER = 2;
     private final int CURARSE = 3;

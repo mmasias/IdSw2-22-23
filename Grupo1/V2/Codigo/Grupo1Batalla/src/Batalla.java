@@ -40,12 +40,11 @@ public class Batalla {
             RegistroDeCombate.pasarTurno();
 
         }
-
-        RegistroDeCombate.sacarAccionesTotal();
+        vista.imprimeRecuentoDeBatalla();
     }
 
     private boolean personajeHaMuerto(Personaje posiblePerdedor){
-        return posiblePerdedor.estaVivo();
+        return !posiblePerdedor.estaVivo();
     }
 
     private void turnoHeroe(){
