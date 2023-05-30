@@ -1,0 +1,134 @@
+@startuml
+
+top to bottom direction
+skinparam linetype ortho
+
+class Arma {
+  + Arma(String, int, int, double): 
+  - nombre: String
+  - probAcertar: double
+  - dano: int
+  - durabilidad: int
+  + desgastar(): void
+  + tipoArma(): Arma
+   dano: int
+   durabilidad: int
+   probAcertar: double
+   nombre: String
+}
+class Batalla {
+  + Batalla(Heroe, Enemigo): 
+  - jugadorEligeAccion(): void
+  - personajeHaMuerto(Personaje): boolean
+  + comenzarBatalla(): void
+  - turnoEnemigo(): void
+  - enemigoActua(): void
+  - turnoHeroe(): void
+}
+class CreadorPersonajes {
+  + CreadorPersonajes(): 
+  + Enemigo(): Enemigo
+  + Heroe(): Heroe
+}
+class Enemigo {
+  + Enemigo(String, Vida, Arma[], String[]): 
+  + equiparArmaAleatoria(): void
+}
+class Heroe {
+  + Heroe(String, Vida, Arma[], String[]): 
+  - acciones: String[]
+  + recibirDano(int): void
+  + iniciarEstadoDeCuracion(): void
+  + puedeActuar(): boolean
+  - recibirDanoDefendiendose(int): void
+  + avanzarTurnoDeCuracion(): void
+  + defenderse(): void
+  + avanzarTurnoSinActuar(): void
+   acciones: String[]
+}
+class MainBatalla {
+  + MainBatalla(): 
+  + main(String[]): void
+}
+class Personaje {
+  + Personaje(String, Vida, Arma[], String[]): 
+  # sprite: String[]
+  # nombre: String
+  # armas: Arma[]
+  + curarseDesmayado(): void
+  + avanzarTurnoSinActuar(): void
+  + estaVivo(): boolean
+  # comprobarEstado(): void
+  + atacar(Personaje): void
+  + despertar(): void
+  + equiparArma(int): void
+  + comprobarSiSeDespierta(): void
+  + puedeActuar(): boolean
+  + desmayar(): void
+  + recibirDano(int): void
+   armas: Arma[]
+   sprite: String[]
+   vidaActual: int
+   nombre: String
+}
+class RecuadroPersonaje {
+  + RecuadroPersonaje(Personaje, Personaje): 
+  - llenarHuecos(String[], int): String[]
+  + imprimir(): void
+  - unirSprites(): String[]
+}
+class RegistroDeCombate {
+  + RegistroDeCombate(): 
+  - log: TreeMap<Integer, String>
+  + sacarAccionesTurnoElegir(Integer): void
+  + sacarAccionesTurnoActual(): void
+  + anadirLog(String): void
+  + sacarAccionesTotal(): void
+  + turnoActual(): int
+  + pasarTurno(): void
+   accionesTurnoActual: String
+   log: Collection<String>
+}
+class Vida {
+  + Vida(int, int, int): 
+  # vidaARecuperarDesmayado: int
+  # vidaActual: int
+  + curarPorCompleto(): void
+  + mayorQueCero(): boolean
+  + restarVida(int): void
+  + debajoDelUmbral(): boolean
+  + curarDesmayado(): void
+   umbralDesmayo: int
+   vidaActual: int
+   vidaARecuperarDesmayado: int
+}
+class VistaBatalla {
+  + VistaBatalla(Heroe, Enemigo): 
+  + imprimirInterfaz(): void
+  + anunciarGanador(Personaje): void
+  + imprimeRecuentoDeBatalla(): void
+  + elegirArma(): int
+  - mostrarArmas(): void
+  + esperarInteraccion(): void
+  - scanElegir(int): int
+  + elegirAccion(): Acciones
+  - mostrarAcciones(): void
+  + imprimeAccionesDeTurnoActual(): void
+}
+
+Batalla            *-[#595959,plain]->  Enemigo           
+Batalla            *-[#595959,plain]->  Heroe             
+Batalla            *-[#595959,plain]->  VistaBatalla      
+CreadorPersonajes  -[#595959,dashed]->  Arma              
+CreadorPersonajes  -[#595959,dashed]->  Enemigo           
+CreadorPersonajes  -[#595959,dashed]->  Heroe             
+CreadorPersonajes  -[#595959,dashed]->  Vida              
+Enemigo            -[#000082,plain]-^  Personaje         
+Heroe              -[#000082,plain]-^  Personaje         
+MainBatalla        -[#595959,dashed]->  Batalla           
+Personaje          *-[#595959,plain]->  Arma              
+Personaje          *-[#595959,plain]->  Vida              
+RecuadroPersonaje  *-[#595959,plain]->  Personaje         
+VistaBatalla       *-[#595959,plain]->  Heroe             
+VistaBatalla       *-[#595959,plain]->  RecuadroPersonaje 
+@enduml
