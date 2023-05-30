@@ -68,7 +68,7 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 12   |
+| Número de líneas | 8   |
 | Número de métodos           | 1      |
 | Número de atributos          | 0     |
 
@@ -86,8 +86,8 @@
 ### Métricas de la clase Batalla
 | Métrica | Valor |
 | --- | --- |
-| Número de líneas | 77 |
-| Número de métodos | 4 |
+| Número de líneas | 51 |
+| Número de métodos | 7 |
 | Número de atributos | 3 |
 
 ### Métricas métodos clase Batalla
@@ -95,9 +95,12 @@
 |Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
 |----|-----| ---- | -----| ---- |
 |Batalla() | 2 | 3 |  0 |   1  |
-|comenzarBatalla() | 0 | 22 | 2 | 8  |
-|turnoHeroe() |  0 | 8 |  0 |   4  |
-|turnoEnemigo() | 0 | 2 |  0 |   1  |
+|comenzarBatalla() | 0 | 15 | 2 | 5 |
+|turnoHeroe() |  0 | 5 |  0 |   2  |
+|turnoEnemigo() | 0 | 4 |  0 |   2  |
+|personajeJaMuerto() | 1 | 1 |  0 |   1  |
+|jugadorEligeAccion() | 0 | 8 |  0 |   4  |
+|enemigoActua() | 0 | 2 |  0 |   1  |
 
 </details>
 
@@ -108,8 +111,8 @@
 
 | Métricas                | Valor |
 |------------------------|-------|
-| Número de líneas        | 90   |
-| Número de métodos       | 9     |
+| Número de líneas        | 57   |
+| Número de métodos       | 11     |
 | Número de atributos     | 6     |
 
 ### Métricas métodos clase VistaBatalla
@@ -119,12 +122,15 @@
 |VistaBatalla() | 2 | 3 |  0 |   1  |
 |imprimirInterfaz() | 0 | 1 | 0 | 1  |
 |anuciarGanador() | 1 | 1 | 0 | 1  |
-|elegirAcción() | 0 | 13 | 0 | 5  |
+|elegirAcción() | 0 | 10 | 0 | 5  |
 |elegirArma() | 0 | 2 | 0 | 1  |
 |esperarInteraccion() | 0 | 2 | 0 | 1  |
-|scanElegir() | 1 | 12 | 0 | 3  |
-|mostrarAcciones() | 0 | 3 | 0 | 1  |
-|mostrarArmas() | 0 | 3 | 0 | 1 |
+|scanElegir() | 1 | 7 | 0 | 3  |
+|mostrarAcciones() | 0 | 2 | 0 | 2  |
+|mostrarArmas() | 0 | 2 | 0 | 2 |
+|imprimirAccionesDeTurnoActual() | 0 | 1 | 0 | 1 |
+|imprimeRecuentoDeBatalla() | 0 | 3 | 0 | 2 |
+
 
 </details>
 
@@ -135,23 +141,21 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 112      |
-| Número de métodos           | 17       |
-| Número de atributos          | 9        |
+| Número de líneas | 57      |
+| Número de métodos           | 15       |
+| Número de atributos          | 6        |
 
 ### Métricas métodos clase Personaje
 
 |Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
 |----|-----| ---- | -----| ---- |
-|Personaje() | 6 | 7 |  0 |   1  |
-|recibirDaño() | 1 | 6 | 0 | 2  |
-|atacar() | 1 | 11 | 0 | 4 |
+|Personaje() | 6 | 4 |  0 |   1  |
+|recibirDaño() | 1 | 3 | 0 | 1  |
+|atacar() | 1 | 10 | 0 | 3 |
 |puedeActuar() | 0 | 1 | 0 | 1  |
 |avanzarTurnoSinActuar() | 0 | 1 | 0 | 1  |
-|curarseDesmayado() | 0 | 2 | 0 | 1  |
-|curarse() | 1 | 1 | 0 | 3  |
+|curarseDesmayado() | 0 | 3 | 0 | 1  |
 |despertar() | 0 | 2 | 0 | 1  |
-|comprobarSiSeDespierta() | 0 | 3 | 0 | 3  |
 |estaVivo() | 0 | 1 | 0 | 1  |
 |desmayar() | 0 | 2 | 0 | 1  |
 |getVidaActual() | 0 | 1 | 0 | 1  |
@@ -170,7 +174,7 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 92      |
+| Número de líneas | 54      |
 | Número de métodos           | 9    |
 | Número de atributos          | 5      |
 
@@ -178,14 +182,14 @@
 
 |Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
 |----|-----| ---- | -----| ---- |
-|Heroe() | 6 | 1 |  0 |   1  |
-|defenderse() | 0 | 5 | 0 | 2  |
+|Heroe() | 4 | 1 |  0 |   1  |
+|defenderse() | 0 | 4 | 0 | 2  |
 |iniciarEstadoDeCuración() | 0 | 3 | 0 | 1  |
-|avanzarTurnoDeCuración() | 0 | 6 | 0 | 2  |
+|avanzarTurnoDeCuración() | 0 | 5 | 0 | 2  |
 |puedeActuar() | 0 | 1 | 0 | 1  |
-|recibirDaño() | 1 | 11 | 0 | 4  |
-|avanzarTurnoSinActuar() | 0 | 8 | 0 | 5  |
-|recibirDañoDefendiendose() | 1 | 6 | 0 | 3  |
+|recibirDaño() | 1 | 8 | 0 | 2  |
+|avanzarTurnoSinActuar() | 0 | 7 | 0 | 5  |
+|recibirDañoDefendiendose() | 1 | 6 | 0 | 2  |
 |getAcciones() | 0 | 1 | 0 | 1  |
 
 </details>
@@ -197,7 +201,7 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 21    |
+| Número de líneas | 9    |
 | Número de métodos           | 2       |
 | Número de atributos          | 0        |
 
@@ -205,7 +209,7 @@
 
 |Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
 |----|-----| ---- | -----| ---- |
-|Enemigo() | 6 | 1 |  0 |   1  |
+|Enemigo() | 4 | 1 |  0 |   1  |
 |equiparArmaAleatoria() | 0 | 2 | 0 | 1  |
 
 </details>
@@ -218,7 +222,7 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 93   |
+| Número de líneas | 48   |
 | Número de métodos           | 4      |
 | Número de atributos          | 2      |
 
@@ -227,9 +231,9 @@
 |Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
 |----|-----| ---- | -----| ---- |
 |RecuadroPersonaje() | 2 | 2 |  0 |   1  |
-|unirSprites() | 0 | 8 | 0 | 2  |
-|llenarHuecos() | 2 | 8 | 0 | 3  |
-|imprimir() | 0 | 19 | 0 | 2  |
+|unirSprites() | 0 | 7 | 0 | 2  |
+|llenarHuecos() | 2 | 7 | 0 | 3  |
+|imprimir() | 0 | 18 | 0 | 2  |
 
 
 </details>
@@ -240,7 +244,7 @@
 ### Métricas de la clase Arma
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 37   |
+| Número de líneas | 21   |
 | Número de métodos           | 6    |
 | Número de atributos          | 4     |
 
@@ -258,25 +262,51 @@
 </details>
 
 <details>
+  <summary>Clase Vida</summary>
+
+### Métricas de la clase Vida
+| Métricas  | Valor |
+|---|---|
+| Número de líneas | 27   |
+| Número de métodos           | 9    |
+| Número de atributos          | 4     |
+
+### Métricas métodos clase Vida
+
+|Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
+|----|-----| ---- | -----| ---- |
+|Vida() | 3 | 4 |  0 |   1  |
+|restarVida() | 1 | 1 |  0 |   1  |
+|curarDesmayado() | 0 | 1 |  0 |   1  |
+|curarPorCompleto() | 0 | 1 |  0 |   1  |
+|getUmbralDesmayo() | 0 | 1 |  0 |   1  |
+|getVidaARecuperarDesmayado() | 0 | 1 |  0 |   1  |
+|getVidaActual() | 0 | 1 |  0 |   1  |
+|mayorQueCero() | 0 | 1 |  0 |   1  |
+|debajoDelUmbral() | 0 | 1 |  0 |   1  |
+
+</details>
+
+<details>
   <summary>Clase RegistroDeCombate</summary>
 
 ### Métricas de la clase RegistroDeCombate
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 45   |
-| Número de métodos           | 6      |
+| Número de líneas | 20   |
+| Número de métodos           | 5      |
 | Número de atributos          | 2      |
 
 ### Métricas métodos clase Arma
 
 |Método| Parámetros | Líneas | Sentencias anidadas| Complejidad ciclomática|
 |----|-----| ---- | -----| ---- |
-|anadirLog() | 0 | 7 | 0 | 3  |
-|sacarAccionesTotal() | 0 | 3 | 0 | 2  |
-|sacarAccionesTurnoActual() | 0 | 3 | 0 | 2  |
+|anadirLog() | 1 | 6 | 0 | 2  |
 |pasarTurno() | 0 | 1 | 0 | 1  |
 |turnoActual() | 0 | 1 | 0 | 1  |
+|getLog() | 0 | 1 | 0 | 1  |
+|getAccionesTurnoActual() | 0 | 1 | 0 | 1  |
 
 </details>
 
@@ -287,7 +317,7 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 70   |
+| Número de líneas | 50   |
 | Número de métodos           | 2      |
 | Número de atributos          | 0      |
 
