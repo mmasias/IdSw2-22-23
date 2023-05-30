@@ -28,7 +28,9 @@ public class CreadorPersonajes {
                 "            ==' '==            "
         };
 
-        Enemigo enemigo = new Enemigo("Vampiro", 60, armasEnemigo, spriteEnemigo, 20, 2);
+        //Enemigo enemigo = new Enemigo("Vampiro", 60, armasEnemigo, spriteEnemigo, 20, 2);
+        Vida vida = new Vida(60, 20,2);
+        Enemigo enemigo = new Enemigo("Vampiro", vida, armasEnemigo, spriteEnemigo);
 
         return enemigo;
 
@@ -63,7 +65,9 @@ public class CreadorPersonajes {
 
         };
 
-        Heroe heroe = new Heroe("Heroina", 150,armasHeroe, spriteHeroe, 30, 2);
+        //Heroe heroe = new Heroe("Heroina", 150,armasHeroe, spriteHeroe, 30, 2);
+        Vida vida = new Vida(150, 30, 2);
+        Heroe heroe = new Heroe("Heroina", vida, armasHeroe, spriteHeroe);
 
         return heroe;
     }

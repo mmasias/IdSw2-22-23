@@ -6,38 +6,37 @@ import extras.*;
 public class Personaje {
     protected String nombre;
     protected String[] sprite;
-    protected int vidaActual;
-    protected int vidaMaxima;
     protected Arma[] armas;
+    protected Vida vida;
+
     protected int armaEquipada;
     protected boolean desmayado;
 
-    protected final int umbralVidaDesmayo;
-    protected final int vidaCurarDesmayo;
-
-    public Personaje(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo) {
+    public Personaje(String nombre, Vida vida, Arma[] armas, String[] sprite) {
         this.nombre = nombre;
-        this.vidaMaxima = vidaMaxima;
         this.sprite = sprite;
-        this.umbralVidaDesmayo = umbralDesmayo;
-        this.vidaCurarDesmayo = curaPorDesmayo;
         this.armas = armas;
+        this.vida = vida;
 
-        vidaActual = vidaMaxima;
     }
 
     public void recibirDano(int dano) {
-        vidaActual -= dano;
+        vida.restarVida(dano);
 
         RegistroDeCombate.anadirLog(this.nombre + ": Ha recibido " + dano + " puntos de dano");
 
-        if (vidaActual <= 0 ){
+        comprobarEstado();
+
+    }
+
+    protected void comprobarEstado(){
+        if (vida.getVidaActual() <= 0 ){
             RegistroDeCombate.anadirLog(this.nombre + " : Ha muerto");
-        } else if (vidaActual < umbralVidaDesmayo){
-            desmayado = true;
-            RegistroDeCombate.anadirLog(this.nombre + " : Se ha desmayado");
+        } else if (vida.getVidaActual() < vida.getUmbralDesmayo()){
+            desmayar();
         }
     }
+
     public void atacar(Personaje personajeAAtacar){
         int probAcertar = (int) (Math.random() * 100);
         Arma arma = armas[armaEquipada];
@@ -63,9 +62,12 @@ public class Personaje {
     }
     public void curarseDesmayado(){
         RegistroDeCombate.anadirLog(this.nombre + " : Esta desmayado");
-        curarse(vidaCurarDesmayo);
+
+        vida.curarDesmayado();
+        RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado " + vida.getVidaARecuperarDesmayado());
     }
-    public void curarse(int vidaACurar){
+
+    /*public void curarse(int vidaACurar){
         if ((vidaActual + vidaACurar ) >= vidaMaxima){
             vidaActual = vidaMaxima;
             comprobarSiSeDespierta();
@@ -75,28 +77,27 @@ public class Personaje {
             RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado " + vidaACurar + " puntos de vida, ahora tiene " + this.vidaActual);
             comprobarSiSeDespierta();
         }
-    }
+    }*/
+
     public void despertar(){
         desmayado = false;
         RegistroDeCombate.anadirLog(this.nombre + " : Se ha despertado");
     }
     public void comprobarSiSeDespierta(){
-        if (!this.porDebajoDelUmbralDeDesmayo() && desmayado){
+        if (vida.debajoDelUmbral() && desmayado){
             despertar();
         }
     }
     public boolean estaVivo(){
-        return vidaActual > 0;
+        return vida.mayorQueCero();
     }
-    public boolean porDebajoDelUmbralDeDesmayo(){
-        return vidaActual < umbralVidaDesmayo;
-    }
+
     public void desmayar(){
         desmayado = true;
         RegistroDeCombate.anadirLog(this.nombre + ": Se ha desmayado");
     }
     public int getVidaActual(){
-        return vidaActual;
+        return vida.getVidaActual();
     }
     public void equiparArma(int armaAEquipar){
         armaEquipada = armaAEquipar;

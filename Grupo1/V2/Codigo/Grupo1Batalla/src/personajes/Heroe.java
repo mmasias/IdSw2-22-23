@@ -12,8 +12,8 @@ public class Heroe extends Personaje{
 
     private final int armadura = 5;
 
-    public Heroe(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo){
-        super(nombre, vidaMaxima, armas, sprite, umbralDesmayo, curaPorDesmayo);
+    public Heroe(String nombre, Vida vida, Arma[] armas, String[] sprite){
+        super(nombre, vida, armas, sprite);
     }
 
     public void defenderse(){
@@ -38,7 +38,7 @@ public class Heroe extends Personaje{
 
 
         if (turnosParaCurarseConPocion <= 0){
-            curarse(vidaMaxima);
+            vida.curarPorCompleto();
             esperandoACurarseConPocion = false;
         }
     }
@@ -55,15 +55,12 @@ public class Heroe extends Personaje{
             defendiendo = false;
             RegistroDeCombate.anadirLog(this.nombre + ": Ha dejado de defenderse");
         } else {
-            vidaActual -= danoARecibir;
+            vida.restarVida(danoARecibir);
             RegistroDeCombate.anadirLog(this.nombre + ": Ha recibido " + danoARecibir + " puntos de dano");
         }
 
-        if (vidaActual <= 0 ){
-            RegistroDeCombate.anadirLog(this.nombre + " : Ha muerto");
-        } else if (vidaActual < umbralVidaDesmayo){
-            desmayar();
-        }
+        comprobarEstado();
+
     }
 
     @Override
@@ -80,8 +77,9 @@ public class Heroe extends Personaje{
 
     private void recibirDanoDefendiendose(int danoARecibir){
         if (danoARecibir > armadura) {
-            RegistroDeCombate.anadirLog(this.nombre + ": Se estaba defendiendo y recibio " + (danoARecibir - armadura) + " puntos de dano");
-            vidaActual -= danoARecibir - armadura;
+            int danoARecibirDefendiendose = danoARecibir - armadura;
+            vida.restarVida(danoARecibirDefendiendose);
+            RegistroDeCombate.anadirLog(this.nombre + ": Se estaba defendiendo y recibio " + (danoARecibirDefendiendose) + " puntos de dano");
         } else {
             RegistroDeCombate.anadirLog(this.nombre + " : No ha recibido dano");
         }

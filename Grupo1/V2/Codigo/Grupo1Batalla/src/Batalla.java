@@ -21,43 +21,44 @@ public class Batalla {
 
             vista.imprimirInterfaz();
 
-            if (heroe.puedeActuar()){
-                turnoHeroe();
+            turnoHeroe();
 
-            } else {
-                heroe.avanzarTurnoSinActuar();
-
-                vista.esperarInteraccion();
-            }
-
-            if (enemigo.estaVivo()){
-                if (enemigo.puedeActuar()){
-                    turnoEnemigo();
-
-                } else {
-                    enemigo.avanzarTurnoSinActuar();
-                }
-            } else {
+            if (personajeHaMuerto(enemigo)){
                 vista.anunciarGanador(heroe);
-                ambosPersonajesVivos = false;
+                break;
+            } else {
+                turnoEnemigo();
             }
 
-            if (!heroe.estaVivo()){
+            if (personajeHaMuerto(heroe)){
                 vista.anunciarGanador(enemigo);
                 ambosPersonajesVivos = false;
             }
 
-            RegistroDeCombate.sacarAccionesTurnoACtual();
+            vista.imprimeAccionesDeTurnoActual();
+
             RegistroDeCombate.pasarTurno();
 
         }
 
-        System.out.println("-----");
         RegistroDeCombate.sacarAccionesTotal();
     }
 
+    private boolean personajeHaMuerto(Personaje posiblePerdedor){
+        return posiblePerdedor.estaVivo();
+    }
 
     private void turnoHeroe(){
+        if (heroe.puedeActuar()){
+            jugadorEligeAccion();
+        } else {
+            heroe.avanzarTurnoSinActuar();
+            vista.esperarInteraccion();
+        }
+    }
+
+
+    private void jugadorEligeAccion(){
         switch(vista.elegirAccion()){
             case ATACAR -> {
                 heroe.equiparArma(vista.elegirArma() - 1);
@@ -72,8 +73,17 @@ public class Batalla {
         }
     }
 
-    private void turnoEnemigo(){
+    private void enemigoActua(){
         enemigo.equiparArmaAleatoria();
         enemigo.atacar(heroe);
     }
+
+    private void turnoEnemigo(){
+        if (enemigo.puedeActuar()){
+            enemigoActua();
+        } else {
+            enemigo.avanzarTurnoSinActuar();
+        }
+    }
+
 }

@@ -86,5 +86,16 @@ public class VistaBatalla {
         }
     }
 
+    public void imprimeAccionesDeTurnoActual(){
+        System.out.println(RegistroDeCombate.getAccionesTurnoActual());
+    }
+
+    public void imprimeRecuentoDeBatalla(){
+        for(String turno : RegistroDeCombate.getLog()){
+            System.out.println(turno);
+        }
+    }
+
+
 
 }

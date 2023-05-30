@@ -23,10 +23,18 @@ public class RegistroDeCombate {
         }
     }
 
-    public static void sacarAccionesTurnoACtual(){
+    public static java.util.Collection<String> getLog(){
+        return log.values();
+    }
+
+    public static void sacarAccionesTurnoActual(){
         if (log.containsKey(turnoActual)){
             System.out.println(log.get(turnoActual));
         }
+    }
+
+    public static String getAccionesTurnoActual(){
+        return log.get(turnoActual);
     }
 
     public static void sacarAccionesTurnoElegir(Integer turno){

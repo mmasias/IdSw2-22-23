@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class Enemigo extends Personaje {
 
-    public Enemigo(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo) {
-        super(nombre, vidaMaxima, armas, sprite, umbralDesmayo, curaPorDesmayo);
+    public Enemigo(String nombre, Vida vida, Arma[] armas, String[] sprite) {
+        super(nombre, vida, armas, sprite);
 
     }
 
