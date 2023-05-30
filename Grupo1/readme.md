@@ -39,7 +39,7 @@
 <details>
   <summary>Codigo</summary>
 
-  [Link](MDominio/ClasesSimple.puml)
+  [Link](/Grupo1/V1/Codigo/Grupo1Batalla/src)
 </details>
 <hr>
 <h5>V2</h5>
@@ -54,7 +54,7 @@
 <details>
   <summary>Codigo</summary>
 
-  [Link](MDominio/ClasesSimple.puml)
+  [Link](/Grupo1/V2/Codigo/Grupo1Batalla/src)
 </details>
 <hr>
 
