@@ -14,10 +14,6 @@ public class Arma {
         this.probAcertar = probAcertar;
     }
 
-    public Arma tipoArma(){
-        return this;
-    }
-
     public String getNombre(){
         return nombre;
     }

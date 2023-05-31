@@ -17,31 +17,17 @@ public class RegistroDeCombate {
         }
     }
 
-    public static void sacarAccionesTotal(){
-        for(String turno : log.values()){
-            System.out.println(turno);
-        }
-    }
+
 
     public static java.util.Collection<String> getLog(){
         return log.values();
     }
 
-    public static void sacarAccionesTurnoActual(){
-        if (log.containsKey(turnoActual)){
-            System.out.println(log.get(turnoActual));
-        }
-    }
 
     public static String getAccionesTurnoActual(){
         return log.get(turnoActual);
     }
 
-    public static void sacarAccionesTurnoElegir(Integer turno){
-        if (log.containsKey(turno)){
-            System.out.println(log.get(turno));
-        }
-    }
 
     public static void pasarTurno(){
         turnoActual++;

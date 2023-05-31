@@ -67,27 +67,7 @@ public class Personaje {
         RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado " + vida.getVidaARecuperarDesmayado());
     }
 
-    /*public void curarse(int vidaACurar){
-        if ((vidaActual + vidaACurar ) >= vidaMaxima){
-            vidaActual = vidaMaxima;
-            comprobarSiSeDespierta();
-            RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado por completo");
-        } else {
-            vidaActual += vidaACurar;
-            RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado " + vidaACurar + " puntos de vida, ahora tiene " + this.vidaActual);
-            comprobarSiSeDespierta();
-        }
-    }*/
 
-    public void despertar(){
-        desmayado = false;
-        RegistroDeCombate.anadirLog(this.nombre + " : Se ha despertado");
-    }
-    public void comprobarSiSeDespierta(){
-        if (vida.debajoDelUmbral() && desmayado){
-            despertar();
-        }
-    }
     public boolean estaVivo(){
         return vida.mayorQueCero();
     }

@@ -25,7 +25,7 @@ public class Batalla {
 
             if (personajeHaMuerto(enemigo)){
                 vista.anunciarGanador(heroe);
-                break;
+                ambosPersonajesVivos = false;
             } else {
                 turnoEnemigo();
             }
