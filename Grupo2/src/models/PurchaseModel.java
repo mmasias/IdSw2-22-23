@@ -148,7 +148,6 @@ public class PurchaseModel {
         for (MoneyAbstract money : moneyList) {
             if (money.value == value) {
                 money.updateQuantity(money.quantity + quantityChange);
-                break;
             }
         }
     }
