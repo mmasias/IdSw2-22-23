@@ -32,7 +32,7 @@ public class RecuadroPersonaje {
 
         // Concatene los elementos de los dos arrays en una cadena separados por un espacio, y agregue la cadena resultante al nuevo array
         for (int i = 0; i < alturaMaxima; i++) {
-            newArray[i] = sprite1[i] + " " + sprite2[i] ;
+            newArray[i] = sprite1[i] + " " + sprite2[i];
         }
 
         // Retorne el nuevo array con las columnas concatenadas
@@ -57,18 +57,23 @@ public class RecuadroPersonaje {
     public void imprimir() {
 
         int largo = heroe.getSprite()[0].length() + enemigo.getSprite()[0].length();
+        ArrayList<String> recuadro = prepararRecuadro(largo);
+        for (String line : recuadro) {
+            System.out.println(line);
 
+        }
+    }
+
+    private ArrayList<String> prepararRecuadro(int largo) {
         ArrayList<String> recuadro = new ArrayList<>();
 
         String borde = String.join("", Collections.nCopies(largo, "+"));
 
-        String vidaPersonaje1 = String.join("", Collections.nCopies(heroe.getVidaActual() / 10, "❤"));
-        String vidaPersonaje2 = String.join("", Collections.nCopies(enemigo.getVidaActual() / 10, "❤"));
+        String vidaPersonaje1 = String.join("", Collections.nCopies((heroe.getVidaActual() / 10) + 1, "❤"));
+        String vidaPersonaje2 = String.join("", Collections.nCopies((enemigo.getVidaActual() / 10) + 1, "❤"));
 
-        String espacioVidas = String.join("",
-                Collections.nCopies(4, " "));
-        String espacioNombres = String.join("",
-                Collections.nCopies(borde.length() - heroe.getNombre().length() - enemigo.getNombre().length() , " "));
+        String espacioVidas = calcularEspacioVidas(borde, vidaPersonaje1, vidaPersonaje2);
+        String espacioNombres = calcularEspacioNombres(borde);
 
         //Borde
         recuadro.add(borde);
@@ -77,17 +82,23 @@ public class RecuadroPersonaje {
         //Vida y Nombre
         recuadro.add(vidaPersonaje1 + espacioVidas + vidaPersonaje2);
         recuadro.add(heroe.getNombre() + espacioNombres + enemigo.getNombre());
-
-        recuadro.add(heroe.getVidaActual() + "    " + enemigo.getVidaActual());
+        recuadro.add(heroe.getVidaActual() + String.join("",
+                Collections.nCopies(borde.length() - 6, " ")) + enemigo.getVidaActual());
         //Personaje
         recuadro.addAll(Arrays.asList(unirSprites()));
         //Borde
         recuadro.add(borde);
+        return recuadro;
+    }
 
-        for (String line : recuadro) {
-            System.out.println(line);
+    private String calcularEspacioNombres(String borde) {
+        return String.join("",
+                Collections.nCopies(borde.length() - (heroe.getNombre().length() + enemigo.getNombre().length()), " "));
+    }
 
-        }
+    private static String calcularEspacioVidas(String borde, String vidaPersonaje1, String vidaPersonaje2) {
+        return String.join("",
+                Collections.nCopies(borde.length() - ((int) Math.round((vidaPersonaje1.length() + vidaPersonaje2.length()) * 1.5)), " "));
     }
 
 }

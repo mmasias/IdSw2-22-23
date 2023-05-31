@@ -25,7 +25,7 @@ public class VistaBatalla {
     }
 
     public void anunciarGanador(Personaje ganador){
-        System.out.println(ganador.getNombre() + " ha sido el ganador!");
+        System.out.println(ganador.getNombre() + " Ha sido el ganador!");
     }
 
     public Acciones elegirAccion(){
@@ -73,14 +73,17 @@ public class VistaBatalla {
     }
 
     private void mostrarAcciones(){
+        System.out.print(" || ");
+        int index = 1;
         for (String accion : heroe.getAcciones()) {
-            System.out.print(accion + " || ");
+            System.out.print(accion +" ("+ (index++) + ") " + " || ");
         }
     }
 
     private void mostrarArmas(){
+        int index = 1;
         for (Arma arma : heroe.getArmas()){
-            System.out.println(arma.getNombre() + " // ");
+            System.out.println((index++) + " " + arma.getNombre() );
         }
     }
 
@@ -89,6 +92,7 @@ public class VistaBatalla {
     }
 
     public void imprimeRecuentoDeBatalla(){
+        System.out.println("\n####  RECUENTO DE BATALLA ####\n");
         for(String turno : RegistroDeCombate.getLog()){
             System.out.println(turno);
         }
