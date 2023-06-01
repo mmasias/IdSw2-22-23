@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bdd7b49-1381-4be9-8f7b-c3b8d8aa8726" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Grupo2/src/models/PurchaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/models/PurchaseModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +54,7 @@
       <workItem from="1684760395952" duration="1204000" />
       <workItem from="1684761709646" duration="2182000" />
       <workItem from="1685359858369" duration="796000" />
-      <workItem from="1685535404348" duration="56000" />
+      <workItem from="1685535404348" duration="205000" />
     </task>
     <servers />
   </component>
