@@ -1,11 +1,7 @@
 package models;
 
-<<<<<<< HEAD
-import javax.crypto.Mac;
-=======
 import controllers.BillController;
 
->>>>>>> 3c20e6fd81eab9b8fbe7a3ad804f42aca6d590ae
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,36 +11,10 @@ public class PurchaseModel {
     private Scanner scanner = new Scanner(System.in);
     final BillController billController = new BillController();
 
-<<<<<<< HEAD
-    public String calculateChange(
-        final double amountReceived, double amountProduct, MachineModel machine
-    ) {
-        final double missingAmount = amountProduct - amountReceived;
-
-        if (missingAmount > 0) {
-            return String.format("Falta $%.2f para completar la compra.", missingAmount);
-        } else if (missingAmount < 0) {
-            final String messageChange = generateChangeMessage(
-                amountReceived, machine.listOfBills(), machine.listOfCoins()
-            );
-            if (messageChange.equals("")) {
-                return String.format(
-                    "No se puede dar cambio exacto. Devolviendo $%.2f",
-                    amountReceived - amountProduct
-                );
-            } else {
-                updateUsedMoneyQuantity(machine, messageChange);
-                return messageChange;
-            }
-        } else {
-            return "";
-        }
-=======
     public String returnChange(double changeValue, MachineModel machine){
         int change = (int) changeValue;
         int highestValue = billController.getHighestValue(machine.listOfBills());
         return outputMessage(change, highestValue, machine.listOfBills());
->>>>>>> 3c20e6fd81eab9b8fbe7a3ad804f42aca6d590ae
     }
 
     private String outputMessage(int value, int moneySize, List<BillModel> bills){
@@ -139,20 +109,8 @@ public class PurchaseModel {
 
         System.out.println("Ingrese la cantidad: ");
         double quantity = scanner.nextDouble();
-<<<<<<< HEAD
-
-        bill.updateQuantity((int) quantity);
-
-        /*for (BillModel machineBill : machine.listOfBills()) {
-            if (machineBill.value == bill.value) {
-                machineBill.updateQuantity(machineBill.getQuantity() + bill.getQuantity());
-                break;
-            }
-        }*/
-=======
         double currentQuantity = billSelect.quantity;
         billSelect.updateQuantity(((int)quantity + (int)currentQuantity));
->>>>>>> 3c20e6fd81eab9b8fbe7a3ad804f42aca6d590ae
 
         double balance = billSelect.value * quantity;
         return balance;
