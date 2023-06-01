@@ -111,7 +111,7 @@
 
 | Métricas                | Valor |
 |------------------------|-------|
-| Número de líneas        | 57   |
+| Número de líneas        | 60   |
 | Número de métodos       | 11     |
 | Número de atributos     | 6     |
 
@@ -126,8 +126,8 @@
 |elegirArma() | 0 | 2 | 0 | 1  |
 |esperarInteraccion() | 0 | 2 | 0 | 1  |
 |scanElegir() | 1 | 7 | 0 | 3  |
-|mostrarAcciones() | 0 | 2 | 0 | 2  |
-|mostrarArmas() | 0 | 2 | 0 | 2 |
+|mostrarAcciones() | 0 | 4 | 0 | 2  |
+|mostrarArmas() | 0 | 3 | 0 | 2 |
 |imprimirAccionesDeTurnoActual() | 0 | 1 | 0 | 1 |
 |imprimeRecuentoDeBatalla() | 0 | 3 | 0 | 2 |
 
@@ -141,8 +141,8 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 57      |
-| Número de métodos           | 15       |
+| Número de líneas | 54      |
+| Número de métodos           | 14       |
 | Número de atributos          | 6        |
 
 ### Métricas métodos clase Personaje
@@ -155,7 +155,6 @@
 |puedeActuar() | 0 | 1 | 0 | 1  |
 |avanzarTurnoSinActuar() | 0 | 1 | 0 | 1  |
 |curarseDesmayado() | 0 | 3 | 0 | 1  |
-|despertar() | 0 | 2 | 0 | 1  |
 |estaVivo() | 0 | 1 | 0 | 1  |
 |desmayar() | 0 | 2 | 0 | 1  |
 |getVidaActual() | 0 | 1 | 0 | 1  |
@@ -222,8 +221,8 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 48   |
-| Número de métodos           | 4      |
+| Número de líneas | 58   |
+| Número de métodos           | 7     |
 | Número de atributos          | 2      |
 
 ### Métricas métodos clase RecuadroPersonaje
@@ -233,7 +232,10 @@
 |RecuadroPersonaje() | 2 | 2 |  0 |   1  |
 |unirSprites() | 0 | 7 | 0 | 2  |
 |llenarHuecos() | 2 | 7 | 0 | 3  |
-|imprimir() | 0 | 18 | 0 | 2  |
+|imprimir() | 0 | 4 | 0 | 2  |
+|prepararRecuadro() | 0 | 14 | 0 | 1  |
+|calcularEspacioNombres() | 1 | 1 | 0 | 1  |
+|calcularEspacioVidas() | 3 | 1 | 0 | 1  |
 
 
 </details>
@@ -267,8 +269,8 @@
 ### Métricas de la clase Vida
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 27   |
-| Número de métodos           | 9    |
+| Número de líneas | 25   |
+| Número de métodos           | 8   |
 | Número de atributos          | 4     |
 
 ### Métricas métodos clase Vida
@@ -283,7 +285,6 @@
 |getVidaARecuperarDesmayado() | 0 | 1 |  0 |   1  |
 |getVidaActual() | 0 | 1 |  0 |   1  |
 |mayorQueCero() | 0 | 1 |  0 |   1  |
-|debajoDelUmbral() | 0 | 1 |  0 |   1  |
 
 </details>
 
