@@ -42,5 +42,9 @@ public class Vida {
         return vidaActual > 0;
     }
 
+    public boolean debajoDelUmbral(){
+        return vidaActual < umbralVidaParaDesmayarse;
+    }
+
 
 }

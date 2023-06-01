@@ -61,12 +61,33 @@ public class Personaje {
         curarseDesmayado();
     }
     public void curarseDesmayado(){
-        RegistroDeCombate.anadirLog(this.nombre + " : Esta desmayado");
 
-        vida.curarDesmayado();
-        RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado " + vida.getVidaARecuperarDesmayado());
+        if(vida.debajoDelUmbral()){
+            RegistroDeCombate.anadirLog(this.nombre + " : Esta desmayado");
+
+            vida.curarDesmayado();
+            RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado " + vida.getVidaARecuperarDesmayado());
+
+            comprobarSiSeDespierta();
+        } else {
+            despertar();
+        }
+
     }
 
+    private void comprobarSiSeDespierta() {
+
+        if (!vida.debajoDelUmbral()){
+            despertar();
+        }
+
+    }
+
+    private void despertar() {
+
+        desmayado = false;
+        RegistroDeCombate.anadirLog(this.nombre + " : Se ha despertado");
+    }
 
     public boolean estaVivo(){
         return vida.mayorQueCero();

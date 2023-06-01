@@ -34,12 +34,12 @@ public class Heroe extends Personaje{
     public void avanzarTurnoDeCuracion(){
         turnosParaCurarseConPocion--;
 
-        RegistroDeCombate.anadirLog(this.nombre + " : Avanza turno de curacion");
-
-
         if (turnosParaCurarseConPocion <= 0){
             vida.curarPorCompleto();
             esperandoACurarseConPocion = false;
+            RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado por completo");
+        } else {
+            RegistroDeCombate.anadirLog(this.nombre + " : Avanza turno de curacion");
         }
     }
 
@@ -66,8 +66,8 @@ public class Heroe extends Personaje{
     @Override
     public void avanzarTurnoSinActuar(){
         if (desmayado && esperandoACurarseConPocion){
-            curarseDesmayado();
             avanzarTurnoDeCuracion();
+            curarseDesmayado();
         } else if (desmayado){
             curarseDesmayado();
         } else if (esperandoACurarseConPocion) {

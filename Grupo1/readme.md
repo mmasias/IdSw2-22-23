@@ -141,8 +141,8 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 54      |
-| Número de métodos           | 14       |
+| Número de líneas | 64      |
+| Número de métodos           | 16       |
 | Número de atributos          | 6        |
 
 ### Métricas métodos clase Personaje
@@ -154,7 +154,9 @@
 |atacar() | 1 | 10 | 0 | 3 |
 |puedeActuar() | 0 | 1 | 0 | 1  |
 |avanzarTurnoSinActuar() | 0 | 1 | 0 | 1  |
-|curarseDesmayado() | 0 | 3 | 0 | 1  |
+|curarseDesmayado() | 0 | 7 | 0 | 3  |
+|comprobarSiSeDespierta() | 0 | 2 | 0 | 2  |
+|despertar() | 0 | 2 | 0 | 1  |
 |estaVivo() | 0 | 1 | 0 | 1  |
 |desmayar() | 0 | 2 | 0 | 1  |
 |getVidaActual() | 0 | 1 | 0 | 1  |
@@ -173,7 +175,7 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 54      |
+| Número de líneas | 56      |
 | Número de métodos           | 9    |
 | Número de atributos          | 5      |
 
@@ -184,7 +186,7 @@
 |Heroe() | 4 | 1 |  0 |   1  |
 |defenderse() | 0 | 4 | 0 | 2  |
 |iniciarEstadoDeCuración() | 0 | 3 | 0 | 1  |
-|avanzarTurnoDeCuración() | 0 | 5 | 0 | 2  |
+|avanzarTurnoDeCuración() | 0 | 7 | 0 | 3  |
 |puedeActuar() | 0 | 1 | 0 | 1  |
 |recibirDaño() | 1 | 8 | 0 | 2  |
 |avanzarTurnoSinActuar() | 0 | 7 | 0 | 5  |
@@ -269,7 +271,7 @@
 ### Métricas de la clase Vida
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 25   |
+| Número de líneas | 27   |
 | Número de métodos           | 8   |
 | Número de atributos          | 4     |
 
@@ -285,6 +287,7 @@
 |getVidaARecuperarDesmayado() | 0 | 1 |  0 |   1  |
 |getVidaActual() | 0 | 1 |  0 |   1  |
 |mayorQueCero() | 0 | 1 |  0 |   1  |
+|debajoDelUmbral() | 0 | 1 |  0 |   1  |
 
 </details>
 
