@@ -141,7 +141,7 @@
 
 | Métricas  | Valor |
 |---|---|
-| Número de líneas | 64      |
+| Número de líneas | 62      |
 | Número de métodos           | 16       |
 | Número de atributos          | 6        |
 
@@ -154,7 +154,7 @@
 |atacar() | 1 | 10 | 0 | 3 |
 |puedeActuar() | 0 | 1 | 0 | 1  |
 |avanzarTurnoSinActuar() | 0 | 1 | 0 | 1  |
-|curarseDesmayado() | 0 | 7 | 0 | 3  |
+|curarseDesmayado() | 0 | 5 | 0 | 2  |
 |comprobarSiSeDespierta() | 0 | 2 | 0 | 2  |
 |despertar() | 0 | 2 | 0 | 1  |
 |estaVivo() | 0 | 1 | 0 | 1  |

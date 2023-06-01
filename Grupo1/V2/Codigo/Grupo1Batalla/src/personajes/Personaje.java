@@ -68,10 +68,9 @@ public class Personaje {
             vida.curarDesmayado();
             RegistroDeCombate.anadirLog(this.nombre + " : Se ha curado " + vida.getVidaARecuperarDesmayado());
 
-            comprobarSiSeDespierta();
-        } else {
-            despertar();
         }
+
+        comprobarSiSeDespierta();
 
     }
 
