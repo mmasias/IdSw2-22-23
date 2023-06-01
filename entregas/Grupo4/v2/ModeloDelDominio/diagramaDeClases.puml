@@ -1,0 +1,109 @@
+@startuml modeloDelDominio
+
+class "models.Persona" {
+    - Planta plantaActual
+    - Planta plantaDestino
+    - Tiempo tiempoEnDestino
+    - boolean esperandoAscensor
+    - boolean dentroAscensor
+    + Persona()
+    - Tiempo elegirTiempoEnDestino()
+    - Planta elegirPlantaDestino()
+    # void mover()
+    + Planta getPlantaActual()
+    + Planta getPlantaDestino()
+    + boolean estadoEsperandoAscensor()
+    + void setPlantaActual(Planta plantaActual)
+    + void setPlantaDestino(Planta plantaDestino)
+    + void esperar Ascensor()
+    + void entrarAscensor()
+    + void salirAscensor()
+
+}
+
+enum "structures.enums.EstadoAscensor" {
+    SUBIENDO
+    BAJANDO
+    PARADO
+}
+
+class "models.Tiempo" {
+    - int horas
+    - int minutos
+    - int segundos 
+    - Universidad universidad
+    + Tiempo()
+    + Tiempo(int horas, int minutos, int segundos)
+    + void incremenrtar()
+    + void disminuir()
+    + int getHoras()
+    + int getMinutos()
+    + int getSegundos()
+    + Universidad getUniversidad()
+    - void empezar()
+    + {static} void main(String[] args)
+}
+
+
+class "models.Planta" {
+    - int nivel
+    - ArrayList<Persona> personasEnPlanta
+    + Planta(int nivel)
+    + void agregarPersona(Persona persona)
+    + void eliminarPersona(Persona persona)
+    + void subirAAscensor(Ascensor ascensor)
+    + void mover()
+    + void llamadaAscensorMasCercano(ArrayList<Ascensor> ascensores)
+    + int getNivel()
+    + ArrayList<Persona> getPersonasEsperandoAscensor()
+    + void setNivel(int nivel)
+    + int compareTo(Planta o)
+
+}
+
+
+class "models.Ascensor" {
+    - int idAscensor
+    - int nivel
+    - ArrayList<Planta> plantas
+    - ArrayList<Persona> personas
+    - EstadoAscensor estado
+    + Ascensor(int idAscensor, ArrayList<Planta> plantas) 
+    + void agregarPersona(Persona persona)
+    - void bajarPersonas()
+    + Planta getPlantaActual()
+    + int getPersonasEnAscensor()
+    + boolean estaVacio()
+    + boolean estaLleno()
+    + boolean estaSubiendo()
+    + boolean estaBajando()
+    + boolean estaParado()
+    + void mover()
+    + void llamar(persona persona)
+    + void subir()
+    + void bajar()
+}
+
+
+class "models.Universidad" {
+    - ArrayList<Planta> plantas
+    - Map<int, Ascensor> ascensores
+    + Universidad()
+    - void crearPlantas()
+    # void configurarAscensores()
+    + ArrayList<Planta> getPlantas()
+    + Map<Integer,Ascensor> getAscensores()
+    + boolean llegoUnaPersona()
+    # void mover()
+}
+
+Ascensor *--d Persona 
+Ascensor *--d Planta 
+Ascensor ---r "structures.enums.EstadoAscensor"
+Universidad *-- Ascensor 
+Universidad *-- Planta
+Planta *--d Persona 
+Persona *---u Tiempo 
+Tiempo *--d Universidad
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml modeloDelDominio
+
+class Persona
+class Tiempo
+class Planta
+class Ascensor implements "structures.enums.EstadoAscensor"
+class Universidad
+enum "structures.enums.EstadoAscensor"
+
+Planta -u-o Persona 
+Ascensor o-u- Persona 
+Planta *-u- Ascensor
+
+Planta -u-* Universidad 
+Ascensor -u-* Universidad
+Persona -u-o Universidad 
+
+Persona ... Tiempo
+
+@enduml
