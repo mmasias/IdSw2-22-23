@@ -1,0 +1,56 @@
+@startuml modeloDelDominio
+
+class "models.Persona" {
+
+}
+
+enum "structures.enums.EstadoAscensor" {
+}
+
+class "models.Tiempo" {
+}
+
+
+class "models.Planta" {
+}
+
+
+class "models.Ascensor" {
+}
+
+
+class "models.Universidad" {
+
+}
+
+class "models.SalaEspera" {
+    
+}
+
+class "controllers.Consola" {
+
+}
+
+class "controllers.Movimiento" {
+
+}
+
+class "views.Renderizado" {
+
+}
+
+Ascensor *--d Persona 
+Ascensor *--d Planta 
+Ascensor ---r "structures.enums.EstadoAscensor" 
+Universidad *-- Ascensor 
+Universidad *-- Planta
+Planta *--d Persona 
+Persona *---u Tiempo 
+Tiempo *--d Universidad
+SalaEspera *--r Planta
+SalaEspera o--d Persona
+Consola <|--- Renderizado
+
+Movimiento ---r|> models
+
+Renderizado <|--- Tiempo
