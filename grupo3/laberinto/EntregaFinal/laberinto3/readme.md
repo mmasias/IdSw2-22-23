@@ -4,12 +4,12 @@
 https://docs.google.com/spreadsheets/d/1jAaldm2KdGVpMWjn9ixDJkPq4mqZVSDKXi6XWjTEUh0/edit#gid=0
 
 ```
-@startuml
 class Mundo
 abstract class Entidad
 abstract class Bloque
 class Main
 class RenderizadorMundo
+class MovedorEntidadesMundo
 interface SeMueveSolo
 interface SePuedeRenderizar
 
@@ -32,9 +32,13 @@ Mundo --> RenderizadorMundo : Contiene
 Bloque : double velocidad()
 Bloque : boolean puedeTransitar(Entidad entidad)
 
+MovedorEntidadesMundo : void mover(Entidad, Vector)
+
 Mundo -> Entidad : contiene
 Mundo --> InputUsuario : Lee
+Mundo --> MovedorEntidadesMundo : mueve
 Mundo : RenderizadorMundo renderizador
+Mundo : MovedorEntidadesMundo movedor
 Mundo : InputUsuario inputUsuario
 Mundo : int tiempoTranscurrido
 Mundo : Bloque[][] bloques
@@ -78,20 +82,24 @@ InputUsuario : String leer()
 ### Diagrama de colaboración
 [Diagrama de colaboracion](diagramas/colaboracion.png)
 ```
-@startuml
-actor Personaje
+actor Usuario
 control Main
+entity Mundo
 entity Entidad
 entity Bloque
 entity RenderizadorMundo
+entity MovedorEntidadesMundo
+entity InputUsuario
 
+Main --> Mundo : crea
 
-Personaje --> (Mundo) : 4.Pulsa tecla para moverse y \nse actualizan las posiciones de las entidades
-Main --> (Mundo) : 1. Crea lista entidades\n2.Crea bloques\n3.Pasa renderizor mundo
-Mundo --> Bloque : 5. Me puedo mover?
-Mundo --> Personaje: 6. Cambiar posicion
-Personaje --> Entidad: 7. Si estoy montado, \ncambio de posicion de la entidad sobre la que se estoy montando.
-Mundo --> RenderizadorMundo: 8. Renderizar mundo
+Mundo --> (InputUsuario) : Leer opccion usuario
+Mundo --> RenderizadorMundo : Renderiza
+Mundo --> MovedorEntidadesMundo : Manda mover
+MovedorEntidadesMundo --> Entidad : Actualiza posicion
+MovedorEntidadesMundo --> Bloque : ¿Me puedo mover?
+Usuario --> InputUsuario : Introducce opccion
+
 
 @enduml
 ```

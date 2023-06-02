@@ -11,9 +11,9 @@ import es.laberinto.vista.InputUsuario;
 import es.laberinto.vista.RenderizadorMundo;
 
 import java.util.List;
-import java.util.Scanner;
 
 public final class Mundo {
+    private final MovedorEntidadesMundo movedorEntidadesMundo;
     private final RenderizadorMundo renderizadorMundo;
     private final InputUsuario inputUsuario;
 
@@ -26,6 +26,7 @@ public final class Mundo {
         this.entidades = entidades;
         this.personaje = personaje;
         this.bloques = bloques;
+        this.movedorEntidadesMundo = new MovedorEntidadesMundo(this);
         this.renderizadorMundo = renderizadorMundo;
         this.inputUsuario = new InputUsuario();
     }
@@ -53,7 +54,7 @@ public final class Mundo {
     }
 
     public void moverPersonaje(Direccion direccion) {
-        mover(this.personaje, direccion.getVector());
+        movedorEntidadesMundo.mover(personaje, direccion.getVector());
     }
 
     public void desmontarsePersonaje() {
@@ -79,20 +80,13 @@ public final class Mundo {
                 .orElse(null);
     }
 
-    private boolean posicionFueraDeLosLimites(Posicion posicion) {
-        return posicion.x() < 0 ||
-               posicion.y() < 0 ||
-               posicion.y() + 1 > this.getLargo() ||
-               posicion.x() + 1 > this.getAncho();
-    }
-
     private void actualizarEntidades() {
         for(Entidad entidad : this.entidades){
             if(!(entidad instanceof SeMueveSolo seMueveSoloEntidad) || entidad.otraEntidadEstaMontada())
                 continue;
 
             Vector vectorMovimientoSolo = seMueveSoloEntidad.getVectorMovimientoSolo(entidad);
-            this.mover(entidad, vectorMovimientoSolo);
+            movedorEntidadesMundo.mover(entidad, vectorMovimientoSolo);
         }
     }
 
@@ -106,62 +100,5 @@ public final class Mundo {
 
     public List<Entidad> getEntidades() {
         return entidades;
-    }
-
-    private void mover(Entidad entidad, Vector vector) {
-        Posicion posicionAPartirDeVector = entidad.getPosicion().nuevaPosicionAPartirDe(vector);
-
-        if(!this.entidadSePuedeMoverALaPosicion(entidad, posicionAPartirDeVector))
-            return;
-
-        Bloque bloqueEnPosicionAPartirDeVector = getBloque(posicionAPartirDeVector);
-        double velocidadSiguienteBloque = bloqueEnPosicionAPartirDeVector.velocidad();
-        if(velocidadSiguienteBloque >= 1){
-            Posicion nuevaPosicion = entidad.getPosicion().nuevaPosicionAPartirDe(vector.aumentarEn(velocidadSiguienteBloque));
-
-            if(!entidadSePuedeMoverALaPosicion(entidad, nuevaPosicion)){
-                return;
-            }
-
-            actualizarPosicionEntidad(entidad, nuevaPosicion);
-            return;
-        }
-
-        if(!posicionAPartirDeVector.mismaPosicion(entidad.getPosicionDondeQuiereMoverseAnteriorTurno())) {
-            entidad.setBufferMovimeintoAnteriorTurno(0);
-        }
-
-        entidad.setBufferMovimeintoAnteriorTurno(entidad.getBufferMovimeintoAnteriorTurno() + velocidadSiguienteBloque);
-        entidad.setPosicionDondeQuiereMoverseAnteriorTurno(posicionAPartirDeVector);
-
-        if(entidad.getBufferMovimeintoAnteriorTurno() >= 1){
-            actualizarPosicionEntidad(entidad, posicionAPartirDeVector);
-        }
-    }
-
-    private void actualizarPosicionEntidad(Entidad entidad, Posicion nuevaPosicion) {
-        entidad.setPosicion(nuevaPosicion);
-
-        Entidad entidadEnNuevaPosicion = this.getEntidad(nuevaPosicion);
-        if(entidadEnNuevaPosicion != null && entidadEnNuevaPosicion.mePuedoMontar()){
-            entidad.montarme(entidadEnNuevaPosicion);
-        }
-    }
-
-    private boolean entidadSePuedeMoverALaPosicion(Entidad entidad, Posicion posicion) {
-        if(posicionFueraDeLosLimites(posicion) || entidad.otraEntidadEstaMontada())
-            return false;
-
-        Bloque siguienteBloque = this.getBloque(posicion);
-        if(!siguienteBloque.puedeTransitar(entidad))
-            return false;
-
-        return !hayColisionConEntidadNoMontable(posicion);
-    }
-
-    private boolean hayColisionConEntidadNoMontable(Posicion posicion) {
-        Entidad entidad = this.getEntidad(posicion);
-
-        return entidad != null && !entidad.mePuedoMontar();
     }
 }
