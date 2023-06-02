@@ -20,24 +20,18 @@ public class RecuadroPersonaje {
 
     private String[] unirSprites() {
 
-        // Determinar la longitud del nuevo array
         int alturaMaxima = Math.max(heroe.getSprite().length, enemigo.getSprite().length);
 
-        //Fill gaps
         String[] sprite1 = llenarHuecos(heroe.getSprite(), alturaMaxima);
         String[] sprite2 = llenarHuecos(enemigo.getSprite(), alturaMaxima);
 
-        // Cree un nuevo array para contener los elementos de los dos arrays anteriores
         String[] newArray = new String[alturaMaxima];
 
-        // Concatene los elementos de los dos arrays en una cadena separados por un espacio, y agregue la cadena resultante al nuevo array
         for (int i = 0; i < alturaMaxima; i++) {
             newArray[i] = sprite1[i] + " " + sprite2[i];
         }
 
-        // Retorne el nuevo array con las columnas concatenadas
         return newArray;
-
     }
 
     private String[] llenarHuecos(String[] sprite, int alturaMaxima) {
@@ -75,18 +69,17 @@ public class RecuadroPersonaje {
         String espacioVidas = calcularEspacioVidas(borde, vidaPersonaje1, vidaPersonaje2);
         String espacioNombres = calcularEspacioNombres(borde);
 
-        //Borde
         recuadro.add(borde);
-        //Turno
+
         recuadro.add("Turno " + RegistroDeCombate.turnoActual());
-        //Vida y Nombre
+
         recuadro.add(vidaPersonaje1 + espacioVidas + vidaPersonaje2);
         recuadro.add(heroe.getNombre() + espacioNombres + enemigo.getNombre());
         recuadro.add(heroe.getVidaActual() + String.join("",
                 Collections.nCopies(borde.length() - 6, " ")) + enemigo.getVidaActual());
-        //Personaje
+
         recuadro.addAll(Arrays.asList(unirSprites()));
-        //Borde
+
         recuadro.add(borde);
         return recuadro;
     }
