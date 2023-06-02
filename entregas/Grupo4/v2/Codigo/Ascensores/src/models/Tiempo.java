@@ -1,6 +1,5 @@
 package models;
 
-import controllers.Movimiento;
 import views.Renderizado;
 
 import java.util.Scanner;
