@@ -1,26 +1,26 @@
 package models;
 
 import constants.Constans;
-import structures.enums.EstadoAscensor;
+import interfaces.IMovible;
 
 import java.util.ArrayList;
 
-public class Planta implements Comparable<Planta> {
+public class Planta implements Comparable<Planta>, IMovible {
     private int nivel;
-    private ArrayList<Persona> personasEnPlanta;
+    private ArrayList<Persona> personas;
     private SalaEspera salaEspera;
     public Planta(int nivel) {
         this.nivel = nivel;
-        this.personasEnPlanta = new ArrayList<>();
+        this.personas = new ArrayList<>();
         this.salaEspera = new SalaEspera();
     }
     public void agregarPersona(Persona persona) {
-        personasEnPlanta.add(persona);
+        personas.add(persona);
         if (persona.getPlantaDestino().getNivel() != Constans.PLANTA_PRINCIPAL)
             salaEspera.agregarPersona(persona);
     }
     public void eliminarPersona(Persona persona) {
-        personasEnPlanta.remove(persona);
+        personas.remove(persona);
     }
     public void subirAAscensor(Ascensor ascensor) {
         ArrayList<Persona> personasAEliminar = new ArrayList<>();
@@ -36,8 +36,9 @@ public class Planta implements Comparable<Planta> {
             salaEspera.eliminarPersona(persona);
         }
     }
+
     public void mover(){
-        for (Persona persona : personasEnPlanta) {
+        for (Persona persona : personas) {
             persona.mover();
         }
     }
@@ -64,7 +65,7 @@ public class Planta implements Comparable<Planta> {
         return nivel;
     }
     public ArrayList<Persona> getPersonasEnPlanta() {
-        return personasEnPlanta;
+        return personas;
     }
     public SalaEspera getSalaEspera() {
         return salaEspera;

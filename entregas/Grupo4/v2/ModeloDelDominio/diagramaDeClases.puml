@@ -1,6 +1,32 @@
 @startuml modeloDelDominio
 
-class "models.Persona" {
+class "constants.Constants" {
+  + {static} final int NIVEL_SUPERIOR
+  + {static} final int NIVEL_INFERIOR
+  + {static} final int CAPACIDAD_MAXIMA_ASCENSOR
+  + {static} final int TOTAL_ASCENSORES
+  + {static} final int PLANTA_PRINCIPAL
+}
+
+class "controllers.Consola" {
+  + {static} void imprimir()
+  + {static} void imprimir(Planta planta)
+  + {static} void imprimir(SalaEspera salaEspera)
+  + {static} void imprimir(Ascensor ascensor, int nivel)
+  + {static} void imprimir(int numero)
+  + {static} void imprimir(Tiempo tiempo)
+  + {static} void imprimir(String texto)
+}
+
+class "controllers.Movimiento" {
+  + {static} void mover(IMovible objetoMovible)
+}
+
+interface "interfaces.IMovible" {
+  + void mover()
+}
+
+class "models.Persona" implements "interfaces.IMovible" {
     - Planta plantaActual
     - Planta plantaDestino
     - Tiempo tiempoEnDestino
@@ -9,16 +35,16 @@ class "models.Persona" {
     + Persona()
     - Tiempo elegirTiempoEnDestino()
     - Planta elegirPlantaDestino()
-    # void mover()
+    + void mover()
     + Planta getPlantaActual()
     + Planta getPlantaDestino()
     + boolean estadoEsperandoAscensor()
+    + boolean estadoDentroAscensor()
     + void setPlantaActual(Planta plantaActual)
     + void setPlantaDestino(Planta plantaDestino)
-    + void esperar Ascensor()
+    + void esperarAscensor()
     + void entrarAscensor()
     + void salirAscensor()
-
 }
 
 enum "structures.enums.EstadoAscensor" {
@@ -45,9 +71,10 @@ class "models.Tiempo" {
 }
 
 
-class "models.Planta" {
+class "models.Planta" implements "interfaces.IMovible" {
     - int nivel
     - ArrayList<Persona> personasEnPlanta
+    - SalaEspera salaEspera
     + Planta(int nivel)
     + void agregarPersona(Persona persona)
     + void eliminarPersona(Persona persona)
@@ -56,28 +83,28 @@ class "models.Planta" {
     + void llamadaAscensorMasCercano(ArrayList<Ascensor> ascensores)
     + int getNivel()
     + ArrayList<Persona> getPersonasEsperandoAscensor()
+    + SalaEspera getSalaEspera()
     + void setNivel(int nivel)
     + int compareTo(Planta o)
-
 }
 
 
-class "models.Ascensor" {
+class "models.Ascensor" implements "interfaces.IMovible" {
     - int idAscensor
     - int nivel
     - ArrayList<Planta> plantas
     - ArrayList<Persona> personas
     - EstadoAscensor estado
-    + Ascensor(int idAscensor, ArrayList<Planta> plantas) 
-    + void agregarPersona(Persona persona)
-    - void bajarPersonas()
+    + Ascensor(int idAscensor, ArrayList<Planta> plantas)
     + Planta getPlantaActual()
     + int getPersonasEnAscensor()
     + boolean estaVacio()
     + boolean estaLleno()
     + boolean estaSubiendo()
     + boolean estaBajando()
-    + boolean estaParado()
+    + boolean estaParado() 
+    + void agregarPersona(Persona persona)
+    - void bajarPersonas()
     + void mover()
     + void llamar(persona persona)
     + void subir()
@@ -85,16 +112,29 @@ class "models.Ascensor" {
 }
 
 
-class "models.Universidad" {
+class "models.Universidad" implements "interfaces.IMovible" {
     - ArrayList<Planta> plantas
     - Map<int, Ascensor> ascensores
     + Universidad()
-    - void crearPlantas()
-    # void configurarAscensores()
     + ArrayList<Planta> getPlantas()
     + Map<Integer,Ascensor> getAscensores()
+    - void crearPlantas()
+    # void configurarAscensores()
     + boolean llegoUnaPersona()
-    # void mover()
+    + void mover()
+}
+
+class "models.SalaEspera" {
+  - ArrayList<Persona> personas
+  + SalaEspera()
+  + void agregarPersona(Persona persona)
+  + void eliminaPersona(Persona persona)
+  + ArrayList<Persona> getPersonas()
+  + int count()
+}
+
+class views.Renderizado {
+  + {static} void renderizar()
 }
 
 Ascensor *--d Persona 
@@ -103,6 +143,7 @@ Ascensor ---r "structures.enums.EstadoAscensor"
 Universidad *-- Ascensor 
 Universidad *-- Planta
 Planta *--d Persona 
+SalaEspera *--l Planta
 Persona *---u Tiempo 
 Tiempo *--d Universidad
 

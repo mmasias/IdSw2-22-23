@@ -2,10 +2,11 @@ package models;
 
 import constants.Constans;
 import controllers.Movimiento;
+import interfaces.IMovible;
 
 import java.util.*;
 
-public class Universidad {
+public class Universidad implements IMovible {
     private ArrayList<Planta> plantas;
     private Map<Integer, Ascensor> ascensores;
     public Universidad() {

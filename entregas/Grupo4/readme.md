@@ -36,6 +36,6 @@ Cuando una persona llama a un ascensor, va el que está más cerca y al que le p
 
 ## **Índice**
 
-1. [Modelo de dominio](ModeloDelDominio/readme.md)
-2. [Código Fuente](Codigo/Ascensores)
-3. [Métricas](Codigo/readme.md)
+1. [Versión 0](v0/readme.md)
+2. [Versión 1](v1/readme.md)
+3. [Versión 2](v2/readme.md)

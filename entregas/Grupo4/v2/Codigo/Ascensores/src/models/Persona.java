@@ -1,10 +1,11 @@
 package models;
 
 import constants.Constans;
+import interfaces.IMovible;
 
 import java.util.Random;
 
-public class Persona {
+public class Persona implements IMovible {
     private Planta plantaActual;
     private Planta plantaDestino;
     private Tiempo tiempoEnDestino;

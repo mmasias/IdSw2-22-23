@@ -1,10 +1,11 @@
 package models;
 
 import constants.Constans;
+import interfaces.IMovible;
 import structures.enums.EstadoAscensor;
 import java.util.ArrayList;
 
-public class Ascensor {
+public class Ascensor implements IMovible {
 
     private int idAscensor;
     private int nivel;
