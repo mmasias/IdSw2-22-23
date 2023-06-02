@@ -12,6 +12,7 @@ import controllers.CoinController;
 import controllers.MachineController;
 import controllers.ProductController;
 import controllers.PurchaseController;
+import controllers.MaintenanceController;
 import views.MachineView;
 import views.ProductView;
 import views.PurchaseView;
@@ -27,10 +28,11 @@ class Main {
         final ProductController productController = new ProductController();
         final PurchaseController purchaseController = new PurchaseController(purchaseModel, line);
         final MachineController machineController = new MachineController(purchaseController, line);
+        final MaintenanceController maintenanceController = new controllers.MaintenanceController();
 
         final ProductView productsView = new ProductView(line);
         final MachineView machineView = new MachineView(line);
-        final PurchaseView purchaseView = new PurchaseView(machineController, purchaseController, line);
+        final PurchaseView purchaseView = new PurchaseView(machineController, purchaseController, maintenanceController,line);
 
         final List<MachineModel> machines = generateMachines(billController, coinController, productController);
 

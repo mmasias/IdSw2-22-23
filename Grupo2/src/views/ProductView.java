@@ -25,6 +25,7 @@ public class ProductView {
                     System.out.printf(
                         "%26s |",machines.get(j).listOfProducts().get(i).name + " $: " +
                         machines.get(j).listOfProducts().get(i).price
+
                     );
                 }
                 System.out.println();

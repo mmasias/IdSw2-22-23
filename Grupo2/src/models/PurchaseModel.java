@@ -5,6 +5,8 @@ import controllers.BillController;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 public class PurchaseModel {
     private Scanner scanner = new Scanner(System.in);
     final BillController billController = new BillController();
@@ -59,6 +61,8 @@ public class PurchaseModel {
         System.out.println("Ingrese el número del producto que desea comprar:");
 
         final int optionProduct = this.scanner.nextInt();
+        ProductModel selectedProduct = products.get(optionProduct - 1);
+        selectedProduct.updateQuantity(selectedProduct.getQuantity() - 1);
         return products.get(optionProduct - 1);
     }
 
@@ -119,8 +123,40 @@ public class PurchaseModel {
 
         System.out.println("Ingrese la cantidad: ");
         double quantity = scanner.nextDouble();
-        coin.updateQuantity((int)quantity);
+        coin.updateQuantity((int) quantity);
 
         return coin;
+    }
+
+    private void updateUsedMoneyQuantity(MachineModel machine, String messageChange){
+        List<BillModel> bills = machine.listOfBills();
+        List<CoinModel> coins = machine.listOfCoins();
+
+        String[] changeParts = messageChange.split(", ");
+
+        for(String part : changeParts) {
+            String[] quantityParts = part.split("x ");
+            int quantity = Integer.parseInt(quantityParts[0]);
+            String valueString = quantityParts[1].substring(1);
+            double value = Double.parseDouble(valueString);
+
+            if (isBill(value)) {
+                updateQuantity(bills, value, -quantity);
+            } else {
+                updateQuantity(coins, value, -quantity);
+            }
+        }
+    }
+
+    private boolean isBill(double value) {
+        return value % 1 == 0;
+    }
+
+    private void updateQuantity(List<? extends MoneyAbstract> moneyList, double value, int quantityChange) {
+        for (MoneyAbstract money : moneyList) {
+            if (money.value == value) {
+                money.updateQuantity(money.quantity + quantityChange);
+            }
+        }
     }
 }

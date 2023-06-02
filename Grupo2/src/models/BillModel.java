@@ -14,4 +14,8 @@ public class BillModel extends MoneyAbstract {
     public void received(PurchaseModel purchaseModel) {
         purchaseModel.depositMoney((List<BillModel>) this);
     }
+
+    public void increaseQuantity(int quantity) {
+        this.quantity += quantity;
+    }
 }
