@@ -1,0 +1,50 @@
+@startuml modeloDelDominio
+
+class "models.Persona" implements "interfaces.IMovible" {
+
+}
+
+enum "structures.enums.EstadoAscensor"{
+}
+
+class "models.Tiempo"{
+}
+
+
+class "models.Planta" implements "interfaces.IMovible" {
+}
+
+
+class "models.Ascensor" implements "interfaces.IMovible" {
+}
+
+
+class "models.Universidad" implements "interfaces.IMovible" {
+
+}
+
+class "models.SalaEspera" {
+}
+
+class constants.Constans
+
+class "controllers.Consola" {
+}
+
+class "controllers.Movible" {
+}
+
+
+class views.Renderizado
+
+interface interfaces.IMovible
+
+Ascensor *--d Persona 
+Ascensor *--d Planta 
+Ascensor ---r "structures.enums.EstadoAscensor" 
+Universidad *-- Ascensor 
+Universidad *-- Planta
+Planta *--d Persona
+SalaEspera *--l Planta
+Persona *---u Tiempo 
+Tiempo *--d Universidad

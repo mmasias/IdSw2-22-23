@@ -1,0 +1,23 @@
+@startuml diagramaDeEstados
+
+State Ascensor{
+    State Parado
+    State Subiendo
+    State Bajando
+
+    Parado --> Subiendo : Subir
+    Parado --> Bajando : Bajar
+    Subiendo --> Parado : Parar
+    Bajando --> Parado : Parar
+}
+
+State Persona {
+    State EnAscensor
+    State EnPlanta
+
+    EnAscensor --> EnPlanta : Bajarse del ascensor
+    EnPlanta --> EnAscensor : Subirse al ascensor
+
+}
+
+@enduml
