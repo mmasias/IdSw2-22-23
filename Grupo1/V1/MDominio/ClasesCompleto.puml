@@ -1,0 +1,142 @@
+@startuml ClasesCompleto
+
+class Batalla{
+    +Heroe heroe
+    +Enemigo enemigo
+    +VistaBatalla vista
+
+    Batalla(heroe, enemigos)
+
+    void comenzarBatalla()
+}
+
+abstract Personaje{
+
+    +String nombre
+    +String[] sprite
+    +int vidaActual
+    +int vidaMaxima
+    +Arma[] armas
+    +int armaEquipada
+    +boolean desmayado
+    +int umbralVidaDesmayo
+    +int vidaCurarDesmayo
+
+    Personaje(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo)
+   
+    void recibirDano(int danoARecibir)
+    void atacar(Personaje personajeAtacar)
+    void avanzarTurnoSinActuar()
+    void curarseDesmayado()
+    void equiparArma(int armaAEquipar)
+    void curarse(int vidaACurar)
+    void despertar()
+    void comprobarSiSeDespierta()
+    void desmayar()
+
+    boolean estaVivo()
+    boolean porDebajoDelUmbralDeDesmayo()
+    boolean puedeActuar()
+    
+    int getVidaActual()
+    Arma[] getArmas()
+    String[] getSprite()
+    String getNombre()
+    
+}
+
+class RecuadroPersonaje {
+
+    +Personaje heroe
+    +Personaje enemigo
+
+    RecuadroPersonaje(Personaje heroe, Personaje enemigo)
+
+    void imprimir()
+
+}
+
+class VistaBatalla {
+
+    +Heroe heroe
+    +RecuadroPersonaje recuadro
+
+    VistaBatalla(Heroe heroe, Enemigo enemigo)
+
+    void imprimirInterfaz()
+    void anunciarGanador()
+
+    int elegirAccion()
+    int elegirArma()
+
+}
+
+class Arma {
+    +String nombre
+    +int dano
+    +int durabilidad
+    +double probAcertar
+
+    Arma(String nombre, int dano, int durabilidad, double probAcertar) {
+        
+
+    void desgastar()
+
+    String getNombre()
+    int getDurabilidad()
+    int getDano()
+    double getProbAcertar()
+}
+
+
+class Enemigo{
+    Enemigo(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo) {
+        
+    void equiparArmaAleatoria()
+}   
+
+class Heroe{
+    +String[] acciones
+    +boolean defendiendo
+    +boolean esperandoACurarseConPocion
+    +int turnosParaCurarseConPocion
+    +int armadura
+    
+    Heroe(String nombre, int vidaMaxima, Arma[] armas, String[] sprite, int umbralDesmayo, int curaPorDesmayo)
+    
+    void defenderse()
+    void iniciarEstadoDeCuracion()
+    void avanzarTurnoDeCuracion()
+    void recibirDanoDefendiendose()
+
+    String[] getAcciones()
+}
+
+class RegistroDeCombate {
+
+    +Map log
+    +int turnoActual
+
+    void anadirLog(String accionActual)
+    void sacarAccionesTotal()
+    void sacarAccionesTurnoACtual()
+    void sacarAccionesTurnoElegir(Integer turno)
+    void pasarTurno()
+
+    int turnoActual()
+}
+
+Batalla o-l-> VistaBatalla : Muestra 
+
+Personaje <|-u- Heroe
+Personaje <|-u- Enemigo
+
+Batalla *-d-> Heroe : Lucha 
+Batalla *-d-> Enemigo : Lucha 
+
+Personaje o-r-> Arma : Usa 
+
+Personaje -l-> RegistroDeCombate : Registra acciones 
+VistaBatalla --> RegistroDeCombate : Muestra 
+
+@enduml
