@@ -9,16 +9,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class RecuadroPersonaje {
-    private final Personaje heroe;
-    private final Personaje enemigo;
+    private final Personaje heroe = Combatientes.getHeroe();
+    private final List<Enemigo> enemigos = Combatientes.getEnemigos();
 
-    public RecuadroPersonaje(Personaje heroe, Personaje enemigo) {
-        this.heroe = heroe;
-        this.enemigo = enemigo;
+    public RecuadroPersonaje() {
     }
 
 
-    private String[] unirSprites() {
+    /*private String[] unirSprites() {
 
         int alturaMaxima = Math.max(heroe.getSprite().length, enemigo.getSprite().length);
 
@@ -48,16 +46,18 @@ public class RecuadroPersonaje {
         return list.toArray(new String[0]);
     }
 
-    public void imprimir() {
+    */public void imprimir() {
 
-        int largo = heroe.getSprite()[0].length() + enemigo.getSprite()[0].length();
+        /*int largo = heroe.getSprite()[0].length() + enemigo.getSprite()[0].length();
         ArrayList<String> recuadro = prepararRecuadro(largo);
         for (String line : recuadro) {
             System.out.println(line);
 
-        }
+        }*/
+        System.out.println("-----------------------------");
     }
 
+    /*
     private ArrayList<String> prepararRecuadro(int largo) {
         ArrayList<String> recuadro = new ArrayList<>();
 
@@ -93,5 +93,7 @@ public class RecuadroPersonaje {
         return String.join("",
                 Collections.nCopies(borde.length() - ((int) Math.round((vidaPersonaje1.length() + vidaPersonaje2.length()) * 1.5)), " "));
     }
+    */
+
 
 }

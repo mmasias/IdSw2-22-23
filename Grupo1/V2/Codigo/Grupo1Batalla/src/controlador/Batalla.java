@@ -1,11 +1,15 @@
 package controlador;
 
+import extras.RegistroDeCombate;
 import personajes.*;
-import extras.*;
 import vista.*;
+
+import java.util.List;
 
 public class Batalla {
     protected VistaBatalla vista;
+    protected Heroe heroe = Combatientes.getHeroe();
+    protected List<Enemigo> enemigos = Combatientes.getEnemigos();
 
     public Batalla(){
         vista = new VistaBatalla();
@@ -14,6 +18,11 @@ public class Batalla {
     public void comenzarBatalla(){
 
         while (Combatientes.ambosBandosConVida()){
+            System.out.println("Vida heroe - " + heroe.getVidaActual());
+            for (var a : enemigos){
+                System.out.print("Enemigo - " + a.getVidaActual() + "  ");
+            }
+            System.out.println("///////");
 
             for (var personaje : Combatientes.getCombatientes()){
 
@@ -21,28 +30,19 @@ public class Batalla {
 
                 personaje.actuar(this);
 
+                vista.imprimeAccionesDeTurnoActual();
+                RegistroDeCombate.pasarTurno();
+
             }
-
-            /*turnoHeroe();
-
-            if (personajeHaMuerto(enemigo)){
-                vista.anunciarGanador(heroe);
-                ambosPersonajesVivos = false;
-            } else {
-                turnoEnemigo();
-            }
-
-            if (personajeHaMuerto(heroe)){
-                vista.anunciarGanador(enemigo);
-                ambosPersonajesVivos = false;
-            }
-
-
-            vista.imprimeAccionesDeTurnoActual();
-            RegistroDeCombate.pasarTurno();*/
 
         }
         vista.imprimeRecuentoDeBatalla();
+
+        if (heroe.estaVivo()){
+            vista.anunciarGanador("el heroe");
+        } else {
+            vista.anunciarGanador("los enemigos");
+        }
     }
 
     private void jugadorEligeAccion(){
@@ -60,9 +60,9 @@ public class Batalla {
         }
     }
 
-    private void enemigoActua(){
-        enemigo.equiparArmaAleatoria();
-        enemigo.atacar(heroe);
+    private void enemigoActua(Enemigo enemigoActual){
+        enemigoActual.equiparArmaAleatoria();
+        enemigoActual.atacar(heroe);
     }
 
 
@@ -78,7 +78,7 @@ public class Batalla {
 
     public void turno(Enemigo enemigo){
         if (enemigo.puedeActuar()){
-            enemigoActua();
+            enemigoActua(enemigo);
         } else {
             enemigo.avanzarTurnoSinActuar();
         }

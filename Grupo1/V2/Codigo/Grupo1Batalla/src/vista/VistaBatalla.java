@@ -5,17 +5,17 @@ import personajes.*;
 import objetos.*;
 import renderizacion.RecuadroPersonaje;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class VistaBatalla {
 
     protected RecuadroPersonaje recuadro;
-    protected Heroe heroe;
+    protected Heroe heroe = Combatientes.getHeroe();
     private final Scanner entrada;
 
-    public VistaBatalla(Heroe heroe, Enemigo enemigo){
-        this.heroe = heroe;
-        recuadro = new RecuadroPersonaje(heroe, enemigo);
+    public VistaBatalla(){
+        recuadro = new RecuadroPersonaje();
         entrada = new Scanner(System.in);
     }
 
@@ -23,8 +23,8 @@ public class VistaBatalla {
         recuadro.imprimir();
     }
 
-    public void anunciarGanador(Personaje ganador){
-        System.out.println(ganador.getNombre() + " Ha sido el ganador!");
+    public void anunciarGanador(String ganador){
+        System.out.println("Ha ganado " + ganador);
     }
 
     public Acciones elegirAccion(){
