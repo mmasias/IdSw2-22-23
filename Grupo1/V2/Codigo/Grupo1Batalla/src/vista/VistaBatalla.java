@@ -15,7 +15,7 @@ public class VistaBatalla {
 
     public VistaBatalla(Heroe heroe, Enemigo enemigo){
         this.heroe = heroe;
-        recuadro = new RecuadroPersonaje(heroe, enemigo);
+        recuadro = new RecuadroPersonaje();
         entrada = new Scanner(System.in);
     }
 

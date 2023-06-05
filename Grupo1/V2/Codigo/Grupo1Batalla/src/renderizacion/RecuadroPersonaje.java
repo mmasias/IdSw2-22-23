@@ -7,31 +7,33 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecuadroPersonaje {
-    private final Personaje heroe;
-    private final Personaje enemigo;
-
-    public RecuadroPersonaje(Personaje heroe, Personaje enemigo) {
-        this.heroe = heroe;
-        this.enemigo = enemigo;
-    }
-
+    private final List<Personaje> combatientes = Combatientes.getCombatientes();
 
     private String[] unirSprites() {
 
-        int alturaMaxima = Math.max(heroe.getSprite().length, enemigo.getSprite().length);
+        int alturaMaxima = combatientes.stream()
+                .map(personaje -> personaje.getSprite().length)
+                .max(Integer::compare)
+                .get();
 
-        String[] sprite1 = llenarHuecos(heroe.getSprite(), alturaMaxima);
-        String[] sprite2 = llenarHuecos(enemigo.getSprite(), alturaMaxima);
+        String[][] sprites = combatientes.stream()
+                .map(personaje -> llenarHuecos(personaje.getSprite(), alturaMaxima))
+                .toArray(String[][]::new);
 
-        String[] newArray = new String[alturaMaxima];
+        String[] recuadroDeBatalla = new String[alturaMaxima];
 
-        for (int i = 0; i < alturaMaxima; i++) {
-            newArray[i] = sprite1[i] + " " + sprite2[i];
+        for (int i = 0; i < sprites.length; i++) {
+            StringBuilder newLine = new StringBuilder();
+            for (int j = 0; j < alturaMaxima; j++) {
+                newLine.append(sprites[i][j]);
+            }
+            recuadroDeBatalla[i] = String.valueOf(newLine);
         }
 
-        return newArray;
+        return recuadroDeBatalla;
     }
 
     private String[] llenarHuecos(String[] sprite, int alturaMaxima) {
@@ -50,7 +52,9 @@ public class RecuadroPersonaje {
 
     public void imprimir() {
 
-        int largo = heroe.getSprite()[0].length() + enemigo.getSprite()[0].length();
+        int largo = combatientes.stream()
+                .map(personaje -> personaje.getSprite()[0].length())
+                .reduce(0, Integer::sum);
         ArrayList<String> recuadro = prepararRecuadro(largo);
         for (String line : recuadro) {
             System.out.println(line);
@@ -63,35 +67,22 @@ public class RecuadroPersonaje {
 
         String borde = String.join("", Collections.nCopies(largo, "+"));
 
-        String vidaPersonaje1 = String.join("", Collections.nCopies((heroe.getVidaActual() / 10) + 1, "❤"));
-        String vidaPersonaje2 = String.join("", Collections.nCopies((enemigo.getVidaActual() / 10) + 1, "❤"));
-
-        String espacioVidas = calcularEspacioVidas(borde, vidaPersonaje1, vidaPersonaje2);
-        String espacioNombres = calcularEspacioNombres(borde);
+        List<String> vidasYNombres = combatientes.stream()
+                .map(personaje -> String
+                        .join(String.format("%s :  ", personaje.getNombre())
+                                , Collections
+                                        .nCopies((personaje.getVidaActual() / 10) + 1, "❤"))
+                ).toList();
 
         recuadro.add(borde);
 
         recuadro.add("Turno " + RegistroDeCombate.turnoActual());
-
-        recuadro.add(vidaPersonaje1 + espacioVidas + vidaPersonaje2);
-        recuadro.add(heroe.getNombre() + espacioNombres + enemigo.getNombre());
-        recuadro.add(heroe.getVidaActual() + String.join("",
-                Collections.nCopies(borde.length() - 6, " ")) + enemigo.getVidaActual());
-
+        recuadro.addAll(vidasYNombres);
         recuadro.addAll(Arrays.asList(unirSprites()));
 
         recuadro.add(borde);
+
         return recuadro;
-    }
-
-    private String calcularEspacioNombres(String borde) {
-        return String.join("",
-                Collections.nCopies(borde.length() - (heroe.getNombre().length() + enemigo.getNombre().length()), " "));
-    }
-
-    private static String calcularEspacioVidas(String borde, String vidaPersonaje1, String vidaPersonaje2) {
-        return String.join("",
-                Collections.nCopies(borde.length() - ((int) Math.round((vidaPersonaje1.length() + vidaPersonaje2.length()) * 1.5)), " "));
     }
 
 }
