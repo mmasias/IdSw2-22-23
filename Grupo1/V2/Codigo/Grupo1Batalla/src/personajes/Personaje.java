@@ -2,12 +2,15 @@ package personajes;
 
 import objetos.*;
 import extras.*;
+import controlador.*;
 
-public class Personaje {
+public abstract class Personaje {
     protected String nombre;
     protected String[] sprite;
     protected Arma[] armas;
     protected Vida vida;
+
+    public abstract void actuar(Batalla batalla);
 
     protected int armaEquipada;
     protected boolean desmayado;

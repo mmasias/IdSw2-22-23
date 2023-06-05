@@ -1,27 +1,29 @@
+package controlador;
+
 import personajes.*;
 import extras.*;
+import vista.*;
 
 public class Batalla {
     protected VistaBatalla vista;
-    protected Heroe heroe;
-    protected Enemigo enemigo;
 
-
-    public Batalla(Heroe heroe, Enemigo enemigo){
-        vista = new VistaBatalla(heroe, enemigo);
-        this.heroe = heroe;
-        this.enemigo = enemigo;
+    public Batalla(){
+        vista = new VistaBatalla();
     }
 
     public void comenzarBatalla(){
 
-        boolean ambosPersonajesVivos = true;
+        while (Combatientes.ambosBandosConVida()){
 
-        while (ambosPersonajesVivos){
+            for (var personaje : Combatientes.getCombatientes()){
 
-            vista.imprimirInterfaz();
+                vista.imprimirInterfaz();
 
-            turnoHeroe();
+                personaje.actuar(this);
+
+            }
+
+            /*turnoHeroe();
 
             if (personajeHaMuerto(enemigo)){
                 vista.anunciarGanador(heroe);
@@ -35,33 +37,19 @@ public class Batalla {
                 ambosPersonajesVivos = false;
             }
 
-            vista.imprimeAccionesDeTurnoActual();
 
-            RegistroDeCombate.pasarTurno();
+            vista.imprimeAccionesDeTurnoActual();
+            RegistroDeCombate.pasarTurno();*/
 
         }
         vista.imprimeRecuentoDeBatalla();
     }
 
-    private boolean personajeHaMuerto(Personaje posiblePerdedor){
-        return !posiblePerdedor.estaVivo();
-    }
-
-    private void turnoHeroe(){
-        if (heroe.puedeActuar()){
-            jugadorEligeAccion();
-        } else {
-            heroe.avanzarTurnoSinActuar();
-            vista.esperarInteraccion();
-        }
-    }
-
-
     private void jugadorEligeAccion(){
         switch(vista.elegirAccion()){
             case ATACAR -> {
                 heroe.equiparArma(vista.elegirArma() - 1);
-                heroe.atacar(enemigo);
+                heroe.atacar(Combatientes.elegirPrimerEnemigoVivo());
             }
             case DEFENDER -> {
                 heroe.defenderse();
@@ -77,12 +65,22 @@ public class Batalla {
         enemigo.atacar(heroe);
     }
 
-    private void turnoEnemigo(){
+
+
+    public void turno(Heroe heroe) {
+        if (heroe.puedeActuar()) {
+            jugadorEligeAccion();
+        } else {
+            heroe.avanzarTurnoSinActuar();
+            vista.esperarInteraccion();
+        }
+    }
+
+    public void turno(Enemigo enemigo){
         if (enemigo.puedeActuar()){
             enemigoActua();
         } else {
             enemigo.avanzarTurnoSinActuar();
         }
     }
-
 }

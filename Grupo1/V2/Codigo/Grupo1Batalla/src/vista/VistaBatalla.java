@@ -1,3 +1,5 @@
+package vista;
+
 import extras.*;
 import personajes.*;
 import objetos.*;
@@ -9,10 +11,7 @@ public class VistaBatalla {
 
     protected RecuadroPersonaje recuadro;
     protected Heroe heroe;
-    private Scanner entrada;
-    private final int ATACAR = 1;
-    private final int DEFENDER = 2;
-    private final int CURARSE = 3;
+    private final Scanner entrada;
 
     public VistaBatalla(Heroe heroe, Enemigo enemigo){
         this.heroe = heroe;
@@ -30,6 +29,10 @@ public class VistaBatalla {
 
     public Acciones elegirAccion(){
         mostrarAcciones();
+
+        final int ATACAR = 1;
+        final int DEFENDER = 2;
+        final int CURARSE = 3;
 
         switch (scanElegir(heroe.getAcciones().length)){
             case ATACAR -> {

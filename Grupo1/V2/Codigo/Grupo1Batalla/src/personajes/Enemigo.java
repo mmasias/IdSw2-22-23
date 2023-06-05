@@ -1,5 +1,6 @@
 package personajes;
 
+import controlador.Batalla;
 import objetos.*;
 
 import java.util.Random;
@@ -16,6 +17,11 @@ public class Enemigo extends Personaje {
 
         armaEquipada = rand.nextInt(armas.length);
 
+    }
+
+    @Override
+    public void actuar(Batalla batalla){
+        batalla.turno(this);
     }
 
 }
