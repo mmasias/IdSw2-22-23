@@ -13,7 +13,7 @@ public final class CespedBajo extends Bloque implements SePuedeRenderizar {
 
     @Override
     public boolean puedeTransitar(Entidad entidad) {
-        return entidad.getClass() == Personaje.class;
+        return true;
     }
 
     @Override

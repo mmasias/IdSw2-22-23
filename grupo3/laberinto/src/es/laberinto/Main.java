@@ -6,6 +6,8 @@ import es.laberinto.modelo.entides.*;
 import es.laberinto.modelo.Posicion;
 import es.laberinto.vista.RenderizadorMundo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +16,7 @@ public final class Main {
     private static final Posicion POSICION_INICIAL_ALFOMBRA = Posicion.crear(4, 8);
     private static final Posicion POSICION_INICIAL_CABALLO = Posicion.crear(13, 5);
     private static final Posicion POSICION_INICIAL_NPC = Posicion.crear(6, 13);
-    private static final Posicion POSICION_INICIAL_PERSONAJE = Posicion.crear(3, 3);
+    private static final Posicion POSICION_INICIAL_PERSONAJE = Posicion.crear(21, 8);
 
     public static void main(String[] args) {
         Mundo mundo = new Mundo(
@@ -28,12 +30,13 @@ public final class Main {
     }
 
     private static List<Entidad> crearListaEntidades() {
-        return List.of(
-                Barca.crear(POSICION_INICIAL_BARCA),
-                Alfombra.crear(POSICION_INICIAL_ALFOMBRA),
-                Caballo.crear(POSICION_INICIAL_CABALLO),
-                NPC.crear(POSICION_INICIAL_NPC)
-        );
+        List<Entidad> lista = new ArrayList<>();
+        lista.add(Barca.crear(POSICION_INICIAL_BARCA));
+        lista.add(Alfombra.crear(POSICION_INICIAL_ALFOMBRA));
+        lista.add(Caballo.crear(POSICION_INICIAL_CABALLO));
+        lista.add(NPC.crear(POSICION_INICIAL_NPC));
+
+        return lista;
     }
 
     private static Bloque[][] crearArrayaBloques() {

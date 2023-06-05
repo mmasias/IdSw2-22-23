@@ -58,7 +58,8 @@ public final class MovedorEntidadesMundo {
             return false;
 
         Bloque siguienteBloque = mundo.getBloque(posicion);
-        if(!siguienteBloque.puedeTransitar(entidad))
+        if((entidad.estoyMontadoSobreEntidad() && !siguienteBloque.puedeTransitar(entidad.getEntidadSobreLaQueEstoyMontado())) ||
+                (!entidad.estoyMontadoSobreEntidad() && !siguienteBloque.puedeTransitar(entidad)))
             return false;
 
         return !hayColisionConEntidadNoMontable(posicion);

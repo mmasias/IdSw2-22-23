@@ -40,6 +40,14 @@ public abstract class Entidad {
         }
     }
 
+    public Entidad getEntidadSobreLaQueEstoyMontado() {
+        return entidadSobreLaQueEstoyMontado;
+    }
+
+    public Entidad getEntidadMontadaSobreMi() {
+        return entidadMontadaSobreMi;
+    }
+
     public boolean estoyMontadoSobreEntidad() {
         return this.entidadSobreLaQueEstoyMontado != null;
     }

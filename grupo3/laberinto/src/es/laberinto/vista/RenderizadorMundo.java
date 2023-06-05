@@ -7,7 +7,7 @@ import es.laberinto.modelo.Posicion;
 
 public final class RenderizadorMundo {
     public void renderizar(Mundo mundo) {
-        for(int i = 0; i<mundo.bloques.length; i++){
+        for(int i = 0; i<mundo.getBloques().length; i++){
             for(int j = 0; j<mundo.bloques[i].length;j++){
                 Entidad entidad = mundo.getEntidad(Posicion.crear(j,i));
                 Bloque bloque = mundo.bloques[i][j];

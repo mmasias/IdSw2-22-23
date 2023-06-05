@@ -18,7 +18,7 @@ public final class Mundo {
     private final InputUsuario inputUsuario;
 
     private final List<Entidad> entidades;
-    private final Bloque[][] bloques;
+    public final Bloque[][] bloques;
     private final Personaje personaje;
     private int tiempoTranscurrido;
 
@@ -29,6 +29,7 @@ public final class Mundo {
         this.movedorEntidadesMundo = new MovedorEntidadesMundo(this);
         this.renderizadorMundo = renderizadorMundo;
         this.inputUsuario = new InputUsuario();
+        this.entidades.add(personaje);
     }
 
     public void iniciar() {
