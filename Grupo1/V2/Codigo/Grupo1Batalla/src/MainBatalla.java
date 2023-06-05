@@ -10,6 +10,7 @@ public class MainBatalla {
         // COMBATIENTES
         //
         //batalla = new Batalla(CreadorPersonajes.Heroe("asa"), CreadorPersonajes.Enemigo("bb"));
+        batalla = new Batalla();
 
         batalla.comenzarBatalla();
     }
