@@ -19,8 +19,8 @@ public class VistaBatalla {
         entrada = new Scanner(System.in);
     }
 
-    public void imprimirInterfaz(){
-        recuadro.imprimir();
+    public void imprimirInterfaz(List<Personaje> combatientes){
+        recuadro.imprimir(combatientes);
     }
 
     public void anunciarGanador(String ganador){
@@ -102,5 +102,24 @@ public class VistaBatalla {
     }
 
 
+    public void eliminarDeBatalla(Personaje enemigo) {
+        RegistroDeCombate.anadirLog(enemigo.getNombre() + " muerto: se elimina de la batalla");
+    }
 
+    public Personaje elegirEnemigo(List<Personaje> combatientes) {
+        boolean enemigoBienElegido = false;
+        int enemigoElegido=0;
+
+        while(!enemigoBienElegido){
+
+            System.out.println("¿A cuál enemigo quieres atacar?");
+
+            enemigoElegido= scanElegir(combatientes.size()-1);
+
+            if(combatientes.get(enemigoElegido) instanceof Enemigo){
+                enemigoBienElegido = true;
+            }
+        }
+        return combatientes.get(enemigoElegido);
+    }
 }

@@ -35,10 +35,11 @@ public abstract class Personaje {
     protected void comprobarEstado(){
         if (vida.getVidaActual() <= 0 ){
             RegistroDeCombate.anadirLog(this.nombre + " : Ha muerto");
-        } else if (vida.getVidaActual() < vida.getUmbralDesmayo()){
+        } else if (vida.getVidaActual() < vida.getUmbralDesmayo() && !desmayado){
             desmayar();
         }
     }
+
 
     public void atacar(Personaje personajeAAtacar){
         int probAcertar = (int) (Math.random() * 100);
@@ -82,7 +83,6 @@ public abstract class Personaje {
         if (!vida.debajoDelUmbral()){
             despertar();
         }
-
     }
 
     private void despertar() {

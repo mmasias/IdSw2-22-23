@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RecuadroPersonaje {
-    private final List<Personaje> combatientes = Combatientes.getCombatientes();
+    //private final List<Personaje> combatientes = Combatientes.getCombatientes();
+    private List<Personaje> combatientes;
 
     private String[] unirSprites() {
 
@@ -50,7 +51,9 @@ public class RecuadroPersonaje {
         return list.toArray(new String[0]);
     }
 
-    public void imprimir() {
+    public void imprimir(List<Personaje> combatientes) {
+
+        this.combatientes = combatientes;
 
         int largo = combatientes.stream()
                 .map(personaje -> personaje.getSprite()[0].length())

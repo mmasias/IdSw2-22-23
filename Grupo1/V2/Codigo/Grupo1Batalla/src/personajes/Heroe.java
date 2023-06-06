@@ -95,4 +95,7 @@ public class Heroe extends Personaje{
         return acciones;
     }
 
+    public void comprobarSiCurar() {
+        if(desmayado || esperandoACurarseConPocion)  avanzarTurnoSinActuar();
+    }
 }
