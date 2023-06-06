@@ -16,7 +16,7 @@ public class Simulador {
     public static void simular(int numeroBarcas, int numeroAlfombras, int numeroCaballos, int numeroNPCs){
 
         Mundo mundo = new Mundo(
-                crearListaEntidades(crearPosicionesBarcas(numeroBarcas), crearPosicionesAlfombra(numeroAlfombras), crearPosicionesCaballo(numeroCaballos), crearPosicionesNPC(numeroNPCs)),
+                crearListaEntidades(crearPosiciones(numeroBarcas), crearPosiciones(numeroAlfombras), crearPosiciones(numeroCaballos), crearPosiciones(numeroNPCs)),
                 Personaje.crear(POSICION_INICIAL_PERSONAJE),
                 crearArrayaBloques(),
                 new RenderizadorMundo()
@@ -24,50 +24,14 @@ public class Simulador {
 
         mundo.iniciar();
     }
-
-
-    private static List<Posicion> crearPosicionesBarcas(int numeroBarcas) {
+    private static List<Posicion> crearPosiciones(int numeroEntidades) {
         List<Posicion> lista = new ArrayList<>();
-        for(int i = 0; i<numeroBarcas;i++){
+        for(int i = 0; i<numeroEntidades;i++){
             Random random = new Random();
             int coordenadaX = random.nextInt(20) + 1;
             int coordenadaY = random.nextInt(18) + 1;
             Posicion POSICION_INICIAL_BARCA = Posicion.crear(coordenadaX, coordenadaY);
             lista.add(POSICION_INICIAL_BARCA);
-        }
-        return lista;
-    }
-    private static List<Posicion> crearPosicionesAlfombra(int numeroAlfombras) {
-        List<Posicion> lista = new ArrayList<>();
-        for(int i = 0; i<numeroAlfombras;i++){
-            Random random = new Random();
-            int coordenadaX = random.nextInt(20) + 1;
-            int coordenadaY = random.nextInt(18) + 1;
-            Posicion POSICION_INICIAL_ALFOMBRA = Posicion.crear(coordenadaX, coordenadaY);
-            lista.add(POSICION_INICIAL_ALFOMBRA);
-        }
-        return lista;
-    }
-
-    private static List<Posicion> crearPosicionesCaballo(int numeroCaballos) {
-        List<Posicion> lista = new ArrayList<>();
-        for(int i = 0; i<numeroCaballos;i++){
-            Random random = new Random();
-            int coordenadaX = random.nextInt(20) + 1;
-            int coordenadaY = random.nextInt(18) + 1;
-            Posicion POSICION_INICIAL_CABALLO= Posicion.crear(coordenadaX, coordenadaY);
-            lista.add(POSICION_INICIAL_CABALLO);
-        }
-        return lista;
-    }
-    private static List<Posicion> crearPosicionesNPC(int numeroNPCs) {
-        List<Posicion> lista = new ArrayList<>();
-        for(int i = 0; i<numeroNPCs;i++){
-            Random random = new Random();
-            int coordenadaX = random.nextInt(20) + 1;
-            int coordenadaY = random.nextInt(18) + 1;
-            Posicion POSICION_INICIAL_NPC = Posicion.crear(coordenadaX, coordenadaY);
-            lista.add(POSICION_INICIAL_NPC);
         }
         return lista;
     }
