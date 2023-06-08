@@ -34,29 +34,29 @@ public abstract class Personaje {
         comprobarEstado();
     }
 
-    private void recibirEfectoSecundario(EfectoSecundario efectoSecundario){
+    private void recibirEfectoSecundario(EfectoSecundario efectoSecundario) {
 
-        if(efectoSecundario!= null){
+        if (efectoSecundario != null) {
             efectoSecundario.Aplicar(this);
         }
     }
 
-    protected void comprobarEstado(){
-        if (vida.getVidaActual() <= 0 ){
+    protected void comprobarEstado() {
+        if (vida.getVidaActual() <= 0) {
             RegistroDeCombate.anadirLog(this.nombre + " : Ha muerto");
-        } else if (vida.getVidaActual() < vida.getUmbralDesmayo() && !desmayado){
+        } else if (vida.getVidaActual() < vida.getUmbralDesmayo() && !desmayado) {
             desmayar();
         }
     }
 
 
-    public void atacar(Personaje personajeAAtacar){
+    public void atacar(Personaje personajeAAtacar) {
         int probAcertar = (int) (Math.random() * 100);
         Arma arma = armas[armaEquipada];
 
         personajeAAtacar = comprobarEstadoAlAtacar(personajeAAtacar);
 
-        if ((probAcertar < arma.getProbAcertar()) && (arma.getDurabilidad() > 0)){
+        if ((probAcertar < arma.getProbAcertar()) && (arma.getDurabilidad() > 0)) {
             RegistroDeCombate.anadirLog(this.nombre + " : Ha acertado con el arma " + arma.getNombre());
 
             int danoARealizar = arma.getDano();
@@ -73,8 +73,8 @@ public abstract class Personaje {
     }
 
     private Personaje comprobarEstadoAlAtacar(Personaje personajeAAtacar) {
-        if(aturdido) {
-            RegistroDeCombate.anadirLog(getNombre() + " :  Esta aturdido");
+        if (aturdido) {
+            RegistroDeCombate.anadirLog(getNombre() + " : Esta aturdido");
             personajeAAtacar = Combatientes.getPersonajeVivoRandom();
             avanzarTurnoAturdimiento();
         }
@@ -82,15 +82,17 @@ public abstract class Personaje {
         return personajeAAtacar;
     }
 
-    public boolean puedeActuar(){
+    public boolean puedeActuar() {
         return !desmayado;
     }
-    public void avanzarTurnoSinActuar(){
+
+    public void avanzarTurnoSinActuar() {
         curarseDesmayado();
     }
-    public void curarseDesmayado(){
 
-        if(vida.debajoDelUmbral()){
+    public void curarseDesmayado() {
+
+        if (vida.debajoDelUmbral()) {
             RegistroDeCombate.anadirLog(this.nombre + " : Esta desmayado");
 
             vida.curarDesmayado();
@@ -103,7 +105,7 @@ public abstract class Personaje {
 
     private void comprobarSiSeDespierta() {
 
-        if (!vida.debajoDelUmbral()){
+        if (!vida.debajoDelUmbral()) {
             despertar();
         }
     }
@@ -114,43 +116,48 @@ public abstract class Personaje {
         RegistroDeCombate.anadirLog(this.nombre + " : Se ha despertado");
     }
 
-    public boolean estaVivo(){
+    public boolean estaVivo() {
         return vida.mayorQueCero();
     }
 
-    public void desmayar(){
+    public void desmayar() {
         desmayado = true;
         RegistroDeCombate.anadirLog(this.nombre + ": Se ha desmayado");
     }
-    public int getVidaActual(){
+
+    public int getVidaActual() {
         return vida.getVidaActual();
     }
-    public void equiparArma(int armaAEquipar){
+
+    public void equiparArma(int armaAEquipar) {
         armaEquipada = armaAEquipar;
     }
-    public Arma[] getArmas(){
+
+    public Arma[] getArmas() {
         return armas;
     }
-    public String[] getSprite(){
+
+    public String[] getSprite() {
         return sprite;
     }
-    public String getNombre(){
+
+    public String getNombre() {
         return nombre;
     }
 
-    public void aturdir(){
+    public void aturdir() {
 
         turnosParaQuitarAturdimiento = 3;
-        aturdido=true;
+        aturdido = true;
         RegistroDeCombate.anadirLog(getNombre() + " : Ha sido aturdido ");
     }
 
-    public void avanzarTurnoAturdimiento(){
+    public void avanzarTurnoAturdimiento() {
         turnosParaQuitarAturdimiento--;
 
-        if(turnosParaQuitarAturdimiento<=0){
+        if (turnosParaQuitarAturdimiento <= 0) {
             RegistroDeCombate.anadirLog(getNombre() + " : Último turno de aturdimiento");
-            aturdido=false;
+            aturdido = false;
         }
 
     }
