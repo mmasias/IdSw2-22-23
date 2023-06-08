@@ -32,8 +32,8 @@ public class Simulador {
         List<Posicion> lista = new ArrayList<>();
         for(int i = 0; i<numeroEntidades;i++){
             Random random = new Random();
-            int coordenadaX = random.nextInt(20) + 1;
-            int coordenadaY = random.nextInt(18) + 1;
+            int coordenadaX = random.nextInt(22) + 1;
+            int coordenadaY = random.nextInt(19) + 1;
             Posicion POSICION_INICIAL_BARCA = Posicion.crear(coordenadaX, coordenadaY);
             lista.add(POSICION_INICIAL_BARCA);
         }
