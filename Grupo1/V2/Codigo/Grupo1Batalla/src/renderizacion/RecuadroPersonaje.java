@@ -26,12 +26,12 @@ public class RecuadroPersonaje {
 
         String[] recuadroDeBatalla = new String[alturaMaxima];
 
-        for (int i = 0; i < sprites.length; i++) {
+        for (int altura = 0; altura < alturaMaxima; altura++) {
             StringBuilder newLine = new StringBuilder();
-            for (int j = 0; j < alturaMaxima; j++) {
-                newLine.append(sprites[i][j]);
+            for (int sprite = 0; sprite < sprites.length; sprite++) {
+                newLine.append(sprites[sprite][altura]);
             }
-            recuadroDeBatalla[i] = String.valueOf(newLine);
+            recuadroDeBatalla[altura] = String.valueOf(newLine);
         }
 
         return recuadroDeBatalla;
@@ -44,10 +44,10 @@ public class RecuadroPersonaje {
         int hueco = alturaMaxima - sprite.length;
 
         List<String> list = new ArrayList<>(Arrays.stream(sprite).toList());
-        for (int i = 0; i < hueco; i++) {
-            list.add(0, String.join("", Collections.nCopies(ancho, "")));
-        }
 
+        for (int i = 0; i < hueco; i++) {
+            list.add(0, String.join("", Collections.nCopies(ancho, " ")));
+        }
         return list.toArray(new String[0]);
     }
 
@@ -71,8 +71,8 @@ public class RecuadroPersonaje {
         String borde = String.join("", Collections.nCopies(largo, "+"));
 
         List<String> vidasYNombres = combatientes.stream()
-                .map(personaje -> String
-                        .join(String.format("%s :  ", personaje.getNombre())
+                .map(personaje -> String.format("%s :  ", personaje.getNombre()) +
+                        String.join(""
                                 , Collections
                                         .nCopies((personaje.getVidaActual() / 10) + 1, "❤"))
                 ).toList();
