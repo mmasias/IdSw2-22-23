@@ -20,6 +20,7 @@ public class VistaBatalla {
     }
 
     public void imprimirInterfaz(List<Personaje> combatientes){
+        clearConsole();
         recuadro.imprimir(combatientes);
     }
 
@@ -56,8 +57,16 @@ public class VistaBatalla {
     }
 
     public void esperarInteraccion(){
+        System.out.println("\nPulse enter para continuar... ");
         Scanner a = new Scanner(System.in);
         a.nextLine();
+    }
+
+    public final static void clearConsole()
+    {
+        System.out.print("\033\143");
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
     private int scanElegir(int numMax){
         boolean elegidaOpcionCorrecta = false;
