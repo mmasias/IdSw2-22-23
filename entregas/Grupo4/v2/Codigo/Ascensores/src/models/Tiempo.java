@@ -62,7 +62,7 @@ public class Tiempo {
         return universidad;
     }
 
-    private void empezar(){
+    public void empezar(){
         universidad = new Universidad();
         Scanner scanner = new Scanner(System.in);
         String entrada = "";
@@ -71,11 +71,7 @@ public class Tiempo {
             Renderizado.renderizar(this);
             incrementar();
             entrada = scanner.nextLine();
-        } while (entrada.toLowerCase().compareTo("s") != 0);
-    }
-
-    public static void main(String[] args) {
-        new Tiempo().empezar();
+        } while (entrada.toLowerCase().compareTo("exit") != 0);
     }
 
 }

@@ -1,6 +1,6 @@
 package models;
 
-import constants.Constans;
+import settings.Settings;
 import interfaces.IMovible;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class Planta implements Comparable<Planta>, IMovible {
     }
     public void agregarPersona(Persona persona) {
         personas.add(persona);
-        if (persona.getPlantaDestino().getNivel() != Constans.PLANTA_PRINCIPAL)
+        if (persona.getPlantaDestino().getNivel() != Settings.PLANTA_PRINCIPAL)
             salaEspera.agregarPersona(persona);
     }
     public void eliminarPersona(Persona persona) {

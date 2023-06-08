@@ -1,6 +1,6 @@
 package models;
 
-import constants.Constans;
+import settings.Settings;
 import interfaces.IMovible;
 import structures.enums.EstadoAscensor;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class Ascensor implements IMovible {
     public Ascensor(int idAscensor, ArrayList<Planta> plantas) {
         this.idAscensor = idAscensor;
         this.plantas = plantas;
-        this.nivel = Constans.PLANTA_PRINCIPAL;
+        this.nivel = Settings.PLANTA_PRINCIPAL;
         this.personas = new ArrayList<>();
         this.estado = EstadoAscensor.PARADO;
     }
@@ -34,7 +34,7 @@ public class Ascensor implements IMovible {
         return personas.size() == 0;
     }
     public boolean estaLleno() {
-        return personas.size() == Constans.CAPACIDAD_MAXIMA_ASCENSOR;
+        return personas.size() == Settings.CAPACIDAD_MAXIMA_ASCENSOR;
     }
     public boolean estaSubiendo() {
         return estado == EstadoAscensor.SUBIENDO;
@@ -47,11 +47,9 @@ public class Ascensor implements IMovible {
     }
 
     public void agregarPersona(Persona persona) {
-        if (personas.size() < Constans.CAPACIDAD_MAXIMA_ASCENSOR) {
+        if (personas.size() < Settings.CAPACIDAD_MAXIMA_ASCENSOR) {
             persona.entrarAscensor();
             personas.add(persona);
-        } else {
-            throw new RuntimeException("El ascensor esta lleno");
         }
     }
 
@@ -80,13 +78,15 @@ public class Ascensor implements IMovible {
             if (estaParado()){
                 estado = EstadoAscensor.BAJANDO;
             } else {
-                bajar();
+                nivel--;
+                bajarPersonas();
             }
         } else if (personas.get(0).getPlantaDestino().compareTo(getPlantaActual()) > 0) {
             if (estaParado()){
                 estado = EstadoAscensor.SUBIENDO;
             } else {
-                subir();
+                nivel++;
+                bajarPersonas();
             }
         } else {
             estado = EstadoAscensor.PARADO;
@@ -97,29 +97,19 @@ public class Ascensor implements IMovible {
         if (planta.getNivel() == nivel)
             return;
         if (planta.getNivel() > nivel) {
-            if (estaParado()){
+            if (estaParado()) {
                 estado = EstadoAscensor.SUBIENDO;
             } else {
-                subir();
+                nivel++;
+                bajarPersonas();
             }
         } else {
-            if (estaParado()){
+            if (estaParado()) {
                 estado = EstadoAscensor.BAJANDO;
             } else {
-                bajar();
+                nivel--;
+                bajarPersonas();
             }
         }
-    }
-    public void subir() {
-            if (getPlantaActual().getNivel() + 1 > Constans.NIVEL_SUPERIOR)
-            throw new RuntimeException("No hay mas plantas");
-        nivel++;
-        bajarPersonas();
-    }
-    public void bajar() {
-        if (getPlantaActual().getNivel()-1 < Constans.NIVEL_INFERIOR)
-            throw new RuntimeException("No hay mas plantas");
-        nivel--;
-        bajarPersonas();
     }
 }

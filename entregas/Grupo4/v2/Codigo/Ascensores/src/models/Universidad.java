@@ -1,6 +1,6 @@
 package models;
 
-import constants.Constans;
+import settings.Settings;
 import controllers.Movimiento;
 import interfaces.IMovible;
 
@@ -22,19 +22,19 @@ public class Universidad implements IMovible {
     }
 
     private void crearPlantas() {
-        for (int i = Constans.NIVEL_SUPERIOR; i >= Constans.NIVEL_INFERIOR; i--) {
+        for (int i = Settings.NIVEL_SUPERIOR; i >= Settings.NIVEL_INFERIOR; i--) {
             Planta nuevaPlanta = new Planta(i);
             configurarAscensores(plantas);
             plantas.add(nuevaPlanta);
         }
     }
     void configurarAscensores(ArrayList<Planta> plantas) {
-        for (int i = 0; i < Constans.TOTAL_ASCENSORES; i++) {
+        for (int i = 0; i < Settings.TOTAL_ASCENSORES; i++) {
             ascensores.put(i, new Ascensor(i,plantas));
         }
     }
     private boolean llegoUnaPersona() {
-        if (Math.random() < .5) {
+        if (Math.random() < Settings.PROBABILIDAD_LLEGADA_PERSONA) {
             return true;
         } else {
             return false;
@@ -46,7 +46,7 @@ public class Universidad implements IMovible {
             Movimiento.mover(ascensor);
         }
         for (Planta planta : plantas) {
-            if (planta.getNivel() == Constans.PLANTA_PRINCIPAL) {
+            if (planta.getNivel() == Settings.PLANTA_PRINCIPAL) {
                 if (llegoUnaPersona())
                     planta.agregarPersona(new Persona());
             }

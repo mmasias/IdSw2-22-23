@@ -26,12 +26,14 @@ class "models.Universidad" implements "interfaces.IMovible" {
 class "models.SalaEspera" {
 }
 
-class constants.Constans
+class settings.Settings
 
 class "controllers.Consola" {
 }
 
 class "controllers.Movible" {
+}
+class main {
 }
 
 
