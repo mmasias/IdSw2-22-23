@@ -10,15 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class Simulador {
     private static final Posicion POSICION_INICIAL_PERSONAJE = Posicion.crear(3, 3);
     public static void simular(int numeroBarcas, int numeroAlfombras, int numeroCaballos, int numeroNPCs){
 
+        Bloque[][] bloques = crearArrayaBloques();
+
         Mundo mundo = new Mundo(
-                crearListaEntidades(crearPosiciones(numeroBarcas), crearPosiciones(numeroAlfombras), crearPosiciones(numeroCaballos), crearPosiciones(numeroNPCs)),
+                crearListaEntidades(bloques, crearPosiciones(numeroBarcas), crearPosiciones(numeroAlfombras), crearPosiciones(numeroCaballos), crearPosiciones(numeroNPCs)),
                 Personaje.crear(POSICION_INICIAL_PERSONAJE),
-                crearArrayaBloques(),
+                bloques,
                 new RenderizadorMundo()
         );
 
@@ -35,21 +39,22 @@ public class Simulador {
         }
         return lista;
     }
-    private static List<Entidad> crearListaEntidades(List<Posicion> posicionesBarcas, List<Posicion> posicionesAlfombras, List<Posicion> posicionesCaballos, List<Posicion> posicionesNPCs) {
+    private static List<Entidad> crearListaEntidades(Bloque[][] bloques, List<Posicion> posicionesBarcas, List<Posicion> posicionesAlfombras, List<Posicion> posicionesCaballos, List<Posicion> posicionesNPCs) {
         List<Entidad> lista = new ArrayList<>();
-        for (Posicion posicionesBarca : posicionesBarcas) {
-            lista.add(Barca.crear(posicionesBarca));
-        }
-        for (Posicion posicionesAlfombra : posicionesAlfombras) {
-            lista.add(Alfombra.crear(posicionesAlfombra));
-        }
-        for (Posicion posicionesCaballo : posicionesCaballos) {
-            lista.add(Caballo.crear(posicionesCaballo));
-        }
-        for (Posicion posicionesNPC : posicionesNPCs) {
-            lista.add(NPC.crear(posicionesNPC));
-        }
+        implementar(posicionesBarcas, lista, bloques, Barca::crear);
+        implementar(posicionesAlfombras, lista, bloques, Alfombra::crear);
+        implementar(posicionesCaballos, lista, bloques, Caballo::crear);
+        implementar(posicionesNPCs, lista, bloques, NPC::crear);
         return lista;
+    }
+
+    private static void implementar(List<Posicion> listaPosiciones, List<Entidad> listaEntidades, Bloque[][] bloques, Function<Posicion,  Entidad> entidadSupplier){
+        for (Posicion posicionesNPC : listaPosiciones) {
+            Entidad npc = entidadSupplier.apply(posicionesNPC);
+            if(bloques[posicionesNPC.y()][posicionesNPC.x()].puedeTransitar(npc)){
+                listaEntidades.add(npc);
+            }
+        }
     }
 
     private static Bloque[][] crearArrayaBloques() {
