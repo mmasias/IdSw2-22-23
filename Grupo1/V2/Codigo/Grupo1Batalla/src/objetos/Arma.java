@@ -6,8 +6,15 @@ public class Arma {
     private int dano;
     private int durabilidad;
     private double probAcertar;
-    private EfectoSecundario efectoSecundario;
+    private EfectoSecundario efectoSecundario = null;
 
+
+    public Arma(String nombre, int dano, int durabilidad, double probAcertar) {
+        this.nombre = nombre;
+        this.dano = dano;
+        this.durabilidad = durabilidad;
+        this.probAcertar = probAcertar;
+    }
     public Arma(String nombre, int dano, int durabilidad, double probAcertar, EfectoSecundario efectoSecundario) {
         this.nombre = nombre;
         this.dano = dano;
