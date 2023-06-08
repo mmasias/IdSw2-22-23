@@ -37,15 +37,7 @@ public class Combatientes {
     }
 
     public static List<Enemigo> obtenerEnemigosVivos() {
-        List<Enemigo> enemigosVivos = new ArrayList<>();
-
-        for (Enemigo enemigo : enemigos) {
-            if (enemigo.estaVivo()) {
-                enemigosVivos.add(enemigo);
-            }
-        }
-
-        return enemigosVivos;
+        return enemigos.stream().filter(Personaje::estaVivo).toList();
     }
 
     public static Personaje getPersonajeVivoRandom(){
