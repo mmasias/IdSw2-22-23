@@ -5,7 +5,7 @@ import configuracionPjs.CreadorPersonajes;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Random;
 
 public class Combatientes {
 
@@ -13,21 +13,17 @@ public class Combatientes {
 
     private static List<Enemigo> enemigos = new LinkedList<>(){{
         add(CreadorPersonajes.Enemigo("Hamilton"));
-        add(CreadorPersonajes.Enemigo("Tortix"));
+        add(CreadorPersonajes.Enemigo("Ocon"));
     }};
 
     public static Heroe getHeroe(){
         return heroe;
     }
 
-    public static List<Enemigo> getEnemigos(){
-        return enemigos;
-    }
-
-    public static List<Personaje> getCombatientes(){
+    public static List<Personaje> getCombatientesVivos(){
         List<Personaje> listaCompleta = new ArrayList<>();
         listaCompleta.add(heroe);
-        listaCompleta.addAll(enemigos);
+        listaCompleta.addAll(obtenerEnemigosVivos());
 
         return listaCompleta;
     }
@@ -40,8 +36,24 @@ public class Combatientes {
         return enemigos.stream().anyMatch(Personaje::estaVivo);
     }
 
-    public static Enemigo elegirPrimerEnemigoVivo(){
-        return enemigos.stream().filter(Personaje::estaVivo).toList().get(0);
+    public static List<Enemigo> obtenerEnemigosVivos() {
+        List<Enemigo> enemigosVivos = new ArrayList<>();
 
+        for (Enemigo enemigo : enemigos) {
+            if (enemigo.estaVivo()) {
+                enemigosVivos.add(enemigo);
+            }
+        }
+
+        return enemigosVivos;
     }
+
+    public static Personaje getPersonajeVivoRandom(){
+
+        Random random = new Random();
+        int enemigoRandom = random.nextInt(getCombatientesVivos().size());
+
+        return getCombatientesVivos().get(enemigoRandom);
+    }
+
 }

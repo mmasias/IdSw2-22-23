@@ -101,25 +101,23 @@ public class VistaBatalla {
         }
     }
 
+    public Personaje elegirEnemigo(List<Enemigo> enemigos) {
+        int enemigoElegido;
 
-    public void eliminarDeBatalla(Personaje enemigo) {
-        RegistroDeCombate.anadirLog(enemigo.getNombre() + " muerto: se elimina de la batalla");
+        System.out.println("¿A cuál enemigo quieres atacar?");
+
+        mostrarEnemigos(enemigos);
+
+        enemigoElegido= scanElegir(enemigos.size());
+
+        return enemigos.get(enemigoElegido-1);
     }
 
-    public Personaje elegirEnemigo(List<Personaje> combatientes) {
-        boolean enemigoBienElegido = false;
-        int enemigoElegido=0;
-
-        while(!enemigoBienElegido){
-
-            System.out.println("¿A cuál enemigo quieres atacar?");
-
-            enemigoElegido= scanElegir(combatientes.size()-1);
-
-            if(combatientes.get(enemigoElegido) instanceof Enemigo){
-                enemigoBienElegido = true;
-            }
+    private void mostrarEnemigos(List<Enemigo> enemigos) {
+        System.out.print(" || ");
+        int index = 1;
+        for (Enemigo enemigo : enemigos) {
+            System.out.print(enemigo.getNombre() +" ("+ (index++) + ") " + " || ");
         }
-        return combatientes.get(enemigoElegido);
     }
 }

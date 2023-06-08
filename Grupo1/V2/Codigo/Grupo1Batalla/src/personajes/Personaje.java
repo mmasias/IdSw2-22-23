@@ -14,6 +14,9 @@ public abstract class Personaje {
 
     protected int armaEquipada;
     protected boolean desmayado;
+    protected boolean aturdido;
+
+    private int turnosParaQuitarAturdimiento;
 
     public Personaje(String nombre, Vida vida, Arma[] armas, String[] sprite) {
         this.nombre = nombre;
@@ -29,7 +32,13 @@ public abstract class Personaje {
         RegistroDeCombate.anadirLog(this.nombre + ": Ha recibido " + dano + " puntos de dano");
 
         comprobarEstado();
+    }
 
+    private void recibirEfectoSecundario(EfectoSecundario efectoSecundario){
+
+        if(efectoSecundario!= null){
+            efectoSecundario.Aplicar(this);
+        }
     }
 
     protected void comprobarEstado(){
@@ -45,11 +54,15 @@ public abstract class Personaje {
         int probAcertar = (int) (Math.random() * 100);
         Arma arma = armas[armaEquipada];
 
+        personajeAAtacar = comprobarEstadoAlAtacar(personajeAAtacar);
+
         if ((probAcertar < arma.getProbAcertar()) && (arma.getDurabilidad() > 0)){
             RegistroDeCombate.anadirLog(this.nombre + " : Ha acertado con el arma " + arma.getNombre());
 
             int danoARealizar = arma.getDano();
             personajeAAtacar.recibirDano(danoARealizar);
+
+            personajeAAtacar.recibirEfectoSecundario(arma.getEfectoSecundario());
 
             arma.desgastar();
             RegistroDeCombate.anadirLog(this.nombre + " : El arma " + arma.getNombre() + " se ha desgastado, ahora le quedan " + arma.getDurabilidad() + " puntos de durabilidad");
@@ -58,6 +71,17 @@ public abstract class Personaje {
         }
 
     }
+
+    private Personaje comprobarEstadoAlAtacar(Personaje personajeAAtacar) {
+        if(aturdido) {
+            RegistroDeCombate.anadirLog(getNombre() + " :  Esta aturdido");
+            personajeAAtacar = Combatientes.getPersonajeVivoRandom();
+            avanzarTurnoAturdimiento();
+        }
+
+        return personajeAAtacar;
+    }
+
     public boolean puedeActuar(){
         return !desmayado;
     }
@@ -75,7 +99,6 @@ public abstract class Personaje {
         }
 
         comprobarSiSeDespierta();
-
     }
 
     private void comprobarSiSeDespierta() {
@@ -113,5 +136,22 @@ public abstract class Personaje {
     }
     public String getNombre(){
         return nombre;
+    }
+
+    public void aturdir(){
+
+        turnosParaQuitarAturdimiento = 3;
+        aturdido=true;
+        RegistroDeCombate.anadirLog(getNombre() + " : Ha sido aturdido ");
+    }
+
+    public void avanzarTurnoAturdimiento(){
+        turnosParaQuitarAturdimiento--;
+
+        if(turnosParaQuitarAturdimiento<=0){
+            RegistroDeCombate.anadirLog(getNombre() + " : Último turno de aturdimiento");
+            aturdido=false;
+        }
+
     }
 }

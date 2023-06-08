@@ -6,12 +6,14 @@ public class Arma {
     private int dano;
     private int durabilidad;
     private double probAcertar;
+    private EfectoSecundario efectoSecundario;
 
-    public Arma(String nombre, int dano, int durabilidad, double probAcertar) {
+    public Arma(String nombre, int dano, int durabilidad, double probAcertar, EfectoSecundario efectoSecundario) {
         this.nombre = nombre;
         this.dano = dano;
         this.durabilidad = durabilidad;
         this.probAcertar = probAcertar;
+        this.efectoSecundario = efectoSecundario;
     }
 
     public String getNombre(){
@@ -32,6 +34,10 @@ public class Arma {
 
     public void desgastar(){
         durabilidad--;
+    }
+
+    public EfectoSecundario getEfectoSecundario(){
+        return efectoSecundario;
     }
 
 }

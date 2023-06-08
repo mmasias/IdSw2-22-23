@@ -5,11 +5,7 @@ public class MainBatalla {
 
     public static void main (String[] args){
         Batalla batalla;
-
-        //
-        // COMBATIENTES
-        //
-        //batalla = new Batalla(CreadorPersonajes.Heroe("asa"), CreadorPersonajes.Enemigo("bb"));
+        
         batalla = new Batalla();
 
         batalla.comenzarBatalla();

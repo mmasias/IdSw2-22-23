@@ -9,8 +9,7 @@ import java.util.List;
 public class Batalla {
     protected VistaBatalla vista;
     protected Heroe heroe = Combatientes.getHeroe();
-    protected List<Enemigo> enemigos = Combatientes.getEnemigos();
-    protected List<Personaje> combatientes = Combatientes.getCombatientes();
+    protected List<Personaje> combatientes = Combatientes.getCombatientesVivos();
 
     public Batalla(){
         vista = new VistaBatalla();
@@ -19,7 +18,6 @@ public class Batalla {
     private int contador = 0;
 
     public void comenzarBatalla(){
-
 
         while (Combatientes.ambosBandosConVida()){
 
@@ -30,30 +28,20 @@ public class Batalla {
             System.out.println();
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
 
-            //vista.imprimirInterfaz(combatientes);
+            vista.imprimirInterfaz(combatientes);
 
             if(contador>=combatientes.size()) contador=0;
 
             combatientes.get(contador).actuar(this);
-
 
             vista.imprimeAccionesDeTurnoActual();
 
             vista.esperarInteraccion();
             RegistroDeCombate.pasarTurno();
 
+            actualizarCombatientes();
+
             contador++;
-//            for (var personaje : Combatientes.getCombatientes()){
-//
-//                //vista.imprimirInterfaz();
-//
-//                personaje.actuar(this);
-//
-//                vista.imprimeAccionesDeTurnoActual();
-//                vista.esperarInteraccion();
-//                RegistroDeCombate.pasarTurno();
-//
-//            }
         }
 
         if (heroe.estaVivo()){
@@ -69,11 +57,8 @@ public class Batalla {
         switch(vista.elegirAccion()){
             case ATACAR -> {
                 heroe.equiparArma(vista.elegirArma() - 1);
-                //heroe.atacar(Combatientes.elegirPrimerEnemigoVivo());
-                Personaje enemigo = vista.elegirEnemigo(combatientes);
+                Personaje enemigo = vista.elegirEnemigo(Combatientes.obtenerEnemigosVivos());
                 heroe.atacar(enemigo);
-                comprobarSiEliminarPersonaje(enemigo);
-
             }
             case DEFENDER -> {
                 heroe.defenderse();
@@ -86,9 +71,7 @@ public class Batalla {
 
     private void enemigoActua(Enemigo enemigoActual){
         enemigoActual.equiparArmaAleatoria();
-        Personaje personaje = enemigoActual.elegirPersonajeAAtacar(combatientes);
-        enemigoActual.atacar(personaje);
-        comprobarSiEliminarPersonaje(personaje);
+        enemigoActual.atacar(heroe);
     }
 
     public void turno(Heroe heroe) {
@@ -111,10 +94,8 @@ public class Batalla {
         }
     }
 
-    private void comprobarSiEliminarPersonaje(Personaje personaje) {
-        if(!personaje.estaVivo()){
-            combatientes.remove(personaje);
-            vista.eliminarDeBatalla(personaje);
-        }
+    private void actualizarCombatientes() {
+
+        combatientes = Combatientes.getCombatientesVivos();
     }
 }
