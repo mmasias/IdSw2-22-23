@@ -1,5 +1,6 @@
 package personajes;
 
+import controlador.Batalla;
 import extras.RegistroDeCombate;
 import objetos.*;
 
@@ -11,6 +12,11 @@ public class Heroe extends Personaje{
     private int turnosParaCurarseConPocion;
 
     private final int armadura = 5;
+
+    @Override
+    public void actuar(Batalla batalla){
+        batalla.turno(this);
+    }
 
     public Heroe(String nombre, Vida vida, Arma[] armas, String[] sprite){
         super(nombre, vida, armas, sprite);
@@ -89,4 +95,7 @@ public class Heroe extends Personaje{
         return acciones;
     }
 
+    public void comprobarSiCurar() {
+        if(desmayado || esperandoACurarseConPocion)  avanzarTurnoSinActuar();
+    }
 }

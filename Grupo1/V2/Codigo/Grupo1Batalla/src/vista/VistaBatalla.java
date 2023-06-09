@@ -1,35 +1,39 @@
+package vista;
+
 import extras.*;
 import personajes.*;
 import objetos.*;
 import renderizacion.RecuadroPersonaje;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class VistaBatalla {
 
     protected RecuadroPersonaje recuadro;
-    protected Heroe heroe;
-    private Scanner entrada;
-    private final int ATACAR = 1;
-    private final int DEFENDER = 2;
-    private final int CURARSE = 3;
+    protected Heroe heroe = Combatientes.getHeroe();
+    private final Scanner entrada;
 
-    public VistaBatalla(Heroe heroe, Enemigo enemigo){
-        this.heroe = heroe;
-        recuadro = new RecuadroPersonaje(heroe, enemigo);
+    public VistaBatalla(){
+        recuadro = new RecuadroPersonaje();
         entrada = new Scanner(System.in);
     }
 
-    public void imprimirInterfaz(){
-        recuadro.imprimir();
+    public void imprimirInterfaz(List<Personaje> combatientes){
+        clearConsole();
+        recuadro.imprimir(combatientes);
     }
 
-    public void anunciarGanador(Personaje ganador){
-        System.out.println(ganador.getNombre() + " Ha sido el ganador!");
+    public void anunciarGanador(String ganador){
+        System.out.println("Ha ganado " + ganador);
     }
 
     public Acciones elegirAccion(){
         mostrarAcciones();
+
+        final int ATACAR = 1;
+        final int DEFENDER = 2;
+        final int CURARSE = 3;
 
         switch (scanElegir(heroe.getAcciones().length)){
             case ATACAR -> {
@@ -53,8 +57,16 @@ public class VistaBatalla {
     }
 
     public void esperarInteraccion(){
+        System.out.println("\nPulse enter para continuar... ");
         Scanner a = new Scanner(System.in);
         a.nextLine();
+    }
+
+    public final static void clearConsole()
+    {
+        System.out.print("\033\143");
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
     private int scanElegir(int numMax){
         boolean elegidaOpcionCorrecta = false;
@@ -98,6 +110,23 @@ public class VistaBatalla {
         }
     }
 
+    public Personaje elegirEnemigo(List<Enemigo> enemigos) {
+        int enemigoElegido;
 
+        System.out.println("¿A cuál enemigo quieres atacar?");
 
+        mostrarEnemigos(enemigos);
+
+        enemigoElegido= scanElegir(enemigos.size());
+
+        return enemigos.get(enemigoElegido-1);
+    }
+
+    private void mostrarEnemigos(List<Enemigo> enemigos) {
+        System.out.print(" || ");
+        int index = 1;
+        for (Enemigo enemigo : enemigos) {
+            System.out.print(enemigo.getNombre() +" ("+ (index++) + ") " + " || ");
+        }
+    }
 }
