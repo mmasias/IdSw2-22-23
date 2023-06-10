@@ -2,10 +2,8 @@ package controllers;
 
 import java.util.Scanner;
 
-import models.BillModel;
 import models.CoinModel;
 import models.MachineModel;
-import models.MoneyAbstract;
 import models.ProductModel;
 import models.PurchaseModel;
 import utils.Line;
@@ -28,12 +26,11 @@ public class PurchaseController {
         double moneyDeposited = selectTypeMoney(machine);
 
         while (moneyDeposited < selectedProduct.price) {
-            System.out.println("Dinero insuficiente. Ingrese más dinero:");
+            System.out.println("Dinero insuficiente. \n Ingrese más dinero:");
             moneyDeposited += scanner.nextDouble();
         }
 
         final double change = moneyDeposited - selectedProduct.price;
-        //final String messageChange = purchaseModel.calculateChange(change, selectedProduct.price, machine);
         String messageChange = purchaseModel.returnChange(change, machine);
 
         printTicket(selectedProduct, messageChange);
@@ -49,7 +46,7 @@ public class PurchaseController {
             System.out.println("[1] Billetes");
             System.out.println("[2] Monedas");
             System.out.println("[3] Salir");
-            System.out.println("----------------   Elige una opcion: ");
+            System.out.println("----   Elige una opcion: ");
             String option = "";
             option = scanner.nextLine();
 
@@ -69,11 +66,10 @@ public class PurchaseController {
 
     public void printTicket(ProductModel product, String messageChange) {
         line.printLineOfHyphens();
-        System.out.println("Gracias por su compra. Aquí tiene su " + product.name + ".");
+        System.out.println("Gracias por su compra. \n Aquí tiene su " + product.name + ".");
 
         if (!messageChange.isEmpty()) {
             System.out.println("Su cambio es: \n" + messageChange);
         }
     }
-
 }
