@@ -1,39 +1,40 @@
-@startuml domain-model
-
+@startuml class
 class Machine {
-    + name
-    + List<Bill> bills
-    + List<Coin> coins
-    + List<Product> products
+    - String name
+    - List<Bill> bills
+    - List<Coin> coins
+    - List<Product> products
+    - Scanner scanner
 
     + Machine(String name, List<Bill> bills, List<Coin> coins, List<Product> products)
-    + addBills(BillModel bill)
-    + addCoins(CoinModel coin)
-    + addProducts(ProductModel product)
+    + addBill(Bill bill)
+    + addCoin(Coin coin)
+    + addProduct(Product product)
+    + getBillList()
+    + getCoinList()
+    + getProductList()
     + showName()
-    + listOfBills()
-    + listOfCoins()
-    + listOfProducts()
+    + calculateChange(double receivedAmount, double productAmount)
+    + generateChangeMessage(double amount)
+    + purchase()
+    + showProducts()
+    + selectProduct()
+    + insertMoney()
+    + printTicket(Product product, String changeMessage)
 }
 
 class Bill {
-    + value
-    + quantity
-
     + Bill(double value, int quantity)
 }
 
 class Coin {
-    + value
-    + quantity
-
     + Coin(double value, int quantity)
 }
 
 class Product {
-    + name
-    + price
-    + quantity
+    + String name
+    + int price
+    + int quantity
 
     + Product(String name, double price, int quantity)
     + updatePrice(double price)
@@ -41,32 +42,51 @@ class Product {
     + updateQuantity(int quantity)
 }
 
-class Money {
-    + value
-    + quantity
+abstract class Money {
+    + double value
+    + int quantity
 
     + Money(double value, int quantity)
-    + updatePrice(double value)
+    + updateValue(double value)
     + updateQuantity(int quantity)
 }
 
 class Maintenance {
-    + name
-    + type
+    + String name
+    + String type
 
     + Maintenance()
 }
 
-class Purchase {
-    + scanner
+class Initializer {
+    + Initializer()
 
-    + purchase(MachineModel machine)
-    + calculateChange(double amountReceived, double amountProduct, MachineModel machine)
-    - showProductSelection(List<ProductModel> products)
-    - selectProduct(List<ProductModel> products)
-    - depositMoney()
+    + machines()
+    + generateMachines(BillController, CoinController, ProductController)
+
 }
 
+class Manager {
+    + String name
+    + Scanner scanner
+
+    + Manager(String name)
+    + createBillList(int quantity1, int quantity2, int quantity3, int quantity4, int quantity5)
+    + createCoinList(int quantity1, int quantity2, int quantity3)
+    + createProductList()
+    + printProducts(List<Machine> machines)
+    + printMachineNames(List<Machine> machines)
+    + selectMachine(List<Machine> machines)
+    + purchaseMenu(List<Machine> machines)
+}
+
+class Main {
+    + Main()
+}
+
+Initializer -u-o Main
+Manager -u-* Initializer
+Machine -u-* Manager
 Machine *--r Maintenance
 Machine o--- Product
 Machine o--- Bill
@@ -74,5 +94,4 @@ Machine o--- Coin
 
 Money <|--- Bill
 Money <|--- Coin
-
 @enduml

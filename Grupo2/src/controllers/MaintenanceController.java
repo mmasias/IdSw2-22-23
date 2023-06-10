@@ -4,10 +4,8 @@ import java.util.List;
 
 import models.MachineModel;
 import models.ProductModel;
-import models.MaintenanceModel;
 
 public class MaintenanceController {
-
     public void checkAndRefillProducts(List<MachineModel> machines) {
         for (MachineModel machine : machines) {
             for (ProductModel product : machine.listOfProducts()) {

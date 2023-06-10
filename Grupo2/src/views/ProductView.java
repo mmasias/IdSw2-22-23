@@ -1,6 +1,5 @@
 package views;
 
-import java.util.List;
 import models.MachineModel;
 import utils.Line;
 
@@ -11,26 +10,19 @@ public class ProductView {
         this.line = line;
     }
 
-    public void printProducts(final List<MachineModel> machines) {
+    public void printProduct(final MachineModel machine) {
         try {
             line.printLine();
 
-            for (int i = 0; i < machines.get(0).listOfProducts().size(); i++) {
+            for (int i = 0; i < machine.listOfProducts().size(); i++) {
                 System.out.print("|");
                 System.out.printf(
-                    "%26s|",machines.get(0).listOfProducts().get(i).name +
-                    " $: " + machines.get(0).listOfProducts().get(i).price
+                    "%26s|",machine.listOfProducts().get(i).name +
+                    " $: " + machine.listOfProducts().get(i).price
                 );
-                for (int j = 1; j < machines.size(); j++) {
-                    System.out.printf(
-                        "%26s |",machines.get(j).listOfProducts().get(i).name + " $: " +
-                        machines.get(j).listOfProducts().get(i).price
-
-                    );
-                }
                 System.out.println();
             }
-            
+
             line.printLine();
         } catch (Exception e) {
             System.out.println(e.getMessage());
