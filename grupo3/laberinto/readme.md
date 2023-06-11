@@ -8,6 +8,7 @@ class Mundo
 abstract class Entidad
 abstract class Bloque
 class Main
+class Simulador
 class RenderizadorMundo
 class MovedorEntidadesMundo
 interface SeMueveSolo
@@ -24,7 +25,18 @@ RenderizadorMundo : void renderizar(Mundo mundo)
 SeMueveSolo : Vector getVectorMovimientoSolo(Entidad entidad)
 SePuedeRenderizar : String getDibujo(Mundo mundo)
 
-Main --> Mundo : Crea y inicia
+Main --> Simulador  : Crea y inicia
+
+Simulador : Posicion POSICION_INICIAL_PERSONAJE
+Simulador : Map<Integer, Bloque> BLOQUES_BY_ID
+Simulador : int[][] MAPA_BLOQUES_ID
+Simulador : void simular(int numeroBarcas, int numeroAlfombras, int numeroCaballos, int numeroNPCs)
+Simulador : List<Posicion> crearPosiciones(int numeroEntidades)
+Simulador : List<Entidad> crearListaEntidades(Bloque[][] bloques, List<Posicion> posicionesBarcas, List<Posicion> posicionesAlfombras, List<Posicion> posicionesCaballos, List<Posicion> posicionesNPCs)
+Simulador : void implementar(List<Posicion> listaPosiciones, List<Entidad> listaEntidades, Bloque[][] bloques, Function<Posicion,  Entidad> entidadSupplier)
+Simulador : crearArrayBloques()
+
+Simulador --> Mundo 
 
 Mundo --> Bloque : esta formado por
 Mundo --> RenderizadorMundo : Contiene
@@ -71,8 +83,8 @@ Entidad <|-- Alfombra
 Entidad <|-- Caballo
 NPC --|> SeMueveSolo
 
-Bloque <|-- SePuedeRenderizar
-Entidad <|-- SePuedeRenderizar
+Bloque --|> SePuedeRenderizar
+Entidad --|>  SePuedeRenderizar
 
 class InputUsuario
 InputUsuario : String leer()
