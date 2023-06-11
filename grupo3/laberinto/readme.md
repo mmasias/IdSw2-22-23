@@ -1,5 +1,5 @@
 ### Diagrama de clases
-[Diagrama de clases](diagramas/clases.png)
+[Diagrama de clases](grupo3/laberinto/diagramas/clases.png)
 
 https://docs.google.com/spreadsheets/d/1jAaldm2KdGVpMWjn9ixDJkPq4mqZVSDKXi6XWjTEUh0/edit#gid=0
 
