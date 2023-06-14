@@ -10,11 +10,22 @@ public abstract class  MoneyAbstract {
         this.quantity = quantity;
     }
 
-    void updatePrice(double value) {
+    public void updateValue(double value) {
         this.value = value;
     }
 
-    void updateQuantity(int quantity) {
+    public void updateQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+
+    public abstract void received(PurchaseModel purchaseModel);
+
+    public double getValue(){
+        return value;
+    }
+
+    public int getQuantity(){
+        return quantity;
     }
 }

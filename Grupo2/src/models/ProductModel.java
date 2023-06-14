@@ -24,4 +24,8 @@ public class ProductModel {
     public void updateQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public int getQuantity(){
+        return quantity;
+    }
 }

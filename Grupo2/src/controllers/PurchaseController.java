@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.Scanner;
 
+import models.CoinModel;
 import models.MachineModel;
 import models.ProductModel;
 import models.PurchaseModel;
@@ -22,26 +23,53 @@ public class PurchaseController {
 
         purchaseModel.showProductSelection(machine.listOfProducts());
         final ProductModel selectedProduct = purchaseModel.selectProduct(machine.listOfProducts());
-        double moneyDeposited = purchaseModel.depositMoney();
+        double moneyDeposited = selectTypeMoney(machine);
 
         while (moneyDeposited < selectedProduct.price) {
-            System.out.println("Dinero insuficiente. Ingrese más dinero:");
+            System.out.println("Dinero insuficiente. \n Ingrese más dinero:");
             moneyDeposited += scanner.nextDouble();
         }
 
         final double change = moneyDeposited - selectedProduct.price;
-        final String messageChange = purchaseModel.calculateChange(change, selectedProduct.price, machine);
+        String messageChange = purchaseModel.returnChange(change, machine);
 
         printTicket(selectedProduct, messageChange);
     }
 
-    public void printTicket(ProductModel product, String messageChange) {
-        line.printLineOfHyphens();
-        System.out.println("Gracias por su compra. Aquí tiene su " + product.name + ".");
+    public double selectTypeMoney(MachineModel machine) {
+        boolean exit = false;
+        double moneyDeposited = 0;
 
-        if (!messageChange.isEmpty()) {
-            System.out.println("Su cambio es: " + messageChange);
-        }
+        do{
+            line.printLineOfHyphens();
+            System.out.println("Seleccione el tipo de pago: ");
+            System.out.println("[1] Billetes");
+            System.out.println("[2] Monedas");
+            System.out.println("[3] Salir");
+            System.out.println("----   Elige una opcion: ");
+            String option = "";
+            option = scanner.nextLine();
+
+            if(option.equals("1"))
+                moneyDeposited = purchaseModel.depositMoney(machine.listOfBills());
+            else if(option.equals("2"))
+                moneyDeposited = purchaseModel.depositMoney(new CoinModel(0, 0)).value;
+            else if(option.equals("3")){
+                System.out.println("Saliendo...");
+                exit = true;
+            }
+            exit = true;
+        }while(!exit);
+
+        return moneyDeposited;
     }
 
+    public void printTicket(ProductModel product, String messageChange) {
+        line.printLineOfHyphens();
+        System.out.println("Gracias por su compra. \n Aquí tiene su " + product.name + ".");
+
+        if (!messageChange.isEmpty()) {
+            System.out.println("Su cambio es: \n" + messageChange);
+        }
+    }
 }

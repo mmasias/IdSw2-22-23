@@ -1,18 +1,19 @@
 @startuml coll
 state Program{
-  
-Gestor -> Maquina
 
-Maquina ---> Billete
-Maquina ---> Moneda
-Maquina --> Producto
+Main --> Initializer
+Initializer --> Manager
 
-Dinero --> Billete
-Dinero --> Billete
-Dinero --> Moneda
-Dinero --> Moneda
+Manager --> Machine
 
-Producto -> Dinero
+Machine ---> Bill
+Machine ---> Coin
+Machine --r-> Product
+
+Money ---> Bill
+Money ---> Coin
+
+Product -l--> Money
 
 }
 @enduml
