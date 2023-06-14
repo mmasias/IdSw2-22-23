@@ -1,6 +1,5 @@
 package views;
 
-import java.util.List;
 import java.util.Scanner;
 
 import models.MachineModel;
@@ -14,17 +13,13 @@ public class MachineView {
         this.line = line;
     }
 
-    public void printMachineName(List<MachineModel> machines) {
+    public void printMachineName(MachineModel machine) {
         line.printLine();
 
-        machines.forEach(machine -> {
-            final int width = 28;
-            final int padding = (width - machine.showName().length()) / 2;
-            System.out.print(
-                String.format("%" + padding + "s%s%" + padding + "s", "", machine.showName(), "")
-            );
-        });
-
-        line.printLineByMachines(machines);
+        final int width = 28;
+        final int padding = (width - machine.showName().length()) / 2;
+        System.out.println(
+            String.format("%" + padding + "s%s%" + padding + "s", "", machine.showName(), "")
+        );
     }
 }
