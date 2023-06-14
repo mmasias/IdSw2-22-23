@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3bdd7b49-1381-4be9-8f7b-c3b8d8aa8726" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Grupo2/src/models/PurchaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/models/PurchaseModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grupo2/src/controllers/MaintenanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Grupo2/src/controllers/MaintenanceController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,17 +28,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rene Ixcopal/Documents/Progra 2/awesome-projects-prograii&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Rene Ixcopal/Documents/Ing de Soft/IdSw2-22-23",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -55,6 +55,8 @@
       <workItem from="1684761709646" duration="2182000" />
       <workItem from="1685359858369" duration="796000" />
       <workItem from="1685535404348" duration="205000" />
+      <workItem from="1685957488437" duration="11000" />
+      <workItem from="1686734485497" duration="305000" />
     </task>
     <servers />
   </component>
