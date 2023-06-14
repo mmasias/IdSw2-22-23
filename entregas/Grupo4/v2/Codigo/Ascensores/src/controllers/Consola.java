@@ -1,12 +1,12 @@
 package controllers;
 
-import constants.Constans;
+import settings.Settings;
 import models.*;
 
 public class Consola {
     public static void imprimir(){
         String linea = "----------- Personas esperando  ";
-        for (int i = 0; i < Constans.TOTAL_ASCENSORES; i++) {
+        for (int i = 0; i < Settings.TOTAL_ASCENSORES; i++) {
             linea += "-------- ";
         }
         linea += "  Personas en la planta";

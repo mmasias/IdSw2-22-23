@@ -1,11 +1,20 @@
 @startuml modeloDelDominio
 
-class "constants.Constants" {
-  + {static} final int NIVEL_SUPERIOR
-  + {static} final int NIVEL_INFERIOR
-  + {static} final int CAPACIDAD_MAXIMA_ASCENSOR
-  + {static} final int TOTAL_ASCENSORES
-  + {static} final int PLANTA_PRINCIPAL
+class "settings.Settings" {
+  + {static} int NIVEL_SUPERIOR
+  + {static} int NIVEL_INFERIOR
+  + {static} int CAPACIDAD_MAXIMA_ASCENSOR
+  + {static} int TOTAL_ASCENSORES
+  + {static} int PLANTA_PRINCIPAL
+  + {static} double PROBABILIDAD_LLEGADA_PERSONA
+
+  + {static} void settingConstants()
+  - {static} void setNivelInferior()
+  - {static} void setNivelSuperior()
+  - {static} void setCapacidadMaximaAscensor()
+  - {static} void setTotalAscensores()
+  - {static} void setPlantaPrincipal()
+  - {static} void setProbabilidadLlegadaPersona()
 }
 
 class "controllers.Consola" {
@@ -67,7 +76,6 @@ class "models.Tiempo" {
     + int getSegundos()
     + Universidad getUniversidad()
     - void empezar()
-    + {static} void main(String[] args)
 }
 
 
@@ -107,8 +115,6 @@ class "models.Ascensor" implements "interfaces.IMovible" {
     - void bajarPersonas()
     + void mover()
     + void llamar(persona persona)
-    + void subir()
-    + void bajar()
 }
 
 
@@ -135,6 +141,11 @@ class "models.SalaEspera" {
 
 class views.Renderizado {
   + {static} void renderizar()
+}
+
+class main {
+  + {static} void main(String[] args)
+  + {static} boolean askUser
 }
 
 Ascensor *--d Persona 
